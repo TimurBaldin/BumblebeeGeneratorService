@@ -1,15 +1,22 @@
 package TipDataRule;
-import Rules.ManagerRule;
-import com.github.javafaker.Faker;
-
-import java.util.Locale;
+import Rules.*;
+import org.hibernate.*;
+import org.hibernate.cfg.Configuration;
+import java.lang.Throwable;
+import org.hibernate.*;
 
 public class LogicRule {
     public static void main(String[] args) {
-        Faker faker = new Faker(new Locale("EN"));
+        try {
+            SessionFactory sessionFactory=new Configuration ().buildSessionFactory ();
+            Session session=sessionFactory.openSession ();
+            session.close ();
+            sessionFactory.close ();
+        } catch (Exception e) {
+            e.printStackTrace ( );
+        }
 
-        String name = faker.name().fullName();
-        System.out.println("Name "+name);
+
 
     }
 }

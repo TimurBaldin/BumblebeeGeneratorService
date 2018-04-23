@@ -1,5 +1,4 @@
 package Rules;
-
-
-public interface Rules {
+public interface Rules<T> {
+    T returnValue() throws Exception ;
 }
