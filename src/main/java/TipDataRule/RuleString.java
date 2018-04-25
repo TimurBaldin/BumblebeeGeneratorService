@@ -1,33 +1,27 @@
 package TipDataRule;
-import Rules.StringBoundaryValues;
-import Rules.StringSpecialValues;
+import Rules.ValidationRules;
 import java.util.HashMap;
 public class RuleString implements ValidationRules {
     private int Len;
-    private int SPECIAL_LEN;
     private int INCREASE_QUANTITY;
     private boolean Low;
     private boolean CAPITAL;
-    private Boolean ESC_SPECIAL;
-    private Boolean SPECIAL;
-    @Override
-    public void loadRule(HashMap<String, ?> input_rule) {
-
+    private boolean ESC_SPECIAL;
+    private boolean SPECIAL;
+    public  RuleString(int Len,int INCREASE_QUANTITY,boolean Low,boolean CAPITAL, boolean ESC_SPECIAL,boolean SPECIAL) {
+this.Len=Len;
+this.INCREASE_QUANTITY=INCREASE_QUANTITY;
+this.Low=Low;
+this.CAPITAL=CAPITAL;
+this.ESC_SPECIAL=ESC_SPECIAL;
+this.SPECIAL=SPECIAL;
     }
     private boolean checkRule() {
-        return false;
+        if((Len>0 && INCREASE_QUANTITY>0)){
+            if(!Low && !CAPITAL){return false;}else{return true;}
+        }else {return false;}
     }
-    private void buildTestData(){
-        StringBoundaryValues stringBoundaryValues=
-                new StringBoundaryValues (Len,INCREASE_QUANTITY,Low,CAPITAL);
-        StringSpecialValues stringSpecialValues=
-                new StringSpecialValues (SPECIAL_LEN,INCREASE_QUANTITY, ESC_SPECIAL,SPECIAL);
-        try {
-            stringBoundaryValues.returnValue ();
-            stringSpecialValues.returnValue ();
-
-        }catch (Exception ex){
-
-        }
+    public void buildTestData() throws Exception{
+if(!checkRule ()){throw new Exception ("invalid input");}
     }
 }
