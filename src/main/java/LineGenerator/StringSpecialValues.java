@@ -34,18 +34,15 @@ public class StringSpecialValues implements Rules<List<String>> {
             for(Integer i=1;i<=SPECIAL_LEN+INCREASE_QUANTITY;i++){
                 values.add (stringSpecial(i));
             }
-            System.out.println ("Values S " + values);
             return values;
         }
         if(SPECIAL){
             for(Integer i=1;i<=SPECIAL_LEN+INCREASE_QUANTITY;i++){
                 values.add (stringSpecial(i));
             }
-            System.out.println ("Values S " + values);
             return values;
         }else {
             values.add (stringEsc ());
-            System.out.println ("Values S " + values);
             return values;
         }
     }
