@@ -13,7 +13,7 @@ public class LogicRule {
         /*
         Пример входных пользовательских данных
          */
-        RuleString RS=new RuleString(10,30,true,true,true,true,"Test");
+        RuleString RS=new RuleString(1000,30,false,true,true,true,"Test");
         try {
             RS.buildTestData ();
         } catch (Exception e) {

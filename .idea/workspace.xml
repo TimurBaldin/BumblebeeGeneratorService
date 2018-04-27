@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d651830b-299f-4579-8037-05c53a637553" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Tools/LineWriterTool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/f6ae1064-1149-4d6f-bda7-0710157792c4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f6ae1064-1149-4d6f-bda7-0710157792c4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/hibernate.cfg.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/TipDataRule/RuleString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TipDataRule/RuleString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tools/LineWriterTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tools/LineWriterTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -36,7 +37,33 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="logs@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="data_generator@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="data_generator@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="data_generator@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="data_generator: database" type="6d9b600a:PostgresImplModel$Database" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="data_generator@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="data_generator: database" type="6d9b600a:PostgresImplModel$Database" />
+        <item name="bufer: schema" type="a16502c0:PostgresImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="data_generator@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="data_generator: database" type="6d9b600a:PostgresImplModel$Database" />
+        <item name="bufer: schema" type="a16502c0:PostgresImplModel$Schema" />
+        <item name="stringtablebufer: table" type="a93d6ac6:PostgresImplModel$LocalTable" />
       </path>
     </expand>
     <select />
@@ -59,7 +86,7 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -390,7 +417,6 @@
         <option value="$PROJECT_DIR$/src/main/java/TipDataRule/ValidationRules.java" />
         <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg..fxml" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_1.sql" />
-        <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
         <option value="f6ae1064-1149-4d6f-bda7-0710157792c4/database/logs/schema/test/table/users.sql" />
         <option value="f6ae1064-1149-4d6f-bda7-0710157792c4/database/logs/schema/test/sequence/users_user_id_seq" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_2.sql" />
@@ -404,13 +430,19 @@
         <option value="$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java" />
         <option value="$PROJECT_DIR$/src/main/java/Rules/ValidationRules.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_4.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" />
         <option value="$PROJECT_DIR$/src/main/java/LineGenerator/StringNull.java" />
         <option value="$PROJECT_DIR$/src/main/java/Tools/WriterBD.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Tools/LineWriterTool.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java" />
         <option value="$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_5.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_6.sql" />
         <option value="$PROJECT_DIR$/src/main/java/TipDataRule/RuleString.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_7.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/Tools/LineWriterTool.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_8.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" />
       </list>
     </option>
   </component>
@@ -431,6 +463,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -438,47 +473,10 @@
               <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
               <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
-            <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="LineGenerator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="TipDataRule" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -640,11 +638,14 @@
       <workItem from="1524675190479" duration="815000" />
       <workItem from="1524676123373" duration="6809000" />
       <workItem from="1524760395159" duration="3962000" />
+      <workItem from="1524766992426" duration="1407000" />
+      <workItem from="1524852262796" duration="2581000" />
+      <workItem from="1524855102622" duration="1844000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58998000" />
+    <option name="totallyTimeSpent" value="64830000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -664,7 +665,7 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="3" weight="0.33282906" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.0" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -675,16 +676,16 @@
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32952693" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848714" weight="0.3572594" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848714" weight="0.32952693" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32952693" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.37291983" />
+      <window_info anchor="bottom" id="Database Console" order="8" weight="0.32952693" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28744328" />
       <window_info anchor="bottom" id="Run with VisualVM" order="7" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.32980332" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug with VisualVM" order="7" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Database Console" order="8" visible="true" weight="0.32952693" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49924356" weight="0.32952693" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -696,9 +697,8 @@
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49924356" weight="0.32952693" />
       <window_info id="Designer" order="2" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848714" visible="true" weight="0.3572594" />
       <window_info anchor="bottom" id="Database Console" order="15" visible="true" weight="0.32952693" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848714" visible="true" weight="0.3572594" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="3" />
@@ -706,10 +706,10 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32952693" />
       <window_info id="Capture Tool" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.33768353" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32952693" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32952693" />
       <window_info anchor="bottom" id="Run with VisualVM" order="11" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
@@ -725,6 +725,7 @@
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32952693" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39967373" />
     </layout-to-restore>
   </component>
@@ -766,48 +767,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/Logic/LogicRule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="81" selection-start-line="14" selection-start-column="81" selection-end-line="14" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Logic/LogicRule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="81" selection-start-line="14" selection-start-column="81" selection-end-line="14" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Logic/LogicRule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="50" lean-forward="true" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="81" selection-start-line="14" selection-start-column="81" selection-end-line="14" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Rules/ManagerRule.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_141/jre/lib/rt.jar!/java/net/URLClassLoader.class">
@@ -929,13 +888,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="83" selection-start-line="6" selection-start-column="83" selection-end-line="6" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_2.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1023,51 +975,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Tables/UserTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Tools/LineWriterTool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#106#114#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="51" column="24" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="24" />
-          <folding>
-            <element signature="method#StringBoundaryValues#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildCap#0;class#StringBoundaryValues#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1075,31 +986,110 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="29" column="55" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_5.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-665">
+          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
           <folding>
-            <element signature="method#returnValue#0;class#StringSpecialValues#0" />
-            <element signature="method#stringEsc#0;class#StringSpecialValues#0" />
-            <element signature="method#stringSpecial#0;class#StringSpecialValues#0" />
+            <element signature="method#stringBuildCap#0;class#StringBoundaryValues#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_6.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="35" selection-start-column="35" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TipDataRule/RuleString.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#RuleString#0;class#RuleString#0" />
-            <element signature="method#checkRule#0;class#RuleString#0" />
-            <element signature="method#buildTestData#0;class#RuleString#0" />
-          </folding>
+        <state relative-caret-position="378">
+          <caret line="57" column="7" selection-start-line="57" selection-start-column="7" selection-end-line="57" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_7.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="34" selection-start-column="34" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://f6ae1064-1149-4d6f-bda7-0710157792c4/database/data_generator/schema/bufer/table/stringtablebufer.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://f6ae1064-1149-4d6f-bda7-0710157792c4/database/data_generator/schema/bufer/table/stringtablebufer">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_8.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="24" selection-start-column="24" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Logic/LogicRule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="15" column="68" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
+          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Tools/LineWriterTool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#loadData#0;class#LineWriterTool#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+          <folding>
+            <element signature="e#591#592#0" expanded="true" />
+            <element signature="e#623#624#0" expanded="true" />
+            <element signature="e#755#756#0" expanded="true" />
+            <element signature="e#798#799#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

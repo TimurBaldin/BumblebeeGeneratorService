@@ -54,8 +54,8 @@ if(values.size ()!=0){
 
     }
     private void WriteData(){
-       LineWriterTool writer=new LineWriterTool ();
-
-    }
+       LineWriterTool writer=new LineWriterTool (values,COLUMN_NAME);
+       writer.writeBD ();
+       }
 
 }

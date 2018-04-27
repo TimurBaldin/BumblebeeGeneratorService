@@ -13,4 +13,27 @@ public class StringTableBufer {
     @Column(name="ReportColumnName")
     private String ColumnName;
 
+    public int getId() {
+        return id;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public String getColumnName() {
+        return ColumnName;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+        }
+
+    public void setValue(String value) {
+        this.value = value;
+        }
+
+    public void setColumnName(String columnName) {
+        ColumnName = columnName;
+        }
 }
