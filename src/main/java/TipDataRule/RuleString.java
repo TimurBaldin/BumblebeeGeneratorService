@@ -1,6 +1,7 @@
 package TipDataRule;
 import Rules.*;
 import LineGenerator.*;
+import Tables.StringTableBufer;
 import Tools.*;
 import java.util.*;
 public class RuleString implements ValidationRules {
@@ -11,6 +12,7 @@ public class RuleString implements ValidationRules {
     private boolean ESC_SPECIAL;
     private boolean SPECIAL;
     private String COLUMN_NAME;
+    private LineWriterTool tool;
     private List<String> values=new ArrayList<String> ();
     public  RuleString(int Len,int INCREASE_QUANTITY,boolean Low,boolean CAPITAL, boolean ESC_SPECIAL,boolean SPECIAL,String COLUMN_NAME) {
 this.Len=Len;
@@ -46,16 +48,18 @@ if(!ESC_SPECIAL && !SPECIAL) {
     }
 }
 if(values.size ()!=0){
-   WriteData ();
+    createTable ();
 }else {
     throw new Exception ("Invalid test values (values==0)");
 }
 
 
     }
-    private void WriteData(){
-       LineWriterTool writer=new LineWriterTool (values,COLUMN_NAME);
-       writer.writeBD ();
+    private void createTable(){
+       LineWriterTool tool=new LineWriterTool (values,COLUMN_NAME);
+       tool.buildTable ();
+
        }
+
 
 }

@@ -1,11 +1,13 @@
 package Logic;
+import Tables.UserTest;
 import TipDataRule.*;
 
 public class LogicRule {
     public static void main(String[] args) {
         LogicRule l=new LogicRule ();
         l.interaction ();
-
+        /*UserTest test= new UserTest ();
+        test.test ();*/
 
 
     }
@@ -13,10 +15,12 @@ public class LogicRule {
         /*
         Пример входных пользовательских данных
          */
-        RuleString RS=new RuleString(1000,30,false,true,true,true,"Test");
+        RuleString RS=new RuleString(80,30,false,true,true,true,"Test");
+        RuleString RT=new RuleString(80,30,false,true,true,true,"New val");
         try {
             RS.buildTestData ();
-        } catch (Exception e) {
+            RT.buildTestData ();
+            } catch (Exception e) {
             e.printStackTrace ( );
         }
 

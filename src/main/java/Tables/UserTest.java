@@ -1,28 +1,22 @@
 package Tables;
+
+import Tools.SessionUntil;
 import org.hibernate.*;
-import org.hibernate.annotations.*;
+import org.hibernate.SessionFactory;
 
-import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.Query;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
-@Table (name="users" ,schema="test")
 public class UserTest {
-    @Id
-    @SequenceGenerator( name = "user_id", sequenceName = "user_id",schema="test")
-    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "user_id")
-    @Column(name = "user_id")
-    private int user_id;
-    @Column(name="user_name")
-    private String username;
-    public void setId(int id) {
-        this.user_id = id;
+    String query ="VYBQ";
+    String str="from StringTableBufer where value='VYBQ'";
+    public void test(){
+        SessionFactory sessionFactory=SessionUntil.getInstance ();
+       Session session = sessionFactory.openSession ( );
+      Query query= session.createQuery (str);
+        List<StringTableBufer> res=query.getResultList ();
+      System.out.println ("Result@  "+res.get (0).getColumnName ());
+
     }
-    public void setName(String name) {
-        this.username = name;
-    }
-    public String getName(){return username;}
-    @Column(name="game_id")
-    private int game_id=5;
 }
