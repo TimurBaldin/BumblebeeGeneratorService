@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jfairy">
+    <CLASSES>
+      <root url="jar://C:/Tools/jfairy.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://C:/Tools/jfairy.jar!/" />
+    </SOURCES>
+  </library>
+</component>
