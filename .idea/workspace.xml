@@ -3,8 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="d651830b-299f-4579-8037-05c53a637553" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LineGenerator/StringNull.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LineGenerator/StringNull.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Rules/FactoryRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rules/FactoryRules.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tables/UserTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/TipDataRule/RuleString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TipDataRule/RuleString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tools/LineWriterTool.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tools/TestLinesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tools/TestLinesRepository.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -99,7 +107,12 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Data Generator" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -107,12 +120,18 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="StringSpecialValues.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+            <state relative-caret-position="258">
+              <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+              <folding>
+                <element signature="method#StringSpecialValues#0;class#StringSpecialValues#0" />
+                <element signature="method#returnValue#0;class#StringSpecialValues#0" />
+                <element signature="method#stringEsc#0;class#StringSpecialValues#0" />
+                <element signature="method#stringSpecial#0;class#StringSpecialValues#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -120,8 +139,8 @@
       <file leaf-file-name="LogicRule.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Logic/LogicRule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+            <state relative-caret-position="340">
+              <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -155,6 +174,180 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
+    <option name="myGradleHomes">
+      <map>
+        <entry key="$PROJECT_DIR$" value="C:\Users\Timur\.gradle\wrapper\dists\gradle-4.4-bin\bgaq7vklkazwgxox0hdadxbvi\gradle-4.4" />
+      </map>
+    </option>
+    <option name="myGradleVersions">
+      <map>
+        <entry key="$PROJECT_DIR$" value="4.4" />
+      </map>
+    </option>
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="Data Generator" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="Data Generator" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="availableTasks">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <list>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the components produced by root project 'Data Generator'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="components" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildDependents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the sub-projects of root project 'Data Generator'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="projects" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles main classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="classes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the dependent components of components in root project 'Data Generator'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="dependentComponents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all buildscript dependencies declared in root project 'Data Generator'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildEnvironment" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="wrapper" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles test classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="testClasses" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Javadoc API documentation for the main source code." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="javadoc" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles a jar archive containing the main classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="jar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the configuration model of root project 'Data Generator'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="model" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes main resources." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the tasks runnable from root project 'Data Generator'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="tasks" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Initializes a new Gradle build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="init" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs the unit tests." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="test" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles main Java source." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the insight into a specific dependency in root project 'Data Generator'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="dependencyInsight" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all checks." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="check" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles the outputs of this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="assemble" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Deletes the build directory." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="clean" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles test Java source." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="compileTestJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all dependencies declared in root project 'Data Generator'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="dependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes test resources." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="processTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays a help message." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="help" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="build" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="buildNeeded" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the properties of root project 'Data Generator'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
+                <option name="name" value="properties" />
+              </ExternalTaskPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$/.gradle" value="0" />
@@ -162,8 +355,37 @@
         <entry key="$PROJECT_DIR$/settings.gradle" value="3166654579" />
       </map>
     </option>
+    <option name="projectBuildClasspath">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <ExternalProjectBuildClasspathPojo>
+              <option name="modulesBuildClasspath">
+                <map>
+                  <entry key="$PROJECT_DIR$">
+                    <value>
+                      <ExternalModuleBuildClasspathPojo>
+                        <option name="path" value="$PROJECT_DIR$" />
+                      </ExternalModuleBuildClasspathPojo>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="name" value="Data Generator" />
+              <option name="projectBuildClasspath">
+                <list>
+                  <option value="$PROJECT_DIR$/buildSrc/src/main/java" />
+                  <option value="$PROJECT_DIR$/buildSrc/src/main/groovy" />
+                </list>
+              </option>
+            </ExternalProjectBuildClasspathPojo>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="projectSyncType">
       <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
         <entry key="$PROJECT_DIR$/../my-projects" value="PREVIEW" />
       </map>
     </option>
@@ -190,9 +412,7 @@
         <option value="$PROJECT_DIR$/src/main/java/NumberGenerator/IntegerBoundaryValues.java" />
         <option value="$PROJECT_DIR$/src/main/java/Rules/ValidationRules.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_4.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/LineGenerator/StringNull.java" />
         <option value="$PROJECT_DIR$/src/main/java/Tools/WriterBD.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_5.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_6.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_7.sql" />
@@ -210,18 +430,20 @@
         <option value="$PROJECT_DIR$/src/main/resources/LineTableBufer.hbm.xml" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_17.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/MappingFiles/LineTableBufer.hbm.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java" />
         <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_18.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/Rules/FactoryRules.java" />
-        <option value="$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_19.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_20.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java" />
         <option value="$PROJECT_DIR$/src/main/java/Tools/LineWriterTool.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Rules/FactoryRules.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java" />
         <option value="$PROJECT_DIR$/src/main/java/Tools/TestLinesRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/TipDataRule/RuleString.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" />
+        <option value="$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java" />
+        <option value="$PROJECT_DIR$/src/main/java/LineGenerator/StringNull.java" />
+        <option value="$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java" />
       </list>
     </option>
   </component>
@@ -231,9 +453,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="241" />
-    <option name="y" value="218" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="491" />
+    <option name="y" value="211" />
     <option name="width" value="683" />
     <option name="height" value="728" />
   </component>
@@ -243,62 +465,77 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Data Generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Data Generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Data Generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Data Generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Data Generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="LineGenerator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Data Generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="Logic" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Data Generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="TipDataRule" type="462c0819:PsiDirectoryNode" />
+              <item name="Tables" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Data Generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="Tools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Data Generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -308,12 +545,13 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="PostgreSQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -343,8 +581,8 @@
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Logic.LogicRule" />
+      <module name="main" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/src" />
-      <shortenClasspath name="NONE" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -478,11 +716,12 @@
       <workItem from="1525465705152" duration="732000" />
       <workItem from="1525468386012" duration="741000" />
       <workItem from="1525469195391" duration="312000" />
+      <workItem from="1525472600521" duration="3171000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115158000" />
+    <option name="totallyTimeSpent" value="118744000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -497,34 +736,34 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32952693" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50226927" side_tool="true" weight="0.32952693" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32952693" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4977307" weight="0.0" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32952693" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26172465" />
-      <window_info anchor="bottom" id="Run with VisualVM" order="7" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49924356" weight="0.32952693" />
       <window_info anchor="right" id="Database" order="3" weight="0.30181542" />
-      <window_info anchor="right" id="Gradle" order="3" weight="0.32980332" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.49265906" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32952693" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.068515494" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32952693" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4977307" weight="0.32952693" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32952693" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2655068" />
+      <window_info anchor="bottom" id="Run with VisualVM" order="7" />
+      <window_info anchor="right" id="Gradle" order="3" weight="0.32980332" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.49265906" />
       <window_info anchor="bottom" id="Debug with VisualVM" order="7" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32952693" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Database Console" order="8" weight="0.22675367" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49924356" visible="true" weight="0.32952693" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -600,13 +839,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://f6ae1064-1149-4d6f-bda7-0710157792c4/database/data_generator/schema/bufer/table/stringtablebufer" />
-    <entry file="das://f6ae1064-1149-4d6f-bda7-0710157792c4/database/data_generator/schema/bufer/table/stringtablebufer" />
-    <entry file="das://f6ae1064-1149-4d6f-bda7-0710157792c4/database/logs/schema/test/sequence/user_id" />
     <entry file="das://f6ae1064-1149-4d6f-bda7-0710157792c4/database/data_generator/schema/bufer/table/stringtablebufer" />
     <entry file="das://f6ae1064-1149-4d6f-bda7-0710157792c4/database/data_generator/schema/bufer/table/stringtablebufer" />
     <entry file="das://f6ae1064-1149-4d6f-bda7-0710157792c4/database/data_generator/schema/bufer/table/stringtablebufer" />
@@ -660,31 +896,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/LineTableBufer" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Tables/UserTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/MappingFiles/LineTableBufer.hbm.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/MappingFiles/LineTableBufer.hbm.xml" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f6ae1064-1149-4d6f-bda7-0710157792c4/console_17.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="35" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="27" column="26" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -709,24 +925,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Rules/FactoryRules.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/5.2.16.Final/840cc50cf9585c4a69a0c4b9a9cc5b20b0abbb7e/hibernate-core-5.2.16.Final-sources.jar!/org/hibernate/internal/SessionFactoryImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="33">
           <caret line="743" column="16" selection-start-line="743" selection-start-column="8" selection-end-line="743" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -738,48 +940,142 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Rules/Rules.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="67" column="16" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="16" />
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Tools/LineWriterTool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="44" column="48" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="48" />
+        <state relative-caret-position="68">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/TipDataRule/RuleString.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/main.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Rules/FactoryRules.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Tools/TestLinesRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+        <state relative-caret-position="306">
+          <caret line="57" column="4" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#TestLinesRepository#0;class#TestLinesRepository#0" />
+            <element signature="method#create#0;class#TestLinesRepository#0" />
+            <element signature="method#get#0;class#TestLinesRepository#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/TipDataRule/RuleString.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="71" column="6" selection-start-line="71" selection-start-column="6" selection-end-line="71" selection-end-column="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#618#626#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="59" column="4" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#StringBoundaryValues#0;class#StringBoundaryValues#0" />
+            <element signature="method#returnValue#0;class#StringBoundaryValues#0" />
+            <element signature="method#stringBuildLowCap#0;class#StringBoundaryValues#0" />
+            <element signature="method#stringBuildLow#0;class#StringBoundaryValues#0" />
+            <element signature="method#stringBuildCap#0;class#StringBoundaryValues#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/LineGenerator/StringNull.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="79" selection-start-line="9" selection-start-column="79" selection-end-line="9" selection-end-column="79" />
+          <folding>
+            <element signature="e#614#615#0" expanded="true" />
+            <element signature="e#644#645#0" expanded="true" />
+            <element signature="e#687#688#0" expanded="true" />
+            <element signature="e#725#726#0" expanded="true" />
+            <element signature="e#751#752#0" expanded="true" />
+            <element signature="e#776#777#0" expanded="true" />
+            <element signature="e#809#810#0" expanded="true" />
+            <element signature="e#837#838#0" expanded="true" />
+            <element signature="e#869#870#0" expanded="true" />
+            <element signature="e#897#898#0" expanded="true" />
+            <element signature="e#939#940#0" expanded="true" />
+            <element signature="e#973#974#0" expanded="true" />
+            <element signature="e#1010#1011#0" expanded="true" />
+            <element signature="e#1043#1044#0" expanded="true" />
+            <element signature="e#1095#1096#0" expanded="true" />
+            <element signature="e#1134#1135#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+          <folding>
+            <element signature="method#StringSpecialValues#0;class#StringSpecialValues#0" />
+            <element signature="method#returnValue#0;class#StringSpecialValues#0" />
+            <element signature="method#stringEsc#0;class#StringSpecialValues#0" />
+            <element signature="method#stringSpecial#0;class#StringSpecialValues#0" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Logic/LogicRule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        <state relative-caret-position="340">
+          <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -792,6 +1088,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>unnamed</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -838,11 +1135,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>DateRule</last-edited>
+          <last-edited>Data_Generator_test|Data_Generator</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -850,7 +1148,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>postgresql-42.2.22</last-edited>
+          <last-edited>Gradle: antlr:antlr:2.7.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
