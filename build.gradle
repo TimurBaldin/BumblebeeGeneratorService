@@ -15,6 +15,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.15'
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.16.Final'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
 }
 
 task wrapper(type: Wrapper) {

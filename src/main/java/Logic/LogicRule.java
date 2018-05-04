@@ -1,29 +1,13 @@
 package Logic;
-<<<<<<< HEAD
 import TipDataRule.*;
-
 public class LogicRule {
     public static void main(String[] args) {
         LogicRule l=new LogicRule ();
         l.interaction ();
         }
-    public void interaction (){
-=======
 
-import TipDataRule.RuleString;
+        public void interaction() {
 
-public class LogicRule {
-    public static void main(String[] args) {
-        LogicRule l = new LogicRule();
-        l.interaction();
-        /*UserTest test= new UserTest ();
-        test.test ();*/
-
-
-    }
-
-    public void interaction() {
->>>>>>> 8c2057f5290e03dd3abc1132acb8c965c3ed7b26
         /*
         Пример входных пользовательских данных
          */

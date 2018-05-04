@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RuleString implements ValidationRules {
->>>>>>> 8c2057f5290e03dd3abc1132acb8c965c3ed7b26
     private int Len;
     private int INCREASE_QUANTITY;
     private boolean Low;
@@ -25,7 +24,6 @@ public class RuleString implements ValidationRules {
     private boolean ESC_SPECIAL;
     private boolean SPECIAL;
     private String COLUMN_NAME;
-<<<<<<< HEAD
     private TestLinesRepository tool;
     private List<String> values=new ArrayList<String> ();
     public  RuleString(int Len,int INCREASE_QUANTITY,boolean Low,boolean CAPITAL, boolean ESC_SPECIAL,boolean SPECIAL,String COLUMN_NAME) {
@@ -36,9 +34,8 @@ this.CAPITAL=CAPITAL;
 this.ESC_SPECIAL=ESC_SPECIAL;
 this.SPECIAL=SPECIAL;
 this.COLUMN_NAME=COLUMN_NAME;
-=======
-    private LineWriterTool tool;
-    private List<String> values = new ArrayList<String>();
+private LineWriterTool tool;
+private List<String> values = new ArrayList<String>();
 
     public RuleString(int Len, int INCREASE_QUANTITY, boolean Low, boolean CAPITAL, boolean ESC_SPECIAL, boolean SPECIAL, String COLUMN_NAME) {
         this.Len = Len;
@@ -48,8 +45,7 @@ this.COLUMN_NAME=COLUMN_NAME;
         this.ESC_SPECIAL = ESC_SPECIAL;
         this.SPECIAL = SPECIAL;
         this.COLUMN_NAME = COLUMN_NAME;
->>>>>>> 8c2057f5290e03dd3abc1132acb8c965c3ed7b26
-    }
+        }
 
     private boolean checkRule() {
         if ((Len > 0 && INCREASE_QUANTITY > 0) && COLUMN_NAME != "") {
@@ -92,14 +88,12 @@ this.COLUMN_NAME=COLUMN_NAME;
 
 
     }
-<<<<<<< HEAD
+
     private void createTable(){
        TestLinesRepository tool=new TestLinesRepository (values,COLUMN_NAME);
        tool.create ();
-=======
->>>>>>> 8c2057f5290e03dd3abc1132acb8c965c3ed7b26
 
-    private void createTable() {
+       private void createTable() {
         LineWriterTool tool = new LineWriterTool(values, COLUMN_NAME);
         tool.buildTable();
 
