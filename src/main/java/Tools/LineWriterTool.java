@@ -13,19 +13,20 @@ public class LineWriterTool {
     private final String NEXT_ID = "SELECT max(id) from Tables.StringTableBufer";
     private final String VALUES_FROM_DB = "from Tables.StringTableBufer where ColumnName=:ColumnName";
     private ArrayList<String> values_test = new ArrayList<String>();
-    private Session session;
+//    private Session session;
     private String COLUMN_NAME;
-    private SessionFactory sessionFactory = SessionUntil.getInstance();
-
+//    private SessionFactory sessionFactory = SessionUntil.getInstance();
+//
     public LineWriterTool(List<String> values, String COLUMN_NAME) {
         this.values_test.addAll(values);
         this.COLUMN_NAME = COLUMN_NAME;
     }
 
     public void buildTable() {
+        Session session = null;
         for (int i = 0; i <= values_test.size() - 1; i++) {
             try {
-                session = sessionFactory.openSession();
+                session = SessionUntil.getInstance().openSession();
                 Transaction transaction = session.beginTransaction();
                 StringTableBufer bufer = new StringTableBufer();
                 bufer.setValue(values_test.get(i));
@@ -39,12 +40,13 @@ public class LineWriterTool {
                 session.close();
             }
         }
-        sessionFactory.close();
+        SessionUntil.getInstance().close();
 
     }
 
     public List<StringTableBufer> returnTable(String ColumnName) {
-        session = sessionFactory.openSession();
+        Session session = null;
+        session = SessionUntil.getInstance().openSession();
         List<StringTableBufer> table = null;
         try {
             Query query = session.createQuery(VALUES_FROM_DB);
@@ -55,7 +57,7 @@ public class LineWriterTool {
             e.printStackTrace();
             session.getTransaction().rollback();
         }
-        sessionFactory.close();
+        SessionUntil.getInstance().close();
         return table;
 
     }

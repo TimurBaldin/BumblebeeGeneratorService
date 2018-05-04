@@ -17,10 +17,10 @@ public class LogicRule {
         Пример входных пользовательских данных
          */
         RuleString RS = new RuleString(80, 30, false, true, true, true, "Test");
-//        RuleString RT = new RuleString(80, 30, false, true, true, true, "New val");
+        RuleString RT = new RuleString(80, 30, false, true, true, true, "New val");
         try {
             RS.buildTestData();
-//            RT.buildTestData();
+            RT.buildTestData();
         } catch (Exception e) {
             e.printStackTrace();
         }

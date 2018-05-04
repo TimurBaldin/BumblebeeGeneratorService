@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Table(name = "StringTableBufer", schema = "public")
 public class StringTableBufer {
     @Id
-    @SequenceGenerator(name = "pk_sequence", sequenceName = "bufer.row_id", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "row_id", sequenceName = "bufer.row_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "row_id")
     @Column(name = "row_id", unique = true, nullable = false)
     private int id;
     @Column(name = "TestValue")
