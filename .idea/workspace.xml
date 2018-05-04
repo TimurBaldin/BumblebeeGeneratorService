@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d651830b-299f-4579-8037-05c53a637553" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rules/ValidationRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rules/FactoryRules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tables/UserTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TipDataRule/RuleString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TipDataRule/RuleString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tools/LineWriterTool.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tools/LineWriterTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tools/TestLinesRepository.java" afterDir="false" />
-    </list>
+    <list default="true" id="d651830b-299f-4579-8037-05c53a637553" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -766,12 +756,12 @@
       <workItem from="1525276273472" duration="1014000" />
       <workItem from="1525375061219" duration="329000" />
       <workItem from="1525458866921" duration="5731000" />
-      <workItem from="1525464750480" duration="400000" />
+      <workItem from="1525464750480" duration="781000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112992000" />
+    <option name="totallyTimeSpent" value="113373000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -784,7 +774,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32952693" />
