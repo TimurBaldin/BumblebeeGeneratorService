@@ -1,16 +1,11 @@
 package Logic;
-import Tables.UserTest;
 import TipDataRule.*;
 
 public class LogicRule {
     public static void main(String[] args) {
         LogicRule l=new LogicRule ();
         l.interaction ();
-        /*UserTest test= new UserTest ();
-        test.test ();*/
-
-
-    }
+        }
     public void interaction (){
         /*
         Пример входных пользовательских данных

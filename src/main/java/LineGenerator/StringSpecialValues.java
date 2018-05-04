@@ -48,28 +48,28 @@ public class StringSpecialValues implements Rules<List<String>> {
     }
     private String stringEsc(){
         int id=0;
-        String bufer="";
+        StringBuilder bufer=new StringBuilder();
         for(int i=MIN_ID_ESC;i<=MAX_ID_ESC;i++){
-            Character symbol=(char)i;
+            char symbol=(char)i;
             id=-1;
-            bufer+=symbol;
+            bufer.append (symbol);
         }
-        return bufer;
+        return bufer.toString ();
     }
     private String stringSpecial(int val){
         int id=0;
-        String bufer="";
+        StringBuilder bufer=new StringBuilder();
         for(Integer i=1;i<=val;i++){
             if(i%2==0) {
                 id = ThreadLocalRandom.current().nextInt(MIN_ID_SPECIAL_1, MAX_ID_SPECIAL_1+1);
             }else{
                 id =ThreadLocalRandom.current().nextInt(MIN_ID_SPECIAL_2, MAX_ID_SPECIAL_2+1);
             }
-            Character symbol=(char)id;
+            char symbol=(char)id;
             id=-1;
-            bufer+=symbol;
+            bufer.append (symbol);
         }
-        return bufer;
+        return bufer.toString ();
     }
 
 }

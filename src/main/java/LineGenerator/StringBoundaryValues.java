@@ -42,39 +42,39 @@ if(Low){
        }
     private String stringBuildLowCap(int val){
         int id=0;
-        String bufer="";
+        StringBuilder bufer=new StringBuilder();
         for(Integer i=1;i<=val;i++){
             if(i%2==0) {
                 id = ThreadLocalRandom.current().nextInt( MIN_ID_CAPITALS, MAX_ID_CAPITALS+1);
             }else{
                 id =ThreadLocalRandom.current().nextInt(MIN_ID_LOWERCASE, MAX_ID_LOWERCASE+1);
             }
-            Character symbol=(char)id;
+            char symbol=(char)id;
             id=-1;
-            bufer+=symbol;
+            bufer.append (symbol);
         }
-        return bufer;
+        return bufer.toString ();
     }
     private String stringBuildLow(int val){
         int id=0;
-        String bufer="";
+        StringBuilder bufer=new StringBuilder();
         for(Integer i=1;i<=val;i++){
             id =ThreadLocalRandom.current().nextInt(MIN_ID_LOWERCASE, MAX_ID_LOWERCASE+1);
-            Character symbol=(char)id;
+            char symbol=(char)id;
             id=-1;
-            bufer+=symbol;
+            bufer.append (symbol);
         }
-        return bufer;
+        return bufer.toString ();
     }
     private String stringBuildCap(int val){
         int id=0;
-        String bufer="";
+        StringBuilder bufer=new StringBuilder();
         for(Integer i=1;i<=val;i++){
             id = ThreadLocalRandom.current().nextInt( MIN_ID_CAPITALS, MAX_ID_CAPITALS+1);
-            Character symbol=(char)id;
+            char symbol=(char)id;
             id=-1;
-            bufer+=symbol;
+            bufer.append (symbol);
         }
-        return bufer;
+        return bufer.toString ();
     }
 }

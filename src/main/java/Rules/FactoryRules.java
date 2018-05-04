@@ -1,6 +1,6 @@
 package Rules;
 import java.util.HashMap;
-public interface ValidationRules {
+public interface FactoryRules {
     void buildTestData() throws Exception;
 
 }
