@@ -1,6 +1,7 @@
 package Logic;
 
 import TipDataRule.RuleString;
+import Tools.SessionUntil;
 
 public class LogicRule {
     public static void main(String[] args) {
@@ -18,6 +19,8 @@ public class LogicRule {
         try {
             RS.buildTestData();
             RT.buildTestData();
+
+            SessionUntil.INSTANCE.getInstance().close();
         } catch (Exception e) {
             e.printStackTrace();
         }

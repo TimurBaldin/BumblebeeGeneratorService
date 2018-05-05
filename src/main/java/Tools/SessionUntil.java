@@ -6,9 +6,9 @@ import org.hibernate.cfg.Configuration;
 public enum SessionUntil {
     INSTANCE;
 
-    private static SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+    private SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
-    public static SessionFactory getInstance() {
+    public SessionFactory getInstance() {
         return sessionFactory;
     }
 }
