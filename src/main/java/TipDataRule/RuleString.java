@@ -1,10 +1,14 @@
 package TipDataRule;
+
 import LineGenerator.StringBoundaryValues;
 import LineGenerator.StringSpecialValues;
-import Rules.*;
-import Tools.*;
+import Rules.FactoryRules;
+import Rules.Rules;
+import Tools.TestLinesRepository;
+
 import java.util.ArrayList;
 import java.util.List;
+
 public class RuleString implements FactoryRules {
     private int Len;
     private int INCREASE_QUANTITY;
@@ -13,7 +17,7 @@ public class RuleString implements FactoryRules {
     private boolean ESC_SPECIAL;
     private boolean SPECIAL;
     private String COLUMN_NAME;
-    private List<String> values = new ArrayList<String> ( );
+    private List<String> values = new ArrayList<String>();
 
     public RuleString(int Len, int INCREASE_QUANTITY, boolean Low, boolean CAPITAL, boolean ESC_SPECIAL, boolean SPECIAL, String COLUMN_NAME) {
         this.Len = Len;
@@ -38,37 +42,37 @@ public class RuleString implements FactoryRules {
     }
 
     public void buildTestData() throws Exception {
-        if (!checkRule ( )) {
-            throw new Exception ("invalid input");
+        if (!checkRule()) {
+            throw new Exception("invalid input");
         }
         if (!ESC_SPECIAL && !SPECIAL) {
-            Rules<List<String>> SBV = new StringBoundaryValues (Len, INCREASE_QUANTITY, Low, CAPITAL);
+            Rules<List<String>> SBV = new StringBoundaryValues(Len, INCREASE_QUANTITY, Low, CAPITAL);
             try {
-                values.addAll (SBV.returnValue ( ));
+                values.addAll(SBV.returnValue());
             } catch (Exception ex) {
-                ex.printStackTrace ( );
+                ex.printStackTrace();
             }
         } else {
-            Rules<List<String>> SBV = new StringBoundaryValues (Len, INCREASE_QUANTITY, Low, CAPITAL);
-            Rules<List<String>> SSV = new StringSpecialValues (Len, INCREASE_QUANTITY, ESC_SPECIAL, SPECIAL);
+            Rules<List<String>> SBV = new StringBoundaryValues(Len, INCREASE_QUANTITY, Low, CAPITAL);
+            Rules<List<String>> SSV = new StringSpecialValues(Len, INCREASE_QUANTITY, ESC_SPECIAL, SPECIAL);
             try {
-                values.addAll (SBV.returnValue ( ));
-                values.addAll (SSV.returnValue ( ));
+                values.addAll(SBV.returnValue());
+                values.addAll(SSV.returnValue());
             } catch (Exception ex) {
-                ex.printStackTrace ( );
+                ex.printStackTrace();
             }
         }
-        if (values.size ( ) != 0) {
-            createTable ( );
+        if (values.size() != 0) {
+            createTable();
         } else {
-            throw new Exception ("Invalid test values (values==0)");
+            throw new Exception("Invalid test values (values==0)");
         }
 
 
     }
 
     private void createTable() {
-       TestLinesRepository tool = new TestLinesRepository (values, COLUMN_NAME);
-      tool.create ( );
+        TestLinesRepository tool = new TestLinesRepository(values, COLUMN_NAME);
+        tool.create();
     }
 }

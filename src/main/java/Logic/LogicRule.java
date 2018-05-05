@@ -1,12 +1,14 @@
 package Logic;
-import TipDataRule.*;
+
+import TipDataRule.RuleString;
+
 public class LogicRule {
     public static void main(String[] args) {
-        LogicRule l=new LogicRule ();
-        l.interaction ();
-        }
+        LogicRule l = new LogicRule();
+        l.interaction();
+    }
 
-        public void interaction() {
+    public void interaction() {
 
         /*
         Пример входных пользовательских данных
