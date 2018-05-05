@@ -1,16 +1,13 @@
 package Tables;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "StringTableBufer", schema = "public")
 public class StringTableBufer {
     @Id
-    /*@SequenceGenerator(name = "row_id", sequenceName = "bufer.row_id", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "row_id")*/
+    @SequenceGenerator(name = "row_id", sequenceName = "bufer.row_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "row_id")
     @Column(name = "row_id", unique = true, nullable = false)
     private int id;
     @Column(name = "TestValue")
