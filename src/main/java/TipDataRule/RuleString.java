@@ -24,7 +24,6 @@ public class RuleString implements FactoryRules {
         this.SPECIAL = SPECIAL;
         this.COLUMN_NAME = COLUMN_NAME;
     }
-
     private boolean checkRule() {
         if ((Len > 0 && INCREASE_QUANTITY > 0) && COLUMN_NAME != "") {
             if (!Low && !CAPITAL) {
@@ -36,7 +35,6 @@ public class RuleString implements FactoryRules {
             return false;
         }
     }
-
     public void buildTestData() throws Exception {
         if (!checkRule ( )) {
             throw new Exception ("invalid input");
@@ -66,7 +64,6 @@ public class RuleString implements FactoryRules {
 
 
     }
-
     private void createTable() {
        TestLinesRepository tool = new TestLinesRepository (values, COLUMN_NAME);
       tool.create ( );

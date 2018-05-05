@@ -13,7 +13,7 @@ public class TestLinesRepository {
     private Session session;
     private   volatile Integer row_id;
     private String COLUMN_NAME;
-    private SessionFactory sessionFactory = SessionUntil.getInstance();
+    private SessionFactory sessionFactory = SessionUntil.INSTANCE.getInstance();
     public TestLinesRepository(List<String> values, String COLUMN_NAME) {
         this.values_test.addAll(values);
         this.COLUMN_NAME = COLUMN_NAME;
@@ -39,7 +39,7 @@ public class TestLinesRepository {
             try {
                 Transaction transaction = session.beginTransaction ( );
                 StringTableBufer bufer = new StringTableBufer ( );
-                bufer.setId (row_id);
+               // bufer.setId (row_id);
                 bufer.setValue (values_test.get (i));
                 bufer.setColumnName (COLUMN_NAME);
                 session.save (bufer);
@@ -52,9 +52,7 @@ public class TestLinesRepository {
                 session.close ( );
             }
         }
-        sessionFactory.close();
-
-    }
+        }
     public List<StringTableBufer> get(String ColumnName) {
         /*
         This is prototipe
