@@ -1,12 +1,15 @@
 package Logic;
-import TipDataRule.*;
+
+import TipDataRule.RuleString;
+import Tools.SessionUntil;
+
 public class LogicRule {
     public static void main(String[] args) {
-        LogicRule l=new LogicRule ();
-        l.interaction ();
-        }
+        LogicRule l = new LogicRule();
+        l.interaction();
+    }
 
-        public void interaction() {
+    public void interaction() {
 
         /*
         Пример входных пользовательских данных
@@ -16,6 +19,8 @@ public class LogicRule {
         try {
             RS.buildTestData();
             RT.buildTestData();
+
+            SessionUntil.INSTANCE.getInstance().close();
         } catch (Exception e) {
             e.printStackTrace();
         }
