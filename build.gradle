@@ -16,6 +16,7 @@ dependencies {
     testCompile group: 'com.github.javafaker', name: 'javafaker', version: '0.15'
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.16.Final'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
+    compile group: 'org.apache.poi', name: 'poi', version: '3.17'
 }
 
 task wrapper(type: Wrapper) {

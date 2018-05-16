@@ -1,6 +1,11 @@
 package Logic;
+import LineGenerator.StringBoundaryValues;
+import LineGenerator.StringSpecialValues;
+import Rules.Rules;
 import TipDataRule.*;
 import Tools.SessionUntil;
+
+import java.util.List;
 
 public class LogicRule {
     public static void main(String[] args) {
@@ -9,15 +14,20 @@ public class LogicRule {
       }
 
         public void interaction() {
+            try {
+
+                ColumnLines columnLines=new ColumnLines("Fix");
 
         /*
         Пример входных пользовательских данных
          */
-       RuleString RS = new RuleString(80, 30, false, true, true, true, "Test");
-        RuleString RT = new RuleString(80, 30, false, true, true, true, "New val");
-        try {
-            RS.buildTestData();
-           RT.buildTestData();
+                StringBoundaryValues SBV = new StringBoundaryValues(100, 25, true, true);
+                StringSpecialValues SSV = new StringSpecialValues(100, 35, true, true);
+
+       columnLines.setBoundaryValues(SBV);
+       columnLines.setSpecialValues(SSV);
+        columnLines.writeToTable();
+
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
