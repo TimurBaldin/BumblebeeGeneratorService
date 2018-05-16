@@ -1,11 +1,8 @@
 package Logic;
 import LineGenerator.StringBoundaryValues;
 import LineGenerator.StringSpecialValues;
-import Rules.Rules;
-import TipDataRule.*;
+import Columns.*;
 import Tools.SessionUntil;
-
-import java.util.List;
 
 public class LogicRule {
     public static void main(String[] args) {

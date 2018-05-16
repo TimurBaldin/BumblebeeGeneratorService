@@ -1,4 +1,4 @@
-package TipDataRule;
+package Columns;
 import LineGenerator.StringBoundaryValues;
 import LineGenerator.StringSpecialValues;
 import Rules.*;

@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f44056c-34df-4479-bc4f-9a517003e995" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rules/FactoryRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rules/FactoryRules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TipDataRule/RuleString.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TipDataRule/ColumnLines.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Columns/ColumnLines.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -62,17 +59,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StringBoundaryValues.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StringBoundaryValues.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="5" column="33" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="33" />
+            <state relative-caret-position="68">
+              <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogicRule.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Logic/LogicRule.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
               <folding>
-                <element signature="method#StringBoundaryValues#0;class#StringBoundaryValues#0" />
-                <element signature="method#returnValue#0;class#StringBoundaryValues#0" />
-                <element signature="method#stringBuildLowCap#0;class#StringBoundaryValues#0" />
-                <element signature="method#stringBuildLow#0;class#StringBoundaryValues#0" />
-                <element signature="method#stringBuildCap#0;class#StringBoundaryValues#0" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,14 +101,14 @@
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="DateRule" />
+              <option name="name" value="DatаRule" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="DateRule" />
+                <option name="name" value="DatаRule" />
                 <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
             </list>
@@ -120,7 +122,7 @@
           <value>
             <list>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the components produced by root project 'DateRule'. [incubating]" />
+                <option name="description" value="Displays the components produced by root project 'DatаRule'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="components" />
               </ExternalTaskPojo>
@@ -130,7 +132,7 @@
                 <option name="name" value="buildDependents" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the sub-projects of root project 'DateRule'." />
+                <option name="description" value="Displays the sub-projects of root project 'DatаRule'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="projects" />
               </ExternalTaskPojo>
@@ -140,12 +142,12 @@
                 <option name="name" value="classes" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the dependent components of components in root project 'DateRule'. [incubating]" />
+                <option name="description" value="Displays the dependent components of components in root project 'DatаRule'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependentComponents" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all buildscript dependencies declared in root project 'DateRule'." />
+                <option name="description" value="Displays all buildscript dependencies declared in root project 'DatаRule'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="buildEnvironment" />
               </ExternalTaskPojo>
@@ -169,7 +171,7 @@
                 <option name="name" value="jar" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the configuration model of root project 'DateRule'. [incubating]" />
+                <option name="description" value="Displays the configuration model of root project 'DatаRule'. [incubating]" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="model" />
               </ExternalTaskPojo>
@@ -179,7 +181,7 @@
                 <option name="name" value="processResources" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the tasks runnable from root project 'DateRule'." />
+                <option name="description" value="Displays the tasks runnable from root project 'DatаRule'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="tasks" />
               </ExternalTaskPojo>
@@ -199,7 +201,7 @@
                 <option name="name" value="compileJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the insight into a specific dependency in root project 'DateRule'." />
+                <option name="description" value="Displays the insight into a specific dependency in root project 'DatаRule'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencyInsight" />
               </ExternalTaskPojo>
@@ -224,7 +226,7 @@
                 <option name="name" value="compileTestJava" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays all dependencies declared in root project 'DateRule'." />
+                <option name="description" value="Displays all dependencies declared in root project 'DatаRule'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="dependencies" />
               </ExternalTaskPojo>
@@ -249,7 +251,7 @@
                 <option name="name" value="buildNeeded" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the properties of root project 'DateRule'." />
+                <option name="description" value="Displays the properties of root project 'DatаRule'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="properties" />
               </ExternalTaskPojo>
@@ -260,11 +262,10 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="6102014093934" />
         <entry key="$PROJECT_DIR$/.gradle" value="0" />
         <entry key="$PROJECT_DIR$/build.gradle" value="3265122086" />
         <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="1168256157" />
-        <entry key="$PROJECT_DIR$/settings.gradle" value="3166654579" />
+        <entry key="$PROJECT_DIR$/settings.gradle" value="3880832001" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -283,7 +284,7 @@
                   </entry>
                 </map>
               </option>
-              <option name="name" value="DateRule" />
+              <option name="name" value="DatаRule" />
               <option name="projectBuildClasspath">
                 <list>
                   <option value="$USER_HOME$/.gradle/wrapper/dists/gradle-4.7-all/4cret0dgl5o3b21weaoncl7ys/gradle-4.7/src/announce" />
@@ -442,7 +443,6 @@
     </option>
     <option name="projectSyncType">
       <map>
-        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
         <entry key="$PROJECT_DIR$/../my-projects" value="PREVIEW" />
       </map>
     </option>
@@ -466,6 +466,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Rules/FactoryRules.java" />
         <option value="$PROJECT_DIR$/src/main/java/TipDataRule/ColumnLines.java" />
         <option value="$PROJECT_DIR$/src/main/java/Logic/LogicRule.java" />
+        <option value="$PROJECT_DIR$/settings.gradle" />
       </list>
     </option>
   </component>
@@ -475,7 +476,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="491" />
     <option name="y" value="211" />
     <option name="width" value="683" />
@@ -487,6 +488,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -533,23 +536,13 @@
               <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="TipDataRule" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DateRule" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -579,8 +572,7 @@
     </configuration>
     <configuration name="LogicRule" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Logic.LogicRule" />
-      <module name="DateRule_main" />
-      <option name="VM_PARAMETERS" value="-ea" />
+      <module name="DatаRule_main" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -668,47 +660,47 @@
       <workItem from="1526408286055" duration="1014000" />
       <workItem from="1526409363198" duration="7032000" />
       <workItem from="1526497594040" duration="607000" />
+      <workItem from="1526501745210" duration="227000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23321000" />
+    <option name="totallyTimeSpent" value="23548000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.3294893" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3113674" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.044481054" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.25416037" />
       <window_info anchor="bottom" id="Run with VisualVM" order="7" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25416037" />
       <window_info anchor="right" id="Gradle" order="3" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Debug with VisualVM" order="7" />
       <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.3294893" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Database Console" order="8" weight="0.3970346" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.32952693" />
-      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
@@ -720,6 +712,13 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Logic/LogicRule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -730,7 +729,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/TipDataRule/ColumnLines.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Columns/ColumnLines.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
@@ -754,13 +753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="33" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="33" />
-          <folding>
-            <element signature="method#StringBoundaryValues#0;class#StringBoundaryValues#0" />
-            <element signature="method#returnValue#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildLowCap#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildLow#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildCap#0;class#StringBoundaryValues#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -785,17 +777,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-          <folding>
-            <element signature="method#StringBoundaryValues#0;class#StringBoundaryValues#0" />
-            <element signature="method#returnValue#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildLowCap#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildLow#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildCap#0;class#StringBoundaryValues#0" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/TipDataRule/ColumnLines.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Columns/ColumnLines.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="28" lean-forward="true" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
@@ -832,13 +817,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-          <folding>
-            <element signature="method#StringBoundaryValues#0;class#StringBoundaryValues#0" />
-            <element signature="method#returnValue#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildLowCap#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildLow#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildCap#0;class#StringBoundaryValues#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1005,17 +983,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Logic/LogicRule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/TipDataRule/ColumnLines.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Columns/ColumnLines.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
@@ -1035,16 +1003,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="24" selection-start-column="24" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="5" column="33" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="33" />
+        <state relative-caret-position="68">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Logic/LogicRule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
           <folding>
-            <element signature="method#StringBoundaryValues#0;class#StringBoundaryValues#0" />
-            <element signature="method#returnValue#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildLowCap#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildLow#0;class#StringBoundaryValues#0" />
-            <element signature="method#stringBuildCap#0;class#StringBoundaryValues#0" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
