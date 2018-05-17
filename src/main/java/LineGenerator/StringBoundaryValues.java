@@ -17,7 +17,7 @@ public class StringBoundaryValues implements Rules<List<String>> {
     private int INCREASE_QUANTITY;
     private List<String> values = new ArrayList<String>();
 
-    public StringBoundaryValues(int Len, int INCREASE_QUANTITY, boolean Low, boolean Cap) {
+    public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap) {
         this.len = Len;
         this.Low = Low;
         this.Cap = Cap;

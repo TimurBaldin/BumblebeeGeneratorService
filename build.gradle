@@ -17,6 +17,8 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.16.Final'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
     compile group: 'org.apache.poi', name: 'poi', version: '3.17'
+    compile group: 'org.springframework', name: 'spring-context', version: '5.0.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-core', version: '5.0.6.RELEASE'
 }
 
 task wrapper(type: Wrapper) {
