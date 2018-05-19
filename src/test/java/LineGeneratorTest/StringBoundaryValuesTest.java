@@ -48,5 +48,6 @@ for(int i=1;i<=values_test.size()-1;i++){
     assertEquals(values_test.get(i).charAt(0)>=ExRestest_1.getSTART_ID_VALUE(),true);
     assertEquals(values_test.get(i).charAt(0)<=ExRestest_1.getEND_ID_VALUE(),true);
 }
+assertEquals(values_test.size(),200);
 }
 }

@@ -14,8 +14,8 @@ public class StringBoundaryValues implements Rules<List<String>> {
     private Integer len;
     private Boolean Low;
     private Boolean Cap;
-    private int INCREASE_QUANTITY;
-    private List<String> values = new ArrayList<String>();
+    private Integer INCREASE_QUANTITY;
+private List<String> values = new ArrayList<String>();
 
     public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap) {
         this.len = Len;
@@ -28,7 +28,8 @@ public class StringBoundaryValues implements Rules<List<String>> {
     public List<String> returnValue() throws Exception {
         if ((!Low && !Cap) || len <= 0 || INCREASE_QUANTITY <= 0)
             throw new Exception("Your choice is not right. Try again");
-        values.add(new StringNull().returnValue()); //Add null value
+        values.add(new StringNull().returnValue());
+        len--;
         if (Low && Cap) {
             for (Integer i = 1; i <= len + INCREASE_QUANTITY; i++) {
                 values.add(stringBuildLowCap(i));
