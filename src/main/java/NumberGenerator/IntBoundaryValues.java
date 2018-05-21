@@ -22,12 +22,19 @@ public IntBoundaryValues(Long BoundaryIntEnd, Long BoundaryIntStart, Integer QUA
 
 @Override
 public List<Long> returnValue() throws Exception {
-    if ((MaxInt < MinInt) || (QUANTITY < QUANTITY_BOUNDARY_TEST)) {
+    if (checkRule()) {
         throw new Exception("Invalid input conditions");
     }
     values.addAll(buildBoundary());
     values.addAll(buildTestNum());
     return values;
+}
+private boolean checkRule(){
+    if ((MaxInt < MinInt) || (QUANTITY < QUANTITY_BOUNDARY_TEST) ||(Math.abs(MaxInt-MinInt)==0)){
+        return true;
+    }else {
+        return false;
+    }
 }
 public void setDEFAULT_VALUE(Long DEFAULT_VALUE){
     this.DEFAULT_VALUE=DEFAULT_VALUE;

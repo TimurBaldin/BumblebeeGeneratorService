@@ -8,8 +8,8 @@ import Tools.SessionUntil;
 public class LogicRule {
     public static void main(String[] args) {
       LogicRule l=new LogicRule ();
-       // l.interaction ();
-        l.test();
+        l.interaction ();
+       // l.test();
 
       }
 
@@ -21,11 +21,13 @@ public class LogicRule {
         /*
         Пример входных пользовательских данных
          */
-                StringBoundaryValues SBV = new StringBoundaryValues(100, 25, true, true);
-                StringSpecialValues SSV = new StringSpecialValues(100, 35, true, true);
+                StringBoundaryValues SBV = new StringBoundaryValues(3, 1, true, true,true);
+                StringBoundaryValues SS = new StringBoundaryValues(5, 1, true, true,false);
+               StringSpecialValues SSV = new StringSpecialValues(100, 35, true, true);
 
        columnLines.setBoundaryValues(SBV);
-       columnLines.setSpecialValues(SSV);
+       columnLines.setBoundaryValues(SS);
+       //columnLines.setSpecialValues(SSV);
         columnLines.writeToTable();
 
         } catch (Exception e) {

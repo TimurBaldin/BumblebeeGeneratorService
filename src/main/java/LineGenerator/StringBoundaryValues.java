@@ -14,22 +14,25 @@ public class StringBoundaryValues implements Rules<List<String>> {
     private Integer len;
     private Boolean Low;
     private Boolean Cap;
+    private Boolean NullValue;
     private Integer INCREASE_QUANTITY;
 private List<String> values = new ArrayList<String>();
 
-    public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap) {
+    public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap,Boolean NullValue) {
         this.len = Len;
         this.Low = Low;
         this.Cap = Cap;
         this.INCREASE_QUANTITY = INCREASE_QUANTITY;
+        this.NullValue=NullValue;
     }
 
     @Override
     public List<String> returnValue() throws Exception {
         if ((!Low && !Cap) || len <= 0 || INCREASE_QUANTITY <= 0)
             throw new Exception("Your choice is not right. Try again");
-        values.add(new StringNull().returnValue());
-        len--;
+        if(NullValue) {
+            values.add(new StringNull().returnValue());
+        }
         if (Low && Cap) {
             for (Integer i = 1; i <= len + INCREASE_QUANTITY; i++) {
                 values.add(stringBuildLowCap(i));
