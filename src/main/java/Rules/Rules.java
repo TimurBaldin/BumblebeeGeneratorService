@@ -1,5 +1,5 @@
 package Rules;
-
-public interface Rules<T> {
-    T returnValue() throws Exception;
+public interface Rules{
+  void construct() throws Exception;
+  void transfer() throws Exception;
 }

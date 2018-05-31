@@ -1,44 +1,48 @@
 package Columns;
+
 import LineGenerator.StringBoundaryValues;
 import LineGenerator.StringSpecialValues;
 import Rules.*;
 import Tools.*;
+
 import java.util.ArrayList;
 import java.util.List;
-public class ColumnLines implements FactoryRules {
-    private String COLUMN_NAME;
-    private List<String> values = new ArrayList<String> ( );
-    private Rules<List<String>>SpecialValues;
-    private Rules<List<String>>BoundaryValues;
-    public ColumnLines(String COLUMN_NAME){
-        this.COLUMN_NAME=COLUMN_NAME;
-    }
-    public void setSpecialValues(StringSpecialValues stringSpecialValues) throws Exception{
-        if(stringSpecialValues==null){
-            throw new Exception ("Object StringSpecialValues not NULL");
+
+public class ColumnLines implements FactoryRules<String> {
+private String COLUMN_NAME;
+private List<String> values = new ArrayList<String>();
+
+public ColumnLines(String COLUMN_NAME) {
+    this.COLUMN_NAME = COLUMN_NAME;
+}
+
+@Override
+public void setValues(List<String> values) {
+    this.values.addAll(values);
+}
+@Override
+public List<String> getValues() {
+    if (checkRule()) {
+        try {
+            throw new Exception("Test data not be null or COLUMN_NAME not be null");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        this.SpecialValues=stringSpecialValues;
-        values.addAll(SpecialValues.returnValue());
+    }else {
+        return values;
     }
-    public void setBoundaryValues(StringBoundaryValues stringBoundaryValues)throws Exception{
-        if(stringBoundaryValues==null){
-            throw new Exception ("Object StringBoundaryValues not NULL");
-        }
-        this.BoundaryValues=stringBoundaryValues;
-        values.addAll(BoundaryValues.returnValue());
+}
+
+public String getCOLUMN() {
+    return COLUMN_NAME;
+}
+
+private boolean checkRule() {
+    if (COLUMN_NAME == null || COLUMN_NAME == "" || values.size() == 0) {
+        return true;
+    } else {
+        return false;
     }
-    private boolean checkRule() {
-        if(COLUMN_NAME==null || values.size()==0){
-            return false;
-        }else{
-            return true;
-        }
-    }
-    public void writeToTable() throws Exception{
-        if(!checkRule()){
-            throw new Exception ("invalid input");
-        }
-       TestLinesRepository tool = new TestLinesRepository (values, COLUMN_NAME);
-      tool.create ( );
-    }
+}
 }

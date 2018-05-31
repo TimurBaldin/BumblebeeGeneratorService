@@ -1,7 +1,8 @@
 package Rules;
 
-public interface FactoryRules {
+import java.util.List;
 
-    void writeToTable() throws Exception;
-
+public interface FactoryRules <T> {
+    void setValues(List<T> values);
+    List<T> getValues();
 }

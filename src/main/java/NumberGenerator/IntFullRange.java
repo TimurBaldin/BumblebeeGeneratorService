@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class IntFullRange implements Rules<List<Long>> {
+public class IntFullRange implements Rules {
 private Long MinIntVal;
 private Long MaxIntVal;
 private List<Long> values = new ArrayList<Long>();
@@ -17,14 +17,19 @@ public IntFullRange(Long MaxIntVal, Long MinIntVal) {
 }
 
 @Override
-public List<Long> returnValue() throws Exception {
+public void construct() throws Exception {
     if (checkRule()) {
         throw new Exception("Your choice is not right. Try again");
     }
     for (int i = 1; i <= MaxIntVal; i++) {
         values.add(buildRandNum());
     }
-    return values;
+    transfer();
+}
+
+@Override
+public void transfer() throws Exception {
+
 }
 
 private boolean checkRule() {
@@ -38,4 +43,5 @@ private boolean checkRule() {
 private Long buildRandNum() {
     return ThreadLocalRandom.current().nextLong(MinIntVal, MaxIntVal + 1);
 }
+
 }

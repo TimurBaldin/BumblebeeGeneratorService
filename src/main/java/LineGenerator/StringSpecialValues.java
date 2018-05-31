@@ -1,12 +1,13 @@
 package LineGenerator;
 
+import Columns.ColumnLines;
 import Rules.Rules;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class StringSpecialValues implements Rules<List<String>> {
+public class StringSpecialValues implements Rules{
     private final int MIN_ID_ESC = 1;
     private final int MAX_ID_ESC = 31;
     private final int ESC_LEN = 30;
@@ -20,36 +21,46 @@ public class StringSpecialValues implements Rules<List<String>> {
     private Integer SPECIAL_LEN;
     private Boolean ESC_SPECIAL;
     private Boolean SPECIAL;
-    private int INCREASE_QUANTITY;
+    private Integer INCREASE_QUANTITY;
+    private ColumnLines column;
     private List<String> values = new ArrayList<String> ( );
-    public StringSpecialValues(Integer SPECIAL_LEN, int INCREASE_QUANTITY, boolean ESC_SPECIAL, boolean SPECIAL) {
+    public StringSpecialValues(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL, ColumnLines column) {
         this.SPECIAL_LEN = SPECIAL_LEN;
         this.ESC_SPECIAL = ESC_SPECIAL;
         this.SPECIAL = SPECIAL;
         this.INCREASE_QUANTITY = INCREASE_QUANTITY;
+        this.column=column;
     }
     @Override
-    public List<String> returnValue() throws Exception {
-        if ((!ESC_SPECIAL && !SPECIAL) || SPECIAL_LEN <= 0 || INCREASE_QUANTITY <= 0)
-            throw new Exception ("Your choice is not right. Try again");
+    public void construct() throws Exception {
+        if (checkIn()) throw new Exception ("Your choice is not right. Try again");
         if (ESC_SPECIAL && SPECIAL) {
             values.add (stringEsc ( ));
             for (Integer i = 1; i <= SPECIAL_LEN + INCREASE_QUANTITY; i++) {
                 values.add (stringSpecial (i));
             }
-            return values;
+            transfer();
+            return;
         }
         if (SPECIAL) {
             for (Integer i = 1; i <= SPECIAL_LEN + INCREASE_QUANTITY; i++) {
                 values.add (stringSpecial (i));
             }
-            return values;
-        } else {
+            transfer();
+            return;
+            } else {
             values.add (stringEsc ( ));
-            return values;
-        }
+            transfer();
+            return;
+            }
     }
-
+    @Override
+   public void transfer()throws Exception{
+    if(checkOut()){ throw new Exception ("Please create test data");}
+    else {
+        column.setValues(this.values);
+    }
+}
     private String stringEsc() {
         int id = 0;
         StringBuilder bufer = new StringBuilder ( );
@@ -60,7 +71,6 @@ public class StringSpecialValues implements Rules<List<String>> {
         }
         return bufer.toString ( );
     }
-
     private String stringSpecial(int val) {
         int id = 0;
         StringBuilder bufer = new StringBuilder ( );
@@ -76,5 +86,17 @@ public class StringSpecialValues implements Rules<List<String>> {
         }
 
         return bufer.toString ( );
+    }
+    private boolean checkIn(){
+        if ((!ESC_SPECIAL && !SPECIAL) || SPECIAL_LEN <= 0 || INCREASE_QUANTITY <= 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    private boolean checkOut(){
+        if((values.size()==0) ||(column==null)){
+            return true;
+        }else {return false;}
     }
 }

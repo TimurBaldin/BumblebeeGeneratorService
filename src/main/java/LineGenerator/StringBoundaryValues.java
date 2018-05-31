@@ -1,12 +1,13 @@
 package LineGenerator;
 
+import Columns.ColumnLines;
 import Rules.Rules;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class StringBoundaryValues implements Rules<List<String>> {
+public class StringBoundaryValues implements Rules {
     private final int MIN_ID_CAPITALS = 65;
     private final int MAX_ID_CAPITALS = 90;
     private final int MIN_ID_LOWERCASE = 97;
@@ -16,19 +17,21 @@ public class StringBoundaryValues implements Rules<List<String>> {
     private Boolean Cap;
     private Boolean NullValue;
     private Integer INCREASE_QUANTITY;
+private ColumnLines column;
 private List<String> values = new ArrayList<String>();
 
-    public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap,Boolean NullValue) {
+    public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap,Boolean NullValue,ColumnLines column) {
         this.len = Len;
         this.Low = Low;
         this.Cap = Cap;
         this.INCREASE_QUANTITY = INCREASE_QUANTITY;
         this.NullValue=NullValue;
+        this.column=column;
     }
 
     @Override
-    public List<String> returnValue() throws Exception {
-        if ((!Low && !Cap) || len <= 0 || INCREASE_QUANTITY <= 0)
+    public void construct() throws Exception {
+        if (checkIn())
             throw new Exception("Your choice is not right. Try again");
         if(NullValue) {
             values.add(new StringNull().returnValue());
@@ -37,20 +40,30 @@ private List<String> values = new ArrayList<String>();
             for (Integer i = 1; i <= len + INCREASE_QUANTITY; i++) {
                 values.add(stringBuildLowCap(i));
             }
-            return values;
+            transfer();
+            return;
         }
         if (Low) {
             for (Integer i = 1; i <= len + INCREASE_QUANTITY; i++) {
                 values.add(stringBuildLow(i));
             }
-            return values;
+            transfer();
+            return;
         } else {
             for (Integer i = 1; i <= len + INCREASE_QUANTITY; i++) {
                 values.add(stringBuildCap(i));
             }
-            return values;
-        }
+             transfer();
+            return;
+            }
     }
+@Override
+public void transfer()throws Exception{
+    if(checkOut()){ throw new Exception ("Please create test data");}
+    else {
+        column.setValues(this.values);
+    }
+}
 
     private String stringBuildLowCap(int val) {
         int id = 0;
@@ -92,4 +105,16 @@ private List<String> values = new ArrayList<String>();
         }
         return bufer.toString();
     }
+private boolean checkIn(){
+    if ((!Low && !Cap) || len <= 0 || INCREASE_QUANTITY <= 0){
+        return true;
+    } else {
+        return false;
+    }
+}
+private boolean checkOut(){
+    if((values.size()==0) ||(column==null)){
+        return true;
+    }else {return false;}
+}
 }

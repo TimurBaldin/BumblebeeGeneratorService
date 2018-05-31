@@ -26,7 +26,7 @@ public void run() {
 @Before
 public void precondition() {
     ApplicationContext context =
-            new FileSystemXmlApplicationContext("C:\\Users\\Timur\\Documents\\Data Generator\\src\\test\\resources\\bean_test_config.xml");
+            new FileSystemXmlApplicationContext("C:\\Users\\Timur\\Documents\\Data Generator\\src\\test\\resources\\config.xml");
     ApplicationContext testcontext =
             new FileSystemXmlApplicationContext("C:\\Users\\Timur\\Documents\\Data Generator\\src\\test\\resources\\bean_config_test_objects.xml");
     ExRestest_1 = (ExResBorderRange) testcontext.getBean("Test_1_LOW");

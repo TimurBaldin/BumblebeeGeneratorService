@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class IntBoundaryValues implements Rules<List<Long>> {
+public class IntBoundaryValues implements Rules{
 private Long MaxInt;
 private Long MinInt;
 private Integer QUANTITY;
@@ -21,14 +21,20 @@ public IntBoundaryValues(Long BoundaryIntEnd, Long BoundaryIntStart, Integer QUA
 }
 
 @Override
-public List<Long> returnValue() throws Exception {
+public  void construct() throws Exception {
     if (checkRule()) {
         throw new Exception("Invalid input conditions");
     }
     values.addAll(buildBoundary());
     values.addAll(buildTestNum());
-    return values;
+    transfer();
 }
+
+@Override
+public void transfer() throws Exception {
+
+}
+
 private boolean checkRule(){
     if ((MaxInt < MinInt) || (QUANTITY < QUANTITY_BOUNDARY_TEST) ||(Math.abs(MaxInt-MinInt)==0)){
         return true;
