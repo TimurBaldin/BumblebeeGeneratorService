@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class TestDataExcel implements ReportExcel {
 private int columnIndex=0;
-private  int ROW_MAX_DEF=3500;
+private  int ROW_MAX_DEF=5000;
 private  int COLUMN_MAX_DEF=500;
 private  int ROW_MAX_BUF;
 private XSSFRow row;
@@ -25,37 +25,51 @@ private  XSSFWorkbook book;
 String DOC_NAME;
 String Sheet_NAME;
 List<StringTableBufer> bufer;
-public  void create(String DOC_NAME, String Sheet_NAME, List<StringTableBufer> bufer){
+public  void create(String DOC_NAME, String Sheet_NAME,String COLUMN_NAME,List<StringTableBufer> bufer){
     this.DOC_NAME=DOC_NAME;
     this.Sheet_NAME=Sheet_NAME;
     this.bufer=bufer;
     if(!check()){return;}
     try {
-        File file = new File ("C:\\Users\\Timur\\Documents\\Data Generator\\src\\main\\java\\Reports\\DOC" + DOC_NAME + ".xlsx");
+        File file = new File ("C:\\Users\\Timur\\Documents\\Data Generator\\src\\main\\java\\Reports\\DOC\\" + DOC_NAME + ".xlsx");
         FileOutputStream fileOut = new FileOutputStream(file);
         file.createNewFile ();
         if(preparation()) {
             for (int i = 0; i <= bufer.size() - 1; i++) {
+                if(i==0){
+                    row = sheet.getRow(i);
+                    cell = row.getCell(columnIndex);
+                    cell.setCellType(CellType.STRING);
+                    cell.setCellValue(COLUMN_NAME);
+                    continue;
+                }
                 row = sheet.getRow(i);
                 cell = row.getCell(columnIndex);
                 cell.setCellType(CellType.STRING);
-                cell.setCellValue("*"+bufer.get(i));
+                cell.setCellValue(""+bufer.get(i));
                 }
         }else {
             int key=0;
             for (int i = 0; i <= bufer.size() - 1; i++) {
+                if(i==0){
+                    row = sheet.getRow(i);
+                    cell = row.getCell(columnIndex);
+                    cell.setCellType(CellType.STRING);
+                    cell.setCellValue(COLUMN_NAME);
+                    continue;
+                }
                 if(i<=ROW_MAX_DEF){
                     row = sheet.getRow(i);
                     cell = row.getCell(columnIndex);
                     cell.setCellType(CellType.STRING);
-                    cell.setCellValue(bufer.get(i).getValue());
+                    cell.setCellValue(""+bufer.get(i));
                 }else {
                     row_bufer=row_repository.get(key);
                     if(row_bufer!=null && sheet.getRow(i)!=null){
                         row_bufer = sheet.getRow(i);
                         cell_bufer= row_bufer.getCell(columnIndex);
                         cell_bufer.setCellType(CellType.STRING);
-                        cell_bufer.setCellValue(bufer.get(i).getValue());
+                        cell_bufer.setCellValue(""+bufer.get(i));
                     }else {
                         ++key;
                         row_bufer=row_repository.get(key);
@@ -63,7 +77,7 @@ public  void create(String DOC_NAME, String Sheet_NAME, List<StringTableBufer> b
                             row_bufer = sheet.getRow(i);
                             cell_bufer= row_bufer.getCell(columnIndex);
                             cell_bufer.setCellType(CellType.STRING);
-                            cell_bufer.setCellValue(bufer.get(i).getValue());
+                            cell_bufer.setCellValue(""+bufer.get(i));
                         }else {
                             System.out.println("Row not found");
                             return;

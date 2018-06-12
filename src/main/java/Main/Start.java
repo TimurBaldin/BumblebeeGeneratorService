@@ -18,7 +18,14 @@ public class Start {
                 new FileSystemXmlApplicationContext("C:\\Users\\Timur\\Documents\\Data Generator\\src\\main\\resources\\config.xml");
        // SpringApplication.run(Start.class, args);
         ManagerTestData managerTestData=new ManagerTestData(context);
-        managerTestData.createReportExcel();
-
+        managerTestData.setColumn("Column");
+        try {
+            managerTestData.setStringBoundaryValues("Boundary");
+            managerTestData.createValuesBD();
+            managerTestData.createReportExcel();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+    }
 }

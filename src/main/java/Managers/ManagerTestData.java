@@ -42,7 +42,7 @@ public ManagerTestData(ApplicationContext context){
 
     }
     public void createReportExcel(){
-        reportExcel.create("Test","tester1",tool.get());
+        reportExcel.create("Test","tester1",columnLines.getCOLUMN(),tool.get());
         SessionUntil.INSTANCE.close ();
     }
 
