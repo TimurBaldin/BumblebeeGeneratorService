@@ -1,14 +1,11 @@
 package Columns;
 
-import LineGenerator.StringBoundaryValues;
-import LineGenerator.StringSpecialValues;
 import Rules.*;
-import Tools.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ColumnLines implements FactoryRules<String> {
+public class ColumnLines implements Columns<String> {
 private String COLUMN_NAME;
 private List<String> values = new ArrayList<String>();
 

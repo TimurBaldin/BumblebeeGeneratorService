@@ -1,11 +1,26 @@
 group 'Data Generator'
 version '1.0'
-
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.2.RELEASE")
+    }
+}
 apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
+bootJar {
+    baseName = 'Limbo'
+    version =  '0.0.1'
+}
 
 sourceCompatibility = 1.8
-
+targetCompatibility = 1.8
 repositories {
     jcenter()
     mavenCentral()
@@ -17,8 +32,12 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.16.Final'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
     compile group: 'org.apache.poi', name: 'poi', version: '3.17'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
     compile group: 'org.springframework', name: 'spring-context', version: '5.0.6.RELEASE'
     compile group: 'org.springframework', name: 'spring-core', version: '5.0.6.RELEASE'
+    compile("org.springframework.boot:spring-boot-starter-web:+")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
 }
 
 task wrapper(type: Wrapper) {

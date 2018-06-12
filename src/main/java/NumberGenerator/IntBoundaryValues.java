@@ -1,5 +1,6 @@
 package NumberGenerator;
 
+import Columns.ColumnNum;
 import Rules.Rules;
 
 import java.util.ArrayList;
@@ -12,12 +13,14 @@ private Long MinInt;
 private Integer QUANTITY;
 private final Integer QUANTITY_BOUNDARY_TEST = 6;
 private Long DEFAULT_VALUE;
-private List<Long> values = new ArrayList<Long>();
+private ColumnNum column;
+private List<Number> values = new ArrayList<Number>();
 
-public IntBoundaryValues(Long BoundaryIntEnd, Long BoundaryIntStart, Integer QUANTITY) {
+public IntBoundaryValues(Long BoundaryIntEnd, Long BoundaryIntStart, Integer QUANTITY, ColumnNum column) {
     this.MaxInt = BoundaryIntEnd;
     this.MinInt = BoundaryIntStart;
     this.QUANTITY = QUANTITY;
+    this.column=column;
 }
 
 @Override
@@ -32,7 +35,9 @@ public  void construct() throws Exception {
 
 @Override
 public void transfer() throws Exception {
-
+if(column==null){
+    throw new Exception("Value column not be null");
+}else{ column.setValues(values);}
 }
 
 private boolean checkRule(){

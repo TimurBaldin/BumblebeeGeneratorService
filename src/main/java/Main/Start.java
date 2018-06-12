@@ -2,35 +2,23 @@ package Main;
 import LineGenerator.StringBoundaryValues;
 import LineGenerator.StringSpecialValues;
 import Columns.*;
-import Managers.ManagerLinesTestData;
+import Managers.ManagerTestData;
+import Managers.ManagerTestData;
 import NumberGenerator.IntBoundaryValues;
 import Tools.SessionUntil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
+@SpringBootApplication
 public class Start {
     public static void main(String[] args) {
-      ApplicationContext context =
+        ApplicationContext context =
                 new FileSystemXmlApplicationContext("C:\\Users\\Timur\\Documents\\Data Generator\\src\\main\\resources\\config.xml");
-        try {
-      ManagerLinesTestData one= new ManagerLinesTestData(context);
+       // SpringApplication.run(Start.class, args);
+        ManagerTestData managerTestData=new ManagerTestData(context);
+        managerTestData.createReportExcel();
 
-      one.setColumn("Column");
-      one.setStringBoundaryValues("Boundary");
-      one.setStringSpecialValues("Special");
-      one.createValuesBD();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            SessionUntil.INSTANCE.close ();
         }
-
-
-
-    }
-
-
-
-
 }

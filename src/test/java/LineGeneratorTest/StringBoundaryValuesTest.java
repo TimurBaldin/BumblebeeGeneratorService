@@ -33,7 +33,7 @@ public void precondition() {
     ExRestest_2 = (ExResBorderRange) testcontext.getBean("Test_1_CAP");
     test_obj = (StringBoundaryValues) context.getBean("TestObj_1");
     try {
-        values_test.addAll(test_obj.returnValue());
+        //values_test.addAll(test_obj.construct());
     } catch (Exception e) {
         e.printStackTrace();
     }
