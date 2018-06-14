@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 @RestController
-public class GreetingController {
+public class Controller {
 ManagerTestData one;
 @RequestMapping("/createColumn")
     public String createColumn(@RequestParam(value="column", defaultValue="Column") String column){

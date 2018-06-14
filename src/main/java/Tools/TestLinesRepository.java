@@ -1,16 +1,15 @@
 package Tools;
+import Rules.DAO.BaseRepository;
 import Tables.StringTableBufer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
-public class TestLinesRepository {
-    private final String REPORT = Tools.Query.KEY.getGET_TEST_DATA();
+public class TestLinesRepository implements BaseRepository<StringTableBufer,String> {
+    private final String REPORT = Querys.KEY.getGET_TEST_DATA();
     private ArrayList<String> values_test = new ArrayList<String>();
     private Session session;
     private String COLUMN_NAME;
