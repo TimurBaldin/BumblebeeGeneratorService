@@ -3,11 +3,12 @@ package Columns;
 import Rules.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ColumnLines implements Columns<String> {
 private String COLUMN_NAME;
-private List<String> values = new ArrayList<String>();
+private List<String> values = Collections.synchronizedList(new ArrayList());
 
 public ColumnLines(String COLUMN_NAME) {
     this.COLUMN_NAME = COLUMN_NAME;
@@ -15,7 +16,7 @@ public ColumnLines(String COLUMN_NAME) {
 
 @Override
 public void setValues(List<String> values) {
-    this.values.addAll(values);
+    this.values=values;
 }
 @Override
 public List<String> getValues() {
@@ -38,6 +39,9 @@ public void clear(){
     values.clear();
 }
 public String getTestValue(int id){
+    if(id>values.size()-1){
+        return null;
+    }
    return values.get(id);
 }
 public int getSizeValue(){return values.size();}

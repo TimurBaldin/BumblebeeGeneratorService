@@ -1,53 +1,74 @@
 package Reports;
+
+import Columns.ColumnLines;
 import Rules.Report.ReportCSV;
 import Tables.StringTableBufer;
 import com.opencsv.*;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class TestDataCSV implements ReportCSV<StringTableBufer> {
-RandomAccessFile writer=null;
-    @Override
-public void create(String DOC_NAME, String COLUMN_NAME, List<StringTableBufer> bufer) {
-        File file = new File ("C:\\Users\\Timur\\Documents\\Data Generator\\src\\main\\java\\Reports\\DOC\\" + DOC_NAME + ".csv");
+public class TestDataCSV implements ReportCSV<ColumnLines> {
+private List<ColumnLines> bufer = new ArrayList<ColumnLines>();
+private String delimetr;
+private String DOC_NAME;
+
+@Override
+public void create(String DOC_NAME, String delimetr, List<ColumnLines> bufer) throws Exception {
+    this.bufer.addAll(bufer);
+    this.DOC_NAME=DOC_NAME;
+    this.delimetr = delimetr;
+    if (check()) {
+        throw new Exception("Invalid input");
+    } else {
+        File file = new File("C:\\Users\\Timur\\Documents\\Data Generator\\src\\main\\java\\Reports\\DOC\\" + DOC_NAME + ".csv");
         try {
-            file.createNewFile ();
-            if(writer!=null){
-                long id_bufer=1;
-                int out_bufer;
-                writer=new RandomAccessFile(file,"rw");
-                for(int i=0;i<=bufer.size()-1;i++){
-                    while ( (out_bufer=writer.read())!=59){
-                        id_bufer++;
-                    }
-                    out_bufer=1;
-                    writer.seek(id_bufer);
-                    writer.writeBytes(bufer.get(i).getValue()+";"+System.getProperty("line.separator"));
-
-
+            file.createNewFile();
+            FileWriter writer = new FileWriter(file);
+            for (int j = 0; j <= bufer.size() - 1; j++) {
+                writer.write(bufer.get(j).getCOLUMN() + delimetr);
+            }
+            writer.write(System.getProperty("line.separator"));
+            boolean flag = true;
+            int id = 1;
+            int value_id = 0;
+            while (flag) {
+                int i = 0;
+                for (ColumnLines column : bufer) {
+                    writer.write(column.getTestValue(value_id) + delimetr);
+                    i++;
                 }
-
-                return;
-}
-            writer=new RandomAccessFile(file,"rw");
-            for(int i=0;i<=bufer.size()-1;i++){
-                writer.writeBytes(bufer.get(i).getValue()+";");
-                writer.writeBytes(System.getProperty("line.separator"));
-                }
-
-            } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-    public void close(){
-        try {
+                writer.write(System.getProperty("line.separator"));
+                value_id++;
+                id++;
+                flag = checksize(id);
+            }
             writer.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+}
+
+private boolean checksize(int id) {
+
+    for (ColumnLines column : bufer) {
+        if (id <= (column.getSizeValue())) {
+            return true;
+        }
+    }
+    return false;
+}
+
+private boolean check() {
+    if (DOC_NAME == null || delimetr == null || bufer == null) {
+        return true;
+    } else {
+        return false;
+    }
+}
 }
