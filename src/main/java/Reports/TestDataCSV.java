@@ -24,8 +24,8 @@ public void create(String DOC_NAME, String COLUMN_NAME, List<StringTableBufer> b
                     }
                     out_bufer=1;
                     writer.seek(id_bufer);
-                    writer.writeBytes(bufer.get(i).getValue()+";");
-                    writer.writeBytes(System.getProperty("line.separator"));
+                    writer.writeBytes(bufer.get(i).getValue()+";"+System.getProperty("line.separator"));
+
 
                 }
 

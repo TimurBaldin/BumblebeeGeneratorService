@@ -1,4 +1,5 @@
 package Tools;
+import Columns.ColumnLines;
 import Rules.DAO.BaseRepository;
 import Tables.StringTableBufer;
 import org.hibernate.Session;
@@ -8,7 +9,7 @@ import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
-public class TestLinesRepository implements BaseRepository<StringTableBufer,String> {
+public class TestLinesRepository implements BaseRepository<ColumnLines,String> {
     private final String REPORT = Querys.KEY.getGET_TEST_DATA();
     private ArrayList<String> values_test = new ArrayList<String>();
     private Session session;
@@ -32,17 +33,23 @@ public class TestLinesRepository implements BaseRepository<StringTableBufer,Stri
                 session.getTransaction ().rollback ();
             }finally {
                 session.close ( );
+                values_test.clear();
             }
         }
         }
-    public List<StringTableBufer> get() {
-        session = sessionFactory.openSession ( );
-        Query query = session.createQuery(REPORT);
-        query.setParameter("val1",COLUMN_NAME);
-        query.setParameter("val2",0);
-        List<StringTableBufer> bufer=query.list();
-        session.close();
-        return bufer;
+    public List<ColumnLines> get(List<ColumnLines> columns) {
+        List<ColumnLines> columnLines=new ArrayList<ColumnLines>();
+        for (ColumnLines bufer:columns) {
+            session = sessionFactory.openSession ( );
+            Query query = session.createQuery(REPORT);
+            query.setParameter("val1",bufer.getCOLUMN());
+            query.setParameter("val2",0);
+            bufer.setValues(query.list());
+            columnLines.add(bufer);
+            session.close();
+        }
+
+        return columnLines;
 
     }
 }

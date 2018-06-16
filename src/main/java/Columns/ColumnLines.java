@@ -34,7 +34,13 @@ public List<String> getValues() {
 public String getCOLUMN() {
     return COLUMN_NAME;
 }
-
+public void clear(){
+    values.clear();
+}
+public String getTestValue(int id){
+   return values.get(id);
+}
+public int getSizeValue(){return values.size();}
 private boolean checkRule() {
     if (COLUMN_NAME == null || COLUMN_NAME == "" || values.size() == 0) {
         return true;
