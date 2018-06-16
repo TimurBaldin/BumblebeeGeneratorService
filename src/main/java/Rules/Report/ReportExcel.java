@@ -1,5 +1,6 @@
-package Rules;
+package Rules.Report;
 
+import Rules.Rules;
 import Tables.StringTableBufer;
 
 import java.util.List;

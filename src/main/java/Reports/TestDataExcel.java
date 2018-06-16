@@ -1,11 +1,10 @@
 package Reports;
-import Rules.ReportExcel;
+import Rules.Report.ReportExcel;
 import Tables.StringTableBufer;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.*;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;

@@ -3,22 +3,19 @@ package Managers;
 import Columns.ColumnLines;
 import LineGenerator.StringBoundaryValues;
 import LineGenerator.StringSpecialValues;
-import QualifierTestGenerators.LineBoundary;
+import Reports.TestDataCSV;
 import Reports.TestDataExcel;
-import Tables.StringTableBufer;
+import Rules.Report.ReportExcel;
 import Tools.SessionUntil;
 import Tools.TestLinesRepository;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Configuration;
 import Rules.*;
-
-import java.util.List;
 
 public class ManagerTestData {
     private ApplicationContext context ;
 private Columns columnLines;
-private ReportExcel reportExcel=new TestDataExcel();
+private TestDataCSV reportcsv=new TestDataCSV();
 private Rules stringBoundaryValues;
 private Rules stringSpecialValues;
 TestLinesRepository tool = new TestLinesRepository();
@@ -42,8 +39,12 @@ public ManagerTestData(ApplicationContext context){
 
     }
     public void createReportExcel(){
-        reportExcel.create("Test","tester1",columnLines.getCOLUMN(),tool.get());
+      //  reportExcel.create("Test","tester1",columnLines.getCOLUMN(),tool.get());
         SessionUntil.INSTANCE.close ();
     }
+public void createReportCSV(){
+    reportcsv.create("Test",columnLines.getCOLUMN(),tool.get());
+    SessionUntil.INSTANCE.close ();
+}
 
 }

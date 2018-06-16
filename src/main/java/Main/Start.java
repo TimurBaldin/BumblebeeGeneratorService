@@ -5,6 +5,8 @@ import Columns.*;
 import Managers.ManagerTestData;
 import Managers.ManagerTestData;
 import NumberGenerator.IntBoundaryValues;
+import Tables.Client;
+import Tools.ClientRepository;
 import Tools.SessionUntil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -20,12 +22,13 @@ public class Start {
         ManagerTestData managerTestData=new ManagerTestData(context);
         managerTestData.setColumn("Column");
         try {
-            managerTestData.setStringBoundaryValues("Boundary");
+           managerTestData.setStringBoundaryValues("Boundary");
             managerTestData.createValuesBD();
-            managerTestData.createReportExcel();
+            managerTestData.createReportCSV();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
     }
 }
