@@ -33,9 +33,10 @@ public class TestLinesRepository implements BaseRepository<ColumnLines,String> {
                 session.getTransaction ().rollback ();
             }finally {
                 session.close ( );
-                values_test.clear();
+
             }
         }
+        values_test.clear();
         }
     public List<ColumnLines> get(List<ColumnLines> columns) {
         List<ColumnLines> columnLines=new ArrayList<ColumnLines>();

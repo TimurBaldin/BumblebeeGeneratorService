@@ -3,28 +3,27 @@ import Repository.RepositiryTestValues;
 import Rules.*;
 import Factories.LineConfigiration;
 import Columns.ColumnLines;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
-@Service
+@Service()
+@ComponentScan("Main")
 public class LinesService {
-    private List<Rules> Tests;
+    private List<Rules> Tests=new ArrayList<Rules>();
     private ColumnLines Column;
-    private LineConfigiration lineFactory;
+    private LineConfigiration lineFactory=new LineConfigiration();
     private ReportService reportService=lineFactory.getReportService();
-    {
-
-    lineFactory=new LineConfigiration();
-    }
-    private List<ColumnLines> columns;
+    private List<ColumnLines> columns=new ArrayList<ColumnLines>();
     private RepositiryTestValues Repositiry=lineFactory.getRepositiry();
     public void createColumn(String column_name){
         Column=lineFactory.getColumn(column_name);
     }
     public void selectionBoundaryTest(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap,Boolean NullValue){
         Tests.add(lineFactory.getBoundaryValues(Len,INCREASE_QUANTITY,Low,Cap,NullValue,Column));
-}
+    }
     public void selectionSpecialLinesTest(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL){
         Tests.add(lineFactory.getSpecialValues(SPECIAL_LEN,INCREASE_QUANTITY,ESC_SPECIAL,SPECIAL,Column));
     }

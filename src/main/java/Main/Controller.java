@@ -6,14 +6,19 @@ import java.io.FileNotFoundException;
 
 import Columns.ColumnLines;
 import Services.LinesService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("/linetest")
+@Configuration
 public class Controller {
-LinesService service = new LinesService();
+
+    LinesService service = new LinesService();
 
 @RequestMapping(path = "/home", method = RequestMethod.POST)
 public @ResponseBody ColumnLines setColumn(@RequestBody String column) {
@@ -31,7 +36,7 @@ public void createSpecialcheck(@RequestParam Integer SPECIAL_LEN, @RequestParam 
     service.selectionSpecialLinesTest(SPECIAL_LEN,INCREASE_QUANTITY,ESC_SPECIAL,SPECIAL);
 }
 
-@RequestMapping(path = "/csvreport", method = RequestMethod.GET)
+/*@RequestMapping(path = "/csvreport", method = RequestMethod.GET)
 public ResponseEntity<InputStreamResource> csvreport(@RequestBody String DOC_NAME, String delimetr) {
 service.createReportCSV(DOC_NAME,delimetr);
 File file=service.createReportCSV(DOC_NAME,delimetr);
@@ -44,7 +49,7 @@ File file=service.createReportCSV(DOC_NAME,delimetr);
     return ResponseEntity.ok().contentLength(file.length())
                    .contentType(MediaType.parseMediaType("application/octet-stream"))
                    .body(resource);
-}
+}*/
 
 }
 
