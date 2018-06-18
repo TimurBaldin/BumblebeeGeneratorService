@@ -1,19 +1,21 @@
 package Services;
 import Repository.RepositiryTestValues;
 import Rules.*;
-import Factories.LineFactory;
+import Factories.LineConfigiration;
 import Columns.ColumnLines;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.List;
 @Service
 public class LinesService {
     private List<Rules> Tests;
     private ColumnLines Column;
-    private LineFactory lineFactory;
+    private LineConfigiration lineFactory;
     private ReportService reportService=lineFactory.getReportService();
     {
-    lineFactory=new LineFactory();
+
+    lineFactory=new LineConfigiration();
     }
     private List<ColumnLines> columns;
     private RepositiryTestValues Repositiry=lineFactory.getRepositiry();
@@ -51,15 +53,18 @@ public class LinesService {
                 }
                 }else {
                 throw new Exception("It is necessary to choose checks");
-            }
+                }
             }catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void createReport(){
-        Repositiry.getLines(columns);
-
+    public File createReportCSV(String DOC_NAME, String delimetr){
+        return reportService.createCSV(DOC_NAME,delimetr,Repositiry.getLines(columns));
     }
+    public boolean createReportExcel(String DOC_NAME, String Sheet_NAME){
+        return reportService.createExcel(DOC_NAME,Sheet_NAME,Repositiry.getLines(columns));
+    }
+    public ColumnLines getColumn(){return Column;}
 
 
 

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LineFactory {
+public class LineConfigiration {
 @Bean
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public  ColumnLines getColumn(String name){

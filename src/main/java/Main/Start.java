@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages="Main")
 public class Start {
     public static void main(String[] args) {
       ApplicationContext context =

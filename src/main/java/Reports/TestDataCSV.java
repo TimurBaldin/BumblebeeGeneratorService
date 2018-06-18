@@ -16,7 +16,7 @@ private String delimetr;
 private String DOC_NAME;
 
 @Override
-public void create(String DOC_NAME, String delimetr, List<ColumnLines> bufer) throws Exception {
+public File create(String DOC_NAME, String delimetr, List<ColumnLines> bufer) throws Exception {
     this.bufer.addAll(bufer);
     this.DOC_NAME=DOC_NAME;
     this.delimetr = delimetr;
@@ -49,8 +49,11 @@ public void create(String DOC_NAME, String delimetr, List<ColumnLines> bufer) th
 
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            return file;
         }
     }
+
 
 }
 
