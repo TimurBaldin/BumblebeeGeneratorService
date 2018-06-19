@@ -10,12 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
 
-@SpringBootApplication(scanBasePackages="Main")
+@SpringBootApplication(scanBasePackages="java")
 public class Start {
     public static void main(String[] args) {
-//      ApplicationContext context =
-           //     new FileSystemXmlApplicationContext("C:\\Users\\Timur\\Documents\\Data Generator\\src\\main\\resources\\config.xml");
-     SpringApplication.run(Start.class, args);
+        SpringApplication.run(Start.class, args);
 
 
 

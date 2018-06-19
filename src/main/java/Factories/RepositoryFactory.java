@@ -3,7 +3,7 @@ package Factories;
 import Tools.ClientRepository;
 import Tools.TestLinesRepository;
 
-public class RepositoryConfigiration {
+public class RepositoryFactory {
     public static ClientRepository getClient(){
         return new ClientRepository();
     }

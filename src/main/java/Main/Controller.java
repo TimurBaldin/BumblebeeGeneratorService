@@ -15,31 +15,67 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController("/linetest")
-@Configuration
 public class Controller {
+private final String MESSAGE_FORUSER_SUCCESSFULLY = "Операция успешно выполнена";
+private final String MESSAGE_FORUSER_ERROR = "Ошибка,обратитесь к администратору";
+private LinesService service;
 
-    LinesService service = new LinesService();
+@Autowired
+public Controller(LinesService service) {
+    this.service = service;
+}
+
 
 @RequestMapping(path = "/home", method = RequestMethod.POST)
-public @ResponseBody ColumnLines setColumn(@RequestBody String column) {
+public @ResponseBody
+ColumnLines setColumn(@RequestBody String column) {
     service.createColumn(column);
     return service.getColumn();
 }
 
 @RequestMapping(path = "/boundary", method = RequestMethod.PUT)
-public void createBoundarycheck(@RequestParam Integer Len,@RequestParam Integer INCREASE_QUANTITY, @RequestParam Boolean Low,@RequestParam Boolean Cap,@RequestParam Boolean NullValue){
-service.selectionBoundaryTest(Len,INCREASE_QUANTITY,Low,Cap,NullValue);
+public String createBoundarycheck(@RequestParam Integer Len, @RequestParam Integer INCREASE_QUANTITY, @RequestParam Boolean Low, @RequestParam Boolean Cap, @RequestParam Boolean NullValue) {
+    if (service.selectionBoundaryTest(Len, INCREASE_QUANTITY, Low, Cap, NullValue)) {
+        return MESSAGE_FORUSER_SUCCESSFULLY;
+    } else {
+        return MESSAGE_FORUSER_ERROR;
+    }
 }
 
 @RequestMapping(path = "/specsymbol", method = RequestMethod.PUT)
-public void createSpecialcheck(@RequestParam Integer SPECIAL_LEN, @RequestParam Integer INCREASE_QUANTITY, @RequestParam Boolean ESC_SPECIAL,@RequestParam Boolean SPECIAL){
-    service.selectionSpecialLinesTest(SPECIAL_LEN,INCREASE_QUANTITY,ESC_SPECIAL,SPECIAL);
+public String createSpecialcheck(@RequestParam Integer SPECIAL_LEN, @RequestParam Integer INCREASE_QUANTITY, @RequestParam Boolean ESC_SPECIAL, @RequestParam Boolean SPECIAL) {
+    if (service.selectionSpecialLinesTest(SPECIAL_LEN, INCREASE_QUANTITY, ESC_SPECIAL, SPECIAL)) {
+        return MESSAGE_FORUSER_SUCCESSFULLY;
+    } else {
+        return MESSAGE_FORUSER_ERROR;
+    }
 }
 
-/*@RequestMapping(path = "/csvreport", method = RequestMethod.GET)
+@RequestMapping(path = "/savecolumn", method = RequestMethod.PUT)
+public String saveColumn() {
+    if (service.saveColumn()) {
+        return MESSAGE_FORUSER_SUCCESSFULLY;
+    } else {
+        return MESSAGE_FORUSER_ERROR;
+    }
+
+}
+
+@RequestMapping(path = "/savemodel", method = RequestMethod.PUT)
+public String saveModel() {
+    if (service.saveModel()) {
+        return MESSAGE_FORUSER_SUCCESSFULLY;
+    } else {
+        return MESSAGE_FORUSER_ERROR;
+    }
+
+}
+
+
+@RequestMapping(path = "/csvreport", method = RequestMethod.GET)
 public ResponseEntity<InputStreamResource> csvreport(@RequestBody String DOC_NAME, String delimetr) {
-service.createReportCSV(DOC_NAME,delimetr);
-File file=service.createReportCSV(DOC_NAME,delimetr);
+    service.createReportCSV(DOC_NAME, delimetr);
+    File file = service.createReportCSV(DOC_NAME, delimetr);
     InputStreamResource resource = null;
     try {
         resource = new InputStreamResource(new FileInputStream(file));
@@ -47,9 +83,9 @@ File file=service.createReportCSV(DOC_NAME,delimetr);
         e.printStackTrace();
     }
     return ResponseEntity.ok().contentLength(file.length())
-                   .contentType(MediaType.parseMediaType("application/octet-stream"))
+                   .contentType(MediaType.parseMediaType("text/csv"))
                    .body(resource);
-}*/
+}
 
 }
 

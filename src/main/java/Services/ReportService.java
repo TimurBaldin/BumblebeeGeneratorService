@@ -1,7 +1,7 @@
 package Services;
 
 import Columns.ColumnLines;
-import Factories.ReportConfigiration;
+import Factories.ReportFactory;
 import Rules.Report.ReportCSV;
 import Rules.Report.ReportExcel;
 import org.springframework.stereotype.Service;
@@ -11,9 +11,9 @@ import java.util.List;
 
 @Service
 public class ReportService {
-   private ReportConfigiration configiration;
+   private ReportFactory configiration;
 {
-     configiration=new ReportConfigiration();
+     configiration=new ReportFactory();
 }
 private ReportCSV reportCSV=configiration.getReportCSV();
 private ReportExcel reportExcel=configiration.getReportExcel();
