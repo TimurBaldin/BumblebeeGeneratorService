@@ -16,23 +16,28 @@ private XSSFRow row;
 private XSSFCell cell;
 private XSSFSheet sheet;
 private XSSFWorkbook book;
-String DOC_NAME;
-String Sheet_NAME;
+String docname;
+String sheetname;
 private List<ColumnLines> bufer = new ArrayList<ColumnLines>();
+private final String REPORT_PATH="src\\main\\java\\com\\rufus\\bumblebee\\Main\\Reports\\DOC\\";
+private final String FILE_FORMAT=".xlsx";
+private String path;
 
 @Override
-public void create(String DOC_NAME, String Sheet_NAME, List<ColumnLines> bufer) throws Exception {
-    this.DOC_NAME = DOC_NAME;
-    this.Sheet_NAME = Sheet_NAME;
+public File create(String docname, String sheetname, List<ColumnLines> bufer) throws Exception {
+    this.docname = docname;
+    this.sheetname = sheetname;
     this.bufer.addAll(bufer);
+    path = new File(REPORT_PATH + docname + FILE_FORMAT).getAbsolutePath();
     if (check()) {
         throw new Exception("Invalid input");
     } else {
+        File file = new File(path);
         try {
-            File file = new File("C:\\Users\\Timur\\Documents\\Data Generator\\src\\main\\java\\com\\rufus\\bumblebee\\Main\\Reports\\DOC\\" + DOC_NAME + ".xlsx");
-            FileOutputStream fileOut = new FileOutputStream(file);
             file.createNewFile();
-            preparation();
+            FileOutputStream fileOut = new FileOutputStream(file);
+            book = new XSSFWorkbook();
+            sheet = book.createSheet(sheetname);
             row = sheet.createRow(0);
             for (int j = 0; j <= bufer.size() - 1; j++) {
                 cell = row.createCell(j);
@@ -60,19 +65,14 @@ public void create(String DOC_NAME, String Sheet_NAME, List<ColumnLines> bufer) 
             fileOut.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            return file;
         }
     }
 }
 
-private void preparation() {
-    if (book == null) {
-        book = new XSSFWorkbook();
-        sheet = book.createSheet(Sheet_NAME);
-    }
-}
-
 private boolean check() {
-    if (DOC_NAME == null || Sheet_NAME == null || bufer == null) {
+    if (docname == null || sheetname == null || bufer == null || path==null ) {
         return true;
     } else {
         return false;
@@ -80,7 +80,6 @@ private boolean check() {
 }
 
 private boolean checksize(int id) {
-
     for (ColumnLines column : bufer) {
         if (id <= (column.getSizeValue())) {
             return true;

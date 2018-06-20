@@ -4,28 +4,35 @@ import com.rufus.bumblebee.Main.Columns.ColumnLines;
 import com.rufus.bumblebee.Main.Rules.Report.ReportCSV;
 
 import java.io.*;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestDataCSV implements ReportCSV<ColumnLines> {
 private List<ColumnLines> bufer = new ArrayList<ColumnLines>();
-private String delimetr;
-private String DOC_NAME;
+private String delimiter;
+private String docname;
+private final String REPORT_PATH = "src\\main\\java\\com\\rufus\\bumblebee\\Main\\Reports\\DOC\\";
+private final String FILE_FORMAT = ".csv";
+private String path;
+private File file;
 
 @Override
-public File create(String DOC_NAME, String delimetr, List<ColumnLines> bufer) throws Exception {
+public File create(String docname, String delimiter, List<ColumnLines> bufer) throws Exception {
     this.bufer.addAll(bufer);
-    this.DOC_NAME=DOC_NAME;
-    this.delimetr = delimetr;
+    this.docname = docname;
+    this.delimiter = delimiter;
+    path = new File(REPORT_PATH + docname + FILE_FORMAT).getAbsolutePath();
     if (check()) {
         throw new Exception("Invalid input");
     } else {
-        File file = new File("C:\\Users\\Timur\\Documents\\Data Generator\\src\\main\\java\\com\\rufus\\bumblebee\\Main\\Reports\\DOC\\" + DOC_NAME + ".csv");
+        file = new File(path);
         try {
             file.createNewFile();
             FileWriter writer = new FileWriter(file);
             for (int j = 0; j <= bufer.size() - 1; j++) {
-                writer.write(bufer.get(j).getCOLUMN() + delimetr);
+                writer.write(bufer.get(j).getCOLUMN() + delimiter);
             }
             writer.write(System.getProperty("line.separator"));
             boolean flag = true;
@@ -34,7 +41,7 @@ public File create(String DOC_NAME, String delimetr, List<ColumnLines> bufer) th
             while (flag) {
                 int i = 0;
                 for (ColumnLines column : bufer) {
-                    writer.write(column.getTestValue(value_id) + delimetr);
+                    writer.write(column.getTestValue(value_id) + delimiter);
                     i++;
                 }
                 writer.write(System.getProperty("line.separator"));
@@ -46,12 +53,21 @@ public File create(String DOC_NAME, String delimetr, List<ColumnLines> bufer) th
 
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             return file;
         }
     }
 
 
+}
+
+@Override
+public boolean delete() throws FileNotFoundException {
+    if (path == null) {
+        throw new FileNotFoundException("PATH not be null");
+    } else {
+        return file.delete();
+    }
 }
 
 private boolean checksize(int id) {
@@ -65,7 +81,7 @@ private boolean checksize(int id) {
 }
 
 private boolean check() {
-    if (DOC_NAME == null || delimetr == null || bufer == null) {
+    if (docname == null || delimiter == null || bufer == null || path == null) {
         return true;
     } else {
         return false;

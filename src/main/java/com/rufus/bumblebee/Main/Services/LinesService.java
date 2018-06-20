@@ -84,11 +84,11 @@ public boolean saveModel() {
     return true;
 }
 
-public File createReportCSV(String DOC_NAME, String delimetr) {
-    return reportService.createCSV(DOC_NAME, delimetr, Repositiry.getLines(columns));
+public File createReportCSV(String docname, String delimiter) {
+    return reportService.createCSV(docname, delimiter, Repositiry.getLines(columns));
 }
 
-public boolean createReportExcel(String DOC_NAME, String Sheet_NAME) {
+public File createReportExcel(String DOC_NAME, String Sheet_NAME) {
     return reportService.createExcel(DOC_NAME, Sheet_NAME, Repositiry.getLines(columns));
 }
 

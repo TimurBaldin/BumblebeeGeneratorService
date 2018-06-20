@@ -72,9 +72,8 @@ public String saveModel() {
 
 
 @RequestMapping(path = "/csvreport", method = RequestMethod.GET)
-public ResponseEntity<InputStreamResource> csvreport(@RequestParam String DOC_NAME, @RequestParam String delimetr) {
-    service.createReportCSV(DOC_NAME, delimetr);
-    File file = service.createReportCSV(DOC_NAME, delimetr);
+public ResponseEntity<InputStreamResource> csvreport(@RequestParam String docname, @RequestParam String delimiter) {
+    File file = service.createReportCSV(docname, delimiter);
     InputStreamResource resource = null;
     try {
         resource = new InputStreamResource(new FileInputStream(file));
@@ -83,6 +82,20 @@ public ResponseEntity<InputStreamResource> csvreport(@RequestParam String DOC_NA
     }
     return ResponseEntity.ok().contentLength(file.length())
                    .contentType(MediaType.parseMediaType("text/csv"))
+                   .body(resource);
+}
+
+@RequestMapping(path = "/excelreport",method = RequestMethod.GET)
+public ResponseEntity<InputStreamResource> excelreport(@RequestParam String docname,@RequestParam String sheetname){
+  File file =service.createReportExcel(docname, sheetname);
+    InputStreamResource resource = null;
+    try {
+        resource = new InputStreamResource(new FileInputStream(file));
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    }
+    return ResponseEntity.ok().contentLength(file.length())
+                   .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
                    .body(resource);
 }
 }

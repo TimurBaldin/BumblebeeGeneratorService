@@ -14,18 +14,20 @@ public class ReportService {
    private ReportFactory configiration=new ReportFactory();
    private ReportCSV reportCSV=configiration.getReportCSV();
 private ReportExcel reportExcel=configiration.getReportExcel();
-    public boolean createExcel(String DOC_NAME, String Sheet_NAME, List<ColumnLines> bufer){
+    public File createExcel(String DOC_NAME, String Sheet_NAME, List<ColumnLines> bufer){
+        File file=null;
         try {
-            reportExcel.create(DOC_NAME,Sheet_NAME,bufer);
+            file=reportExcel.create(DOC_NAME,Sheet_NAME,bufer);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return file;
+
+
     }
-    public File createCSV(String DOC_NAME,String delimetr,List<ColumnLines> bufer){
+    public File createCSV(String docname,String delimiter,List<ColumnLines> bufer){
         try {
-        return reportCSV.create(DOC_NAME,delimetr,bufer);
+        return reportCSV.create(docname, delimiter,bufer);
         } catch (Exception e) {
             e.printStackTrace();
 

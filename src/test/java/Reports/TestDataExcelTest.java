@@ -1,7 +1,7 @@
 package Reports;
 
 import com.rufus.bumblebee.Main.Columns.ColumnLines;
-import com.rufus.bumblebee.Main.Reports.DOC.TestDataExcel;
+import com.rufus.bumblebee.Main.Reports.TestDataExcel;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,8 +30,6 @@ public void start(){
 @Test
 public void create() {
     TestDataExcel testDataExcel=new TestDataExcel();
-
-
     try {
         testDataExcel.create("Testim","tester1",arr);
     } catch (Exception e) {

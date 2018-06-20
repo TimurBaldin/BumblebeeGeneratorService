@@ -1,7 +1,8 @@
 package com.rufus.bumblebee.Main.Rules.Report;
 
+import java.io.File;
 import java.util.List;
 
 public interface ReportExcel<T> {
-void create(String DOC_NAME, String Sheet_NAME, List<T> bufer)throws Exception;
+File create(String docname, String sheetname, List<T> bufer)throws Exception;
 }
