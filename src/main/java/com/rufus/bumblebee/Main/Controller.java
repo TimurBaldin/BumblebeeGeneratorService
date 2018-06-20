@@ -85,12 +85,5 @@ public ResponseEntity<InputStreamResource> csvreport(@RequestParam String DOC_NA
                    .contentType(MediaType.parseMediaType("text/csv"))
                    .body(resource);
 }
-
-@RequestMapping(path = "/test", method = RequestMethod.GET)
-public String test(@RequestParam String t,@RequestParam String z){
-    return t+z;
-}
-
-
 }
 

@@ -14,12 +14,7 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="use_sql_comments">false</property>
-<<<<<<< HEAD
         <mapping class="com.rufus.bumblebee.Main.Tables.StringTableBufer"></mapping>
         <mapping class="com.rufus.bumblebee.Main.Tables.Client"></mapping>
-=======
-        <mapping class="io.Tables.StringTableBufer"></mapping>
-        <mapping class="io.Tables.Client"></mapping>
->>>>>>> 922ab94a01e7a015e204749a36624e81940aefd0
     </session-factory>
 </hibernate-configuration>
