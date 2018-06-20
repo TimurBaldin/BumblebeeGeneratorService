@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-    <bean id="TestObj_1" class="LineGenerator.StringBoundaryValues" scope="prototype">
+    <bean id="TestObj_1" class="com.rufus.bumblebee.Main.LineGenerator.StringBoundaryValues" scope="prototype">
         <constructor-arg value="100" type="java.lang.Integer" index="0"/>
         <constructor-arg value="100" type="java.lang.Integer" index="1"/>
         <constructor-arg value="true" type="java.lang.Boolean" index="2"/>

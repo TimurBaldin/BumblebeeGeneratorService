@@ -1,5 +1,5 @@
 package LineGeneratorTest;
-import LineGenerator.StringNull;
+import com.rufus.bumblebee.Main.LineGenerator.StringNull;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

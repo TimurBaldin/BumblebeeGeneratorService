@@ -1,8 +1,6 @@
 package LineGeneratorTest;
-import LineGenerator.StringBoundaryValues;
-import LineGenerator.StringNull;
+import com.rufus.bumblebee.Main.LineGenerator.StringBoundaryValues;
 import TestObjects.ExResBorderRange;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +10,6 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 public class StringBoundaryValuesTest {
 private StringBoundaryValues test_obj;

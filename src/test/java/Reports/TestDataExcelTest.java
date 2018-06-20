@@ -1,12 +1,11 @@
 package Reports;
 
-import Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Reports.DOC.TestDataExcel;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-
-import static org.junit.Assert.*;
 
 public class TestDataExcelTest {
 ArrayList<String> str=new ArrayList<String>();
