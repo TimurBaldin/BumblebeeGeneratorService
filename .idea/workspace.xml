@@ -2,48 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f44056c-34df-4479-bc4f-9a517003e995" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Services/LinesService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Columns/ColumnLines.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Columns/ColumnLines.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Columns/ColumnNum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Columns/ColumnNum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Config/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Config/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Factories/LineFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Factories/LineFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Factories/ReportFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Factories/ReportFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Factories/RepositoryFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Factories/RepositoryFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LineGenerator/StringBoundaryValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/LineGenerator/StringBoundaryValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LineGenerator/StringNull.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/LineGenerator/StringNull.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LineGenerator/StringSpecialValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/LineGenerator/StringSpecialValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Start.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/NumberGenerator/IntBoundaryValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/NumberGenerator/IntBoundaryValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/NumberGenerator/IntFullRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/NumberGenerator/IntFullRange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Reports/DOC/Test_1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Reports/DOC/Test_1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Reports/DOC/Testim.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Repository/RepositiryTestValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Repository/RepositiryTestValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rules/Columns.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Rules/Columns.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rules/DAO/BaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Rules/DAO/BaseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rules/DAO/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Rules/DAO/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rules/Report/ReportCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Rules/Report/ReportCSV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rules/Report/ReportExcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Rules/Report/ReportExcel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rules/Rules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Rules/Rules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/LinesService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/ReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Services/ReportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tables/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tables/NumberTableBufer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tables/StringTableBufer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tools/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Tools/ClientRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tools/Querys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Tools/Querys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tools/SessionUntil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Tools/SessionUntil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Tools/TestLinesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Tools/TestLinesRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Reports/DOC/TestDataCSV.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rufus/bumblebee/Main/Reports/DOC/TestDataExcel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/LineGeneratorTest/StringBoundaryValuesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LineGeneratorTest/StringBoundaryValuesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/LineGeneratorTest/StringNullTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LineGeneratorTest/StringNullTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Main/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Main/MainTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Reports/TestDataCSVTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Reports/TestDataCSVTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Reports/TestDataExcelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Reports/TestDataExcelTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/bean_test_config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/bean_test_config.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -695,7 +654,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="683" />
     <option name="width" value="683" />
     <option name="height" value="728" />
@@ -742,15 +701,6 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="Main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DatаRule" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Data Generator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Main" type="462c0819:PsiDirectoryNode" />
-              <item name="Reports" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DatаRule" type="b2602c69:ProjectViewProjectNode" />
@@ -1082,7 +1032,7 @@
       <workItem from="1529422478801" duration="4982000" />
       <workItem from="1529432658610" duration="6622000" />
       <workItem from="1529512858898" duration="733000" />
-      <workItem from="1529513778250" duration="6432000" />
+      <workItem from="1529513778250" duration="7374000" />
     </task>
     <servers />
   </component>
@@ -1119,7 +1069,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="249796000" />
+    <option name="totallyTimeSpent" value="250738000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1131,8 +1081,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="17" sideWeight="0.50073206" side_tool="true" weight="0.27732465" />
@@ -1156,7 +1105,7 @@
       <window_info anchor="bottom" id="Spring" order="14" weight="0.69983685" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.044045676" />
       <window_info id="Persistence" order="6" sideWeight="0.50289017" side_tool="true" weight="0.24886535" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49710983" weight="0.3260212" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49710983" visible="true" weight="0.3260212" />
       <window_info anchor="right" id="Bean Validation" order="4" weight="0.32980332" />
       <window_info id="Web" order="2" sideWeight="0.50289017" side_tool="true" weight="0.24886535" />
       <window_info anchor="right" id="Gradle" order="6" weight="0.32980332" />
