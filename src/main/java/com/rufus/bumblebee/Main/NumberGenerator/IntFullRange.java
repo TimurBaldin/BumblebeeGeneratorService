@@ -1,19 +1,22 @@
 package com.rufus.bumblebee.Main.NumberGenerator;
 
+import com.rufus.bumblebee.Main.Columns.ColumnNum;
 import com.rufus.bumblebee.Main.Rules.Rules;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class IntFullRange implements Rules {
 private Long MinIntVal;
 private Long MaxIntVal;
-private List<Long> values = new ArrayList<Long>();
-
-public IntFullRange(Long MaxIntVal, Long MinIntVal) {
+private List<Number> values = new LinkedList<Number>();
+private ColumnNum column;
+public IntFullRange(Long MaxIntVal, Long MinIntVal,ColumnNum column) {
     this.MinIntVal = MinIntVal;
     this.MaxIntVal = MaxIntVal;
+    this.column=column;
 }
 
 @Override
@@ -29,7 +32,9 @@ public void construct() throws Exception {
 
 @Override
 public void transfer() throws Exception {
-
+    if(column==null){
+        throw new Exception("Value column not be null");
+    }else{ column.setValues(values);}
 }
 
 private boolean checkRule() {

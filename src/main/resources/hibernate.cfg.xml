@@ -16,5 +16,6 @@
         <property name="use_sql_comments">false</property>
         <mapping class="com.rufus.bumblebee.Main.Tables.StringTableBufer"></mapping>
         <mapping class="com.rufus.bumblebee.Main.Tables.Client"></mapping>
+        <mapping class="com.rufus.bumblebee.Main.Tables.NumberTableBufer"></mapping>
     </session-factory>
 </hibernate-configuration>

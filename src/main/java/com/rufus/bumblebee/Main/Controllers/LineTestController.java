@@ -1,9 +1,9 @@
-package com.rufus.bumblebee.Main;
+package com.rufus.bumblebee.Main.Controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
+import org.springframework.stereotype.Controller;
 import com.rufus.bumblebee.Main.Columns.ColumnLines;
 import com.rufus.bumblebee.Main.Services.LinesService;
 import com.rufus.bumblebee.Main.Tools.SessionUntil;
@@ -12,28 +12,28 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-@RestController
-public class Controller {
+@Controller
+@RequestMapping("/creatortest")
+public class LineTestController {
 private final String MESSAGE_FORUSER_SUCCESSFULLY = "Операция успешно выполнена";
 private final String MESSAGE_FORUSER_ERROR = "Ошибка,обратитесь к администратору";
 
 private LinesService service;
 @Autowired
-public Controller(LinesService service) {
+public LineTestController(LinesService service) {
     this.service = service;
 }
 
 
-@RequestMapping(path = "/home", method = RequestMethod.POST)
+@RequestMapping(path = "/home", method = RequestMethod.GET)
 public @ResponseBody
 ColumnLines setColumn(@RequestParam(value="column") String column) {
     service.createColumn(column);
     return service.getColumn();
 }
 
-@RequestMapping(path = "/boundary", method = RequestMethod.PUT)
-public String createBoundarycheck(@RequestParam Integer Len, @RequestParam Integer INCREASE_QUANTITY, @RequestParam Boolean Low, @RequestParam Boolean Cap, @RequestParam Boolean NullValue) {
+@RequestMapping(path = "/boundary", method = RequestMethod.GET)
+public @ResponseBody String createBoundarycheck(@RequestParam Integer Len, @RequestParam Integer INCREASE_QUANTITY, @RequestParam Boolean Low, @RequestParam Boolean Cap, @RequestParam Boolean NullValue) {
     if (service.selectionBoundaryTest(Len, INCREASE_QUANTITY, Low, Cap, NullValue)) {
         return MESSAGE_FORUSER_SUCCESSFULLY;
     } else {
@@ -41,8 +41,8 @@ public String createBoundarycheck(@RequestParam Integer Len, @RequestParam Integ
     }
 }
 
-@RequestMapping(path = "/specsymbol", method = RequestMethod.PUT)
-public String createSpecialcheck(@RequestParam Integer SPECIAL_LEN, @RequestParam Integer INCREASE_QUANTITY, @RequestParam Boolean ESC_SPECIAL, @RequestParam Boolean SPECIAL) {
+@RequestMapping(path = "/specsymbol", method = RequestMethod.GET)
+public @ResponseBody String createSpecialcheck(@RequestParam Integer SPECIAL_LEN, @RequestParam Integer INCREASE_QUANTITY, @RequestParam Boolean ESC_SPECIAL, @RequestParam Boolean SPECIAL) {
     if (service.selectionSpecialLinesTest(SPECIAL_LEN, INCREASE_QUANTITY, ESC_SPECIAL, SPECIAL)) {
         return MESSAGE_FORUSER_SUCCESSFULLY;
     } else {
@@ -50,8 +50,8 @@ public String createSpecialcheck(@RequestParam Integer SPECIAL_LEN, @RequestPara
     }
 }
 
-@RequestMapping(path = "/savecolumn", method = RequestMethod.PUT)
-public String saveColumn() {
+@RequestMapping(path = "/savecolumn", method = RequestMethod.GET)
+public @ResponseBody String saveColumn() {
     if (service.saveColumn()) {
         return MESSAGE_FORUSER_SUCCESSFULLY;
     } else {
@@ -60,8 +60,8 @@ public String saveColumn() {
 
 }
 
-@RequestMapping(path = "/savemodel", method = RequestMethod.PUT)
-public String saveModel() {
+@RequestMapping(path = "/savemodel", method = RequestMethod.GET)
+public @ResponseBody String saveModel() {
     if (service.saveModel()) {
         return MESSAGE_FORUSER_SUCCESSFULLY;
     } else {
@@ -97,6 +97,10 @@ public ResponseEntity<InputStreamResource> excelreport(@RequestParam String docn
     return ResponseEntity.ok().contentLength(file.length())
                    .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
                    .body(resource);
+}
+@RequestMapping(path = "",method = RequestMethod.GET)
+public @ResponseBody String test(){
+    return "OK";
 }
 }
 

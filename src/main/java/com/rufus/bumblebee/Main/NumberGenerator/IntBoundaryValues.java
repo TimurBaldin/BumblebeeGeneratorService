@@ -4,6 +4,7 @@ import com.rufus.bumblebee.Main.Columns.ColumnNum;
 import com.rufus.bumblebee.Main.Rules.Rules;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -14,7 +15,7 @@ private Integer QUANTITY;
 private final Integer QUANTITY_BOUNDARY_TEST = 6;
 private Long DEFAULT_VALUE;
 private ColumnNum column;
-private List<Number> values = new ArrayList<Number>();
+private List<Number> values = new LinkedList<Number>();
 
 public IntBoundaryValues(Long BoundaryIntEnd, Long BoundaryIntStart, Integer QUANTITY, ColumnNum column) {
     this.MaxInt = BoundaryIntEnd;

@@ -3,7 +3,7 @@ package com.rufus.bumblebee.Main.LineGenerator;
 import com.rufus.bumblebee.Main.Columns.ColumnLines;
 import com.rufus.bumblebee.Main.Rules.Rules;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -23,7 +23,7 @@ public class StringSpecialValues implements Rules{
     private Boolean SPECIAL;
     private Integer INCREASE_QUANTITY;
     private ColumnLines column;
-    private List<String> values = new ArrayList<String> ( );
+    private List<String> values = new LinkedList<String> ( );
     public StringSpecialValues(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL, ColumnLines column) {
         this.SPECIAL_LEN = SPECIAL_LEN;
         this.ESC_SPECIAL = ESC_SPECIAL;
