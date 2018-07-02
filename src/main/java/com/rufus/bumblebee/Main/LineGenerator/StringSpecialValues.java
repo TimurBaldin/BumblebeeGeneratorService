@@ -1,7 +1,9 @@
 package com.rufus.bumblebee.Main.LineGenerator;
 
 import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
 import com.rufus.bumblebee.Main.Rules.Rules;
+import com.rufus.bumblebee.Main.Rules.TypeTestData;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,7 +12,6 @@ import java.util.concurrent.ThreadLocalRandom;
 public class StringSpecialValues implements Rules{
     private final int MIN_ID_ESC = 1;
     private final int MAX_ID_ESC = 31;
-    private final int ESC_LEN = 30;
     //Escape symbols
     private final int MIN_ID_SPECIAL_1 = 33;
     private final int MAX_ID_SPECIAL_1 = 64;
@@ -23,7 +24,8 @@ public class StringSpecialValues implements Rules{
     private Boolean SPECIAL;
     private Integer INCREASE_QUANTITY;
     private ColumnLines column;
-    private List<String> values = new LinkedList<String> ( );
+    private List<TypeTestData> values = new LinkedList<TypeTestData> ( );
+    private final String  TYPE="STRING";
     public StringSpecialValues(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL, ColumnLines column) {
         this.SPECIAL_LEN = SPECIAL_LEN;
         this.ESC_SPECIAL = ESC_SPECIAL;
@@ -35,24 +37,19 @@ public class StringSpecialValues implements Rules{
     public void construct() throws Exception {
         if (checkIn()) throw new Exception ("Your choice is not right. Try again");
         if (ESC_SPECIAL && SPECIAL) {
-            values.add (stringEsc ( ));
-            for (Integer i = 1; i <= SPECIAL_LEN + INCREASE_QUANTITY; i++) {
-                values.add (stringSpecial (i));
-            }
-            transfer();
-            return;
+           stringEsc ((SPECIAL_LEN + INCREASE_QUANTITY)/2);
+           transfer();
+
+        }else {
+            if (SPECIAL) {
+                stringSpecial (SPECIAL_LEN + INCREASE_QUANTITY);
+                transfer();
+                } else {
+                stringEsc (SPECIAL_LEN + INCREASE_QUANTITY);
+                transfer();
+                }
         }
-        if (SPECIAL) {
-            for (Integer i = 1; i <= SPECIAL_LEN + INCREASE_QUANTITY; i++) {
-                values.add (stringSpecial (i));
-            }
-            transfer();
-            return;
-            } else {
-            values.add (stringEsc ( ));
-            transfer();
-            return;
-            }
+
     }
     @Override
    public void transfer()throws Exception{
@@ -61,28 +58,36 @@ public class StringSpecialValues implements Rules{
         column.setValues(this.values);
     }
 }
-    private String stringEsc() {
+    private void stringEsc(int size) {
         int id = 0;
         StringBuilder bufer = new StringBuilder ( );
-        for (int i = MIN_ID_ESC; i <= MAX_ID_ESC; i++) {
-            char symbol = (char) i;
-            id = -1;
-            bufer.append (symbol);
-        }
-        return bufer.toString ( );
-    }
-    private String stringSpecial(int val) {
-        int id = 0;
-        StringBuilder bufer = new StringBuilder ( );
-        for (Integer i = 1; i <= val; i++) {
-            if (i % 2 == 0) {
-                id = ThreadLocalRandom.current ( ).nextInt (MIN_ID_SPECIAL_1, MAX_ID_SPECIAL_1 + 1);
-            } else {
-                id = ThreadLocalRandom.current ( ).nextInt (MIN_ID_SPECIAL_2, MAX_ID_SPECIAL_2 + 1);
+        for (Integer i = 1; i <= size; i++) {
+            for (int j =1; j <= i; j++) {
+                id = ThreadLocalRandom.current ( ).nextInt (MIN_ID_ESC, MAX_ID_ESC + 1);
+                char symbol = (char) id;
+                bufer.append(symbol);
             }
-            char symbol = (char) id;
-            id = -1;
-            bufer.append (symbol);
+            values.add(new BaseDatatype(bufer.toString(),TYPE));
+            bufer.delete(0,i);
+        }
+
+        }
+    private String stringSpecial(int size) {
+        int id = 0;
+        StringBuilder bufer = new StringBuilder ( );
+        for (Integer i = 1; i <= size; i++) {
+            for (Integer j = 1; j <= i; j++) {
+                if (j % 2 == 0) {
+                    id = ThreadLocalRandom.current().nextInt(MIN_ID_SPECIAL_1, MAX_ID_SPECIAL_1 + 1);
+                } else {
+                    id = ThreadLocalRandom.current().nextInt(MIN_ID_SPECIAL_2, MAX_ID_SPECIAL_2 + 1);
+                }
+                char symbol = (char) id;
+                id = -1;
+                bufer.append(symbol);
+            }
+            values.add(new BaseDatatype(bufer.toString(),TYPE));
+            bufer.delete(0,i);
         }
 
         return bufer.toString ( );

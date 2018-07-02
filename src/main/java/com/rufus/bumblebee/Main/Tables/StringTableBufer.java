@@ -1,7 +1,4 @@
 package com.rufus.bumblebee.Main.Tables;
-
-import com.google.errorprone.annotations.concurrent.LazyInit;
-
 import javax.persistence.*;
 
 @Entity

@@ -1,44 +1,42 @@
-//package io.Reports;
-//
-//import io.Columns.ColumnLines;
-//import org.junit.Before;
-//import org.junit.Test;
-//
-//import java.util.ArrayList;
-//
-//public class TestDataExcelTest {
-//    ArrayList<String> str = new ArrayList<String>();
-//    ArrayList<String> str1 = new ArrayList<String>();
-//    ArrayList<ColumnLines> arr = new ArrayList<ColumnLines>();
-//
-//    @Before
-//    public void start() {
-//        for (Integer i = 0; i <= 5000; i++) {
-//            str.add(i.toString());
-//            //Количество строк
-//        }
-//        for (Integer i = 0; i <= 58; i++) {
-//            ColumnLines bufer = new ColumnLines("Tester");
-//            bufer.setValues(str);
-//            arr.add(bufer);
-//            //Количество колонок
-//
-//        }
-//
-//
-//    }
-//
-//    @Test
-//    public void create() {
-//        TestDataExcel testDataExcel = new TestDataExcel();
-//
-//
-//        try {
-//            testDataExcel.create("Testim", "tester1", arr);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//    }
-//}
+package io.Reports;
+
+import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
+import com.rufus.bumblebee.Main.Reports.TestDataExcel;
+import com.rufus.bumblebee.Main.Repository.RepositiryTestValues;
+import com.rufus.bumblebee.Main.Rules.Columns;
+import com.rufus.bumblebee.Main.Rules.TypeTestData;
+import com.rufus.bumblebee.Main.Services.ReportService;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
+public class TestDataExcelTest {
+   ArrayList<TypeTestData> str = new ArrayList<TypeTestData>();
+   ArrayList<Columns> arr = new ArrayList<Columns>();
+
+   @Before
+   public void start() {
+      for (Integer i = 0; i <= 500; i++) {
+          str.add(new BaseDatatype(i.toString(),"STRING"));
+          //Количество строк
+       }
+     arr.add(new ColumnLines("Tester1"));
+       arr.add(new ColumnLines("Tester2"));
+     }
+
+   @Test
+   public void create() {
+       ReportService service=new ReportService();
+       RepositiryTestValues service_r=new RepositiryTestValues();
+
+       try {
+          service.createExcel("Testim5", "tester2", service_r.get(arr));
+       } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+   }
+}

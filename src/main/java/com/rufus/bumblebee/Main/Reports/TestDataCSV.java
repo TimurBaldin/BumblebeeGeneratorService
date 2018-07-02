@@ -1,6 +1,7 @@
 package com.rufus.bumblebee.Main.Reports;
 
 import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Rules.Report.ReportCSV;
 
 import java.io.*;
@@ -9,24 +10,27 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestDataCSV implements ReportCSV<ColumnLines> {
-private List<ColumnLines> bufer = new ArrayList<ColumnLines>();
+public class TestDataCSV implements ReportCSV<Columns> {
+private List<Columns> bufer = new ArrayList<Columns>();
 private String delimiter;
 private String docname;
-private final String REPORT_PATH = "src\\main\\java\\com\\rufus\\bumblebee\\Main\\Reports\\DOC\\";
+private final String REPORT_FOLDER = "TestDataFolder\\";
 private final String FILE_FORMAT = ".csv";
+
 private String path;
 private File file;
 
 @Override
-public File create(String docname, String delimiter, List<ColumnLines> bufer) throws Exception {
+public File create(String docname, String delimiter, List<Columns> bufer) throws Exception {
     this.bufer.addAll(bufer);
     this.docname = docname;
     this.delimiter = delimiter;
-    path = new File(REPORT_PATH + docname + FILE_FORMAT).getAbsolutePath();
     if (check()) {
         throw new Exception("Invalid input");
     } else {
+        File buferdir=new File(System.getProperty("java.io.tmpdir")+REPORT_FOLDER);
+        buferdir.mkdir();
+        path = new String(System.getProperty("java.io.tmpdir")+REPORT_FOLDER+docname+FILE_FORMAT);
         file = new File(path);
         try {
             file.createNewFile();
@@ -40,7 +44,7 @@ public File create(String docname, String delimiter, List<ColumnLines> bufer) th
             int value_id = 0;
             while (flag) {
                 int i = 0;
-                for (ColumnLines column : bufer) {
+                for (Columns column : bufer) {
                     writer.write(column.getTestValue(value_id) + delimiter);
                     i++;
                 }
@@ -54,6 +58,9 @@ public File create(String docname, String delimiter, List<ColumnLines> bufer) th
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            for (Columns column:bufer) {
+                column.clear();
+            }
             return file;
         }
     }
@@ -72,7 +79,7 @@ public boolean delete() throws FileNotFoundException {
 
 private boolean checksize(int id) {
 
-    for (ColumnLines column : bufer) {
+    for (Columns column : bufer) {
         if (id <= (column.getSizeValue())) {
             return true;
         }
@@ -81,7 +88,7 @@ private boolean checksize(int id) {
 }
 
 private boolean check() {
-    if (docname == null || delimiter == null || bufer == null || path == null) {
+    if (docname == null || delimiter == null || bufer == null) {
         return true;
     } else {
         return false;

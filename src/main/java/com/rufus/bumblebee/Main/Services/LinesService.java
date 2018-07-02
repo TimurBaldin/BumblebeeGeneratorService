@@ -3,6 +3,7 @@ package com.rufus.bumblebee.Main.Services;
 import com.rufus.bumblebee.Main.Repository.RepositiryTestValues;
 import com.rufus.bumblebee.Main.Factories.LineFactory;
 import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Rules.Rules;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ private List<Rules> Tests = new ArrayList<Rules>();
 private ColumnLines Column;
 private LineFactory lineFactory = new LineFactory();
 private ReportService reportService;
-private List<ColumnLines> columns = new ArrayList<ColumnLines>();
+private List<Columns> columns = new ArrayList<Columns>();
 private RepositiryTestValues Repositiry;
 
 public LinesService(ReportService reportService, RepositiryTestValues Repositiry) {
@@ -31,6 +32,7 @@ public void createColumn(String column_name) {
 public boolean selectionBoundaryTest(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap, Boolean NullValue) {
     try {
         Tests.add(lineFactory.getBoundaryValues(Len, INCREASE_QUANTITY, Low, Cap, NullValue, Column));
+        System.out.println("@#$"+Tests.size());
     } catch (Exception ex) {
         ex.printStackTrace();
         return false;
@@ -53,9 +55,11 @@ public boolean saveColumn() {
     try {
         if (Tests.size() > 0) {
             for (Rules bufer : Tests) {
+                System.out.println("!!!@"+bufer);
                 bufer.construct();
             }
             columns.add(Column);
+            Tests.clear();
         } else {
             throw new Exception("It is necessary to choose checks");
         }
@@ -70,8 +74,8 @@ public boolean saveColumn() {
 public boolean saveModel() {
     try {
         if (columns.size() > 0) {
-            for (ColumnLines bufer : columns) {
-                Repositiry.setLines(bufer.getValues(), bufer.getCOLUMN());
+            for (Columns bufer : columns) {
+            Repositiry.create(bufer.getValues(), bufer.getCOLUMN());
                 bufer.clear();
             }
         } else {
@@ -85,11 +89,11 @@ public boolean saveModel() {
 }
 
 public File createReportCSV(String docname, String delimiter) {
-    return reportService.createCSV(docname, delimiter, Repositiry.getLines(columns));
+    return reportService.createCSV(docname, delimiter, Repositiry.get(columns));
 }
 
 public File createReportExcel(String DOC_NAME, String Sheet_NAME) {
-    return reportService.createExcel(DOC_NAME, Sheet_NAME, Repositiry.getLines(columns));
+    return reportService.createExcel(DOC_NAME, Sheet_NAME, Repositiry.get(columns));
 }
 
 public ColumnLines getColumn() {

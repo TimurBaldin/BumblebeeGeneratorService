@@ -40,22 +40,11 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:+")
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
-    compile 'org.primefaces:primefaces:6.0'
-    compile group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
-    compile 'org.omnifaces:omnifaces:2.5.1'
-    compile 'net.bootsfaces:bootsfaces:1.0.0'
-    compile 'org.projectlombok:lombok:+'
-    compile 'com.google.guava:guava:+'
-
-    compile group: 'com.sun', name: 'jsf-impl', version: '1.2_10'
-    compile group: 'com.sun.faces', name: 'jsf-api', version: '2.2.17'
-    compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.8'
-
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
-    compile group: 'org.wildfly.swarm', name: 'jsf', version: '2018.5.0'
-    compile('org.primefaces.themes:bootstrap:1.0.10')
+
      //provided group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
     compile group: 'nekohtml', name: 'nekohtml', version: '1.9.6.2'
+    compile group: 'org.webjars.bower', name: 'jquery', version: '3.3.1'
 
 }
 

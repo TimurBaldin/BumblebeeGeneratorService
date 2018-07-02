@@ -14,7 +14,6 @@ public class TestNumberRepositoryTest {
         for(int i=0;i<=10000;i++){
             array.add(i);
         }
-        TestNumberRepository numberRepository=new TestNumberRepository();
-        numberRepository.create(array,"Test");
+
     }
 }

@@ -6,6 +6,6 @@ import com.rufus.bumblebee.Main.Tables.Client;
 public class ClientService {
 private Client client;
     public Client createUser(String login,String email,String name,String surname,String patronymic,String password){
-        return client= ClientFactory.getClient(login,email);
+        return client= ClientFactory.getClient(login,email,name,surname,patronymic,password);
     }
 }

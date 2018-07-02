@@ -1,6 +1,7 @@
 package com.rufus.bumblebee.Main.NumberGenerator;
 
-import com.rufus.bumblebee.Main.Columns.ColumnNum;
+import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Rules.Rules;
 
 import java.util.ArrayList;
@@ -14,10 +15,10 @@ private Long MinInt;
 private Integer QUANTITY;
 private final Integer QUANTITY_BOUNDARY_TEST = 6;
 private Long DEFAULT_VALUE;
-private ColumnNum column;
+private Columns column;
 private List<Number> values = new LinkedList<Number>();
 
-public IntBoundaryValues(Long BoundaryIntEnd, Long BoundaryIntStart, Integer QUANTITY, ColumnNum column) {
+public IntBoundaryValues(Long BoundaryIntEnd, Long BoundaryIntStart, Integer QUANTITY, Columns column) {
     this.MaxInt = BoundaryIntEnd;
     this.MinInt = BoundaryIntStart;
     this.QUANTITY = QUANTITY;

@@ -1,7 +1,9 @@
 package com.rufus.bumblebee.Main.LineGenerator;
 
 import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
 import com.rufus.bumblebee.Main.Rules.Rules;
+import com.rufus.bumblebee.Main.Rules.TypeTestData;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +20,8 @@ public class StringBoundaryValues implements Rules {
     private Boolean NullValue;
     private Integer INCREASE_QUANTITY;
 private ColumnLines column;
-private List<String> values = new LinkedList <String>();
+private List<TypeTestData> values = new LinkedList <TypeTestData>();
+private final String  TYPE="STRING";
 
     public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap,Boolean NullValue,ColumnLines column) {
         this.len = Len;
@@ -31,14 +34,17 @@ private List<String> values = new LinkedList <String>();
 
     @Override
     public void construct() throws Exception {
+        System.out.println("@#$%"+this);
         if (checkIn())
             throw new Exception("Your choice is not right. Try again");
         if(NullValue) {
-            values.add(new StringNull().returnValue());
+            values.add(new BaseDatatype(new StringNull().returnValue(),TYPE));
+            System.out.print("@#@@@@!123"+new StringNull().returnValue());
         }
         if (Low && Cap) {
             stringBuildLowCap();
             transfer();
+            return;
             } else  {
             if (Low && (!Cap)) {
                 stringBuildLow();
@@ -54,6 +60,7 @@ private List<String> values = new LinkedList <String>();
     if(checkOut()){ throw new Exception ("Please create test data");}
     else {
         column.setValues(this.values);
+        this.values.clear();
         }
 }
 
@@ -70,7 +77,7 @@ private List<String> values = new LinkedList <String>();
                 Character symbol = (char) id;
                 bufer.append(symbol);
             }
-            values.add(bufer.toString());
+            values.add(new BaseDatatype(bufer.toString(),TYPE));
             bufer.delete(0,j);
         }
 
@@ -86,7 +93,7 @@ private List<String> values = new LinkedList <String>();
                 Character symbol = (char) id;
                 bufer.append(symbol);
                 }
-            values.add(bufer.toString());
+            values.add(new BaseDatatype(bufer.toString(),TYPE));
             bufer.delete(0,j);
         }
 
@@ -102,19 +109,19 @@ private List<String> values = new LinkedList <String>();
                 bufer.append(symbol);
 
             }
-            values.add(bufer.toString());
+            values.add(new BaseDatatype(bufer.toString(),TYPE));
             bufer.delete(0,j);
         }
 
         }
-private boolean checkIn(){
+    private boolean checkIn(){
     if ((!Low && !Cap) || len <= 0 || INCREASE_QUANTITY <= 0){
         return true;
     } else {
         return false;
     }
 }
-private boolean checkOut(){
+    private boolean checkOut(){
     if((values.size()==0) ||(column==null)){
         return true;
     }else {return false;}
