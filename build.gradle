@@ -42,7 +42,7 @@ dependencies {
 
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
 
-     //provided group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+
     compile group: 'nekohtml', name: 'nekohtml', version: '1.9.6.2'
     compile group: 'org.webjars.bower', name: 'jquery', version: '3.3.1'
 

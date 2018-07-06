@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.Main.Tools;
+package com.rufus.bumblebee.Main.Repository;
 
 import com.rufus.bumblebee.Main.Rules.DAO.UserRepository;
 import com.rufus.bumblebee.Main.Tables.Client;

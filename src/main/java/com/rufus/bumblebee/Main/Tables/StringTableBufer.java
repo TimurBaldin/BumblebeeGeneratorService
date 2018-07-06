@@ -15,6 +15,10 @@ public class StringTableBufer {
     private String ColumnName;
     @Column(name = "user_id")
     private int user_id;
+    @Column(name = "alive")
+    boolean alive;
+    public void  setAlive(boolean alive){this.alive=alive;}
+    public boolean getAlive(){return alive;}
     public int getUser_id() {
         return user_id;
     }

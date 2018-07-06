@@ -26,19 +26,12 @@ public class RepositiryTestValuesTest {
     }
 
     @Test
-    public void get() {
+    public void del() {
         List<Columns>arr=new ArrayList<Columns>();
         for(Integer i=0;i<=10;i++){
-            arr.add(new ColumnLines("Tester1"));
+            arr.add(new ColumnLines("FixRealizacia"));
         }
-        List<Columns>arr1=new ArrayList<Columns>();
-        arr1.addAll(testValues.get(arr));
-      //  TestDataExcel testDataExcel = new TestDataExcel();
-        try {
-         //   testDataExcel.create("Testim78","test",arr1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        testValues.delete(arr);
 
 
     }

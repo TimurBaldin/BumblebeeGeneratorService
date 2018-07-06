@@ -1,10 +1,12 @@
 package com.rufus.bumblebee.Main.Services;
 
+import com.rufus.bumblebee.Main.Factories.TestsFactory;
 import com.rufus.bumblebee.Main.Repository.RepositiryTestValues;
-import com.rufus.bumblebee.Main.Factories.LineFactory;
+import com.rufus.bumblebee.Main.Factories.TestsFactory;
 import com.rufus.bumblebee.Main.Columns.ColumnLines;
 import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Rules.Rules;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -15,16 +17,16 @@ import java.util.List;
 public class LinesService {
 private List<Rules> Tests = new ArrayList<Rules>();
 private ColumnLines Column;
-private LineFactory lineFactory = new LineFactory();
+@Autowired
+private TestsFactory lineFactory;
 private ReportService reportService;
 private List<Columns> columns = new ArrayList<Columns>();
 private RepositiryTestValues Repositiry;
-
-public LinesService(ReportService reportService, RepositiryTestValues Repositiry) {
+public LinesService(ReportService reportService, RepositiryTestValues Repositiry,TestsFactory lineFactory) {
     this.reportService = reportService;
     this.Repositiry = Repositiry;
+    this.lineFactory=lineFactory;
 }
-
 public void createColumn(String column_name) {
     Column = lineFactory.getColumn(column_name);
 }
@@ -32,8 +34,7 @@ public void createColumn(String column_name) {
 public boolean selectionBoundaryTest(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap, Boolean NullValue) {
     try {
         Tests.add(lineFactory.getBoundaryValues(Len, INCREASE_QUANTITY, Low, Cap, NullValue, Column));
-        System.out.println("@#$"+Tests.size());
-    } catch (Exception ex) {
+        } catch (Exception ex) {
         ex.printStackTrace();
         return false;
     }
@@ -50,12 +51,29 @@ public boolean selectionSpecialLinesTest(Integer SPECIAL_LEN, Integer INCREASE_Q
     }
     return true;
 }
+public boolean selectionIntBoundary(Long BoundaryIntEnd, Long BoundaryIntStart, Integer QUANTITY){
+    try {
+        Tests.add(lineFactory.getIntBoundaryTest(BoundaryIntEnd,BoundaryIntStart,QUANTITY,Column));
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        return false;
+    }
+    return true;
+}
+public boolean selectionIntRange(Long MaxIntVal, Long MinIntVal){
+    try {
+        Tests.add(lineFactory.getIntFullRange(MaxIntVal,MinIntVal,Column));
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        return false;
+    }
+    return true;
+}
 
 public boolean saveColumn() {
     try {
         if (Tests.size() > 0) {
             for (Rules bufer : Tests) {
-                System.out.println("!!!@"+bufer);
                 bufer.construct();
             }
             columns.add(Column);
@@ -89,16 +107,28 @@ public boolean saveModel() {
 }
 
 public File createReportCSV(String docname, String delimiter) {
-    return reportService.createCSV(docname, delimiter, Repositiry.get(columns));
+    File file=reportService.createCSV(docname, delimiter, Repositiry.get(columns));
+    cleanData();
+    return file;
 }
 
 public File createReportExcel(String DOC_NAME, String Sheet_NAME) {
-    return reportService.createExcel(DOC_NAME, Sheet_NAME, Repositiry.get(columns));
+    File file=reportService.createExcel(DOC_NAME, Sheet_NAME, Repositiry.get(columns));
+    cleanData();
+    return file;
+}
+private void cleanData(){
+    for (Columns bufer : columns) {
+        bufer.clear();
+    }
 }
 
 public ColumnLines getColumn() {
     return Column;
 }
+public boolean endwork(){
+    return Repositiry.delete(columns);
 
+}
 
 }

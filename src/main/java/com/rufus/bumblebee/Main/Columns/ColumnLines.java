@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ColumnLines implements Columns<TypeTestData,String> {
 private String COLUMN_NAME;
-private List<TypeTestData> values = new ArrayList<TypeTestData>();
+private List<TypeTestData> values = Collections.synchronizedList(new ArrayList<TypeTestData>());
 private List<String> report= Collections.synchronizedList(new ArrayList());
 
 public ColumnLines(String COLUMN_NAME) {
@@ -53,7 +53,7 @@ public String getTestValue(int id){
 }
 public int getSizeValue(){return this.report.size();}
 private boolean checkRule() {
-    if (COLUMN_NAME == null || COLUMN_NAME == "" || values.size() == 0) {
+    if (COLUMN_NAME == null || COLUMN_NAME == "") {
         return true;
     } else {
         return false;

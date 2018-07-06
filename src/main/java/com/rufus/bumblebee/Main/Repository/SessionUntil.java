@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.Main.Tools;
+package com.rufus.bumblebee.Main.Repository;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 public enum  SessionUntil {

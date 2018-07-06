@@ -7,6 +7,7 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.*;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class TestDataExcel implements ReportExcel<Columns> {
     private final String REPORT_FOLDER = "TestDataFolder\\";
     private final String FILE_FORMAT = ".xlsx";
     private String path;
+    private File file;
 
     @Override
     public File create(String docname, String sheetname, List<Columns> bufer) throws Exception {
@@ -35,7 +37,7 @@ public class TestDataExcel implements ReportExcel<Columns> {
             File buferdir=new File(System.getProperty("java.io.tmpdir")+REPORT_FOLDER);
             buferdir.mkdir();
             path = new String(System.getProperty("java.io.tmpdir") + REPORT_FOLDER + docname + FILE_FORMAT);
-            File file = new File(path);
+            file = new File(path);
             try {
                 file.createNewFile();
                 FileOutputStream fileOut = new FileOutputStream(file);
@@ -96,5 +98,12 @@ public class TestDataExcel implements ReportExcel<Columns> {
             }
         }
         return false;
+    }
+    public boolean delete() throws FileNotFoundException {
+        if (path == null) {
+            throw new FileNotFoundException("PATH not be null");
+        } else {
+            return file.delete();
+        }
     }
 }

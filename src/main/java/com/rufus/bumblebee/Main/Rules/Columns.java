@@ -10,4 +10,5 @@ public interface Columns<T,S> {
     void clear();
     String getTestValue(int id);
     void setReport(List<String> report);
+
 }

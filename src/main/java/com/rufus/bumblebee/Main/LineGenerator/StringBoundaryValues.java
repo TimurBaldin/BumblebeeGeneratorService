@@ -34,13 +34,11 @@ private final String  TYPE="STRING";
 
     @Override
     public void construct() throws Exception {
-        System.out.println("@#$%"+this);
         if (checkIn())
             throw new Exception("Your choice is not right. Try again");
         if(NullValue) {
             values.add(new BaseDatatype(new StringNull().returnValue(),TYPE));
-            System.out.print("@#@@@@!123"+new StringNull().returnValue());
-        }
+            }
         if (Low && Cap) {
             stringBuildLowCap();
             transfer();

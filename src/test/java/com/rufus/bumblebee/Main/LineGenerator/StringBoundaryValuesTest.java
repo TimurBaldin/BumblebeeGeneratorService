@@ -1,12 +1,11 @@
 package com.rufus.bumblebee.Main.LineGenerator;
 
 import com.rufus.bumblebee.Main.Columns.*;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import com.rufus.bumblebee.Main.Rules.TypeTestData;
+import org.junit.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
@@ -16,8 +15,8 @@ public class StringBoundaryValuesTest {
     private  StringBoundaryValues test1;
     private   StringBoundaryValues test2;
     private   ColumnLines column;
-    private int Len=14;
-    private int notNullLen=13;
+    private final int Len=14;
+    private final int notNullLen=13;
     private final String matchForLow="[a-zа-я]*";
     private final String matchForCap="[A-ZА-Я]*";
     @Before
@@ -32,13 +31,13 @@ public class StringBoundaryValuesTest {
     public void testSizeWords() {
         try {
             test.construct();
-            assertTrue(column.getSizeValue()== Len);
+            assertTrue(column.getValues().size()== Len);
             column.clear();
             test1.construct();
-            assertTrue(column.getSizeValue()== Len);
+            assertTrue(column.getValues().size()== Len);
             column.clear();
             test2.construct();
-            assertTrue(column.getSizeValue()== notNullLen);
+            assertTrue(column.getValues().size()== notNullLen);
             } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,7 +49,8 @@ public class StringBoundaryValuesTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String  buffer=column.getTestValue(column.getSizeValue()/2);
+        List<TypeTestData> arrayList=column.getValues();
+        String  buffer= (String) arrayList.get(arrayList.size()/2).getValue();
         assertTrue(buffer.matches(matchForLow));
 
 
@@ -62,7 +62,8 @@ public class StringBoundaryValuesTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String  buffer=column.getTestValue(column.getSizeValue()/2);
+        List<TypeTestData> arrayList=column.getValues();
+        String  buffer= (String) arrayList.get(arrayList.size()/2).getValue();
         assertTrue(buffer.matches(matchForCap));
     }
     @Test
@@ -72,11 +73,19 @@ public class StringBoundaryValuesTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String  buffer=column.getTestValue(column.getSizeValue()/2);
+        List<TypeTestData> arrayList=column.getValues();
+        String  buffer= (String) arrayList.get(arrayList.size()/2).getValue();
         boolean val1=buffer.matches(matchForLow);
         boolean val2=buffer.matches(matchForCap);
         Assert.assertEquals(val1,false);
         Assert.assertEquals(val2,false);
 
+    }
+    @After
+    public void delete(){
+         column=null;
+         test=null;
+         test1=null;
+         test2=null;
     }
 }
