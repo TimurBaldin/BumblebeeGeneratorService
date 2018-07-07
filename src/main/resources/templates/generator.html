@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Generator</title>
     <link rel="stylesheet" type="text/css" href="../static/indexstyle.css">
+    <script   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"   integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="   crossorigin="anonymous"></script>
     <script src="../static/script.js"></script>
 </head>
 <body>
@@ -27,7 +28,14 @@
     </div>
 
     <div id="content">
-        <h2>Основной контент страницы</h2>
+        <div><p></p></div>
+        <iframe  src="testsuite.html" width="1050" height="380" margin>
+        </iframe>
+
+        <div id="savemodel">
+            <button onclick="savemodel()">Cохранить модель</button>
+        </div>
+
     </div>
 
     <div id="clear">

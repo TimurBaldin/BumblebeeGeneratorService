@@ -1,4 +1,5 @@
 const URL_SETCOLUMN='http://localhost:8080/creatortest/home?column=';
+const URL_SAVEMODEL='http://localhost:8080/creatortest/savemodel';
 $(document).ready(function  about() {
     $("#about:hidden").show();
 })
@@ -23,4 +24,7 @@ function createcolumn(obj) {
     }
 
 
-};
+}
+function savemodel () {
+alert("Model save");
+}
