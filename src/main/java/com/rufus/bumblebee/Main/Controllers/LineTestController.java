@@ -38,6 +38,7 @@ public class LineTestController {
     @RequestMapping(path = "/boundary", method = RequestMethod.GET)
     public @ResponseBody
     String createBoundarycheck(@RequestParam Integer Len, @RequestParam Integer INCREASE_QUANTITY, @RequestParam Boolean Low, @RequestParam Boolean Cap, @RequestParam Boolean NullValue) {
+        System.out.println("&^%%%");
         if (service.selectionBoundaryTest(Len, INCREASE_QUANTITY, Low, Cap, NullValue)) {
             return MESSAGE_FORUSER_SUCCESSFULLY;
         } else {

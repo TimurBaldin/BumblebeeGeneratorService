@@ -5,12 +5,14 @@ import com.rufus.bumblebee.Main.LineGenerator.StringBoundaryValues;
 import com.rufus.bumblebee.Main.LineGenerator.StringSpecialValues;
 import com.rufus.bumblebee.Main.NumberGenerator.IntBoundaryValues;
 import com.rufus.bumblebee.Main.NumberGenerator.IntFullRange;
+import com.rufus.bumblebee.Main.Rules.BaseFactory;
 import com.rufus.bumblebee.Main.Rules.Columns;
+import org.springframework.context.annotation.Bean;
 
 
-public class TestsFactory {
+public class TestsFactory implements BaseFactory {
 
-public ColumnLines getColumn(String name) {
+    public ColumnLines getColumn(String name) {
     return new ColumnLines(name);
 }
 

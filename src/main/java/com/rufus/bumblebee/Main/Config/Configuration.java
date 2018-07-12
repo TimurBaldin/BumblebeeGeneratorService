@@ -6,6 +6,9 @@ import com.rufus.bumblebee.Main.Factories.TestsFactory;
 import com.rufus.bumblebee.Main.Reports.TestDataCSV;
 import com.rufus.bumblebee.Main.Reports.TestDataExcel;
 import com.rufus.bumblebee.Main.Repository.RepositiryTestValues;
+import com.rufus.bumblebee.Main.Rules.BaseFactory;
+import com.rufus.bumblebee.Main.Rules.BaseService;
+import com.rufus.bumblebee.Main.Rules.DAO.BaseRepository;
 import com.rufus.bumblebee.Main.Rules.Report.ReportCSV;
 import com.rufus.bumblebee.Main.Rules.Report.ReportExcel;
 import com.rufus.bumblebee.Main.Services.LinesService;
@@ -29,7 +32,7 @@ public class Configuration {
    }
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-   public TestsFactory getLineFactory(){
+   public TestsFactory geTestsFactory(){
         return new TestsFactory();
    }
 
@@ -42,6 +45,6 @@ public class Configuration {
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public LinesService linesService() {
-        return new LinesService(getReportService(), getRepositiry(),getLineFactory());
+        return new LinesService(getReportService(), getRepositiry(),geTestsFactory());
     }
 }

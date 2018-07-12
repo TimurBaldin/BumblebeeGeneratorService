@@ -26,5 +26,7 @@ function createcolumn(obj) {
 
 }
 function savemodel () {
-alert("Model save");
+    var request = new XMLHttpRequest();
+    request.open("GET",URL_SAVEMODEL,true);
+    request.send();
 }
