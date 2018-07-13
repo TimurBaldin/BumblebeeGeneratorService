@@ -13,11 +13,12 @@ import org.hibernate.query.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositiryTestValues implements BaseRepository<Columns,TypeTestData>{
-    private final String REPORT="SELECT value FROM com.rufus.bumblebee.Main.Tables.StringTableBufer where ColumnName=:COLUMNNAME and user_id=:CLIENT_ID and alive=:live";
-    private final String DEL_TEST_DATA="UPDATE com.rufus.bumblebee.Main.Tables.StringTableBufer SET alive='false' where ColumnName=:COLUMNNAME and user_id=:CLIENT_ID";
+public class RepositiryTestValues implements BaseRepository<Columns, TypeTestData> {
+    private final String REPORT = "SELECT value FROM com.rufus.bumblebee.Main.Tables.StringTableBufer where ColumnName=:COLUMNNAME and user_id=:CLIENT_ID and alive=:live";
+    private final String DEL_TEST_DATA = "UPDATE com.rufus.bumblebee.Main.Tables.StringTableBufer SET alive='false' where ColumnName=:COLUMNNAME and user_id=:CLIENT_ID";
     private SessionFactory sessionFactory = SessionUntil.INSTANCE.getInstance();
     private Session session;
+
     @Override
     public void create(List<TypeTestData> values, String COLUMN_NAME) {
         for (int i = 0; i <= values.size() - 1; i++) {
@@ -35,10 +36,11 @@ public class RepositiryTestValues implements BaseRepository<Columns,TypeTestData
                 session.getTransaction().rollback();
             } finally {
                 session.close();
-                }
+            }
         }
         values.clear();
     }
+
     @Override
     public List<Columns> get(List<Columns> columns) {
         List<Columns> column = new ArrayList<Columns>();
@@ -47,37 +49,37 @@ public class RepositiryTestValues implements BaseRepository<Columns,TypeTestData
             Query query = session.createQuery(REPORT);
             query.setParameter("COLUMNNAME", bufer.getCOLUMN());
             query.setParameter("CLIENT_ID", 0);
-            query.setParameter("live",true);
+            query.setParameter("live", true);
             bufer.setReport(query.list());
             column.add(bufer);
             session.close();
-            }
+        }
 
         return column;
     }
+
     @Override
-    public boolean delete(List<Columns> columns){
-        int delrow=0;
-        boolean status=false;
+    public boolean delete(List<Columns> columns) {
+        int delrow = 0;
+        boolean status = false;
         for (Columns bufer : columns) {
             session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
             Query query = session.createQuery(DEL_TEST_DATA);
             query.setParameter("COLUMNNAME", bufer.getCOLUMN());
             query.setParameter("CLIENT_ID", 0);
-            delrow+=query.executeUpdate();
+            delrow += query.executeUpdate();
             transaction.commit();
             session.close();
         }
-        if (delrow==0){
+        if (delrow == 0) {
             return status;
-        }else {
-            status=true;
+        } else {
+            status = true;
             return status;
         }
 
     }
-
 
 
 }

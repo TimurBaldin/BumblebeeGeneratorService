@@ -1,10 +1,12 @@
 package com.rufus.bumblebee.Main.Reports;
 
-import com.rufus.bumblebee.Main.Columns.ColumnLines;
 import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Rules.Report.ReportExcel;
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestDataExcel implements ReportExcel<Columns> {
+    private final String REPORT_FOLDER = "TestDataFolder\\";
+    private final String FILE_FORMAT = ".xlsx";
     private XSSFRow row;
     private XSSFCell cell;
     private XSSFSheet sheet;
@@ -21,8 +25,6 @@ public class TestDataExcel implements ReportExcel<Columns> {
     private String docname;
     private String sheetname;
     private List<Columns> bufer = new ArrayList<Columns>();
-    private final String REPORT_FOLDER = "TestDataFolder\\";
-    private final String FILE_FORMAT = ".xlsx";
     private String path;
     private File file;
 
@@ -34,7 +36,7 @@ public class TestDataExcel implements ReportExcel<Columns> {
         if (check()) {
             throw new Exception("Invalid input");
         } else {
-            File buferdir=new File(System.getProperty("java.io.tmpdir")+REPORT_FOLDER);
+            File buferdir = new File(System.getProperty("java.io.tmpdir") + REPORT_FOLDER);
             buferdir.mkdir();
             path = new String(System.getProperty("java.io.tmpdir") + REPORT_FOLDER + docname + FILE_FORMAT);
             file = new File(path);
@@ -99,6 +101,7 @@ public class TestDataExcel implements ReportExcel<Columns> {
         }
         return false;
     }
+
     public boolean delete() throws FileNotFoundException {
         if (path == null) {
             throw new FileNotFoundException("PATH not be null");

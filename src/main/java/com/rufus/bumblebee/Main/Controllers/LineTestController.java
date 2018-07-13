@@ -1,17 +1,20 @@
 package com.rufus.bumblebee.Main.Controllers;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
-import org.springframework.stereotype.Controller;
 import com.rufus.bumblebee.Main.Columns.ColumnLines;
 import com.rufus.bumblebee.Main.Services.LinesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 @Controller
 @RequestMapping("/creatortest")
@@ -57,7 +60,7 @@ public class LineTestController {
     @RequestMapping(path = "/intboundary", method = RequestMethod.GET)
     public @ResponseBody
     String createIntBoundary(@RequestParam Long BoundaryIntEnd, @RequestParam Long BoundaryIntStart, @RequestParam Integer QUANTITY) {
-        if (service.selectionIntBoundary(BoundaryIntEnd, BoundaryIntStart,QUANTITY)) {
+        if (service.selectionIntBoundary(BoundaryIntEnd, BoundaryIntStart, QUANTITY)) {
             return MESSAGE_FORUSER_SUCCESSFULLY;
         } else {
             return MESSAGE_FORUSER_ERROR;

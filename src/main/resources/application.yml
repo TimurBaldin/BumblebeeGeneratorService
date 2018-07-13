@@ -1,15 +1,15 @@
-
-
 logging:
-    file: c:\temp\app.log
-    pattern:
-      file: "%d{HH:mm:ss} %-5p [%c] - %m%n"
+  file: app.log
+  pattern:
+    file: "%d{HH:mm:ss} %-5p [%c] - %m%n"
 level:
-        ROOT: error
-        org.springframework: warn,error
-        javax.faces: warn
-        org.omnifaces: warn
-        org.springframework.security: warn
-        org.hibernate: warn,error
-        org.hibernate.type.descriptor.sql: warn
+  ROOT: error
+  org.springframework: warn,error
+  javax.faces: warn
+  org.omnifaces: warn
+  org.springframework.security: warn
+  org.hibernate: warn,error
+  org.hibernate.type.descriptor.sql: warn
+server:
+  contextPath: /
 

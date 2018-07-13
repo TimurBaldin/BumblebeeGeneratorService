@@ -1,41 +1,41 @@
 package com.rufus.bumblebee.Main.Config;
 
-import com.rufus.bumblebee.Main.Controllers.MvcConfig;
-import com.rufus.bumblebee.Main.Factories.TestsFactory;
 import com.rufus.bumblebee.Main.Factories.ReportFactory;
 import com.rufus.bumblebee.Main.Factories.TestsFactory;
-import com.rufus.bumblebee.Main.Reports.TestDataCSV;
-import com.rufus.bumblebee.Main.Reports.TestDataExcel;
 import com.rufus.bumblebee.Main.Repository.RepositiryTestValues;
-import com.rufus.bumblebee.Main.Rules.BaseFactory;
-import com.rufus.bumblebee.Main.Rules.BaseService;
-import com.rufus.bumblebee.Main.Rules.DAO.BaseRepository;
-import com.rufus.bumblebee.Main.Rules.Report.ReportCSV;
-import com.rufus.bumblebee.Main.Rules.Report.ReportExcel;
 import com.rufus.bumblebee.Main.Services.LinesService;
 import com.rufus.bumblebee.Main.Services.ReportService;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.resource.GzipResourceResolver;
+import org.springframework.web.servlet.resource.PathResourceResolver;
 
-@Component
-public class Configuration {
+@EnableWebMvc
+@org.springframework.context.annotation.Configuration
+public class Configuration implements WebMvcConfigurer {
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public ReportService getReportService() {
         return new ReportService(getFactoryReport());
     }
-    @Bean
-   @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-   public ReportFactory getFactoryReport(){
-       return new ReportFactory();
-   }
+
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-   public TestsFactory geTestsFactory(){
+    public ReportFactory getFactoryReport() {
+        return new ReportFactory();
+    }
+
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    public TestsFactory geTestsFactory() {
         return new TestsFactory();
-   }
+    }
 
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -46,12 +46,18 @@ public class Configuration {
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public LinesService linesService() {
-        return new LinesService(getReportService(), getRepositiry(),geTestsFactory());
+        return new LinesService(getReportService(), getRepositiry(), geTestsFactory());
     }
 
-    @Bean
-    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public MvcConfig getMVC(){
-        return new MvcConfig();
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler(
+                "/img/**",
+                "/css/**",
+                "/js/**")
+                .addResourceLocations(
+                        "classpath:/static/img/",
+                        "classpath:/static/css/",
+                        "classpath:/static/js/");
     }
 }

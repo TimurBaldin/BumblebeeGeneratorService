@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"   integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../static/suite.css">
-    <script src="../static/testsuitehandler.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/css/suite.css">
+    <script src="../static/js/testsuitehandler.js"></script>
 </head>
 <body>
 <div id="suite" class="container-fluid">
@@ -20,94 +22,99 @@
         <div class="panel-heading">Boundary test lines</div>
         <br class="panel-body">
         <form name="case_1">
-        <div  class="input-group">
-            <label class="control-label col-sm-1" >Len:</label>
-            <input type="text" name="len" placeholder="len"/>
-            <label class="control-label col-sm-1" >QUANTITY:</label>
-            <input type="text" name="quantity" placeholder="quantity"/>
-            <label class="control-label col-sm-1" >Low:</label>
-            <select type="text" name="low">
-                <option>true</option>
-                <option>false</option>
-            </select>
+            <div class="input-group">
+                <label class="control-label col-sm-1">Len:</label>
+                <input type="text" name="len" placeholder="len"/>
+                <label class="control-label col-sm-1">QUANTITY:</label>
+                <input type="text" name="quantity" placeholder="quantity"/>
+                <label class="control-label col-sm-1">Low:</label>
+                <select type="text" name="low">
+                    <option>true</option>
+                    <option>false</option>
+                </select>
 
-            <label class="control-label col-sm-1" >Cap:</label>
-            <select type="text" name="cap" placeholder="INCREASE_QUANTITY">
-                <option>true</option>
-                <option>false</option>
-            </select>
-            <label class="control-label col-sm-1" >NullValue:</label>
-            <select type="text" name="NullValue" placeholder="INCREASE_QUANTITY">
-                <option>true</option>
-                <option>false</option>
-            </select>
-        </div>
-        <div class="btn-group btn-group-sm">
-                    <button type="button" onclick="savecheckboundarytest(case_1)" class="btn btn-danger">Сохранить проверку</button>
-                </div>
+                <label class="control-label col-sm-1">Cap:</label>
+                <select type="text" name="cap" placeholder="INCREASE_QUANTITY">
+                    <option>true</option>
+                    <option>false</option>
+                </select>
+                <label class="control-label col-sm-1">NullValue:</label>
+                <select type="text" name="NullValue" placeholder="INCREASE_QUANTITY">
+                    <option>true</option>
+                    <option>false</option>
+                </select>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <button type="button" onclick="savecheckboundarytest(case_1)" class="btn btn-danger">Сохранить
+                    проверку
+                </button>
+            </div>
         </form>
 
-        </div>
+    </div>
     <!-- Панель 1 -->
     <div class="panel panel-success">
         <div class="panel-heading">Specsymbol test lines</div>
         <br class="panel-body">
         <form name="case_2">
-        <div class="input-group">
-            <label class="control-label col-sm-1" >SPECIAL_LEN:</label>
-        <input type="text" name="len" placeholder="special_len"/>
+            <div class="input-group">
+                <label class="control-label col-sm-1">SPECIAL_LEN:</label>
+                <input type="text" name="len" placeholder="special_len"/>
 
-            <label class="control-label col-sm-1" >QUANTITY:</label>
-        <input type="text" name="quantity" placeholder="increase_quantity"/>
+                <label class="control-label col-sm-1">QUANTITY:</label>
+                <input type="text" name="quantity" placeholder="increase_quantity"/>
 
-            <label class="control-label col-sm-1" >ESC_SPECIAL:</label>
-        <select type="text" name="specsymbol">
-            <option>true</option>
-            <option>false</option>
-        </select>
-            <label class="control-label col-sm-1" >SPECIAL:</label>
-        <select type="text" name="SPECIAL">
-            <option>true</option>
-            <option>false</option>
-        </select>
-        </div>
-        <div class="btn-group btn-group-sm">
-            <button type="button" onclick="savecheckspecialtest(case_2)" class="btn btn-danger">Сохранить проверку</button>
-        </div>
+                <label class="control-label col-sm-1">ESC_SPECIAL:</label>
+                <select type="text" name="specsymbol">
+                    <option>true</option>
+                    <option>false</option>
+                </select>
+                <label class="control-label col-sm-1">SPECIAL:</label>
+                <select type="text" name="SPECIAL">
+                    <option>true</option>
+                    <option>false</option>
+                </select>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <button type="button" onclick="savecheckspecialtest(case_2)" class="btn btn-danger">Сохранить проверку
+                </button>
+            </div>
         </form>
     </div>
-        <!-- Панель 2 -->
-        <div class="panel panel-success">
-            <div class="panel-heading">Boundary test int</div>
-            <br class="panel-body">
-            <form name="case3">
+    <!-- Панель 2 -->
+    <div class="panel panel-success">
+        <div class="panel-heading">Boundary test int</div>
+        <br class="panel-body">
+        <form name="case3">
             <div class="input-group">
-                <label class="control-label col-sm-1" >IntEnd:</label>
-            <input type="text" name="intend" placeholder="intend"/>
-                <label class="control-label col-sm-1" >IntStart:</label>
+                <label class="control-label col-sm-1">IntEnd:</label>
+                <input type="text" name="intend" placeholder="intend"/>
+                <label class="control-label col-sm-1">IntStart:</label>
                 <input type="text" name="intstart" placeholder="intstart"/>
-                <label class="control-label col-sm-1" >QUANTITY:</label>
+                <label class="control-label col-sm-1">QUANTITY:</label>
                 <input type="text" name="quantity" placeholder="quantity"/>
             </div>
             <div class="btn-group btn-group-sm">
-                <button type="button" onclick="savecheckboundaryint(case3)" class="btn btn-danger">Сохранить проверку</button>
+                <button type="button" onclick="savecheckboundaryint(case3)" class="btn btn-danger">Сохранить проверку
+                </button>
             </div>
-            </form>
-        </div>
+        </form>
+    </div>
     <!-- Панель 3 -->
     <div class="panel panel-success">
         <div class="panel-heading">Range test int</div>
         <br class="panel-body">
         <form name="case4">
-        <div class="input-group">
-        <label class="control-label col-sm-1" >MaxIntVal:</label>
-        <input type="text" name="len" placeholder="max"/>
-        <label class="control-label col-sm-1" >MinIntVal:</label>
-        <input type="text" name="quantity" placeholder="min"/>
-        </div>
-        <div class="btn-group btn-group-sm">
-            <button type="button" onclick="savecheckrangeint(case4)"class="btn btn-danger">Сохранить проверку</button>
-        </div>
+            <div class="input-group">
+                <label class="control-label col-sm-1">MaxIntVal:</label>
+                <input type="text" name="len" placeholder="max"/>
+                <label class="control-label col-sm-1">MinIntVal:</label>
+                <input type="text" name="quantity" placeholder="min"/>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <button type="button" onclick="savecheckrangeint(case4)" class="btn btn-danger">Сохранить проверку
+                </button>
+            </div>
         </form>
     </div>
     <!-- Панель 4 -->
@@ -115,15 +122,15 @@
         <div class="panel-heading">Report CSV</div>
         <br class="panel-body">
         <form name="csv">
-        <div class="input-group">
-            <label class="control-label col-sm-1" >Document:</label>
-            <input type="text" name="reportname" placeholder="reportname"/>
-            <label class="control-label col-sm-1" >Delimiter:</label>
-            <input type="text" name="delimiter" placeholder="delimiter"/>
-        </div>
-        <div class="btn-group btn-group-sm">
-            <button type="button" onclick="reportscv(csv)" class="btn btn-danger">Загрузить</button>
-        </div>
+            <div class="input-group">
+                <label class="control-label col-sm-1">Document:</label>
+                <input type="text" name="reportname" placeholder="reportname"/>
+                <label class="control-label col-sm-1">Delimiter:</label>
+                <input type="text" name="delimiter" placeholder="delimiter"/>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <button type="button" onclick="reportscv(csv)" class="btn btn-danger">Загрузить</button>
+            </div>
         </form>
     </div>
     <!-- Панель 5 -->
@@ -131,19 +138,19 @@
         <div class="panel-heading">Report Excel</div>
         <br class="panel-body">
         <form name="excel">
-        <div class="input-group">
-            <label class="control-label col-sm-1" >Document:</label>
-            <input type="text" name="reportname" placeholder="reportname"/>
-            <label class="control-label col-sm-1" >Sheet:</label>
-            <input type="text" name="sheet" placeholder="sheet name"/>
-        </div>
-        <div class="btn-group btn-group-sm">
-            <button type="button" onclick="reportexcel(excel)" class="btn btn-danger">Загрузить</button>
-        </div>
+            <div class="input-group">
+                <label class="control-label col-sm-1">Document:</label>
+                <input type="text" name="reportname" placeholder="reportname"/>
+                <label class="control-label col-sm-1">Sheet:</label>
+                <input type="text" name="sheet" placeholder="sheet name"/>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <button type="button" onclick="reportexcel(excel)" class="btn btn-danger">Загрузить</button>
+            </div>
         </form>
     </div>
-    </div>
-    </div>
+</div>
+</div>
 </div>
 
 </body>

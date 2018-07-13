@@ -1,15 +1,10 @@
 package com.rufus.bumblebee.Main.Reports;
 
 import com.rufus.bumblebee.Main.Columns.ColumnLines;
-import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
 import com.rufus.bumblebee.Main.Factories.ReportFactory;
-import com.rufus.bumblebee.Main.Reports.TestDataExcel;
-import com.rufus.bumblebee.Main.Repository.RepositiryTestValues;
 import com.rufus.bumblebee.Main.Rules.Columns;
-import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import com.rufus.bumblebee.Main.Services.ReportService;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

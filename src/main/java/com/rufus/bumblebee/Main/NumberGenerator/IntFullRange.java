@@ -1,21 +1,19 @@
 package com.rufus.bumblebee.Main.NumberGenerator;
 
-import com.rufus.bumblebee.Main.Columns.ColumnLines;
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
 import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Rules.Rules;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class IntFullRange implements Rules {
+    private final String TYPE = "NUMERIC";
     private Long MinIntVal;
     private Long MaxIntVal;
     private List<TypeTestData> values = new LinkedList<TypeTestData>();
-    private final String TYPE = "NUMERIC";
     private Columns column;
 
     public IntFullRange(Long MaxIntVal, Long MinIntVal, Columns column) {

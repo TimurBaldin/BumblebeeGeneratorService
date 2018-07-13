@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertTrue;
 
 public class TestDataCSVTest {
+    final long SIZE = 17500;
     ArrayList<String> str;
     ArrayList<Columns> arr;
     ReportService service;
-    final long SIZE = 17500;
     File file;
 
     @Before
