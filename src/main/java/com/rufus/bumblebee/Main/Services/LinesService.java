@@ -128,7 +128,10 @@ public ColumnLines getColumn() {
     return Column;
 }
 public boolean endwork(){
-    return Repositiry.delete(columns);
+    boolean status =true;
+    status=Repositiry.delete(columns);
+    columns.clear();
+    return status;
 
 }
 

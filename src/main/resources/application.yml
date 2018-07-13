@@ -1,3 +1,5 @@
+
+
 logging:
     file: c:\temp\app.log
     pattern:
@@ -10,3 +12,4 @@ level:
         org.springframework.security: warn
         org.hibernate: warn,error
         org.hibernate.type.descriptor.sql: warn
+

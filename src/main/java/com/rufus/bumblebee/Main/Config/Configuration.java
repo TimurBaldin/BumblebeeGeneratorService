@@ -1,5 +1,6 @@
 package com.rufus.bumblebee.Main.Config;
 
+import com.rufus.bumblebee.Main.Controllers.MvcConfig;
 import com.rufus.bumblebee.Main.Factories.TestsFactory;
 import com.rufus.bumblebee.Main.Factories.ReportFactory;
 import com.rufus.bumblebee.Main.Factories.TestsFactory;
@@ -46,5 +47,11 @@ public class Configuration {
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public LinesService linesService() {
         return new LinesService(getReportService(), getRepositiry(),geTestsFactory());
+    }
+
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    public MvcConfig getMVC(){
+        return new MvcConfig();
     }
 }

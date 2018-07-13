@@ -6,7 +6,6 @@ const CSV_REPORT='http://localhost:8080/creatortest/csvreport?docname=';
 const END='http://localhost:8080/creatortest/endwork';
 const EXCEL_REPORT='http://localhost:8080/creatortest/excelreport?docname=';
 function  savecheckboundarytest(obj) {
-
     if (obj.len.value!=undefined && obj.len.value!=null && obj.len.value!=''
     && obj.quantity.value!='' && obj.quantity.value!=undefined) {
         var url1 = URL_CASE1 + obj.len.value+'&INCREASE_QUANTITY='+obj.quantity.value+'&Low='+obj.low.value+'&Cap='+obj.cap.value+'&NullValue='+obj.NullValue.value;
@@ -71,13 +70,13 @@ function reportscv(obj) {
     if (obj.reportname.value!=undefined && obj.reportname.value!=null && obj.reportname.value!=''
         && obj.delimiter.value!='' && obj.delimiter.value!=undefined) {
         var url1 = CSV_REPORT + obj.reportname.value+'&delimiter='+obj.delimiter.value;
+
         var request = new XMLHttpRequest();
         request.open("GET", url1, true);
-        request.setAttribute('download','download');
+        window.location.href=url1;
         request.send();
-
-
-    }else {
+        setTimeout(end, 2000);
+        }else {
         alert('Invalid input for Report CSV');
     }
 }
@@ -92,12 +91,10 @@ function reportexcel(obj) {
         var url1 = EXCEL_REPORT + obj.reportname.value+'&sheetname='+obj.sheet.value;
         var request = new XMLHttpRequest();
         request.open("GET", url1, true);
+        window.location.href=url1;
         request.send();
-        request.download();
-
-
-
-    }else {
+        setTimeout(end, 2000);
+        }else {
         alert('Invalid input for Report Excel');
     }
 }

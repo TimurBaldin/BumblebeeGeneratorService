@@ -35,8 +35,7 @@ public class RepositiryTestValues implements BaseRepository<Columns,TypeTestData
                 session.getTransaction().rollback();
             } finally {
                 session.close();
-
-            }
+                }
         }
         values.clear();
     }
