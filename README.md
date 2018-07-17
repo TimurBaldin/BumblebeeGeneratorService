@@ -1,8 +1,8 @@
 # Generator Bumblebee
-##Version : 0.0.1 (prototype)
-##Описание :
+## Version : 0.0.1 (prototype)
+## Описание :
 >`Сервис позволяет сгенерировать тестовые данные по заданным шаблонам и выгрузить в формате xlsx и csv`
-##Настройка :
+## Настройка :
 >`Для локального развертывания приложения необходима БД PostgreSQL`
 ``` postgresplsql
 create database data_generator;
@@ -56,7 +56,7 @@ create unique index client_login_uindex
      </session-factory>
  </hibernate-configuration>
  ```
- ##Структура приложения  :
+ ## Структура приложения  :
  >1. `Описание`
  >2. `Описание`
 
