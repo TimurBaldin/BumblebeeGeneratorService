@@ -15,4 +15,16 @@ public class RootController {
     public String about() {
         return "about";
     }
+    @RequestMapping("/howuse.html")
+    public String howuse() {
+        return "howuse";
+    }
+    @RequestMapping("/generator.html")
+    public String generator() {
+        return "generator";
+    }
+    @RequestMapping("/testsuite.html")
+    public String testsuite() {
+        return "testsuite";
+    }
 }

@@ -5,10 +5,10 @@ import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
 import com.rufus.bumblebee.Main.Rules.Rules;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-
 public class StringSpecialValues implements Rules {
     private final int MIN_ID_ESC = 1;
     private final int MAX_ID_ESC = 31;
@@ -25,7 +25,7 @@ public class StringSpecialValues implements Rules {
     private Boolean SPECIAL;
     private Integer INCREASE_QUANTITY;
     private ColumnLines column;
-    private List<TypeTestData> values = new LinkedList<TypeTestData>();
+    private List<TypeTestData> values = new ArrayList<TypeTestData>();
 
     public StringSpecialValues(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL, ColumnLines column) {
         this.SPECIAL_LEN = SPECIAL_LEN;
@@ -39,8 +39,15 @@ public class StringSpecialValues implements Rules {
     public void construct() throws Exception {
         if (checkIn()) throw new Exception("Your choice is not right. Try again");
         if (ESC_SPECIAL && SPECIAL) {
-            stringEsc((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
-            transfer();
+            if((SPECIAL_LEN + INCREASE_QUANTITY)%2==0) {
+                stringEsc((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
+                stringSpecial((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
+                transfer();
+            }else {
+                stringEsc((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
+                stringSpecial(((SPECIAL_LEN + INCREASE_QUANTITY) / 2)+1);
+                transfer();
+            }
 
         } else {
             if (SPECIAL) {

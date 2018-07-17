@@ -15,6 +15,7 @@ public class RepositiryTestValuesTest {
     @Test
     public void create() {
         ArrayList<TypeTestData> arr = new ArrayList<TypeTestData>();
+        arr.add(new BaseDatatype(null,"Line"));
         for (Integer i = 0; i <= 10; i++) {
             arr.add(new BaseDatatype(i.toString(), "Line"));
         }

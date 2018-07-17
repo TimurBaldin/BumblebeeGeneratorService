@@ -3,7 +3,7 @@ package com.rufus.bumblebee.Main.Tables;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Client", schema = "public")
+@Table(name = "client", schema = "users")
 public class Client {
     @Id
     @SequenceGenerator(name = "client_id", sequenceName = "public.client_user_id_seq", allocationSize = 1)

@@ -46,7 +46,7 @@ public class StringBoundaryValuesTest {
     }
 
     @Test
-    public void testWordValueLow() {
+    public void testRandomValueLow() {
         try {
             test.construct();
         } catch (Exception e) {
@@ -60,7 +60,7 @@ public class StringBoundaryValuesTest {
     }
 
     @Test
-    public void testWordValueCap() {
+    public void testRandomValueCap() {
         try {
             test2.construct();
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class StringBoundaryValuesTest {
     }
 
     @Test
-    public void testWordValueCapLow() {
+    public void testRandomValueCapLow() {
         try {
             test1.construct();
         } catch (Exception e) {

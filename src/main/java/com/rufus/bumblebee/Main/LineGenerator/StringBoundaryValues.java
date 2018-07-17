@@ -5,6 +5,7 @@ import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
 import com.rufus.bumblebee.Main.Rules.Rules;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -21,7 +22,7 @@ public class StringBoundaryValues implements Rules {
     private Boolean NullValue;
     private Integer INCREASE_QUANTITY;
     private ColumnLines column;
-    private List<TypeTestData> values = new LinkedList<TypeTestData>();
+    private List<TypeTestData> values = new ArrayList<TypeTestData>();
 
     public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap, Boolean NullValue, ColumnLines column) {
         this.len = Len;

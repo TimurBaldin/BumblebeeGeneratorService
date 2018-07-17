@@ -19,8 +19,8 @@ import java.io.FileNotFoundException;
 @Controller
 @RequestMapping("/creatortest")
 public class LineTestController {
-    private final String MESSAGE_FORUSER_SUCCESSFULLY = "Операция успешно выполнена";
-    private final String MESSAGE_FORUSER_ERROR = "Ошибка,обратитесь к администратору";
+    private final String MESSAGE_FORUSER_SUCCESSFULLY = "YES";
+    private final String MESSAGE_FORUSER_ERROR = "NO";
 
     private LinesService service;
 

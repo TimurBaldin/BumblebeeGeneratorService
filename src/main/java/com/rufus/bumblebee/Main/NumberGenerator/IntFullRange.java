@@ -26,17 +26,18 @@ public class IntFullRange implements Rules {
     public void construct() throws Exception {
         if (checkRule()) {
             throw new Exception("Your choice is not right. Try again");
+        }else {
+            for (Long i = MinIntVal; i <= MaxIntVal; i++) {
+                values.add(new BaseDatatype(buildRandNum().toString(), TYPE));
+            }
+            transfer();
         }
-        for (Long i = MinIntVal; i <= MaxIntVal; i++) {
-            values.add(new BaseDatatype(buildRandNum().toString(), TYPE));
-        }
-        transfer();
     }
 
     @Override
     public void transfer() throws Exception {
-        if (column == null) {
-            throw new Exception("Value column not be null");
+        if (column == null || values.size()==0) {
+            throw new Exception("Value column not be null  or test data was not generated");
         } else {
             column.setValues(values);
         }

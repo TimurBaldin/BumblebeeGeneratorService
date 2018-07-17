@@ -3,13 +3,13 @@ logging:
   pattern:
     file: "%d{HH:mm:ss} %-5p [%c] - %m%n"
 level:
-  ROOT: error
-  org.springframework: warn,error
-  javax.faces: warn
-  org.omnifaces: warn
-  org.springframework.security: warn
-  org.hibernate: warn,error
-  org.hibernate.type.descriptor.sql: warn
-server:
-  contextPath: /
+  ROOT: debug
+  org.hibernate: debug
+  org.hibernate.type.descriptor.sql: debug
+spring:
+  mvc:
+    static-path-pattern: resources/**
+
+
+
 

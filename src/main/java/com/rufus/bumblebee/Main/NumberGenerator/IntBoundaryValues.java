@@ -29,15 +29,17 @@ public class IntBoundaryValues implements Rules {
         if (checkRule()) {
             throw new Exception("Invalid input conditions");
         }
-        buildBoundary();
-        buildTestNum();
-        transfer();
+        else {
+            buildBoundary();
+            buildTestNum();
+            transfer();
+        }
     }
 
     @Override
     public void transfer() throws Exception {
-        if (column == null) {
-            throw new Exception("Value column not be null");
+        if (column == null || values.size()==0) {
+            throw new Exception("Value column not be null or test data was not generated");
         } else {
             column.setValues(values);
         }
@@ -71,7 +73,7 @@ public class IntBoundaryValues implements Rules {
     }
 
     private void buildTestNum() {
-        for (int i = 1; i <= Math.abs(MaxInt - MinInt) + QUANTITY; i++) {
+        for (int i = 1; i <= QUANTITY; i++) {
             values.add(new BaseDatatype(buildRandNum().toString(), TYPE));
         }
 
