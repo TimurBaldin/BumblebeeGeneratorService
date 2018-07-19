@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.Main.NumberGenerator;
 
-import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import org.junit.After;
 import org.junit.Before;
@@ -16,10 +16,10 @@ public class IntBoundaryValuesTest {
     private final String matchForInt = "[0-9]*";
     private IntBoundaryValues test;
     private IntBoundaryValues test1;
-    private ColumnLines column;
+    private Column column;
     @Before
     public void precondition() {
-        column = new ColumnLines("Test");
+        column = new Column("Test");
         test=new IntBoundaryValues(10L,1L,2,column);
         test1=new IntBoundaryValues(10L,1L,0,column);
     }

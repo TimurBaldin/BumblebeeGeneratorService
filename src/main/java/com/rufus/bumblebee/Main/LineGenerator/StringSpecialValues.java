@@ -1,15 +1,14 @@
 package com.rufus.bumblebee.Main.LineGenerator;
 
-import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
-import com.rufus.bumblebee.Main.Rules.Rules;
+import com.rufus.bumblebee.Main.Rules.Rule;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-public class StringSpecialValues implements Rules {
+public class StringSpecialValues implements Rule {
     private final int MIN_ID_ESC = 1;
     private final int MAX_ID_ESC = 31;
     //Escape symbols
@@ -24,10 +23,10 @@ public class StringSpecialValues implements Rules {
     private Boolean ESC_SPECIAL;
     private Boolean SPECIAL;
     private Integer INCREASE_QUANTITY;
-    private ColumnLines column;
+    private Column column;
     private List<TypeTestData> values = new ArrayList<TypeTestData>();
 
-    public StringSpecialValues(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL, ColumnLines column) {
+    public StringSpecialValues(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL, Column column) {
         this.SPECIAL_LEN = SPECIAL_LEN;
         this.ESC_SPECIAL = ESC_SPECIAL;
         this.SPECIAL = SPECIAL;

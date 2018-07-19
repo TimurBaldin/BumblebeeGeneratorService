@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ColumnLines implements Columns<TypeTestData, String> {
+public class Column implements Columns<TypeTestData, String> {
     private String COLUMN_NAME;
     private List<TypeTestData> values = Collections.synchronizedList(new ArrayList<TypeTestData>());
     private List<String> report = Collections.synchronizedList(new ArrayList());
 
-    public ColumnLines(String COLUMN_NAME) {
+    public Column(String COLUMN_NAME) {
         this.COLUMN_NAME = COLUMN_NAME;
     }
 

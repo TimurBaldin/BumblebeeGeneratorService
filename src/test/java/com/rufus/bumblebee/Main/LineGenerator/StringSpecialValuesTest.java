@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.Main.LineGenerator;
 
-import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import org.junit.After;
 import org.junit.Before;
@@ -18,7 +18,7 @@ public class StringSpecialValuesTest {
     private StringSpecialValues test;
     private StringSpecialValues test1;
     private StringSpecialValues test2;
-    private ColumnLines column;
+    private Column column;
     private final int MIN_ID_ESC = 1;
     private final int MAX_ID_ESC = 31;
     //Escape symbols
@@ -30,7 +30,7 @@ public class StringSpecialValuesTest {
 
     @Before
     public void precondition() {
-        column = new ColumnLines("Test");
+        column = new Column("Test");
         test = new StringSpecialValues(12, 1, true, false, column);
         test1 = new StringSpecialValues(12, 1, true, true, column);
         test2 = new StringSpecialValues(13, 13, false, true, column);

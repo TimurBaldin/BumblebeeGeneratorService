@@ -1,10 +1,10 @@
 package com.rufus.bumblebee.Main.Services;
 
-import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Factories.TestsFactory;
 import com.rufus.bumblebee.Main.Repository.RepositiryTestValues;
 import com.rufus.bumblebee.Main.Rules.Columns;
-import com.rufus.bumblebee.Main.Rules.Rules;
+import com.rufus.bumblebee.Main.Rules.Rule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +14,17 @@ import java.util.List;
 
 @Service
 public class LinesService {
-    private List<Rules> Tests = new ArrayList<Rules>();
-    private ColumnLines Column;
+    private List<Rule> Tests = new ArrayList<Rule>();
+    private Column Column;
     @Autowired
     private TestsFactory lineFactory;
     private ReportService reportService;
     private List<Columns> columns = new ArrayList<Columns>();
     private RepositiryTestValues Repositiry;
 
-    public LinesService(ReportService reportService, RepositiryTestValues Repositiry, TestsFactory lineFactory) {
+    public LinesService(ReportService reportService, RepositiryTestValues repositiry, TestsFactory lineFactory) {
         this.reportService = reportService;
-        this.Repositiry = Repositiry;
+        this.Repositiry = repositiry;
         this.lineFactory = lineFactory;
     }
 
@@ -76,7 +76,7 @@ public class LinesService {
     public boolean saveColumn() {
         try {
             if (Tests.size() > 0) {
-                for (Rules bufer : Tests) {
+                for (Rule bufer : Tests) {
                     bufer.construct();
                 }
                 columns.add(Column);
@@ -127,7 +127,7 @@ public class LinesService {
         }
     }
 
-    public ColumnLines getColumn() {
+    public Column getColumn() {
         return Column;
     }
 

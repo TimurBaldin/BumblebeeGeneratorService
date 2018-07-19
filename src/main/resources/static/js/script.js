@@ -1,4 +1,4 @@
-const URL_SETCOLUMN = 'http://localhost:8080/creatortest/home?column=';
+const URL_SETCOLUMN = 'http://localhost:8080/creatortest/setcolumn?column=';
 const URL_SAVEMODEL = 'http://localhost:8080/creatortest/savemodel';
 $(document).ready(function about() {
     $("#about:hidden").show();
@@ -6,7 +6,7 @@ $(document).ready(function about() {
 
 function howuse() {
     $("#howuse:hidden").show();
-};
+}
 
 function home() {
 
@@ -15,8 +15,13 @@ function home() {
 
 function createtestdata() {
     $("#create:hidden").show();
-};
-
+}
+function savecolumn() {
+    var request = new XMLHttpRequest();
+    var url2 = 'http://localhost:8080/creatortest/savecolumn'
+    request.open("GET", url2, true);
+    request.send();
+}
 function createcolumn(obj) {
     if (obj.rix.value != undefined && obj.rix.value != null && obj.rix.value != '') {
         var url1 = URL_SETCOLUMN + obj.rix.value;

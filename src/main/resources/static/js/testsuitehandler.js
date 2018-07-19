@@ -13,19 +13,12 @@ function savecheckboundarytest(obj) {
         var request = new XMLHttpRequest();
         request.open("GET", url1, true);
         request.send();
-        setTimeout(savecolumn, 150);
+
 
     } else {
         alert('Invalid input for Boundary test lines');
     }
 
-}
-
-function savecolumn() {
-    var request = new XMLHttpRequest();
-    var url2 = 'http://localhost:8080/creatortest/savecolumn'
-    request.open("GET", url2, true);
-    request.send();
 }
 
 function savecheckspecialtest(obj) {
@@ -35,7 +28,7 @@ function savecheckspecialtest(obj) {
         var request = new XMLHttpRequest();
         request.open("GET", url1, true);
         request.send();
-        setTimeout(savecolumn, 150);
+
 
     } else {
         alert('Invalid input for Boundary Special test');
@@ -51,7 +44,7 @@ function savecheckboundaryint(obj) {
         var request = new XMLHttpRequest();
         request.open("GET", url1, true);
         request.send();
-        setTimeout(savecolumn, 150);
+
 
     } else {
         alert('Invalid input for Boundary Int test');
@@ -65,7 +58,7 @@ function savecheckrangeint(obj) {
         var request = new XMLHttpRequest();
         request.open("GET", url1, true);
         request.send();
-        setTimeout(savecolumn, 150);
+
 
     } else {
         alert('Invalid input for Range int');
@@ -81,7 +74,7 @@ function reportscv(obj) {
         request.open("GET", url1, true);
         window.location.href = url1;
         request.send();
-        setTimeout(end, 2000);
+        setTimeout(end, 60000);
     } else {
         alert('Invalid input for Report CSV');
     }
@@ -101,7 +94,7 @@ function reportexcel(obj) {
         request.open("GET", url1, true);
         window.location.href = url1;
         request.send();
-        setTimeout(end, 2000);
+        setTimeout(end, 60000);
     } else {
         alert('Invalid input for Report Excel');
     }

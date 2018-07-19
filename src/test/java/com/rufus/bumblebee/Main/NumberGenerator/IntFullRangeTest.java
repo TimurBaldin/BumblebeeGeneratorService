@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.Main.NumberGenerator;
 
-import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import org.junit.After;
 import org.junit.Before;
@@ -14,10 +14,10 @@ public class IntFullRangeTest {
     private final int Len = 10;
     private final String matchForInt = "[0-9]*";
     private IntFullRange test;
-    private ColumnLines column;
+    private Column column;
     @Before
     public void precondition() {
-        column = new ColumnLines("Test");
+        column = new Column("Test");
         test=new IntFullRange(10L,1L,column);
     }
     @After

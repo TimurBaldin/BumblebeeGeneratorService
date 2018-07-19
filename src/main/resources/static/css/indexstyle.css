@@ -41,11 +41,14 @@ tr {
 }
 
 #footer {
-    background: #00BFFF;
+    position: fixed;
+    left: 0;
+    bottom: 0;
     width: 100%;
-    height: 40px;
-}
 
+
+    text-align: center;
+}
 #add {
     margin: auto auto;
     margin-left: -80px;
@@ -77,3 +80,4 @@ tr {
 body {
     background: #F8EAE8;
 }
+

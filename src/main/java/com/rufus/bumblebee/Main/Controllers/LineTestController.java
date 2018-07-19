@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.Main.Controllers;
 
-import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Services.LinesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -19,8 +19,8 @@ import java.io.FileNotFoundException;
 @Controller
 @RequestMapping("/creatortest")
 public class LineTestController {
-    private final String MESSAGE_FORUSER_SUCCESSFULLY = "YES";
-    private final String MESSAGE_FORUSER_ERROR = "NO";
+    private final String MESSAGE_FORUSER_SUCCESSFULLY = "Successfully";
+    private final String MESSAGE_FORUSER_ERROR = "Error";
 
     private LinesService service;
 
@@ -30,9 +30,9 @@ public class LineTestController {
     }
 
 
-    @RequestMapping(path = "/home", method = RequestMethod.GET)
+    @RequestMapping(path = "/setcolumn", method = RequestMethod.GET)
     public @ResponseBody
-    ColumnLines setColumn(@RequestParam(value = "column") String column) {
+    Column setColumn(@RequestParam(value = "column") String column) {
         service.createColumn(column);
         return service.getColumn();
     }

@@ -1,26 +1,24 @@
 package com.rufus.bumblebee.Main.Config;
 
-import com.rufus.bumblebee.Main.Controllers.RootController;
+
 import com.rufus.bumblebee.Main.Factories.ReportFactory;
 import com.rufus.bumblebee.Main.Factories.TestsFactory;
 import com.rufus.bumblebee.Main.Repository.RepositiryTestValues;
 import com.rufus.bumblebee.Main.Services.LinesService;
 import com.rufus.bumblebee.Main.Services.ReportService;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.resource.GzipResourceResolver;
-import org.springframework.web.servlet.resource.PathResourceResolver;
+
 @Component
 @EnableWebMvc
-@org.springframework.context.annotation.Configuration
-public class Configuration implements WebMvcConfigurer {
+@Configuration
+public class Config implements WebMvcConfigurer {
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public ReportService getReportService() {

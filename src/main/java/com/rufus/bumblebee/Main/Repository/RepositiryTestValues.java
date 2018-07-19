@@ -6,6 +6,7 @@ import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Rules.DAO.BaseRepository;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import com.rufus.bumblebee.Main.Tables.StringTableBufer;
+import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
-@Repository
 public class RepositiryTestValues implements BaseRepository<Columns,TypeTestData>{
     private final String REPORT="SELECT value FROM com.rufus.bumblebee.Main.Tables.StringTableBufer where ColumnName=:COLUMNNAME and user_id=:CLIENT_ID and alive=:live";
     private final String DEL_TEST_DATA="UPDATE com.rufus.bumblebee.Main.Tables.StringTableBufer SET alive='false' where ColumnName=:COLUMNNAME and user_id=:CLIENT_ID";
@@ -27,27 +27,33 @@ public class RepositiryTestValues implements BaseRepository<Columns,TypeTestData
     private Session session;
     @Override
 
-    public void create(List<TypeTestData> values, String COLUMN_NAME) {
+    public boolean create(List<TypeTestData> values, String COLUMN_NAME) {
+        boolean status=true;
+        session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
         for (int i = 0; i <= values.size() - 1; i++) {
-            try {
-                session = sessionFactory.openSession();
-                Transaction transaction = session.beginTransaction();
-                StringTableBufer bufer = new StringTableBufer();
+            StringTableBufer bufer = new StringTableBufer();
                 bufer.setValue(String.valueOf(values.get(i).getValue()));
                 bufer.setColumnName(COLUMN_NAME);
                 bufer.setAlive(true);
                 session.save(bufer);
-                transaction.commit();
-                } catch (Exception ex) {
-                ex.printStackTrace();
-               session.getTransaction().rollback();
-            } finally {
-                session.close();
-            }
+                if ( i % 20 == 0 ) {
+                    session.flush();
+                    session.clear();
+                }
+
+                }
+            transaction.commit();
+                }catch (Exception ex) {
+            ex.printStackTrace();
+            status=false;
+            session.getTransaction().rollback();
+        } finally {
+              session.close();
         }
-
         values.clear();
-
+return status;
     }
     @Override
     public List<Columns> get(List<Columns> columns) {
@@ -69,17 +75,23 @@ public class RepositiryTestValues implements BaseRepository<Columns,TypeTestData
     public boolean delete(List<Columns> columns){
         int delrow=0;
         boolean status=false;
-        for (Columns bufer : columns) {
-            session = sessionFactory.openSession();
-            Transaction transaction = session.beginTransaction();
-            Query query = session.createQuery(DEL_TEST_DATA);
-            query.setParameter("COLUMNNAME", bufer.getCOLUMN());
-            query.setParameter("CLIENT_ID", 0);
-            delrow+=query.executeUpdate();
-            transaction.commit();
+        session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            for (Columns bufer : columns) {
+                Query query = session.createQuery(DEL_TEST_DATA);
+                query.setParameter("COLUMNNAME", bufer.getCOLUMN());
+                query.setParameter("CLIENT_ID", 0);
+                delrow += query.executeUpdate();
+                }
+        }catch (Exception ex){
+            ex.printStackTrace();
+            status=false;
+            session.getTransaction().rollback();
+        }finally {
             session.close();
         }
-        if (delrow==0){
+        if (delrow==columns.size()-1){
             return status;
         }else {
             status=true;

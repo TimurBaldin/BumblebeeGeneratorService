@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.Main.Reports;
 
-import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Factories.ReportFactory;
 import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Services.ReportService;
@@ -30,7 +30,7 @@ public class TestDataCSVTest {
             //Количество строк
         }
         for (Integer j = 0; j <= 10; j++) {
-            ColumnLines lines = new ColumnLines("Tester " + j.toString());
+            Column lines = new Column("Tester " + j.toString());
             lines.setReport(str);
             arr.add(lines);
             //Количество колонок

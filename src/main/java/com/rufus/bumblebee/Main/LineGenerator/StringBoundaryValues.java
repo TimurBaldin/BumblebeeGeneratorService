@@ -1,16 +1,15 @@
 package com.rufus.bumblebee.Main.LineGenerator;
 
-import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
-import com.rufus.bumblebee.Main.Rules.Rules;
+import com.rufus.bumblebee.Main.Rules.Rule;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class StringBoundaryValues implements Rules {
+public class StringBoundaryValues implements Rule {
     private final int MIN_ID_CAPITALS = 65;
     private final int MAX_ID_CAPITALS = 90;
     private final int MIN_ID_LOWERCASE = 97;
@@ -21,10 +20,10 @@ public class StringBoundaryValues implements Rules {
     private Boolean Cap;
     private Boolean NullValue;
     private Integer INCREASE_QUANTITY;
-    private ColumnLines column;
+    private Column column;
     private List<TypeTestData> values = new ArrayList<TypeTestData>();
 
-    public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap, Boolean NullValue, ColumnLines column) {
+    public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap, Boolean NullValue, Column column) {
         this.len = Len;
         this.Low = Low;
         this.Cap = Cap;

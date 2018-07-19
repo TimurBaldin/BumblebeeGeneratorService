@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.Main.Factories;
 
-import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.LineGenerator.StringBoundaryValues;
 import com.rufus.bumblebee.Main.LineGenerator.StringSpecialValues;
 import com.rufus.bumblebee.Main.NumberGenerator.IntBoundaryValues;
@@ -11,15 +11,15 @@ import com.rufus.bumblebee.Main.Rules.Columns;
 
 public class TestsFactory implements BaseFactory {
 
-    public ColumnLines getColumn(String name) {
-        return new ColumnLines(name);
+    public Column getColumn(String name) {
+        return new Column(name);
     }
 
-    public StringBoundaryValues getBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap, Boolean NullValue, ColumnLines column) {
+    public StringBoundaryValues getBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap, Boolean NullValue, Column column) {
         return new StringBoundaryValues(Len, INCREASE_QUANTITY, Low, Cap, NullValue, column);
     }
 
-    public StringSpecialValues getSpecialValues(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL, ColumnLines column) {
+    public StringSpecialValues getSpecialValues(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL, Column column) {
         return new StringSpecialValues(SPECIAL_LEN, INCREASE_QUANTITY, ESC_SPECIAL, SPECIAL, column);
     }
 

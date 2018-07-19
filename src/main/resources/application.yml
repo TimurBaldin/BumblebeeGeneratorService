@@ -9,6 +9,8 @@ level:
 spring:
   mvc:
     static-path-pattern: resources/**
+    favicon:
+      enabled: true
 
 
 

@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.Main.LineGenerator;
 
-import com.rufus.bumblebee.Main.Columns.ColumnLines;
+import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import org.junit.After;
 import org.junit.Assert;
@@ -19,11 +19,11 @@ public class StringBoundaryValuesTest {
     private StringBoundaryValues test;
     private StringBoundaryValues test1;
     private StringBoundaryValues test2;
-    private ColumnLines column;
+    private Column column;
 
     @Before
     public void precondition() {
-        column = new ColumnLines("Test");
+        column = new Column("Test");
         test = new StringBoundaryValues(12, 1, true, false, true, column);
         test1 = new StringBoundaryValues(12, 1, true, true, true, column);
         test2 = new StringBoundaryValues(12, 1, false, true, false, column);
