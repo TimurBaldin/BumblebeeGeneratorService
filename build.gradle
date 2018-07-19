@@ -38,15 +38,10 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-context', version: '5.0.6.RELEASE'
     compile group: 'org.springframework', name: 'spring-core', version: '5.0.6.RELEASE'
     compile("org.springframework.boot:spring-boot-starter-web:+")
-	
-   // compile("org.springframework.boot:spring-boot-starter-parent:+")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    //compile("org.springframework.boot:spring-boot-devtools")
-	
-	
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
-    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+
 
 
 
