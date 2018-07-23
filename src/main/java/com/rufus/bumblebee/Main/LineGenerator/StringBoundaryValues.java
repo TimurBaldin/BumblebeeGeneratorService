@@ -2,13 +2,19 @@ package com.rufus.bumblebee.Main.LineGenerator;
 
 import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
+import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
+import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Rules.Rule;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-
+/**
+ * Class : Генерирует строки от 1 до Len+INCREASE_QUANTITY
+ * @version : 0.0.1
+ * @author : Baldin Timur
+ */
 public class StringBoundaryValues implements Rule {
     private final int MIN_ID_CAPITALS = 65;
     private final int MAX_ID_CAPITALS = 90;
@@ -33,31 +39,34 @@ public class StringBoundaryValues implements Rule {
     }
 
     @Override
-    public void construct() throws Exception {
-        if (checkIn())
-            throw new Exception("Your choice is not right. Try again");
-        if (NullValue) {
-            values.add(new BaseDatatype(new StringNull().returnValue(), TYPE));
-        }
-        if (Low && Cap) {
-            stringBuildLowCap();
-            transfer();
-            return;
-        } else {
-            if (Low && (!Cap)) {
-                stringBuildLow();
+    public void construct() throws GeneratorExceptionInputOptions,TransferException {
+        if (checkIn()) {
+            String paremeters=len.toString()+Low.toString()+Cap.toString()+INCREASE_QUANTITY.toString()+NullValue.toString();
+            throw new GeneratorExceptionInputOptions("Your choice is not right.",paremeters);
+        }else {
+            if (NullValue) {
+                values.add(new BaseDatatype(new StringNull().returnValue(), TYPE));
+            }
+            if (Low && Cap) {
+                stringBuildLowCap();
                 transfer();
+                return;
             } else {
-                stringBuildCap();
-                transfer();
+                if (Low && (!Cap)) {
+                    stringBuildLow();
+                    transfer();
+                } else {
+                    stringBuildCap();
+                    transfer();
+                }
             }
         }
     }
 
     @Override
-    public void transfer() throws Exception {
+    public void transfer() throws TransferException {
         if (checkOut()) {
-            throw new Exception("Please create test data");
+            throw new TransferException("Please create test data");
         } else {
             column.setValues(this.values);
             this.values.clear();

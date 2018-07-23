@@ -1,6 +1,8 @@
 package com.rufus.bumblebee.Main.NumberGenerator;
 
 import com.rufus.bumblebee.Main.Columns.Column;
+import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
+import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import org.junit.After;
 import org.junit.Before;
@@ -57,22 +59,22 @@ public class IntFullRangeTest {
         }
         assertTrue(getValue().matches(matchForInt));
     }
-    @Test(expected=Exception.class)
+    @Test(expected=TransferException.class)
     public void exceptionCall() throws Exception {
         test.transfer();
 
     }
-    @Test(expected=Exception.class)
+    @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInput() throws Exception {
         IntBoundaryValues  test2=new IntBoundaryValues(1L,100l,0,column);
         test2.construct();
         }
-    @Test(expected=Exception.class)
+    @Test(expected=TransferException.class)
     public void negativeInputColumn() throws Exception {
         IntBoundaryValues test2=new IntBoundaryValues(12L,1l,0,null);
         test2.construct();
     }
-    @Test(expected=Exception.class)
+    @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputEndEquallyStart() throws Exception {
         IntBoundaryValues  test3=new IntBoundaryValues(1L,1L,0,column);
         test3.construct();

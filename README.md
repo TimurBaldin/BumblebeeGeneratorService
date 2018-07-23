@@ -15,8 +15,10 @@
 * `Файл настроек для Hibernate доступен по ссылке :`  [Configuration](https://github.com/TimurBaldin/Bumblebee/blob/develop/src/main/resources/hibernate.cfg.xml)
 * `Собрать проект "BootJar" ---> перейти в папку  \build\libs ---> запустить Bumblebee-0.0.1 `
 * `Перейти по ссылке : http://localhost:8080/`
-* `После перехода по ссылке , открывается стартовая стриница ` 
-*  ![Start_page](https://drive.google.com/file/d/17abrZwuefXY72D1SWx5C4B2gezVVKyy6/view?usp=sharing)
+* `После перехода по ссылке , открывается стартовая стриница `
+![Start_page](https://i.paste.pics/90a5a9ab065e502021b9dca2118f4e2b.png)
+* `Страница создания тестовых данных : `
+![Generator](https://i.paste.pics/913d408831164665111e9e6ee4ca6a44.png)
 ## Алгоритм создания тестовых данных  : 
 * `Нажать на пункт меню "Создать тестовые данные" `
 * `Ввести название колонки ---> нажать на кнопку "Добавить колонку" `

@@ -1,6 +1,8 @@
 package com.rufus.bumblebee.Main.NumberGenerator;
 
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
+import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
+import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Rules.Rule;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
@@ -8,7 +10,11 @@ import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-
+/**
+ * Class : Генерирует числа для проверки "граничных значений"
+ * @version : 0.0.1
+ * @author : Baldin Timur
+ */
 public class IntBoundaryValues implements Rule {
     private final String TYPE = "NUMERIC";
     private Long MaxInt;
@@ -25,9 +31,9 @@ public class IntBoundaryValues implements Rule {
     }
 
     @Override
-    public void construct() throws Exception {
+    public void construct() throws GeneratorExceptionInputOptions,TransferException {
         if (checkRule()) {
-            throw new Exception("Invalid input conditions");
+            throw new GeneratorExceptionInputOptions("Invalid input conditions.",MaxInt.toString()+MinInt.toString(),QUANTITY.toString());
         }
         else {
             buildBoundary();
@@ -37,9 +43,9 @@ public class IntBoundaryValues implements Rule {
     }
 
     @Override
-    public void transfer() throws Exception {
+    public void transfer() throws TransferException {
         if (column == null || values.size()==0) {
-            throw new Exception("Value column not be null or test data was not generated");
+            throw new TransferException("Value column not be null or test data was not generated.");
         } else {
             column.setValues(values);
         }

@@ -1,15 +1,16 @@
 package com.rufus.bumblebee.Main.Repository;
 
-
+/**
+ * Class : класс для CRUD операций с тестовыми данными
+ * @version : 0.0.1
+ * @author : Baldin Timur
+ */
 
 import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Rules.DAO.BaseRepository;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import com.rufus.bumblebee.Main.Tables.StringTableBufer;
-import org.hibernate.LockMode;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,10 +40,9 @@ public class RepositiryTestValues implements BaseRepository<Columns,TypeTestData
                     session.flush();
                     session.clear();
                 }
-
                 }
             transaction.commit();
-                }catch (Exception ex) {
+                }catch (TransactionException ex) {
             ex.printStackTrace();
             status=false;
             session.getTransaction().rollback();
@@ -80,10 +80,10 @@ return status;
                 query.setParameter("CLIENT_ID", 0);
                 delrow += query.executeUpdate();
                 }
-        }catch (Exception ex){
+        }catch (SessionException ex){
             ex.printStackTrace();
             status=false;
-            session.getTransaction().rollback();
+
         }finally {
             session.close();
         }

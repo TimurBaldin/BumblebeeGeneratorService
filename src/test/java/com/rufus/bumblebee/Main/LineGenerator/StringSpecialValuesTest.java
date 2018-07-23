@@ -1,6 +1,8 @@
 package com.rufus.bumblebee.Main.LineGenerator;
 
 import com.rufus.bumblebee.Main.Columns.Column;
+import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
+import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import org.junit.After;
 import org.junit.Before;
@@ -159,24 +161,24 @@ public class StringSpecialValuesTest {
             e.printStackTrace();
         }
     }
-    @Test(expected=Exception.class)
+    @Test(expected=TransferException.class)
     public void exceptionCall() throws Exception {
         test.transfer();
 
     }
-    @Test(expected=Exception.class)
+    @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputESCandSPECIAL() throws Exception {
         StringSpecialValues  test = new StringSpecialValues(12, 1, false, false, column);
         test.construct();
 
     }
-    @Test(expected=Exception.class)
+    @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputLen() throws Exception {
         StringSpecialValues  test = new StringSpecialValues(0, 1, true, false, column);
         test.construct();
 
     }
-    @Test(expected=Exception.class)
+    @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputLenQUANTITY() throws Exception {
         StringSpecialValues  test = new StringSpecialValues(12, -1, true, false, column);
         test.construct();

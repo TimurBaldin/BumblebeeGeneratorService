@@ -1,6 +1,8 @@
 package com.rufus.bumblebee.Main.LineGenerator;
 
 import com.rufus.bumblebee.Main.Columns.Column;
+import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
+import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import org.junit.After;
 import org.junit.Assert;
@@ -100,23 +102,23 @@ public class StringBoundaryValuesTest {
         Assert.assertEquals(val2, false);
 
     }
-    @Test(expected=Exception.class)
+    @Test(expected=TransferException.class)
     public void exceptionCall() throws Exception {
         test.transfer();
 
     }
-    @Test(expected=Exception.class)
+    @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputLowCap() throws Exception {
         StringBoundaryValues  test = new StringBoundaryValues(12, 1, false, false, false, column);
         test.construct();
 
     }
-    @Test(expected=Exception.class)
+    @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputLen() throws Exception {
         StringBoundaryValues  test = new StringBoundaryValues(0, 1, true, true, false, column);
         test.construct();
         }
-    @Test(expected=Exception.class)
+    @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputQUANTITY() throws Exception {
         StringBoundaryValues  test = new StringBoundaryValues(12, -1, true, true, false, column);
         test.construct();

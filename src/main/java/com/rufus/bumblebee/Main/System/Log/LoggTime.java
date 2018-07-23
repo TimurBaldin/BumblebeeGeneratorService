@@ -14,7 +14,11 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * Class : Логгирование времени выполнения методов
+ * @version : 0.0.1
+ * @author : Baldin Timur
+ */
 
 @Aspect
 @Configuration

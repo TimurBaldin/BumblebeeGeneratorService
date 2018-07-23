@@ -2,6 +2,7 @@ package com.rufus.bumblebee.Main.Reports;
 
 import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Rules.Report.ReportCSV;
+import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +10,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Class : класс создает/удаляет отчет csv
+ * @version : 0.0.1
+ * @author : Baldin Timur
+ */
 public class TestDataCSV implements ReportCSV<Columns> {
     private final String REPORT_FOLDER = "TestDataFolder\\";
     private final String FILE_FORMAT = ".csv";
@@ -20,12 +25,12 @@ public class TestDataCSV implements ReportCSV<Columns> {
     private File file;
 
     @Override
-    public File create(String docname, String delimiter, List<Columns> bufer) throws Exception {
+    public File create(String docname, String delimiter, List<Columns> bufer) throws InvalidInputException {
         this.bufer.addAll(bufer);
         this.docname = docname;
         this.delimiter = delimiter;
         if (check()) {
-            throw new Exception("Invalid input");
+            throw new InvalidInputException("Invalid input");
         } else {
             File buferdir = new File(System.getProperty("java.io.tmpdir") + REPORT_FOLDER);
             buferdir.mkdir();

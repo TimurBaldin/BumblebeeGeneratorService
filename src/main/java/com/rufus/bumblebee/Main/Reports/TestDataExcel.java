@@ -7,6 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +15,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Class : создание/удаление отчета формата xlsx
+ * @version : 0.0.1
+ * @author : Baldin Timur
+ */
 public class TestDataExcel implements ReportExcel<Columns> {
     private final String REPORT_FOLDER = "TestDataFolder\\";
     private final String FILE_FORMAT = ".xlsx";
@@ -29,12 +34,12 @@ public class TestDataExcel implements ReportExcel<Columns> {
     private File file;
 
     @Override
-    public File create(String docname, String sheetname, List<Columns> bufer) throws Exception {
+    public File create(String docname, String sheetname, List<Columns> bufer) throws InvalidInputException {
         this.docname = docname;
         this.sheetname = sheetname;
         this.bufer.addAll(bufer);
         if (check()) {
-            throw new Exception("Invalid input");
+            throw new InvalidInputException("Invalid input");
         } else {
             File buferdir = new File(System.getProperty("java.io.tmpdir") + REPORT_FOLDER);
             buferdir.mkdir();

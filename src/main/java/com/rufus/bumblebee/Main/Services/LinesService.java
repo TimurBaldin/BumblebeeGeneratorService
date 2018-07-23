@@ -1,19 +1,27 @@
 package com.rufus.bumblebee.Main.Services;
 
 import com.rufus.bumblebee.Main.Columns.Column;
+import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
+import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Factories.TestsFactory;
 import com.rufus.bumblebee.Main.Repository.RepositiryTestValues;
+import com.rufus.bumblebee.Main.Rules.BaseService;
 import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Rules.Rule;
+import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Class : Сервис создания тестовых данных
+ * @version : 0.0.1
+ * @author : Baldin Timur
+ */
 @Service
-public class LinesService {
+public class LinesService implements BaseService {
     private List<Rule> Tests = new ArrayList<Rule>();
     private Column Column;
     @Autowired
@@ -34,8 +42,9 @@ public class LinesService {
 
     public boolean selectionBoundaryTest(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap, Boolean NullValue) {
         try {
-            Tests.add(lineFactory.getBoundaryValues(Len, INCREASE_QUANTITY, Low, Cap, NullValue, Column));
-        } catch (Exception ex) {
+            Rule bufer=lineFactory.getBoundaryValues(Len, INCREASE_QUANTITY, Low, Cap, NullValue, Column);
+            Tests.add(bufer);
+        } catch (NullPointerException ex) {
             ex.printStackTrace();
             return false;
         }
@@ -45,8 +54,9 @@ public class LinesService {
 
     public boolean selectionSpecialLinesTest(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL) {
         try {
-            Tests.add(lineFactory.getSpecialValues(SPECIAL_LEN, INCREASE_QUANTITY, ESC_SPECIAL, SPECIAL, Column));
-        } catch (Exception ex) {
+            Rule bufer=lineFactory.getSpecialValues(SPECIAL_LEN, INCREASE_QUANTITY, ESC_SPECIAL, SPECIAL, Column);
+            Tests.add(bufer);
+        } catch (NullPointerException ex) {
             ex.printStackTrace();
             return false;
         }
@@ -55,8 +65,9 @@ public class LinesService {
 
     public boolean selectionIntBoundary(Long BoundaryIntEnd, Long BoundaryIntStart, Integer QUANTITY) {
         try {
-            Tests.add(lineFactory.getIntBoundaryTest(BoundaryIntEnd, BoundaryIntStart, QUANTITY, Column));
-        } catch (Exception ex) {
+            Rule bufer=lineFactory.getIntBoundaryTest(BoundaryIntEnd, BoundaryIntStart, QUANTITY, Column);
+            Tests.add(bufer);
+        } catch (NullPointerException ex) {
             ex.printStackTrace();
             return false;
         }
@@ -65,8 +76,9 @@ public class LinesService {
 
     public boolean selectionIntRange(Long MaxIntVal, Long MinIntVal) {
         try {
-            Tests.add(lineFactory.getIntFullRange(MaxIntVal, MinIntVal, Column));
-        } catch (Exception ex) {
+            Rule bufer=lineFactory.getIntFullRange(MaxIntVal, MinIntVal, Column);
+            Tests.add(bufer);
+        } catch (NullPointerException ex) {
             ex.printStackTrace();
             return false;
         }
@@ -74,6 +86,7 @@ public class LinesService {
     }
 
     public boolean saveColumn() {
+        boolean status=false;
         try {
             if (Tests.size() > 0) {
                 for (Rule bufer : Tests) {
@@ -82,17 +95,26 @@ public class LinesService {
                 columns.add(Column);
                 Tests.clear();
             } else {
-                throw new Exception("It is necessary to choose checks");
+                throw new InvalidInputException("It is necessary to choose checks");
             }
-        } catch (Exception e) {
+        } catch (GeneratorExceptionInputOptions ex){
+             System.out.println(ex.getMessage());
+             System.out.println(ex.getParameters());
+             return status;
+        } catch (TransferException e) {
+            System.out.println(e.getMessage());
+            return status;
+        } catch (InvalidInputException e) {
             e.printStackTrace();
-            return false;
+            return status;
         }
-        return true;
+        status=true;
+        return status;
 
     }
 
     public boolean saveModel() {
+        boolean status=false;
         try {
             if (columns.size() > 0) {
                 for (Columns bufer : columns) {
@@ -100,13 +122,14 @@ public class LinesService {
                     bufer.clear();
                 }
             } else {
-                throw new Exception("It is necessary to choose checks");
+                throw new InvalidInputException("It is necessary to choose checks");
             }
-        } catch (Exception e) {
+        } catch (InvalidInputException e) {
             e.printStackTrace();
-            return false;
+            return status;
         }
-        return true;
+        status=true;
+        return status;
     }
 
     public File createReportCSV(String docname, String delimiter) {

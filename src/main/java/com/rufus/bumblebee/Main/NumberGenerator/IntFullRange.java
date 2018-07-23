@@ -1,6 +1,8 @@
 package com.rufus.bumblebee.Main.NumberGenerator;
 
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
+import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
+import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Rules.Columns;
 import com.rufus.bumblebee.Main.Rules.Rule;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
@@ -8,7 +10,11 @@ import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-
+/**
+ * Class : Генерирует случайные числа в указанном диапазоне
+ * @version : 0.0.1
+ * @author : Baldin Timur
+ */
 public class IntFullRange implements Rule {
     private final String TYPE = "NUMERIC";
     private Long MinIntVal;
@@ -23,9 +29,9 @@ public class IntFullRange implements Rule {
     }
 
     @Override
-    public void construct() throws Exception {
+    public void construct() throws GeneratorExceptionInputOptions,TransferException{
         if (checkRule()) {
-            throw new Exception("Your choice is not right. Try again");
+            throw new GeneratorExceptionInputOptions("Your choice is not right. Parameters :",MaxIntVal.toString()+MinIntVal.toString());
         }else {
             for (Long i = MinIntVal; i <= MaxIntVal; i++) {
                 values.add(new BaseDatatype(buildRandNum().toString(), TYPE));
@@ -35,9 +41,9 @@ public class IntFullRange implements Rule {
     }
 
     @Override
-    public void transfer() throws Exception {
+    public void transfer() throws TransferException {
         if (column == null || values.size()==0) {
-            throw new Exception("Value column not be null  or test data was not generated");
+            throw new TransferException("Value column not be null  or test data was not generated ");
         } else {
             column.setValues(values);
         }

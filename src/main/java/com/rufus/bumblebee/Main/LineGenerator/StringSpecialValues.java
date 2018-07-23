@@ -2,12 +2,19 @@ package com.rufus.bumblebee.Main.LineGenerator;
 
 import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
+import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
+import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Rules.Rule;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+/**
+ * Class : Генерирует строки из специальных символов длиной от 1 до SPECIAL_LEN+INCREASE_QUANTITY
+ * @version : 0.0.1
+ * @author : Baldin Timur
+ */
 public class StringSpecialValues implements Rule {
     private final int MIN_ID_ESC = 1;
     private final int MAX_ID_ESC = 31;
@@ -35,35 +42,37 @@ public class StringSpecialValues implements Rule {
     }
 
     @Override
-    public void construct() throws Exception {
-        if (checkIn()) throw new Exception("Your choice is not right. Try again");
-        if (ESC_SPECIAL && SPECIAL) {
-            if((SPECIAL_LEN + INCREASE_QUANTITY)%2==0) {
-                stringEsc((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
-                stringSpecial((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
-                transfer();
-            }else {
-                stringEsc((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
-                stringSpecial(((SPECIAL_LEN + INCREASE_QUANTITY) / 2)+1);
-                transfer();
-            }
+    public void construct() throws GeneratorExceptionInputOptions,TransferException {
+        if (checkIn()) {
+            throw new GeneratorExceptionInputOptions("Your choice is not right.Parameters : ",SPECIAL_LEN.toString()+ESC_SPECIAL.toString()+SPECIAL.toString()+INCREASE_QUANTITY.toString());
+        }else {
+            if (ESC_SPECIAL && SPECIAL) {
+                if ((SPECIAL_LEN + INCREASE_QUANTITY) % 2 == 0) {
+                    stringEsc((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
+                    stringSpecial((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
+                    transfer();
+                } else {
+                    stringEsc((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
+                    stringSpecial(((SPECIAL_LEN + INCREASE_QUANTITY) / 2) + 1);
+                    transfer();
+                }
 
-        } else {
-            if (SPECIAL) {
-                stringSpecial(SPECIAL_LEN + INCREASE_QUANTITY);
-                transfer();
             } else {
-                stringEsc(SPECIAL_LEN + INCREASE_QUANTITY);
-                transfer();
+                if (SPECIAL) {
+                    stringSpecial(SPECIAL_LEN + INCREASE_QUANTITY);
+                    transfer();
+                } else {
+                    stringEsc(SPECIAL_LEN + INCREASE_QUANTITY);
+                    transfer();
+                }
             }
         }
-
     }
 
     @Override
-    public void transfer() throws Exception {
+    public void transfer() throws TransferException {
         if (checkOut()) {
-            throw new Exception("Please create test data");
+            throw new TransferException("Please create test data");
         } else {
             column.setValues(this.values);
         }

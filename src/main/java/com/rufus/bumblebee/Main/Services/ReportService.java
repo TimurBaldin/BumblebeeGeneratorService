@@ -11,7 +11,11 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
-
+/**
+ * Class : Сервис создания отчетов
+ * @version : 0.0.1
+ * @author : Baldin Timur
+ */
 @Service
 public class ReportService implements BaseService {
 
