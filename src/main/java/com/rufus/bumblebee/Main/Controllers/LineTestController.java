@@ -111,7 +111,7 @@ public class LineTestController {
             e.printStackTrace();
         }
         return ResponseEntity.ok().contentLength(file.length())
-                .contentType(MediaType.parseMediaType("text/csv"))
+                .contentType(MediaType.parseMediaType("text/csv")).header("Content-disposition", "attachment; filename="+ file.getName())
                 .body(resource);
     }
 
@@ -121,18 +121,20 @@ public class LineTestController {
         InputStreamResource resource = null;
         try {
             resource = new InputStreamResource(new FileInputStream(file));
-        } catch (FileNotFoundException e) {
+            } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        endwork();
         return ResponseEntity.ok().contentLength(file.length())
-                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel")).header("Content-disposition", "attachment; filename="+ file.getName())
                 .body(resource);
+
     }
 
-    @RequestMapping(path = "/endwork", method = RequestMethod.GET)
-    public @ResponseBody
-    boolean endwork() {
-        return service.endwork();
+    private void endwork() {
+         service.endwork();
     }
+
+
 }
 

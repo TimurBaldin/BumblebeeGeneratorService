@@ -14,10 +14,10 @@ import java.util.List;
 import static org.junit.Assert.assertTrue;
 
 public class RepositiryTestValuesTest {
-    final String COLUMN_NAME="TestClassRepositiryTestValuesTest";
-    RepositiryTestValues testValues;
-    ArrayList<TypeTestData> arr;
-    List<Columns> columns;
+   private final String COLUMN_NAME="TestClassRepositiryTestValuesTest";
+    private  RepositiryTestValues testValues;
+    private  ArrayList<TypeTestData> arr;
+    private  List<Columns> columns;
 @Before
 public void precondition(){
     testValues = new RepositiryTestValues();
@@ -28,7 +28,7 @@ public void precondition(){
     }
     columns = new ArrayList<Columns>();
     for (Integer i = 0; i <= 10; i++) {
-        columns.add(new Column("TestClassRepositiryTestValuesTest"));
+        columns.add(new Column(COLUMN_NAME));
     }
 }
 @After
@@ -38,21 +38,24 @@ public void delete(){
     arr=null;
     columns=null;
 }
+    private boolean construct(){
+       return testValues.create(arr,COLUMN_NAME);
+    }
     @Test
     public void writeToBD() {
-    boolean status=testValues.create(arr, "TestClassRepositiryTestValuesTest");
+    boolean status=construct();
         assertTrue(status);
     }
 
     @Test
     public void delDataFromBD() {
-        testValues.create(arr, "TestClassRepositiryTestValuesTest");
+        construct();
         boolean delstatus=testValues.delete(columns);
         assertTrue(delstatus);
         }
     @Test
     public void getDataFromBD() {
-        testValues.create(arr, "TestClassRepositiryTestValuesTest");
+        construct();
         List<Columns> arrayList=testValues.get(columns);
         boolean status=(arrayList.size()==columns.size());
         assertTrue(status);

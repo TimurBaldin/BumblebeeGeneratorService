@@ -106,7 +106,7 @@ public class StringSpecialValues implements Rule {
     }
 
     private boolean checkIn() {
-        if ((!ESC_SPECIAL && !SPECIAL) || SPECIAL_LEN <= 0 || INCREASE_QUANTITY <= 0) {
+        if ((!ESC_SPECIAL && !SPECIAL) || SPECIAL_LEN <= 0 || INCREASE_QUANTITY <0) {
             return true;
         } else {
             return false;

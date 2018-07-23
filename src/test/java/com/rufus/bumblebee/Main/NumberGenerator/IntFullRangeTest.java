@@ -25,10 +25,22 @@ public class IntFullRangeTest {
         column=null;
         test=null;
         }
+    private void construct(IntFullRange bufer){
+        try {
+            bufer.construct();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private String getValue(){
+        List<TypeTestData> arrayList = column.getValues();
+        String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
+        return buffer;
+    }
     @Test
     public void sizeValuesTest(){
         try {
-            test.construct();
+            construct(test);
             assertTrue(column.getValues().size() == Len);
             column.clear();
             } catch (Exception e) {
@@ -39,13 +51,11 @@ public class IntFullRangeTest {
     @Test
     public void testRandomValue() {
         try {
-            test.construct();
+            construct(test);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        List<TypeTestData> arrayList = column.getValues();
-        String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
-        assertTrue(buffer.matches(matchForInt));
+        assertTrue(getValue().matches(matchForInt));
     }
     @Test(expected=Exception.class)
     public void exceptionCall() throws Exception {
@@ -56,13 +66,16 @@ public class IntFullRangeTest {
     public void negativeInput() throws Exception {
         IntBoundaryValues  test2=new IntBoundaryValues(1L,100l,0,column);
         test2.construct();
-        IntBoundaryValues  test3=new IntBoundaryValues(1L,1L,0,column);
-        test2.construct();
-    }
+        }
     @Test(expected=Exception.class)
     public void negativeInputColumn() throws Exception {
         IntBoundaryValues test2=new IntBoundaryValues(12L,1l,0,null);
         test2.construct();
+    }
+    @Test(expected=Exception.class)
+    public void negativeInputEndEquallyStart() throws Exception {
+        IntBoundaryValues  test3=new IntBoundaryValues(1L,1L,0,column);
+        test3.construct();
     }
 
 }

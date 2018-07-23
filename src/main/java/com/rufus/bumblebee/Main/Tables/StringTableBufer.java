@@ -1,5 +1,7 @@
 package com.rufus.bumblebee.Main.Tables;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "stringtablebufer", schema = "bufer")
@@ -14,8 +16,10 @@ public class StringTableBufer {
     @Column(name = "reportcolumnname")
     private String ColumnName;
     @Column(name = "user_id")
+    @NotNull
     private int user_id;
     @Column(name = "alive")
+    @NotNull
     boolean alive;
     public void  setAlive(boolean alive){this.alive=alive;}
     public boolean getAlive(){return alive;}

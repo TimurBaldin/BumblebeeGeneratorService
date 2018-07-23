@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/indexstyle.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
@@ -29,16 +30,67 @@
 <div id="container">
     <div id="content">
 
-        <h2>Тело сайта</h2>
+        <h4>Сервис позволяет сгенерировать тестовые данные по заданным шаблонам и выгрузить в формате xlsx и csv</h4>
+        <p></p>
+        <table width="1000"  border="1" align="center" cellspacing="0" cellpadding="0">
+            <tr>
+                <td><h5><font color="black">Проверка</font> </h5></td>
+                <td><h5><font color="black">Входные параметры</font></h5></td>
+                <td><h5><font color="black">Описание</font></h5></td>
+            </tr>
+            <tr>
+                <td><h6><font color="#f08080">Boundary test lines</font> </h6></td>
+                <td><h6><font color="black">
+                    <font color="red"> <i>Len </i></font>: Длина строки
+                    <font color="red"> <i>QUANTITY </i></font> : Требуемое превышение длины строки
+                    <font color="red"><i> Low </i></font>: Наличие строчных букв
+                    <font color="red"><i> Cap </i></font>: Наличие заглавных букв
+                    <font color="red"><i> NullValue</i></font> : Наличие null значения
+
+                </font></h6></td>
+                <td><h6><font color="black">Генерирует строки длиной от 1 до <font color="red"> <i>Len </i></font>+<font color="red"> <i>QUANTITY </i></font>.</font></h6></td>
+            </tr>
+            <tr>
+                <td><h6><font color="#f08080">Specsymbol test lines</font> </h6></td>
+                <td><h6><font color="black">
+                    <font color="red"> <i>SPECIAL_LEN </i></font>: Длина строки
+                    <font color="red"> <i>QUANTITY </i></font> : Требуемое превышение длины строки
+                    <font color="red"><i> ESC_SPECIAL </i></font>: Наличие esc- специальных символов
+                    <font color="red"><i> SPECIAL </i></font>: Наличие прочих специальных символов
+                </font></h6></td>
+                <td><h6><font color="black">Генерирует строки специальных символов длиной от 1 до <font color="red"> <i>SPECIAL_LEN </i></font>+<font color="red"> <i>QUANTITY </i></font>.</font></h6></td>
+            </tr>
+            <tr>
+                <td><h6><font color="#f08080">Boundary test int</font> </h6></td>
+                <td><h6><font color="black">
+                    <font color="red"> <i>IntEnd</i></font>: Конец числового диапазона
+                    <font color="red"> <i>IntStart </i></font> : Начало числового диапазона
+                    <font color="red"><i>QUANTITY</i></font>: Количество случайных чисел в рамках диапазона
+                </font></h6></td>
+                <td><h6><font color="black">Генерирует числа для проверки "граничных значений"</font></h6></td>
+            </tr>
+            <tr>
+                <td><h6><font color="#f08080">Range test int</font> </h6></td>
+                <td><h6><font color="black">
+                    <font color="red"> <i>MaxIntVal</i></font>: Максимальное число из диапазона
+                    <font color="red"> <i>MinIntVal</i></font> : Минимальное число из  диапазона
+                </font></h6></td>
+                <td><h6><font color="black">Генерирует случайные числа  <font color="red"> <i>MaxIntVal</i></font> - <font color="red"> <i>MinIntVal</i></font> </font></h6></td>
+            </tr>
+
+
+        </table>
     </div>
 
     <div id="clear">
 
     </div>
 
-    <div id="footer">
-        <h2>footer (низ сайта)</h2>
-    </div>
+    <footer class="page-footer font-small cyan darken-3">
+        <p> </p>
+        © 2018 Copyright:
+        <a href="https://github.com/TimurBaldin/Bumblebee">Репозиторий проекта</a>
+    </footer>
 </div>
 </body>
 </html>

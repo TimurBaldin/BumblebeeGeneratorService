@@ -1,21 +1,5 @@
 const URL_SETCOLUMN = 'http://localhost:8080/creatortest/setcolumn?column=';
 const URL_SAVEMODEL = 'http://localhost:8080/creatortest/savemodel';
-$(document).ready(function about() {
-    $("#about:hidden").show();
-})
-
-function howuse() {
-    $("#howuse:hidden").show();
-}
-
-function home() {
-
-    window.location.href = "index.html";
-}
-
-function createtestdata() {
-    $("#create:hidden").show();
-}
 function savecolumn() {
     var request = new XMLHttpRequest();
     var url2 = 'http://localhost:8080/creatortest/savecolumn'
@@ -23,11 +7,12 @@ function savecolumn() {
     request.send();
 }
 function createcolumn(obj) {
-    if (obj.rix.value != undefined && obj.rix.value != null && obj.rix.value != '') {
-        var url1 = URL_SETCOLUMN + obj.rix.value;
+    if (obj.name.value != undefined && obj.name.value != null && obj.name.value != '') {
+        var url1 = URL_SETCOLUMN + obj.name.value;
         var request = new XMLHttpRequest();
         request.open("GET", url1, true);
         request.send();
+
     } else {
         alert('Column name not be null');
     }

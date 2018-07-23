@@ -12,6 +12,7 @@ public interface Columns<T, S> {
     int getSizeValue();
 
     void clear();
+    void cleanReportData();
 
     String getTestValue(int id);
 

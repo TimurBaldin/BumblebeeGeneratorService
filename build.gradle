@@ -40,7 +40,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:+")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     testCompile('org.springframework.boot:spring-boot-starter-test')
-
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.10.Final'
 
 
 

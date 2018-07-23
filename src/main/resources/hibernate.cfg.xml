@@ -17,4 +17,5 @@
         <mapping class="com.rufus.bumblebee.Main.Tables.StringTableBufer"></mapping>
         <mapping class="com.rufus.bumblebee.Main.Tables.Client"></mapping>
     </session-factory>
+
 </hibernate-configuration>

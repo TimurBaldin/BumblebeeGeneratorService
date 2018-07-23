@@ -44,17 +44,29 @@ public class StringSpecialValuesTest {
         test1 = null;
         test2 = null;
     }
+    private void construct(StringSpecialValues bufer){
+        try {
+            bufer.construct();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private String getValue(){
+        List<TypeTestData> arrayList = column.getValues();
+        String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
+        return buffer;
+    }
 
     @Test
     public void testSizeWords() {
         try {
-            test.construct();
+            construct(test);
             assertTrue(column.getValues().size() == Len);
             column.clear();
-            test1.construct();
+            construct(test1);
             assertTrue(column.getValues().size() == Len);
             column.clear();
-            test2.construct();
+            construct(test2);
             assertTrue(column.getValues().size() == Len * 2);
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,10 +81,8 @@ public class StringSpecialValuesTest {
             tests.add(test1);
             tests.add(test2);
             for (StringSpecialValues bufer : tests) {
-                bufer.construct();
-                List<TypeTestData> arrayList = column.getValues();
-                String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
-                assertTrue(buffer.matches(matchSpecial));
+                construct(bufer);
+                assertTrue(getValue().matches(matchSpecial));
                 column.clear();
             }
         } catch (Exception e) {
@@ -83,10 +93,8 @@ public class StringSpecialValuesTest {
     @Test
     public void testValueIDSpecial() {
         try {
-            test2.construct();
-            List<TypeTestData> arrayList = column.getValues();
-            String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
-            char [] testchars=buffer.toCharArray();
+            construct(test2);
+            char [] testchars=getValue().toCharArray();
             for (char t:testchars) {
                 boolean status=false;
                 int result=t;
@@ -107,10 +115,8 @@ public class StringSpecialValuesTest {
     @Test
     public void testValueIDEsc() {
         try {
-            test.construct();
-            List<TypeTestData> arrayList = column.getValues();
-            String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
-            char [] testchars=buffer.toCharArray();
+            construct(test);
+            char [] testchars=getValue().toCharArray();
             for (char t:testchars) {
                 boolean status=false;
                 int result=t;
@@ -130,10 +136,8 @@ public class StringSpecialValuesTest {
     @Test
     public void testValueIDEscSpecial() {
         try {
-            test1.construct();
-            List<TypeTestData> arrayList = column.getValues();
-            String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
-            char [] testchars=buffer.toCharArray();
+            construct(test1);
+            char [] testchars=getValue().toCharArray();
             for (char t:testchars) {
                 boolean status=false;
                 int result=t;
@@ -154,6 +158,29 @@ public class StringSpecialValuesTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @Test(expected=Exception.class)
+    public void exceptionCall() throws Exception {
+        test.transfer();
+
+    }
+    @Test(expected=Exception.class)
+    public void negativeInputESCandSPECIAL() throws Exception {
+        StringSpecialValues  test = new StringSpecialValues(12, 1, false, false, column);
+        test.construct();
+
+    }
+    @Test(expected=Exception.class)
+    public void negativeInputLen() throws Exception {
+        StringSpecialValues  test = new StringSpecialValues(0, 1, true, false, column);
+        test.construct();
+
+    }
+    @Test(expected=Exception.class)
+    public void negativeInputLenQUANTITY() throws Exception {
+        StringSpecialValues  test = new StringSpecialValues(12, -1, true, false, column);
+        test.construct();
+
     }
 
 

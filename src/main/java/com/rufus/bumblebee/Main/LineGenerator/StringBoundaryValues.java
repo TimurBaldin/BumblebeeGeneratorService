@@ -116,7 +116,7 @@ public class StringBoundaryValues implements Rule {
     }
 
     private boolean checkIn() {
-        if ((!Low && !Cap) || len <= 0 || INCREASE_QUANTITY <= 0) {
+        if ((!Low && !Cap) || len <= 0 || INCREASE_QUANTITY <0) {
             return true;
         } else {
             return false;

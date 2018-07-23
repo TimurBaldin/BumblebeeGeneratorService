@@ -38,13 +38,16 @@ public class Column implements Columns<TypeTestData, String> {
     public void setValues(List<TypeTestData> values) {
         this.values.addAll(values);
     }
-
+    @Override
     public String getCOLUMN() {
         return COLUMN_NAME;
     }
-
+    @Override
     public void clear() {
         values.clear();
+        }
+    @Override
+    public void cleanReportData(){
         report.clear();
     }
 

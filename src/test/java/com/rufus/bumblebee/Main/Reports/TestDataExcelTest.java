@@ -14,22 +14,26 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertTrue;
 
 public class TestDataExcelTest {
-    ArrayList<String> str;
-    ArrayList<Columns> arr;
-    ReportService service;
-    File file;
+   private ArrayList<String> str;
+   private ArrayList<Columns> arr;
+   private ReportService service;
+    private final int QUANTITY_LINES=500;
+    private final String COLUMN_NAME="Tester";
+    private final int QUANTITY_COLUMN=10;
+    private final String DOC_NAME="Test";
+    private final String Sheet_Name="test1";
 
     @Before
     public void precondition() {
         str = new ArrayList<String>();
         arr = new ArrayList<Columns>();
         service = new ReportService(new ReportFactory());
-        for (Integer i = 0; i <= 500; i++) {
+        for (Integer i = 0; i <= QUANTITY_LINES; i++) {
             str.add(i.toString());
             //Количество строк
         }
-        for (Integer j = 0; j <= 10; j++) {
-            Column lines = new Column("Tester " + j.toString());
+        for (Integer j = 0; j <= QUANTITY_COLUMN; j++) {
+            Column lines = new Column(COLUMN_NAME + j.toString());
             lines.setReport(str);
             arr.add(lines);
             //Количество колонок
@@ -41,14 +45,16 @@ public class TestDataExcelTest {
         str.clear();
         arr.clear();
         service = null;
-        file = null;
+
+    }
+    private File construct(String docname,String Sheet_Name,ArrayList<Columns> arr){
+        return service.createExcel(docname, Sheet_Name, arr);
     }
 
     @Test
     public void create() {
         try {
-            file = service.createExcel("Test", "test", arr);
-            assertTrue(file.isFile() == true);
+            assertTrue( construct(DOC_NAME,Sheet_Name,arr).isFile() == true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,8 +63,7 @@ public class TestDataExcelTest {
     @Test
     public void checkSize() {
         try {
-            file = service.createExcel("Test", "test", arr);
-            boolean status = file.length() >= 0;
+            boolean status =  construct(DOC_NAME,Sheet_Name,arr).length() >= 0;
             assertTrue(status);
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,7 +73,7 @@ public class TestDataExcelTest {
     @Test
     public void delete() {
         try {
-            file = service.createExcel("Test", "test", arr);
+          File  file = construct(DOC_NAME,Sheet_Name,arr);
             service.deleteExcel();
             boolean status = true;
             status = file.isFile();

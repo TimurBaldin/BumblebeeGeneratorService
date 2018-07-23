@@ -117,13 +117,13 @@ public class LinesService {
 
     public File createReportExcel(String DOC_NAME, String Sheet_NAME) {
         File file = reportService.createExcel(DOC_NAME, Sheet_NAME, Repositiry.get(columns));
-        cleanData();
+         cleanData();
         return file;
     }
 
     private void cleanData() {
         for (Columns bufer : columns) {
-            bufer.clear();
+            bufer.cleanReportData();
         }
     }
 

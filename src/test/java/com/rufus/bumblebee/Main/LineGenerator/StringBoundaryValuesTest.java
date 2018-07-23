@@ -28,17 +28,36 @@ public class StringBoundaryValuesTest {
         test1 = new StringBoundaryValues(12, 1, true, true, true, column);
         test2 = new StringBoundaryValues(12, 1, false, true, false, column);
     }
+    @After
+    public void delete() {
+        column = null;
+        test = null;
+        test1 = null;
+        test2 = null;
+    }
+    private void construct(StringBoundaryValues bufer){
+        try {
+            bufer.construct();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private String getValue(){
+        List<TypeTestData> arrayList = column.getValues();
+        String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
+        return buffer;
+    }
 
     @Test
     public void testSizeWords() {
         try {
-            test.construct();
+            construct(test);
             assertTrue(column.getValues().size() == Len);
             column.clear();
-            test1.construct();
+            construct(test1);
             assertTrue(column.getValues().size() == Len);
             column.clear();
-            test2.construct();
+            construct(test2);
             assertTrue(column.getValues().size() == notNullLen);
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,13 +67,12 @@ public class StringBoundaryValuesTest {
     @Test
     public void testRandomValueLow() {
         try {
-            test.construct();
+            construct(test);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        List<TypeTestData> arrayList = column.getValues();
-        String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
-        assertTrue(buffer.matches(matchForLow));
+
+        assertTrue(getValue().matches(matchForLow));
 
 
     }
@@ -62,36 +80,46 @@ public class StringBoundaryValuesTest {
     @Test
     public void testRandomValueCap() {
         try {
-            test2.construct();
+            construct(test2);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        List<TypeTestData> arrayList = column.getValues();
-        String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
-        assertTrue(buffer.matches(matchForCap));
+        assertTrue(getValue().matches(matchForCap));
     }
 
     @Test
     public void testRandomValueCapLow() {
         try {
-            test1.construct();
+            construct(test1);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        List<TypeTestData> arrayList = column.getValues();
-        String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
-        boolean val1 = buffer.matches(matchForLow);
-        boolean val2 = buffer.matches(matchForCap);
+        boolean val1 = getValue().matches(matchForLow);
+        boolean val2 = getValue().matches(matchForCap);
         Assert.assertEquals(val1, false);
         Assert.assertEquals(val2, false);
 
     }
+    @Test(expected=Exception.class)
+    public void exceptionCall() throws Exception {
+        test.transfer();
 
-    @After
-    public void delete() {
-        column = null;
-        test = null;
-        test1 = null;
-        test2 = null;
     }
+    @Test(expected=Exception.class)
+    public void negativeInputLowCap() throws Exception {
+        StringBoundaryValues  test = new StringBoundaryValues(12, 1, false, false, false, column);
+        test.construct();
+
+    }
+    @Test(expected=Exception.class)
+    public void negativeInputLen() throws Exception {
+        StringBoundaryValues  test = new StringBoundaryValues(0, 1, true, true, false, column);
+        test.construct();
+        }
+    @Test(expected=Exception.class)
+    public void negativeInputQUANTITY() throws Exception {
+        StringBoundaryValues  test = new StringBoundaryValues(12, -1, true, true, false, column);
+        test.construct();
+        }
+
 }
