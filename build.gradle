@@ -15,7 +15,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 bootJar {
-    baseName = 'DatаRule'
+    baseName = 'Bumblebee'
     version =  '0.0.1'
 }
 
@@ -40,12 +40,6 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:+")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.10.Final'
-
-
-
-
-
     compile group: 'org.springframework', name: 'spring-aop', version: '5.0.6.RELEASE'
     compile group: 'org.aspectj', name: 'aspectjtools', version: '1.9.1'
 
