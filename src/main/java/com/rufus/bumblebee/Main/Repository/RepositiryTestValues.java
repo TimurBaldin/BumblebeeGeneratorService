@@ -23,13 +23,10 @@ import java.util.List;
 public class RepositiryTestValues implements BaseRepository<Columns,TypeTestData>{
     private final String REPORT="SELECT value FROM com.rufus.bumblebee.Main.Tables.StringTableBufer where ColumnName=:COLUMNNAME and user_id=:CLIENT_ID and alive=:live";
     private final String DEL_TEST_DATA="UPDATE com.rufus.bumblebee.Main.Tables.StringTableBufer SET alive='false' where ColumnName=:COLUMNNAME and user_id=:CLIENT_ID";
-    private SessionFactory sessionFactory = SessionUntil.INSTANCE.getInstance();
-    private Session session;
     @Override
-
     public boolean create(List<TypeTestData> values, String COLUMN_NAME) {
         boolean status=true;
-        session = sessionFactory.openSession();
+        Session   session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {
         for (int i = 0; i <= values.size() - 1; i++) {
@@ -58,25 +55,24 @@ return status;
     @Override
     public List<Columns> get(List<Columns> columns) {
         List<Columns> column = new ArrayList<Columns>();
+        Session  session = sessionFactory.openSession();
         for (Columns bufer : columns) {
-            session = sessionFactory.openSession();
             Query query = session.createQuery(REPORT);
             query.setParameter("COLUMNNAME", bufer.getCOLUMN());
             query.setParameter("CLIENT_ID", 0);
             query.setParameter("live",true);
             bufer.setReport(query.list());
             column.add(bufer);
-            session.close();
-        }
 
+        }
+        session.close();
         return column;
     }
     @Override
     public boolean delete(List<Columns> columns){
         int delrow=0;
         boolean status=false;
-        session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
+        Session   session = sessionFactory.openSession();
         try {
             for (Columns bufer : columns) {
                 Query query = session.createQuery(DEL_TEST_DATA);
@@ -91,12 +87,10 @@ return status;
         }finally {
             session.close();
         }
-        if (delrow==columns.size()-1){
-            return status;
-        }else {
-            status=true;
-            return status;
+        if (delrow != columns.size() - 1) {
+            status = true;
         }
+        return status;
 
     }
 
