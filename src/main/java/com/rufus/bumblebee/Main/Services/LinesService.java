@@ -4,10 +4,10 @@ import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Factories.TestsFactory;
+import com.rufus.bumblebee.Main.Generators.Rule;
 import com.rufus.bumblebee.Main.Repository.RepositiryTestValues;
-import com.rufus.bumblebee.Main.Rules.BaseService;
-import com.rufus.bumblebee.Main.Rules.Columns;
-import com.rufus.bumblebee.Main.Rules.Rule;
+import com.rufus.bumblebee.Main.Columns.Columns;
+
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

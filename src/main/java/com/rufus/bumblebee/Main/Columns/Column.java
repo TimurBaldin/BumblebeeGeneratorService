@@ -1,7 +1,6 @@
 package com.rufus.bumblebee.Main.Columns;
 
-import com.rufus.bumblebee.Main.Rules.Columns;
-import com.rufus.bumblebee.Main.Rules.TypeTestData;
+import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 
 import java.util.ArrayList;

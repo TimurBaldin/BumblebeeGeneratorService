@@ -6,18 +6,12 @@ package com.rufus.bumblebee.Main.Repository;
  * @author : Baldin Timur
  */
 
-import com.rufus.bumblebee.Main.Rules.Columns;
+import com.rufus.bumblebee.Main.Columns.Columns;
 import com.rufus.bumblebee.Main.Rules.DAO.BaseRepository;
-import com.rufus.bumblebee.Main.Rules.TypeTestData;
+import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import com.rufus.bumblebee.Main.Tables.StringTableBufer;
 import org.hibernate.*;
 import org.hibernate.query.Query;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;

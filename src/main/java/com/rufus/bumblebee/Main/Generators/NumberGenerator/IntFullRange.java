@@ -1,11 +1,11 @@
-package com.rufus.bumblebee.Main.NumberGenerator;
+package com.rufus.bumblebee.Main.Generators.NumberGenerator;
 
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
-import com.rufus.bumblebee.Main.Rules.Columns;
-import com.rufus.bumblebee.Main.Rules.Rule;
-import com.rufus.bumblebee.Main.Rules.TypeTestData;
+import com.rufus.bumblebee.Main.Columns.Columns;
+import com.rufus.bumblebee.Main.Generators.Rule;
+import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 
 import java.util.LinkedList;
 import java.util.List;

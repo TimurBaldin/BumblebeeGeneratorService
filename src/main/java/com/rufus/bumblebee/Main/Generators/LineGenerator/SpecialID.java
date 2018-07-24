@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.Main.LineGenerator;
+package com.rufus.bumblebee.Main.Generators.LineGenerator;
 
 public enum SpecialID {
     KEY_ID;

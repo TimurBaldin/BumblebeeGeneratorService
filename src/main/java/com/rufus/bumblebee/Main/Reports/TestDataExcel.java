@@ -1,7 +1,6 @@
 package com.rufus.bumblebee.Main.Reports;
 
-import com.rufus.bumblebee.Main.Rules.Columns;
-import com.rufus.bumblebee.Main.Rules.Report.ReportExcel;
+import com.rufus.bumblebee.Main.Columns.Columns;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;

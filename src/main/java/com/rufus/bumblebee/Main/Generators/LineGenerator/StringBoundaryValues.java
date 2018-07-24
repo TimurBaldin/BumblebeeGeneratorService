@@ -1,11 +1,12 @@
-package com.rufus.bumblebee.Main.LineGenerator;
+package com.rufus.bumblebee.Main.Generators.LineGenerator;
 
 import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
-import com.rufus.bumblebee.Main.Rules.Rule;
-import com.rufus.bumblebee.Main.Rules.TypeTestData;
+
+import com.rufus.bumblebee.Main.Datatype.TypeTestData;
+import com.rufus.bumblebee.Main.Generators.Rule;
 
 import java.util.ArrayList;
 import java.util.List;

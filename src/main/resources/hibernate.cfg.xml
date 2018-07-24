@@ -10,6 +10,7 @@
         <property name="hibernate.connection.username">admin</property>
         <!-- Password for your database -->
         <property name="hibernate.connection.password">admin</property>
+        <!-- URL for your database -->
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/data_generator</property>
         <property name="connection_pool_size">1</property>
         <property name="show_sql">false</property>

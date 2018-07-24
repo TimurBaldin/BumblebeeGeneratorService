@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.Main.LineGenerator;
+package com.rufus.bumblebee.Main.Generators.LineGenerator;
 /**
  * Class : Всегда возвращает null значение
  * @version : 0.0.1

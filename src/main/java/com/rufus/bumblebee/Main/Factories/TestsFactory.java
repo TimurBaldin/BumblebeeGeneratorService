@@ -1,12 +1,11 @@
 package com.rufus.bumblebee.Main.Factories;
 
 import com.rufus.bumblebee.Main.Columns.Column;
-import com.rufus.bumblebee.Main.LineGenerator.StringBoundaryValues;
-import com.rufus.bumblebee.Main.LineGenerator.StringSpecialValues;
-import com.rufus.bumblebee.Main.NumberGenerator.IntBoundaryValues;
-import com.rufus.bumblebee.Main.NumberGenerator.IntFullRange;
-import com.rufus.bumblebee.Main.Rules.BaseFactory;
-import com.rufus.bumblebee.Main.Rules.Columns;
+import com.rufus.bumblebee.Main.Generators.LineGenerator.StringBoundaryValues;
+import com.rufus.bumblebee.Main.Generators.LineGenerator.StringSpecialValues;
+import com.rufus.bumblebee.Main.Generators.NumberGenerator.IntBoundaryValues;
+import com.rufus.bumblebee.Main.Generators.NumberGenerator.IntFullRange;
+import com.rufus.bumblebee.Main.Columns.Columns;
 
 
 public class TestsFactory implements BaseFactory {

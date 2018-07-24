@@ -1,6 +1,5 @@
 package com.rufus.bumblebee.Main.Factories;
 
-import com.rufus.bumblebee.Main.Rules.BaseFactory;
 import com.rufus.bumblebee.Main.Tables.Client;
 
 public class ClientFactory implements BaseFactory {

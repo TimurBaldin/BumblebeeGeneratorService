@@ -1,10 +1,9 @@
 package com.rufus.bumblebee.Main.Services;
 
 import com.rufus.bumblebee.Main.Factories.ReportFactory;
-import com.rufus.bumblebee.Main.Rules.BaseService;
-import com.rufus.bumblebee.Main.Rules.Columns;
-import com.rufus.bumblebee.Main.Rules.Report.ReportCSV;
-import com.rufus.bumblebee.Main.Rules.Report.ReportExcel;
+import com.rufus.bumblebee.Main.Columns.Columns;
+import com.rufus.bumblebee.Main.Reports.ReportCSV;
+import com.rufus.bumblebee.Main.Reports.ReportExcel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

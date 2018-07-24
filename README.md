@@ -13,9 +13,15 @@
 ## Запуск : 
 * `Для запуска проекта необходима БД  Postgresql :` [Generator BD](https://github.com/TimurBaldin/Bumblebee/tree/develop/src/database/migration)
 * `Файл настроек для Hibernate доступен по ссылке :`  [Configuration](https://github.com/TimurBaldin/Bumblebee/blob/develop/src/main/resources/hibernate.cfg.xml)
-* `Собрать проект "BootJar" ---> перейти в папку  \build\libs ---> запустить Bumblebee-0.0.1 `
+* `Обратить внимание на следующие параметры hibernate.cfg.xml :`
+```xml
+<property name="hibernate.connection.username">UserName for your database</property>
+<property name="hibernate.connection.password">Password for your database </property>
+<property name="hibernate.connection.url">URL for your database</property>
+```
+* `Собрать проект "gradle BootJar" ---> перейти в папку  \build\libs ---> запустить Bumblebee-0.0.1 `
 * `Перейти по ссылке : http://localhost:8080/`
-* `После перехода по ссылке , открывается стартовая стриница `
+* `После перехода по ссылке , открывается стартовая страница `
 ![Start_page](https://i.paste.pics/90a5a9ab065e502021b9dca2118f4e2b.png)
 * `Страница создания тестовых данных : `
 ![Generator](https://i.paste.pics/913d408831164665111e9e6ee4ca6a44.png)

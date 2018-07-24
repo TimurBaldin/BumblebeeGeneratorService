@@ -1,15 +1,16 @@
-package com.rufus.bumblebee.Main.LineGenerator;
+package com.rufus.bumblebee.Main.Generators.LineGenerator;
 
 import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
-import com.rufus.bumblebee.Main.Rules.Rule;
-import com.rufus.bumblebee.Main.Rules.TypeTestData;
+import com.rufus.bumblebee.Main.Datatype.TypeTestData;
+import com.rufus.bumblebee.Main.Generators.Rule;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import static com.rufus.bumblebee.Main.LineGenerator.SpecialID.KEY_ID;
+import static com.rufus.bumblebee.Main.Generators.LineGenerator.SpecialID.KEY_ID;
 
 /**
  * Class : Генерирует строки из специальных символов длиной от 1 до SPECIAL_LEN+INCREASE_QUANTITY

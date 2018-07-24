@@ -1,7 +1,6 @@
 package com.rufus.bumblebee.Main.Reports;
 
-import com.rufus.bumblebee.Main.Rules.Columns;
-import com.rufus.bumblebee.Main.Rules.Report.ReportCSV;
+import com.rufus.bumblebee.Main.Columns.Columns;
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 
 import java.io.File;

@@ -2,8 +2,8 @@ package com.rufus.bumblebee.Main.Repository;
 
 import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
-import com.rufus.bumblebee.Main.Rules.Columns;
-import com.rufus.bumblebee.Main.Rules.TypeTestData;
+import com.rufus.bumblebee.Main.Columns.Columns;
+import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

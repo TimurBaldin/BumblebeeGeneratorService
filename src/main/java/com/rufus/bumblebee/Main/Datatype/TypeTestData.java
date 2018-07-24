@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.Main.Rules;
+package com.rufus.bumblebee.Main.Datatype;
 /**
  * Class : Базовый класс для реализации пользовательских типов данных
  * @version : 0.0.1

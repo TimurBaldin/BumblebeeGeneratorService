@@ -1,4 +1,7 @@
-package com.rufus.bumblebee.Main.Rules;
+package com.rufus.bumblebee.Main.Columns;
+
+import com.rufus.bumblebee.Main.Columns.*;
+import com.rufus.bumblebee.Main.Generators.Rule;
 
 import java.util.List;
 /**

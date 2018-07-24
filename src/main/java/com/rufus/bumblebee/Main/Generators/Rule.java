@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.Main.Rules;
+package com.rufus.bumblebee.Main.Generators;
 
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;

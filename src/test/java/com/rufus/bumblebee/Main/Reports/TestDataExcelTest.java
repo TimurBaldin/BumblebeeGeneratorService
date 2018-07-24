@@ -2,7 +2,7 @@ package com.rufus.bumblebee.Main.Reports;
 
 import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Factories.ReportFactory;
-import com.rufus.bumblebee.Main.Rules.Columns;
+import com.rufus.bumblebee.Main.Columns.Columns;
 import com.rufus.bumblebee.Main.Services.ReportService;
 import org.junit.After;
 import org.junit.Before;

@@ -1,6 +1,5 @@
 package com.rufus.bumblebee.Main.Datatype;
 
-import com.rufus.bumblebee.Main.Rules.TypeTestData;
 /**
  * Class : Основные типы данных (числа/строки/даты)
  * @version : 0.0.1

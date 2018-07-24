@@ -3,7 +3,8 @@ package com.rufus.bumblebee.Main.NumberGenerator;
 import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
-import com.rufus.bumblebee.Main.Rules.TypeTestData;
+import com.rufus.bumblebee.Main.Datatype.TypeTestData;
+import com.rufus.bumblebee.Main.Generators.NumberGenerator.IntFullRange;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,17 +67,17 @@ public class IntFullRangeTest {
     }
     @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInput() throws Exception {
-        IntBoundaryValues  test2=new IntBoundaryValues(1L,100l,0,column);
+        IntFullRange  test2=new IntFullRange(1L,100l,column);
         test2.construct();
         }
     @Test(expected=TransferException.class)
     public void negativeInputColumn() throws Exception {
-        IntBoundaryValues test2=new IntBoundaryValues(12L,1l,0,null);
+        IntFullRange test2=new IntFullRange(12L,1l,null);
         test2.construct();
     }
     @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputEndEquallyStart() throws Exception {
-        IntBoundaryValues  test3=new IntBoundaryValues(1L,1L,0,column);
+        IntFullRange  test3=new IntFullRange(1L,1L,column);
         test3.construct();
     }
 

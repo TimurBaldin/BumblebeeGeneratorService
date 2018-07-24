@@ -3,13 +3,14 @@ package com.rufus.bumblebee.Main.LineGenerator;
 import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
-import com.rufus.bumblebee.Main.Rules.TypeTestData;
+import com.rufus.bumblebee.Main.Datatype.TypeTestData;
+import com.rufus.bumblebee.Main.Generators.LineGenerator.StringSpecialValues;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
-import static com.rufus.bumblebee.Main.LineGenerator.SpecialID.KEY_ID;
+import static com.rufus.bumblebee.Main.Generators.LineGenerator.SpecialID.KEY_ID;
 import static org.junit.Assert.*;
 
 public class StringSpecialValuesTest {
