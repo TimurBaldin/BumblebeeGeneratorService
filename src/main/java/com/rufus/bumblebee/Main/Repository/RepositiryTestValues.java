@@ -55,17 +55,16 @@ return status;
     @Override
     public List<Columns> get(List<Columns> columns) {
         List<Columns> column = new ArrayList<Columns>();
+        Session  session = sessionFactory.openSession();
         for (Columns bufer : columns) {
-            Session  session = sessionFactory.openSession();
             Query query = session.createQuery(REPORT);
             query.setParameter("COLUMNNAME", bufer.getCOLUMN());
             query.setParameter("CLIENT_ID", 0);
             query.setParameter("live",true);
             bufer.setReport(query.list());
             column.add(bufer);
-            session.close();
-        }
-
+            }
+        session.close();
         return column;
     }
     @Override
@@ -73,6 +72,7 @@ return status;
         int delrow=0;
         boolean status=false;
         Session   session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         try {
             for (Columns bufer : columns) {
                 Query query = session.createQuery(DEL_TEST_DATA);
