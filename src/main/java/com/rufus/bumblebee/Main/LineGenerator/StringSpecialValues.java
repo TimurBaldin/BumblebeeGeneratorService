@@ -6,24 +6,25 @@ import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Rules.Rule;
 import com.rufus.bumblebee.Main.Rules.TypeTestData;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import static com.rufus.bumblebee.Main.LineGenerator.SpecialID.KEY_ID;
+
 /**
  * Class : Генерирует строки из специальных символов длиной от 1 до SPECIAL_LEN+INCREASE_QUANTITY
  * @version : 0.0.1
  * @author : Baldin Timur
  */
 public class StringSpecialValues implements Rule {
-    private final int MIN_ID_ESC = 1;
-    private final int MAX_ID_ESC = 31;
+    private  final int MIN_ID_ESC = KEY_ID.getMIN_ID_ESC() ;
+    private final int MAX_ID_ESC = KEY_ID.getMAX_ID_ESC();
     //Escape symbols
-    private final int MIN_ID_SPECIAL_1 = 33;
-    private final int MAX_ID_SPECIAL_1 = 64;
+    private final int MIN_ID_SPECIAL_1 = KEY_ID.getMIN_ID_SPECIAL_1();
+    private final int MAX_ID_SPECIAL_1 = KEY_ID.getMAX_ID_SPECIAL_1();
     //Other symbols 1
-    private final int MIN_ID_SPECIAL_2 = 128;
-    private final int MAX_ID_SPECIAL_2 = 191;
+    private final int MIN_ID_SPECIAL_2 = KEY_ID.getMIN_ID_SPECIAL_2();
+    private final int MAX_ID_SPECIAL_2 = KEY_ID.getMAX_ID_SPECIAL_2();
     private final String TYPE = "STRING";
     //Other symbols 2
     private Integer SPECIAL_LEN;

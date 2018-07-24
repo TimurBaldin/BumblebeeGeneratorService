@@ -109,6 +109,7 @@ public class LineTestController {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        endwork();
         return ResponseEntity.ok().contentLength(file.length())
                 .contentType(MediaType.parseMediaType("text/csv")).header("Content-disposition", "attachment; filename="+ file.getName())
                 .body(resource);

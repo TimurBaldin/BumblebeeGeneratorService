@@ -7,11 +7,9 @@ import com.rufus.bumblebee.Main.Rules.TypeTestData;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
+import static com.rufus.bumblebee.Main.LineGenerator.SpecialID.KEY_ID;
 import static org.junit.Assert.*;
 
 public class StringSpecialValuesTest {
@@ -21,14 +19,14 @@ public class StringSpecialValuesTest {
     private StringSpecialValues test1;
     private StringSpecialValues test2;
     private Column column;
-    private final int MIN_ID_ESC = 1;
-    private final int MAX_ID_ESC = 31;
+    private final int MIN_ID_ESC = KEY_ID.getMIN_ID_ESC();
+    private final int MAX_ID_ESC = KEY_ID.getMAX_ID_ESC();
     //Escape symbols
-    private final int MIN_ID_SPECIAL_1 = 33;
-    private final int MAX_ID_SPECIAL_1 = 64;
+    private final int MIN_ID_SPECIAL_1 = KEY_ID.getMIN_ID_SPECIAL_1();
+    private final int MAX_ID_SPECIAL_1 = KEY_ID.getMAX_ID_SPECIAL_1();
     //Other symbols 1
-    private final int MIN_ID_SPECIAL_2 = 128;
-    private final int MAX_ID_SPECIAL_2 = 191;
+    private final int MIN_ID_SPECIAL_2 = KEY_ID.getMIN_ID_SPECIAL_2();
+    private final int MAX_ID_SPECIAL_2 = KEY_ID.getMAX_ID_SPECIAL_2();
 
     @Before
     public void precondition() {

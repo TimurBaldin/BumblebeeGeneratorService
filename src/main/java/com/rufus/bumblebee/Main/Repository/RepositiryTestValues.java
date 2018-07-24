@@ -42,7 +42,7 @@ public class RepositiryTestValues implements BaseRepository<Columns,TypeTestData
                 }
                 }
             transaction.commit();
-                }catch (TransactionException ex) {
+                }catch (Exception ex) {
             ex.printStackTrace();
             status=false;
             session.getTransaction().rollback();
@@ -55,17 +55,17 @@ return status;
     @Override
     public List<Columns> get(List<Columns> columns) {
         List<Columns> column = new ArrayList<Columns>();
-        Session  session = sessionFactory.openSession();
         for (Columns bufer : columns) {
+            Session  session = sessionFactory.openSession();
             Query query = session.createQuery(REPORT);
             query.setParameter("COLUMNNAME", bufer.getCOLUMN());
             query.setParameter("CLIENT_ID", 0);
             query.setParameter("live",true);
             bufer.setReport(query.list());
             column.add(bufer);
-
+            session.close();
         }
-        session.close();
+
         return column;
     }
     @Override
@@ -80,7 +80,7 @@ return status;
                 query.setParameter("CLIENT_ID", 0);
                 delrow += query.executeUpdate();
                 }
-        }catch (SessionException ex){
+        }catch (Exception ex){
             ex.printStackTrace();
             status=false;
 
