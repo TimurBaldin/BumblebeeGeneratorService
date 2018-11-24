@@ -1,12 +1,9 @@
 package com.rufus.bumblebee.Main.Exeptions;
 
-import com.rufus.bumblebee.Main.Rules.Rule;
-
 /**
  * Class : Некорректные входных данных в генераторе
  * @version : 0.0.1
  * @author : Baldin Timur
- * @see Rule#construct()
  */
 public class GeneratorExceptionInputOptions extends Exception {
     private String [] parameters;

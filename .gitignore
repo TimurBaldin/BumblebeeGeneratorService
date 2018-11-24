@@ -80,3 +80,4 @@ hs_err_pid*
 .gradle
 build/
 /.idea/workspace.xml
+*.gz
