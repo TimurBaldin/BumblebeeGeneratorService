@@ -1,11 +1,13 @@
 package com.rufus.bumblebee.Main.Tables;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "stringtablebufer", schema = "bufer")
-public class StringTableBufer {
+public class StringTableBufer implements Serializable {
+
     @Id
     @SequenceGenerator(name = "row_id", sequenceName = "bufer.row_id", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "row_id")
@@ -21,29 +23,43 @@ public class StringTableBufer {
     @Column(name = "alive")
     @NotNull
     boolean alive;
-    public void  setAlive(boolean alive){this.alive=alive;}
-    public boolean getAlive(){return alive;}
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    public boolean getAlive() {
+        return alive;
+    }
+
     public int getUser_id() {
         return user_id;
     }
+
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public String getValue() {
         return value;
     }
+
     public void setValue(String value) {
         this.value = value;
     }
+
     public String getColumnName() {
         return ColumnName;
     }
+
     public void setColumnName(String columnName) {
         ColumnName = columnName;
     }

@@ -9,12 +9,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Class : класс создает/удаляет отчет csv
- * @version : 0.0.1
+ *
  * @author : Baldin Timur
+ * @version : 0.0.1
  */
 public class TestDataCSV implements ReportCSV<Columns> {
+
     private final String REPORT_FOLDER = "TestDataFolder\\";
     private final String FILE_FORMAT = ".csv";
     private List<Columns> bufer = new ArrayList<Columns>();

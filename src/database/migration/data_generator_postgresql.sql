@@ -1,5 +1,6 @@
 create database data_generator;
-
+create schema  bufer;
+create schema  users;
 create sequence bufer.row_id;
 
 create sequence users.client_user_id_seq

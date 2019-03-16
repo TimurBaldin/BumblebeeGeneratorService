@@ -1,13 +1,12 @@
 package com.rufus.bumblebee.Main.Services;
 
 import com.rufus.bumblebee.Main.Columns.Column;
+import com.rufus.bumblebee.Main.Columns.Columns;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Factories.TestsFactory;
 import com.rufus.bumblebee.Main.Generators.Rule;
 import com.rufus.bumblebee.Main.Repository.RepositiryTestValues;
-import com.rufus.bumblebee.Main.Columns.Columns;
-
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +14,16 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Class : Сервис создания тестовых данных
- * @version : 0.0.1
+ *
  * @author : Baldin Timur
+ * @version : 0.0.1
  */
 @Service
 public class LinesService implements BaseService {
+
     private List<Rule> Tests = new ArrayList<Rule>();
     private Column Column;
     @Autowired
@@ -42,7 +44,7 @@ public class LinesService implements BaseService {
 
     public boolean selectionBoundaryTest(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap, Boolean NullValue) {
         try {
-            Rule bufer=lineFactory.getBoundaryValues(Len, INCREASE_QUANTITY, Low, Cap, NullValue, Column);
+            Rule bufer = lineFactory.getBoundaryValues(Len, INCREASE_QUANTITY, Low, Cap, NullValue, Column);
             Tests.add(bufer);
         } catch (NullPointerException ex) {
             ex.printStackTrace();
@@ -54,7 +56,7 @@ public class LinesService implements BaseService {
 
     public boolean selectionSpecialLinesTest(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL) {
         try {
-            Rule bufer=lineFactory.getSpecialValues(SPECIAL_LEN, INCREASE_QUANTITY, ESC_SPECIAL, SPECIAL, Column);
+            Rule bufer = lineFactory.getSpecialValues(SPECIAL_LEN, INCREASE_QUANTITY, ESC_SPECIAL, SPECIAL, Column);
             Tests.add(bufer);
         } catch (NullPointerException ex) {
             ex.printStackTrace();
@@ -65,7 +67,7 @@ public class LinesService implements BaseService {
 
     public boolean selectionIntBoundary(Long BoundaryIntEnd, Long BoundaryIntStart, Integer QUANTITY) {
         try {
-            Rule bufer=lineFactory.getIntBoundaryTest(BoundaryIntEnd, BoundaryIntStart, QUANTITY, Column);
+            Rule bufer = lineFactory.getIntBoundaryTest(BoundaryIntEnd, BoundaryIntStart, QUANTITY, Column);
             Tests.add(bufer);
         } catch (NullPointerException ex) {
             ex.printStackTrace();
@@ -76,7 +78,7 @@ public class LinesService implements BaseService {
 
     public boolean selectionIntRange(Long MaxIntVal, Long MinIntVal) {
         try {
-            Rule bufer=lineFactory.getIntFullRange(MaxIntVal, MinIntVal, Column);
+            Rule bufer = lineFactory.getIntFullRange(MaxIntVal, MinIntVal, Column);
             Tests.add(bufer);
         } catch (NullPointerException ex) {
             ex.printStackTrace();
@@ -86,7 +88,7 @@ public class LinesService implements BaseService {
     }
 
     public boolean saveColumn() {
-        boolean status=false;
+        boolean status = false;
         try {
             if (Tests.size() > 0) {
                 for (Rule bufer : Tests) {
@@ -97,10 +99,10 @@ public class LinesService implements BaseService {
             } else {
                 throw new InvalidInputException("It is necessary to choose checks");
             }
-        } catch (GeneratorExceptionInputOptions ex){
-             System.out.println(ex.getMessage());
-             System.out.println(ex.getParameters());
-             return status;
+        } catch (GeneratorExceptionInputOptions ex) {
+            System.out.println(ex.getMessage());
+            System.out.println(ex.getParameters());
+            return status;
         } catch (TransferException e) {
             System.out.println(e.getMessage());
             return status;
@@ -108,13 +110,13 @@ public class LinesService implements BaseService {
             e.printStackTrace();
             return status;
         }
-        status=true;
+        status = true;
         return status;
 
     }
 
     public boolean saveModel() {
-        boolean status=false;
+        boolean status = false;
         try {
             if (columns.size() > 0) {
                 for (Columns bufer : columns) {
@@ -128,7 +130,7 @@ public class LinesService implements BaseService {
             e.printStackTrace();
             return status;
         }
-        status=true;
+        status = true;
         return status;
     }
 
@@ -140,7 +142,7 @@ public class LinesService implements BaseService {
 
     public File createReportExcel(String DOC_NAME, String Sheet_NAME) {
         File file = reportService.createExcel(DOC_NAME, Sheet_NAME, Repositiry.get(columns));
-         cleanData();
+        cleanData();
         return file;
     }
 
@@ -161,6 +163,5 @@ public class LinesService implements BaseService {
         return status;
 
     }
-
 
 }

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 @Configuration
 public class Config implements WebMvcConfigurer {
+
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public ReportService getReportService() {
@@ -48,6 +49,7 @@ public class Config implements WebMvcConfigurer {
     public LinesService linesService() {
         return new LinesService(getReportService(), getRepositiry(), geTestsFactory());
     }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(
@@ -59,4 +61,5 @@ public class Config implements WebMvcConfigurer {
                         "classpath:/static/css/",
                         "classpath:/static/js/");
     }
+
 }

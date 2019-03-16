@@ -2,19 +2,18 @@ package com.rufus.bumblebee.Main.Repository;
 
 import com.rufus.bumblebee.Main.Rules.DAO.UserRepository;
 import com.rufus.bumblebee.Main.Tables.Client;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+
 /**
  * Class : CRUD операции с пользователем
- * @warning : Класс  на этапе разработки . Не используется в текущей реализации
- * @version : 0.0.0
+ *
  * @author : Baldin Timur
+ * @version : 0.0.0
+ * @warning : Класс  на этапе разработки . Не используется в текущей реализации
  */
 public class ClientRepository implements UserRepository {
 
     private final String CHECK_USER = "SELECT login FROM com.rufus.bumblebee.Main.Tables.Client where login=:val1";
+
     @Override
     public boolean create(Client client) throws Exception {
 

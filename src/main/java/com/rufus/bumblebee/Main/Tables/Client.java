@@ -1,10 +1,12 @@
 package com.rufus.bumblebee.Main.Tables;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "client", schema = "users")
-public class Client {
+public class Client implements Serializable {
+
     @Id
     @SequenceGenerator(name = "client_id", sequenceName = "public.client_user_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_id")

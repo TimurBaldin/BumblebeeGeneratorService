@@ -14,16 +14,19 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 /**
  * Class : Логгирование времени выполнения методов
- * @version : 0.0.1
+ *
  * @author : Baldin Timur
+ * @version : 0.0.1
  */
 
 @Aspect
 @Configuration
 @EnableAspectJAutoProxy
 public class LoggTime {
+
     private final String LOG_FOLDER = "LogsTime\\";
     private File file;
     private String PATH = System.getProperty("java.io.tmpdir") + LOG_FOLDER + "logtime.txt";
@@ -55,10 +58,12 @@ public class LoggTime {
     public void specialtest() {
 
     }
+
     @Pointcut("execution(* com.rufus.bumblebee.Main.Services.ReportService.createCSV(..))")
     public void createreportCSV() {
 
     }
+
     @Pointcut("execution(* com.rufus.bumblebee.Main.Services.ReportService.createExcel(..))")
     public void createreportExcel() {
 
@@ -73,29 +78,33 @@ public class LoggTime {
     private void afterboundary() {
         stopTimeLog("StringBoundaryValues");
     }
+
     @Before("specialtest()")
     private void beforspecial() {
         startTimeLog("StringSpecialValues");
     }
+
     @AfterReturning("specialtest()")
     private void afterspecial() {
         stopTimeLog("StringSpecialValues");
     }
+
     @Before("createreportCSV()")
     private void reportStart() {
         startTimeLog("reportCSV");
     }
+
     @AfterReturning("createreportCSV()")
     private void reportEnd() {
         stopTimeLog("reportCSV");
     }
 
 
-
     @Before("createreportExcel()")
     private void reportExcelStart() {
         startTimeLog("reportExcel");
     }
+
     @AfterReturning("createreportExcel()")
     private void reportExcelEnd() {
         stopTimeLog("reportExcel");
@@ -104,11 +113,12 @@ public class LoggTime {
 
     private void startTimeLog(String method) {
         Date date = new Date();
-        System.err.println("Start work "+method+" : -> " + formatForDateNow.format(date));
+        System.err.println("Start work " + method + " : -> " + formatForDateNow.format(date));
     }
 
     private void stopTimeLog(String method) {
         Date date = new Date();
-        System.err.println("End work : " +method+" : -> "+ formatForDateNow.format(date));
+        System.err.println("End work : " + method + " : -> " + formatForDateNow.format(date));
     }
+
 }

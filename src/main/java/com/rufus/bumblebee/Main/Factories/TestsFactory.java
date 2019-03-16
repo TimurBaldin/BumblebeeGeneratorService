@@ -1,14 +1,14 @@
 package com.rufus.bumblebee.Main.Factories;
 
 import com.rufus.bumblebee.Main.Columns.Column;
+import com.rufus.bumblebee.Main.Columns.Columns;
 import com.rufus.bumblebee.Main.Generators.LineGenerator.StringBoundaryValues;
 import com.rufus.bumblebee.Main.Generators.LineGenerator.StringSpecialValues;
 import com.rufus.bumblebee.Main.Generators.NumberGenerator.IntBoundaryValues;
 import com.rufus.bumblebee.Main.Generators.NumberGenerator.IntFullRange;
-import com.rufus.bumblebee.Main.Columns.Columns;
 
 
-public class TestsFactory implements BaseFactory {
+public class TestsFactory {
 
     public Column getColumn(String name) {
         return new Column(name);
@@ -29,4 +29,5 @@ public class TestsFactory implements BaseFactory {
     public IntFullRange getIntFullRange(Long MaxIntVal, Long MinIntVal, Columns column) {
         return new IntFullRange(MaxIntVal, MinIntVal, column);
     }
+
 }

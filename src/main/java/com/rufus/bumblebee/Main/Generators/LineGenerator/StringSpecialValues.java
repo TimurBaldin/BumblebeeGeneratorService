@@ -2,23 +2,26 @@ package com.rufus.bumblebee.Main.Generators.LineGenerator;
 
 import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
+import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
-import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import com.rufus.bumblebee.Main.Generators.Rule;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+
 import static com.rufus.bumblebee.Main.Generators.LineGenerator.SpecialID.KEY_ID;
 
 /**
  * Class : Генерирует строки из специальных символов длиной от 1 до SPECIAL_LEN+INCREASE_QUANTITY
- * @version : 0.0.1
+ *
  * @author : Baldin Timur
+ * @version : 0.0.1
  */
 public class StringSpecialValues implements Rule {
-    private  final int MIN_ID_ESC = KEY_ID.getMIN_ID_ESC() ;
+
+    private final int MIN_ID_ESC = KEY_ID.getMIN_ID_ESC();
     private final int MAX_ID_ESC = KEY_ID.getMAX_ID_ESC();
     //Escape symbols
     private final int MIN_ID_SPECIAL_1 = KEY_ID.getMIN_ID_SPECIAL_1();
@@ -44,10 +47,10 @@ public class StringSpecialValues implements Rule {
     }
 
     @Override
-    public void construct() throws GeneratorExceptionInputOptions,TransferException {
+    public void construct() throws GeneratorExceptionInputOptions, TransferException {
         if (checkIn()) {
-            throw new GeneratorExceptionInputOptions("Your choice is not right.Parameters : ",SPECIAL_LEN.toString()+ESC_SPECIAL.toString()+SPECIAL.toString()+INCREASE_QUANTITY.toString());
-        }else {
+            throw new GeneratorExceptionInputOptions("Your choice is not right.Parameters : ", SPECIAL_LEN.toString() + ESC_SPECIAL.toString() + SPECIAL.toString() + INCREASE_QUANTITY.toString());
+        } else {
             if (ESC_SPECIAL && SPECIAL) {
                 if ((SPECIAL_LEN + INCREASE_QUANTITY) % 2 == 0) {
                     stringEsc((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
@@ -117,7 +120,7 @@ public class StringSpecialValues implements Rule {
     }
 
     private boolean checkIn() {
-        if ((!ESC_SPECIAL && !SPECIAL) || SPECIAL_LEN <= 0 || INCREASE_QUANTITY <0) {
+        if ((!ESC_SPECIAL && !SPECIAL) || SPECIAL_LEN <= 0 || INCREASE_QUANTITY < 0) {
             return true;
         } else {
             return false;
@@ -131,4 +134,5 @@ public class StringSpecialValues implements Rule {
             return false;
         }
     }
+
 }

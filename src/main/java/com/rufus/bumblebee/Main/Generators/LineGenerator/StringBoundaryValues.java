@@ -2,21 +2,23 @@ package com.rufus.bumblebee.Main.Generators.LineGenerator;
 
 import com.rufus.bumblebee.Main.Columns.Column;
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
+import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
-
-import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import com.rufus.bumblebee.Main.Generators.Rule;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Class : Генерирует строки от 1 до Len+INCREASE_QUANTITY
- * @version : 0.0.1
+ *
  * @author : Baldin Timur
+ * @version : 0.0.1
  */
 public class StringBoundaryValues implements Rule {
+
     private final int MIN_ID_CAPITALS = 65;
     private final int MAX_ID_CAPITALS = 90;
     private final int MIN_ID_LOWERCASE = 97;
@@ -40,11 +42,11 @@ public class StringBoundaryValues implements Rule {
     }
 
     @Override
-    public void construct() throws GeneratorExceptionInputOptions,TransferException {
+    public void construct() throws GeneratorExceptionInputOptions, TransferException {
         if (checkIn()) {
-            String paremeters=len.toString()+Low.toString()+Cap.toString()+INCREASE_QUANTITY.toString()+NullValue.toString();
-            throw new GeneratorExceptionInputOptions("Your choice is not right.",paremeters);
-        }else {
+            String paremeters = len.toString() + Low.toString() + Cap.toString() + INCREASE_QUANTITY.toString() + NullValue.toString();
+            throw new GeneratorExceptionInputOptions("Your choice is not right.", paremeters);
+        } else {
             if (NullValue) {
                 values.add(new BaseDatatype(new StringNull().returnValue(), TYPE));
             }
@@ -126,7 +128,7 @@ public class StringBoundaryValues implements Rule {
     }
 
     private boolean checkIn() {
-        if ((!Low && !Cap) || len <= 0 || INCREASE_QUANTITY <0) {
+        if ((!Low && !Cap) || len <= 0 || INCREASE_QUANTITY < 0) {
             return true;
         } else {
             return false;
@@ -140,4 +142,5 @@ public class StringBoundaryValues implements Rule {
             return false;
         }
     }
+
 }

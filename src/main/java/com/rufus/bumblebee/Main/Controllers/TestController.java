@@ -15,16 +15,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+
 @Controller
 @RequestMapping("/creatortest")
-public class LineTestController {
+public class TestController {
+
     private final String MESSAGE_FORUSER_SUCCESSFULLY = "Successfully";
     private final String MESSAGE_FORUSER_ERROR = "Error";
 
     private LinesService service;
 
     @Autowired
-    public LineTestController(LinesService service) {
+    public TestController(LinesService service) {
         this.service = service;
     }
 
@@ -103,38 +105,37 @@ public class LineTestController {
     @RequestMapping(path = "/csvreport", method = RequestMethod.GET)
     public ResponseEntity<InputStreamResource> csvreport(@RequestParam String docname, @RequestParam String delimiter) {
         File file = service.createReportCSV(docname, delimiter);
-        InputStreamResource resource = null;
-        try {
-            resource = new InputStreamResource(new FileInputStream(file));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        InputStreamResource resource = getResource(file);
+        ;
         endwork();
         return ResponseEntity.ok().contentLength(file.length())
-                .contentType(MediaType.parseMediaType("text/csv")).header("Content-disposition", "attachment; filename="+ file.getName())
+                .contentType(MediaType.parseMediaType("text/csv")).header("Content-disposition", "attachment; filename=" + file.getName())
                 .body(resource);
     }
 
     @RequestMapping(path = "/excelreport", method = RequestMethod.GET)
     public ResponseEntity<InputStreamResource> excelreport(@RequestParam String docname, @RequestParam String sheetname) {
         File file = service.createReportExcel(docname, sheetname);
-        InputStreamResource resource = null;
-        try {
-            resource = new InputStreamResource(new FileInputStream(file));
-            } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        InputStreamResource resource = getResource(file);
         endwork();
         return ResponseEntity.ok().contentLength(file.length())
-                .contentType(MediaType.parseMediaType("application/vnd.ms-excel")).header("Content-disposition", "attachment; filename="+ file.getName())
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel")).header("Content-disposition", "attachment; filename=" + file.getName())
                 .body(resource);
 
     }
 
     private void endwork() {
-         service.endwork();
+        service.endwork();
     }
 
+    private InputStreamResource getResource(File file) {
+        try {
+            return new InputStreamResource(new FileInputStream(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
 

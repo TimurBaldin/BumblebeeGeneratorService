@@ -1,21 +1,24 @@
 package com.rufus.bumblebee.Main.Generators.NumberGenerator;
 
+import com.rufus.bumblebee.Main.Columns.Columns;
 import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
+import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
-import com.rufus.bumblebee.Main.Columns.Columns;
 import com.rufus.bumblebee.Main.Generators.Rule;
-import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Class : Генерирует числа для проверки "граничных значений"
- * @version : 0.0.1
+ *
  * @author : Baldin Timur
+ * @version : 0.0.1
  */
 public class IntBoundaryValues implements Rule {
+
     private final String TYPE = "NUMERIC";
     private Long MaxInt;
     private Long MinInt;
@@ -31,11 +34,10 @@ public class IntBoundaryValues implements Rule {
     }
 
     @Override
-    public void construct() throws GeneratorExceptionInputOptions,TransferException {
+    public void construct() throws GeneratorExceptionInputOptions, TransferException {
         if (checkRule()) {
-            throw new GeneratorExceptionInputOptions("Invalid input conditions.",MaxInt.toString()+MinInt.toString(),QUANTITY.toString());
-        }
-        else {
+            throw new GeneratorExceptionInputOptions("Invalid input conditions.", MaxInt.toString() + MinInt.toString(), QUANTITY.toString());
+        } else {
             buildBoundary();
             buildTestNum();
             transfer();
@@ -44,7 +46,7 @@ public class IntBoundaryValues implements Rule {
 
     @Override
     public void transfer() throws TransferException {
-        if (column == null || values.size()==0) {
+        if (column == null || values.size() == 0) {
             throw new TransferException("Value column not be null or test data was not generated.");
         } else {
             column.setValues(values);
@@ -82,6 +84,6 @@ public class IntBoundaryValues implements Rule {
         for (int i = 1; i <= QUANTITY; i++) {
             values.add(new BaseDatatype(buildRandNum().toString(), TYPE));
         }
-
     }
+
 }

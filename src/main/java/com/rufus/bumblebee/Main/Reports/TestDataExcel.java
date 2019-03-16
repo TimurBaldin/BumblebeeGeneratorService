@@ -14,12 +14,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Class : создание/удаление отчета формата xlsx
- * @version : 0.0.1
+ *
  * @author : Baldin Timur
+ * @version : 0.0.1
  */
 public class TestDataExcel implements ReportExcel<Columns> {
+
     private final String REPORT_FOLDER = "TestDataFolder\\";
     private final String FILE_FORMAT = ".xlsx";
     private XSSFRow row;
@@ -113,4 +116,5 @@ public class TestDataExcel implements ReportExcel<Columns> {
             return file.delete();
         }
     }
+
 }

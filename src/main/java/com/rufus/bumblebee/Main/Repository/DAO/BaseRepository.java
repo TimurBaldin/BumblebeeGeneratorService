@@ -4,22 +4,27 @@ import com.rufus.bumblebee.Main.Repository.SessionUntil;
 import org.hibernate.SessionFactory;
 
 import java.util.List;
+
 /**
  * Class : Базовый класс для CRUD операций с тестовыми данными
- * @version : 0.0.1
+ *
  * @author : Baldin Timur
+ * @version : 0.0.1
  */
 public interface BaseRepository<T, S> {
     SessionFactory sessionFactory = SessionUntil.INSTANCE.getInstance();
+
     /**
      * Запись тестовых данных в БД
      */
     boolean create(List<S> values, String COLUMN_NAME);
+
     /**
-     * @return выгрузку тестовых данных
      * @param columns название колонок с тестовыми данными
+     * @return выгрузку тестовых данных
      */
     List<T> get(List<T> columns);
+
     /**
      * @param columns название колонок для удаления
      */

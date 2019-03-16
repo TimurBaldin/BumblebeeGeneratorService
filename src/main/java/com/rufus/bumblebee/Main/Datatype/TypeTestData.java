@@ -1,17 +1,21 @@
 package com.rufus.bumblebee.Main.Datatype;
+
 /**
  * Class : Базовый класс для реализации пользовательских типов данных
- * @version : 0.0.1
+ *
  * @author : Baldin Timur
+ * @version : 0.0.1
  */
 public interface TypeTestData<Type, Key> {
+
     /**
-     *  Идентификатор типа данных
+     * Идентификатор типа данных
      */
     Key getKey();
 
     /**
-     *  Тестовое значение
+     * Тестовое значение
      */
     Type getValue();
+
 }
