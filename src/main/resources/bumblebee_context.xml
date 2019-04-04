@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <context:component-scan base-package="com.rufus.bumblebee.Main"/>
+    <context:annotation-config></context:annotation-config>
+
+    <bean id="provider" class="org.hibernate.jpa.HibernatePersistenceProvider"/>
+
+    <bean id="emf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceProvider" ref="provider"/>
+        <property name="persistenceUnitName" value="generator"/>
+    </bean>
+
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emf"/>
+    </bean>
+
+    <bean id="entityManager"
+          class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+        <property name="entityManagerFactory" ref="emf"/>
+    </bean>
+
+    <bean id="em" class="com.rufus.bumblebee.Main.Repository.DAO.Repository">
+        <property name="em" ref="entityManager"/>
+    </bean>
+
+    <bean id="repository" class="com.rufus.bumblebee.Main.Repository.TestDataRepository" scope="prototype"/>
+
+    <bean id="reportFactory" class="com.rufus.bumblebee.Main.Factories.ReportFactory" scope="prototype"/>
+
+    <bean id="reportService" class="com.rufus.bumblebee.Main.Services.ReportService" scope="prototype">
+        <constructor-arg ref="reportFactory"/>
+    </bean>
+
+    <bean id="testsFactory" class="com.rufus.bumblebee.Main.Factories.TestsFactory" scope="prototype"/>
+
+    <bean id="service" class="com.rufus.bumblebee.Main.Services.TestDataService" scope="prototype">
+        <constructor-arg ref="reportService" index="0"/>
+        <constructor-arg ref="repository" index="1"/>
+        <constructor-arg ref="testsFactory" index="2"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+</beans>

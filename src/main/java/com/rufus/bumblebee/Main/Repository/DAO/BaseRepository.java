@@ -1,16 +1,20 @@
-package com.rufus.bumblebee.Main.Rules.DAO;
+package com.rufus.bumblebee.Main.Repository.DAO;
 
-import com.rufus.bumblebee.Main.Repository.SessionUntil;
-import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
 /**
  * Class : Базовый класс для CRUD операций с тестовыми данными
  * @version : 0.0.1
  * @author : Baldin Timur
  */
+@Repository
 public interface BaseRepository<T, S> {
-    SessionFactory sessionFactory = SessionUntil.INSTANCE.getInstance();
+
     /**
      * Запись тестовых данных в БД
      */

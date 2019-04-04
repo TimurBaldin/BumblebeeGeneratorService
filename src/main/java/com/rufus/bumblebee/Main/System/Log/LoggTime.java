@@ -46,12 +46,12 @@ public class LoggTime {
         }
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.Main.Services.LinesService.selectionBoundaryTest(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.Main.Services.TestDataService.selectionBoundaryTest(..))")
     public void boundarytest() {
 
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.Main.Services.LinesService.selectionSpecialLinesTest(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.Main.Services.TestDataService.selectionSpecialLinesTest(..))")
     public void specialtest() {
 
     }

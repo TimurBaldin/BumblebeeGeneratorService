@@ -5,7 +5,7 @@ import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Factories.TestsFactory;
 import com.rufus.bumblebee.Main.Generators.Rule;
-import com.rufus.bumblebee.Main.Repository.RepositiryTestValues;
+import com.rufus.bumblebee.Main.Repository.TestDataRepository;
 import com.rufus.bumblebee.Main.Columns.Columns;
 
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
@@ -21,16 +21,17 @@ import java.util.List;
  * @author : Baldin Timur
  */
 @Service
-public class LinesService implements BaseService {
+public class TestDataService implements BaseService {
+
     private List<Rule> Tests = new ArrayList<Rule>();
     private Column Column;
     @Autowired
     private TestsFactory lineFactory;
     private ReportService reportService;
     private List<Columns> columns = new ArrayList<Columns>();
-    private RepositiryTestValues Repositiry;
+    private TestDataRepository Repositiry;
 
-    public LinesService(ReportService reportService, RepositiryTestValues repositiry, TestsFactory lineFactory) {
+    public TestDataService(ReportService reportService, TestDataRepository repositiry, TestsFactory lineFactory) {
         this.reportService = reportService;
         this.Repositiry = repositiry;
         this.lineFactory = lineFactory;

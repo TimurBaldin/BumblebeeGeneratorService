@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.Main.Controllers;
 
 import com.rufus.bumblebee.Main.Columns.Column;
-import com.rufus.bumblebee.Main.Services.LinesService;
+import com.rufus.bumblebee.Main.Services.TestDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
@@ -21,10 +21,10 @@ public class LineTestController {
     private final String MESSAGE_FORUSER_SUCCESSFULLY = "Successfully";
     private final String MESSAGE_FORUSER_ERROR = "Error";
 
-    private LinesService service;
+    private TestDataService service;
 
     @Autowired
-    public LineTestController(LinesService service) {
+    public LineTestController(TestDataService service) {
         this.service = service;
     }
 

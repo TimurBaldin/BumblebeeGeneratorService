@@ -42,8 +42,10 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile group: 'org.springframework', name: 'spring-aop', version: '5.0.6.RELEASE'
     compile group: 'org.aspectj', name: 'aspectjtools', version: '1.9.1'
-
-    
+    compile group: 'org.springframework', name: 'spring-orm', version: '5.0.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version: '5.0.6.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.1.5.RELEASE'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.16.Final'
 }
 
 task wrapper(type: Wrapper) {

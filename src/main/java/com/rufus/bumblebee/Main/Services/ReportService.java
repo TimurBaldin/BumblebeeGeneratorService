@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.Main.Services;
 
-import com.rufus.bumblebee.Main.Factories.ReportFactory;
 import com.rufus.bumblebee.Main.Columns.Columns;
+import com.rufus.bumblebee.Main.Factories.ReportFactory;
 import com.rufus.bumblebee.Main.Reports.ReportCSV;
 import com.rufus.bumblebee.Main.Reports.ReportExcel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +10,21 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
+
 /**
  * Class : Сервис создания отчетов
- * @version : 0.0.1
+ *
  * @author : Baldin Timur
+ * @version : 0.0.1
  */
 @Service
 public class ReportService implements BaseService {
 
     @Autowired
     private ReportFactory config;
+
     private ReportCSV reportCSV;
+
     private ReportExcel reportExcel;
 
     public ReportService(ReportFactory config) {
