@@ -23,7 +23,7 @@ public interface Columns<T, S> {
      * @return метод возвращает название колонки для записи в БД
      * @see com.rufus.bumblebee.Main.Repository.TestDataRepository#create(List, String)
      */
-    String getCOLUMN();
+    String getColumn();
     /**
      * @return метод возвращает количество тестовых данных
      *

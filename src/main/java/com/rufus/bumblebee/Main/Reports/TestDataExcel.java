@@ -53,7 +53,7 @@ public class TestDataExcel implements ReportExcel<Columns> {
                 for (int j = 0; j <= bufer.size() - 1; j++) {
                     cell = row.createCell(j);
                     cell.setCellType(CellType.STRING);
-                    cell.setCellValue(bufer.get(j).getCOLUMN());
+                    cell.setCellValue(bufer.get(j).getColumn());
                 }
                 int id = 1;
                 boolean flag = checksize(id);

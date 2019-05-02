@@ -119,7 +119,7 @@ public class TestDataService implements BaseService {
         try {
             if (columns.size() > 0) {
                 for (Columns bufer : columns) {
-                    Repositiry.create(bufer.getValues(), bufer.getCOLUMN());
+                    Repositiry.create(bufer.getValues(), bufer.getColumn());
                     bufer.clear();
                 }
             } else {

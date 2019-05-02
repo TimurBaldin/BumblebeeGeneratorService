@@ -39,7 +39,7 @@ public class TestDataCSV implements ReportCSV<Columns> {
                 file.createNewFile();
                 FileWriter writer = new FileWriter(file);
                 for (int j = 0; j <= bufer.size() - 1; j++) {
-                    writer.write(bufer.get(j).getCOLUMN() + delimiter);
+                    writer.write(bufer.get(j).getColumn() + delimiter);
                 }
                 writer.write(System.getProperty("line.separator"));
                 boolean flag = true;

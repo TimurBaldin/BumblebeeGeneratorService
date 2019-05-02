@@ -12,12 +12,13 @@ import java.util.List;
  * @author : Baldin Timur
  */
 public class Column implements Columns<TypeTestData, String> {
-    private String COLUMN_NAME;
+
+    private String columnName;
     private List<TypeTestData> values = Collections.synchronizedList(new ArrayList<TypeTestData>());
     private List<String> report = Collections.synchronizedList(new ArrayList());
 
-    public Column(String COLUMN_NAME) {
-        this.COLUMN_NAME = COLUMN_NAME;
+    public Column(String columnName) {
+        this.columnName = columnName;
     }
 
     public void setReport(List<String> report) {
@@ -28,7 +29,7 @@ public class Column implements Columns<TypeTestData, String> {
     public List<TypeTestData> getValues() {
         if (checkRule()) {
             try {
-                throw new InvalidInputException("Test data not be null or COLUMN_NAME not be null");
+                throw new InvalidInputException("Test data not be null or columnName not be null");
             } catch (InvalidInputException e) {
                 e.printStackTrace();
                 return null;
@@ -43,8 +44,8 @@ public class Column implements Columns<TypeTestData, String> {
         this.values.addAll(values);
     }
     @Override
-    public String getCOLUMN() {
-        return COLUMN_NAME;
+    public String getColumn() {
+        return columnName;
     }
     @Override
     public void clear() {
@@ -68,10 +69,11 @@ public class Column implements Columns<TypeTestData, String> {
     }
 
     private boolean checkRule() {
-        if (COLUMN_NAME == null || COLUMN_NAME == "") {
+        if (columnName == null || columnName == "") {
             return true;
         } else {
             return false;
         }
     }
+
 }
