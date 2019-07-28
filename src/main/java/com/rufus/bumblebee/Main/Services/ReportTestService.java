@@ -1,14 +1,12 @@
 package com.rufus.bumblebee.Main.Services;
 
-import com.rufus.bumblebee.Main.Columns.Columns;
+import com.rufus.bumblebee.Main.Container.Container;
 import com.rufus.bumblebee.Main.Factories.ReportFactory;
 import com.rufus.bumblebee.Main.Reports.ReportCSV;
 import com.rufus.bumblebee.Main.Reports.ReportExcel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
@@ -18,22 +16,22 @@ import java.util.List;
  * @version : 0.0.1
  */
 @Service
-public class ReportService implements BaseService {
+public class ReportTestService implements BaseTestService {
 
     @Autowired
     private ReportFactory config;
     private ReportCSV reportCSV;
     private ReportExcel reportExcel;
 
-    public ReportService(ReportFactory config) {
+    public ReportTestService(ReportFactory config) {
         this.config = config;
     }
 
-    public File createExcel(String DOC_NAME, String Sheet_NAME, List<Columns> bufer) {
+    public byte[] createExcel(String docName, String sheetName, List<Container> bufer) {
         reportExcel = config.getReportExcel();
-        File file = null;
+        byte[] file = null;
         try {
-            file = reportExcel.create(DOC_NAME, Sheet_NAME, bufer);
+            file = reportExcel.create(docName, sheetName, bufer);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,11 +40,11 @@ public class ReportService implements BaseService {
 
     }
 
-    public File createCSV(String docname, String delimiter, List<Columns> bufer) {
+    public byte[] createCSV(String docName, String delimiter, List<Container> bufer) {
         reportCSV = config.getReportCSV();
-        File file = null;
+        byte[] file = null;
         try {
-            file = reportCSV.create(docname, delimiter, bufer);
+            file = reportCSV.create(docName, delimiter, bufer);
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -55,20 +53,18 @@ public class ReportService implements BaseService {
 
     }
 
-    public void deleteExcel() {
-        try {
-            reportExcel.delete();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void createTestDataContainer(String containerName) {
+
     }
 
-    public void deleteCSV() {
-        try {
-            reportCSV.delete();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public boolean startGeneratingData() {
+        return false;
     }
 
+    @Override
+    public boolean saveTests() {
+        return false;
+    }
 }

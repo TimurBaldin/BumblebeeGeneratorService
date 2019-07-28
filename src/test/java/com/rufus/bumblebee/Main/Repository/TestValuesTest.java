@@ -1,8 +1,8 @@
 package com.rufus.bumblebee.Main.Repository;
 
-import com.rufus.bumblebee.Main.Columns.Column;
-import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
-import com.rufus.bumblebee.Main.Columns.Columns;
+import com.rufus.bumblebee.Main.Container.TestDataContainer;
+import com.rufus.bumblebee.Main.Datatype.BaseDataType;
+import com.rufus.bumblebee.Main.Container.Container;
 import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import org.junit.After;
 import org.junit.Before;
@@ -13,22 +13,22 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-public class RepositiryTestValuesTest {
+public class TestValuesTest {
    private final String COLUMN_NAME="TestClassRepositiryTestValuesTest";
-    private  RepositiryTestValues testValues;
+    private TestContainerRepository testValues;
     private  ArrayList<TypeTestData> arr;
-    private  List<Columns> columns;
+    private  List<Container> columns;
 @Before
 public void precondition(){
-    testValues = new RepositiryTestValues();
+    testValues = new TestContainerRepository();
     arr = new ArrayList<TypeTestData>();
-    arr.add(new BaseDatatype(null,"Line"));
+    arr.add(new BaseDataType(null,"Line"));
     for (Integer i = 0; i <= 10; i++) {
-        arr.add(new BaseDatatype(i.toString(), "Line"));
+        arr.add(new BaseDataType(i.toString(), "Line"));
     }
-    columns = new ArrayList<Columns>();
+    columns = new ArrayList<Container>();
     for (Integer i = 0; i <= 10; i++) {
-        columns.add(new Column(COLUMN_NAME));
+        columns.add(new TestDataContainer(COLUMN_NAME));
     }
 }
 @After
@@ -56,7 +56,7 @@ public void delete(){
     @Test
     public void getDataFromBD() {
         construct();
-        List<Columns> arrayList=testValues.get(columns);
+        List<Container> arrayList=testValues.get(columns);
         boolean status=(arrayList.size()==columns.size());
         assertTrue(status);
 

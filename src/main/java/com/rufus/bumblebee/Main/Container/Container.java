@@ -1,6 +1,7 @@
-package com.rufus.bumblebee.Main.Columns;
+package com.rufus.bumblebee.Main.Container;
 
 import com.rufus.bumblebee.Main.Generators.Rule;
+import com.rufus.bumblebee.Main.Repository.TestContainerRepository;
 
 import java.util.List;
 
@@ -10,10 +11,10 @@ import java.util.List;
  * @author : Baldin Timur
  * @version : 0.0.1
  */
-public interface Columns<T, S> {
+public interface Container<T, S> {
     /**
      * @return метод возвращает тестовые данные для записи в БД
-     * @see com.rufus.bumblebee.Main.Repository.RepositiryTestValues#create(List, String)
+     * @see TestContainerRepository#create(List, String)
      */
     List<T> getValues();
 
@@ -26,9 +27,9 @@ public interface Columns<T, S> {
 
     /**
      * @return метод возвращает название колонки для записи в БД
-     * @see com.rufus.bumblebee.Main.Repository.RepositiryTestValues#create(List, String)
+     * @see TestContainerRepository#create(List, String)
      */
-    String getCOLUMN();
+    String getContainerName();
 
     /**
      * @return метод возвращает количество тестовых данных
@@ -55,7 +56,7 @@ public interface Columns<T, S> {
      * Передача тестовых данных для создание отчета
      *
      * @param report тестовые данные для записи в отчет
-     * @see com.rufus.bumblebee.Main.Repository.RepositiryTestValues#get(List)
+     * @see TestContainerRepository#get(List)
      */
     void setReport(List<String> report);
 

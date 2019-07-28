@@ -3,8 +3,7 @@ package com.rufus.bumblebee.Main.Tables;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
-@Table(name = "client", schema = "users")
+
 public class Client implements Serializable {
 
     @Id

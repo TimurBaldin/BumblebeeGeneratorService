@@ -1,9 +1,9 @@
 package com.rufus.bumblebee.Main.Reports;
 
-import com.rufus.bumblebee.Main.Columns.Column;
+import com.rufus.bumblebee.Main.Container.TestDataContainer;
 import com.rufus.bumblebee.Main.Factories.ReportFactory;
-import com.rufus.bumblebee.Main.Columns.Columns;
-import com.rufus.bumblebee.Main.Services.ReportService;
+import com.rufus.bumblebee.Main.Container.Container;
+import com.rufus.bumblebee.Main.Services.ReportTestService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +16,8 @@ import static org.junit.Assert.assertTrue;
 public class TestDataCSVTest {
    private final long SIZE = 17500;
     private ArrayList<String> str;
-    private  ArrayList<Columns> arr;
-    private ReportService service;
+    private  ArrayList<Container> arr;
+    private ReportTestService service;
     private final int QUANTITY_LINES=500;
     private final String COLUMN_NAME="Tester";
     private final int QUANTITY_COLUMN=10;
@@ -26,15 +26,15 @@ public class TestDataCSVTest {
 
     @Before
     public void precondition() {
-        service = new ReportService(new ReportFactory());
+        service = new ReportTestService(new ReportFactory());
         str = new ArrayList<String>();
-        arr = new ArrayList<Columns>();
+        arr = new ArrayList<Container>();
         for (Integer i = 0; i <= QUANTITY_LINES; i++) {
             str.add(i.toString());
             //Количество строк
         }
         for (Integer j = 0; j <= QUANTITY_COLUMN; j++) {
-            Column lines = new Column(COLUMN_NAME + j.toString());
+            TestDataContainer lines = new TestDataContainer(COLUMN_NAME + j.toString());
             lines.setReport(str);
             arr.add(lines);
             //Количество колонок
@@ -48,7 +48,7 @@ public class TestDataCSVTest {
         service = null;
 
     }
-    private File construct(String docname,String delimiter,ArrayList<Columns> arr){
+    private File construct(String docname,String delimiter,ArrayList<Container> arr){
         return service.createCSV(docname, delimiter, arr);
         }
 

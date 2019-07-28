@@ -1,7 +1,8 @@
-package com.rufus.bumblebee.Main.Columns;
+package com.rufus.bumblebee.Main.Container;
 
 import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +13,14 @@ import java.util.List;
  * @author : Baldin Timur
  * @version : 0.0.1
  */
-public class Column implements Columns<TypeTestData, String> {
+public class TestDataContainer implements Container<TypeTestData, String> {
 
-    private String columnName;
-    private List<TypeTestData> values = new ArrayList<TypeTestData>();
-    private List<String> report = new ArrayList();
+    private String containerName;
+    private List<TypeTestData> values = new ArrayList<>();
+    private List<String> report = new ArrayList<>();
 
-    public Column(String columnName) {
-        this.columnName = columnName;
+    public TestDataContainer(String containerName) {
+        this.containerName = containerName;
     }
 
     public void setReport(List<String> report) {
@@ -30,7 +31,7 @@ public class Column implements Columns<TypeTestData, String> {
     public List<TypeTestData> getValues() {
         if (checkRule()) {
             try {
-                throw new InvalidInputException("Test data not be null or columnName not be null");
+                throw new InvalidInputException("Test data not be null or containerName not be null");
             } catch (InvalidInputException e) {
                 e.printStackTrace();
                 return null;
@@ -46,8 +47,8 @@ public class Column implements Columns<TypeTestData, String> {
     }
 
     @Override
-    public String getCOLUMN() {
-        return columnName;
+    public String getContainerName() {
+        return containerName;
     }
 
     @Override
@@ -72,11 +73,7 @@ public class Column implements Columns<TypeTestData, String> {
     }
 
     private boolean checkRule() {
-        if (columnName == null || columnName == "") {
-            return true;
-        } else {
-            return false;
-        }
+        return !StringUtils.isEmpty(containerName);
     }
 
 }

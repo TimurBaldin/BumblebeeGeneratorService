@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.Main.LineGenerator;
 
-import com.rufus.bumblebee.Main.Columns.Column;
+import com.rufus.bumblebee.Main.Container.TestDataContainer;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Datatype.TypeTestData;
@@ -22,18 +22,18 @@ public class StringBoundaryValuesTest {
     private StringBoundaryValues test;
     private StringBoundaryValues test1;
     private StringBoundaryValues test2;
-    private Column column;
+    private TestDataContainer testDataContainer;
 
     @Before
     public void precondition() {
-        column = new Column("Test");
-        test = new StringBoundaryValues(12, 1, true, false, true, column);
-        test1 = new StringBoundaryValues(12, 1, true, true, true, column);
-        test2 = new StringBoundaryValues(12, 1, false, true, false, column);
+        testDataContainer = new TestDataContainer("Test");
+        test = new StringBoundaryValues(12, 1, true, false, true, testDataContainer);
+        test1 = new StringBoundaryValues(12, 1, true, true, true, testDataContainer);
+        test2 = new StringBoundaryValues(12, 1, false, true, false, testDataContainer);
     }
     @After
     public void delete() {
-        column = null;
+        testDataContainer = null;
         test = null;
         test1 = null;
         test2 = null;
@@ -46,7 +46,7 @@ public class StringBoundaryValuesTest {
         }
     }
     private String getValue(){
-        List<TypeTestData> arrayList = column.getValues();
+        List<TypeTestData> arrayList = testDataContainer.getValues();
         String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
         return buffer;
     }
@@ -55,13 +55,13 @@ public class StringBoundaryValuesTest {
     public void testSizeWords() {
         try {
             construct(test);
-            assertTrue(column.getValues().size() == Len);
-            column.clear();
+            assertTrue(testDataContainer.getValues().size() == Len);
+            testDataContainer.clear();
             construct(test1);
-            assertTrue(column.getValues().size() == Len);
-            column.clear();
+            assertTrue(testDataContainer.getValues().size() == Len);
+            testDataContainer.clear();
             construct(test2);
-            assertTrue(column.getValues().size() == notNullLen);
+            assertTrue(testDataContainer.getValues().size() == notNullLen);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,18 +110,18 @@ public class StringBoundaryValuesTest {
     }
     @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputLowCap() throws Exception {
-        StringBoundaryValues  test = new StringBoundaryValues(12, 1, false, false, false, column);
+        StringBoundaryValues  test = new StringBoundaryValues(12, 1, false, false, false, testDataContainer);
         test.construct();
 
     }
     @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputLen() throws Exception {
-        StringBoundaryValues  test = new StringBoundaryValues(0, 1, true, true, false, column);
+        StringBoundaryValues  test = new StringBoundaryValues(0, 1, true, true, false, testDataContainer);
         test.construct();
         }
     @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputQUANTITY() throws Exception {
-        StringBoundaryValues  test = new StringBoundaryValues(12, -1, true, true, false, column);
+        StringBoundaryValues  test = new StringBoundaryValues(12, -1, true, true, false, testDataContainer);
         test.construct();
         }
 

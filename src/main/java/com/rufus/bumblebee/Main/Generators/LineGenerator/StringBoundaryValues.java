@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.Main.Generators.LineGenerator;
 
-import com.rufus.bumblebee.Main.Columns.Column;
-import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
+import com.rufus.bumblebee.Main.Container.TestDataContainer;
+import com.rufus.bumblebee.Main.Datatype.BaseDataType;
 import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
@@ -29,16 +29,16 @@ public class StringBoundaryValues implements Rule {
     private Boolean Cap;
     private Boolean NullValue;
     private Integer INCREASE_QUANTITY;
-    private Column column;
+    private TestDataContainer testDataContainer;
     private List<TypeTestData> values = new ArrayList<TypeTestData>();
 
-    public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap, Boolean NullValue, Column column) {
+    public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap, Boolean NullValue, TestDataContainer testDataContainer) {
         this.len = Len;
         this.Low = Low;
         this.Cap = Cap;
         this.INCREASE_QUANTITY = INCREASE_QUANTITY;
         this.NullValue = NullValue;
-        this.column = column;
+        this.testDataContainer = testDataContainer;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class StringBoundaryValues implements Rule {
             throw new GeneratorExceptionInputOptions("Your choice is not right.", paremeters);
         } else {
             if (NullValue) {
-                values.add(new BaseDatatype(new StringNull().returnValue(), TYPE));
+                values.add(new BaseDataType(new StringNull().returnValue(), TYPE));
             }
             if (Low && Cap) {
                 stringBuildLowCap();
@@ -71,7 +71,7 @@ public class StringBoundaryValues implements Rule {
         if (checkOut()) {
             throw new TransferException("Please create test data");
         } else {
-            column.setValues(this.values);
+            testDataContainer.setValues(this.values);
             this.values.clear();
         }
     }
@@ -89,7 +89,7 @@ public class StringBoundaryValues implements Rule {
                 Character symbol = (char) id;
                 bufer.append(symbol);
             }
-            values.add(new BaseDatatype(bufer.toString(), TYPE));
+            values.add(new BaseDataType(bufer.toString(), TYPE));
             bufer.delete(0, j);
         }
 
@@ -105,7 +105,7 @@ public class StringBoundaryValues implements Rule {
                 Character symbol = (char) id;
                 bufer.append(symbol);
             }
-            values.add(new BaseDatatype(bufer.toString(), TYPE));
+            values.add(new BaseDataType(bufer.toString(), TYPE));
             bufer.delete(0, j);
         }
 
@@ -121,7 +121,7 @@ public class StringBoundaryValues implements Rule {
                 bufer.append(symbol);
 
             }
-            values.add(new BaseDatatype(bufer.toString(), TYPE));
+            values.add(new BaseDataType(bufer.toString(), TYPE));
             bufer.delete(0, j);
         }
 
@@ -136,7 +136,7 @@ public class StringBoundaryValues implements Rule {
     }
 
     private boolean checkOut() {
-        if ((values.size() == 0) || (column == null)) {
+        if ((values.size() == 0) || (testDataContainer == null)) {
             return true;
         } else {
             return false;

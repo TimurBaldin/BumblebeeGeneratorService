@@ -25,7 +25,7 @@ import java.util.Date;
 @Aspect
 @Configuration
 @EnableAspectJAutoProxy
-public class LoggTime {
+public class Timer {
 
     private final String LOG_FOLDER = "LogsTime\\";
     private File file;
@@ -49,22 +49,22 @@ public class LoggTime {
         }
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.Main.Services.LinesService.selectionBoundaryTest(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.Main.Services.BaseTestSuiteService.selectionBoundaryTest(..))")
     public void boundarytest() {
 
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.Main.Services.LinesService.selectionSpecialLinesTest(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.Main.Services.BaseTestSuiteService.selectionSpecialLinesTest(..))")
     public void specialtest() {
 
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.Main.Services.ReportService.createCSV(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.Main.Services.ReportTestService.createCSV(..))")
     public void createreportCSV() {
 
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.Main.Services.ReportService.createExcel(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.Main.Services.ReportTestService.createExcel(..))")
     public void createreportExcel() {
 
     }

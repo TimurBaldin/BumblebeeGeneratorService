@@ -9,9 +9,9 @@
         <!-- UserName for your database -->
         <property name="hibernate.connection.username">postgres</property>
         <!-- Password for your database -->
-        <property name="hibernate.connection.password">admin</property>
+        <property name="hibernate.connection.password">ADMIN</property>
         <!-- URL for your database -->
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/data_generator</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/data_generator</property>
         <property name="connection_pool_size">1</property>
         <property name="show_sql">false</property>
         <property name="hbm2ddl.auto">update</property>
@@ -19,7 +19,7 @@
         <property name="use_sql_comments">false</property>
         <!-- Mapping for your tables -->
         <mapping class="com.rufus.bumblebee.Main.Tables.StringTableBufer"></mapping>
-        <mapping class="com.rufus.bumblebee.Main.Tables.Client"></mapping>
+
     </session-factory>
 
 </hibernate-configuration>

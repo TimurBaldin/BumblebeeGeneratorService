@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.Main.Generators.NumberGenerator;
 
-import com.rufus.bumblebee.Main.Columns.Columns;
-import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
+import com.rufus.bumblebee.Main.Container.Container;
+import com.rufus.bumblebee.Main.Datatype.BaseDataType;
 import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
@@ -23,9 +23,9 @@ public class IntFullRange implements Rule {
     private Long MinIntVal;
     private Long MaxIntVal;
     private List<TypeTestData> values = new LinkedList<TypeTestData>();
-    private Columns column;
+    private Container column;
 
-    public IntFullRange(Long MaxIntVal, Long MinIntVal, Columns column) {
+    public IntFullRange(Long MaxIntVal, Long MinIntVal, Container column) {
         this.MinIntVal = MinIntVal;
         this.MaxIntVal = MaxIntVal;
         this.column = column;
@@ -37,7 +37,7 @@ public class IntFullRange implements Rule {
             throw new GeneratorExceptionInputOptions("Your choice is not right. Parameters :", MaxIntVal.toString() + MinIntVal.toString());
         } else {
             for (Long i = MinIntVal; i <= MaxIntVal; i++) {
-                values.add(new BaseDatatype(buildRandNum().toString(), TYPE));
+                values.add(new BaseDataType(buildRandNum().toString(), TYPE));
             }
             transfer();
         }

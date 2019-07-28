@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "stringtablebufer", schema = "bufer")
+@Table(name = "test_data", schema = "repository")
 public class StringTableBufer implements Serializable {
 
     @Id

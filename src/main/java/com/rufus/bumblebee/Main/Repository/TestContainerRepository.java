@@ -7,18 +7,20 @@ package com.rufus.bumblebee.Main.Repository;
  * @author : Baldin Timur
  */
 
-import com.rufus.bumblebee.Main.Columns.Columns;
+import com.rufus.bumblebee.Main.Container.Container;
 import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import com.rufus.bumblebee.Main.Rules.DAO.BaseRepository;
 import com.rufus.bumblebee.Main.Tables.StringTableBufer;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositiryTestValues implements BaseRepository<Columns, TypeTestData> {
+@Repository
+public class TestContainerRepository implements BaseRepository<Container, TypeTestData> {
 
     private final String REPORT = "SELECT value FROM com.rufus.bumblebee.Main.Tables.StringTableBufer where ColumnName=:COLUMNNAME and user_id=:CLIENT_ID and alive=:live";
     private final String DEL_TEST_DATA = "UPDATE com.rufus.bumblebee.Main.Tables.StringTableBufer SET alive='false' where ColumnName=:COLUMNNAME and user_id=:CLIENT_ID";
@@ -48,17 +50,16 @@ public class RepositiryTestValues implements BaseRepository<Columns, TypeTestDat
         } finally {
             session.close();
         }
-        values.clear();
         return status;
     }
 
     @Override
-    public List<Columns> get(List<Columns> columns) {
-        List<Columns> column = new ArrayList<Columns>();
+    public List<Container> get(List<Container> columns) {
+        List<Container> column = new ArrayList<Container>();
         Session session = sessionFactory.openSession();
-        for (Columns bufer : columns) {
+        for (Container bufer : columns) {
             Query query = session.createQuery(REPORT);
-            query.setParameter("COLUMNNAME", bufer.getCOLUMN());
+            query.setParameter("COLUMNNAME", bufer.getContainerName());
             query.setParameter("CLIENT_ID", 0);
             query.setParameter("live", true);
             bufer.setReport(query.list());
@@ -69,15 +70,15 @@ public class RepositiryTestValues implements BaseRepository<Columns, TypeTestDat
     }
 
     @Override
-    public boolean delete(List<Columns> columns) {
+    public boolean delete(List<Container> columns) {
         int delrow = 0;
         boolean status = false;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            for (Columns bufer : columns) {
+            for (Container bufer : columns) {
                 Query query = session.createQuery(DEL_TEST_DATA);
-                query.setParameter("COLUMNNAME", bufer.getCOLUMN());
+                query.setParameter("COLUMNNAME", bufer.getContainerName());
                 query.setParameter("CLIENT_ID", 0);
                 delrow += query.executeUpdate();
             }

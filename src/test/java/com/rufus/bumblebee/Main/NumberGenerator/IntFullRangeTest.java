@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.Main.NumberGenerator;
 
-import com.rufus.bumblebee.Main.Columns.Column;
+import com.rufus.bumblebee.Main.Container.TestDataContainer;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Datatype.TypeTestData;
@@ -17,15 +17,15 @@ public class IntFullRangeTest {
     private final int Len = 10;
     private final String matchForInt = "[0-9]*";
     private IntFullRange test;
-    private Column column;
+    private TestDataContainer testDataContainer;
     @Before
     public void precondition() {
-        column = new Column("Test");
-        test=new IntFullRange(10L,1L,column);
+        testDataContainer = new TestDataContainer("Test");
+        test=new IntFullRange(10L,1L, testDataContainer);
     }
     @After
     public void delete(){
-        column=null;
+        testDataContainer =null;
         test=null;
         }
     private void construct(IntFullRange bufer){
@@ -36,7 +36,7 @@ public class IntFullRangeTest {
         }
     }
     private String getValue(){
-        List<TypeTestData> arrayList = column.getValues();
+        List<TypeTestData> arrayList = testDataContainer.getValues();
         String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
         return buffer;
     }
@@ -44,8 +44,8 @@ public class IntFullRangeTest {
     public void sizeValuesTest(){
         try {
             construct(test);
-            assertTrue(column.getValues().size() == Len);
-            column.clear();
+            assertTrue(testDataContainer.getValues().size() == Len);
+            testDataContainer.clear();
             } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,7 +67,7 @@ public class IntFullRangeTest {
     }
     @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInput() throws Exception {
-        IntFullRange  test2=new IntFullRange(1L,100l,column);
+        IntFullRange  test2=new IntFullRange(1L,100l, testDataContainer);
         test2.construct();
         }
     @Test(expected=TransferException.class)
@@ -77,7 +77,7 @@ public class IntFullRangeTest {
     }
     @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputEndEquallyStart() throws Exception {
-        IntFullRange  test3=new IntFullRange(1L,1L,column);
+        IntFullRange  test3=new IntFullRange(1L,1L, testDataContainer);
         test3.construct();
     }
 

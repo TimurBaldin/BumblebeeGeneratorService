@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.Main.Generators.NumberGenerator;
 
-import com.rufus.bumblebee.Main.Columns.Columns;
-import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
+import com.rufus.bumblebee.Main.Container.Container;
+import com.rufus.bumblebee.Main.Datatype.BaseDataType;
 import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
@@ -23,10 +23,10 @@ public class IntBoundaryValues implements Rule {
     private Long MaxInt;
     private Long MinInt;
     private Integer QUANTITY;
-    private Columns column;
+    private Container column;
     private List<TypeTestData> values = new LinkedList<TypeTestData>();
 
-    public IntBoundaryValues(Long BoundaryIntEnd, Long BoundaryIntStart, Integer QUANTITY, Columns column) {
+    public IntBoundaryValues(Long BoundaryIntEnd, Long BoundaryIntStart, Integer QUANTITY, Container column) {
         this.MaxInt = BoundaryIntEnd;
         this.MinInt = BoundaryIntStart;
         this.QUANTITY = QUANTITY;
@@ -73,8 +73,8 @@ public class IntBoundaryValues implements Rule {
 
     private void buildBoundary() {
         for (Long j = -1L; j <= 1L; j++) {
-            values.add(new BaseDatatype(String.valueOf(MinInt - j), TYPE));
-            values.add(new BaseDatatype(String.valueOf(MaxInt - j), TYPE));
+            values.add(new BaseDataType(String.valueOf(MinInt - j), TYPE));
+            values.add(new BaseDataType(String.valueOf(MaxInt - j), TYPE));
 
         }
 
@@ -82,7 +82,7 @@ public class IntBoundaryValues implements Rule {
 
     private void buildTestNum() {
         for (int i = 1; i <= QUANTITY; i++) {
-            values.add(new BaseDatatype(buildRandNum().toString(), TYPE));
+            values.add(new BaseDataType(buildRandNum().toString(), TYPE));
         }
     }
 

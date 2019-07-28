@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.Main.Generators.LineGenerator;
 
-import com.rufus.bumblebee.Main.Columns.Column;
-import com.rufus.bumblebee.Main.Datatype.BaseDatatype;
+import com.rufus.bumblebee.Main.Container.TestDataContainer;
+import com.rufus.bumblebee.Main.Datatype.BaseDataType;
 import com.rufus.bumblebee.Main.Datatype.TypeTestData;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
@@ -35,15 +35,15 @@ public class StringSpecialValues implements Rule {
     private Boolean ESC_SPECIAL;
     private Boolean SPECIAL;
     private Integer INCREASE_QUANTITY;
-    private Column column;
+    private TestDataContainer testDataContainer;
     private List<TypeTestData> values = new ArrayList<TypeTestData>();
 
-    public StringSpecialValues(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL, Column column) {
+    public StringSpecialValues(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL, TestDataContainer testDataContainer) {
         this.SPECIAL_LEN = SPECIAL_LEN;
         this.ESC_SPECIAL = ESC_SPECIAL;
         this.SPECIAL = SPECIAL;
         this.INCREASE_QUANTITY = INCREASE_QUANTITY;
-        this.column = column;
+        this.testDataContainer = testDataContainer;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class StringSpecialValues implements Rule {
         if (checkOut()) {
             throw new TransferException("Please create test data");
         } else {
-            column.setValues(this.values);
+            testDataContainer.setValues(this.values);
         }
     }
 
@@ -92,7 +92,7 @@ public class StringSpecialValues implements Rule {
                 char symbol = (char) id;
                 bufer.append(symbol);
             }
-            values.add(new BaseDatatype(bufer.toString(), TYPE));
+            values.add(new BaseDataType(bufer.toString(), TYPE));
             bufer.delete(0, i);
         }
 
@@ -112,7 +112,7 @@ public class StringSpecialValues implements Rule {
                 id = -1;
                 bufer.append(symbol);
             }
-            values.add(new BaseDatatype(bufer.toString(), TYPE));
+            values.add(new BaseDataType(bufer.toString(), TYPE));
             bufer.delete(0, i);
         }
 
@@ -128,7 +128,7 @@ public class StringSpecialValues implements Rule {
     }
 
     private boolean checkOut() {
-        if ((values.size() == 0) || (column == null)) {
+        if ((values.size() == 0) || (testDataContainer == null)) {
             return true;
         } else {
             return false;

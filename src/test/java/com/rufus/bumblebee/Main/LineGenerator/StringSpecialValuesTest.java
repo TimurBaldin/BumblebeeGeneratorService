@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.Main.LineGenerator;
 
-import com.rufus.bumblebee.Main.Columns.Column;
+import com.rufus.bumblebee.Main.Container.TestDataContainer;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Datatype.TypeTestData;
@@ -19,7 +19,7 @@ public class StringSpecialValuesTest {
     private StringSpecialValues test;
     private StringSpecialValues test1;
     private StringSpecialValues test2;
-    private Column column;
+    private TestDataContainer testDataContainer;
     private final int MIN_ID_ESC = KEY_ID.getMIN_ID_ESC();
     private final int MAX_ID_ESC = KEY_ID.getMAX_ID_ESC();
     //Escape symbols
@@ -31,16 +31,16 @@ public class StringSpecialValuesTest {
 
     @Before
     public void precondition() {
-        column = new Column("Test");
-        test = new StringSpecialValues(12, 1, true, false, column);
-        test1 = new StringSpecialValues(12, 1, true, true, column);
-        test2 = new StringSpecialValues(13, 13, false, true, column);
+        testDataContainer = new TestDataContainer("Test");
+        test = new StringSpecialValues(12, 1, true, false, testDataContainer);
+        test1 = new StringSpecialValues(12, 1, true, true, testDataContainer);
+        test2 = new StringSpecialValues(13, 13, false, true, testDataContainer);
 
     }
 
     @After
     public void delete() {
-        column = null;
+        testDataContainer = null;
         test = null;
         test1 = null;
         test2 = null;
@@ -53,7 +53,7 @@ public class StringSpecialValuesTest {
         }
     }
     private String getValue(){
-        List<TypeTestData> arrayList = column.getValues();
+        List<TypeTestData> arrayList = testDataContainer.getValues();
         String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
         return buffer;
     }
@@ -62,13 +62,13 @@ public class StringSpecialValuesTest {
     public void testSizeWords() {
         try {
             construct(test);
-            assertTrue(column.getValues().size() == Len);
-            column.clear();
+            assertTrue(testDataContainer.getValues().size() == Len);
+            testDataContainer.clear();
             construct(test1);
-            assertTrue(column.getValues().size() == Len);
-            column.clear();
+            assertTrue(testDataContainer.getValues().size() == Len);
+            testDataContainer.clear();
             construct(test2);
-            assertTrue(column.getValues().size() == Len * 2);
+            assertTrue(testDataContainer.getValues().size() == Len * 2);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,7 +84,7 @@ public class StringSpecialValuesTest {
             for (StringSpecialValues bufer : tests) {
                 construct(bufer);
                 assertTrue(getValue().matches(matchSpecial));
-                column.clear();
+                testDataContainer.clear();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -167,19 +167,19 @@ public class StringSpecialValuesTest {
     }
     @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputESCandSPECIAL() throws Exception {
-        StringSpecialValues  test = new StringSpecialValues(12, 1, false, false, column);
+        StringSpecialValues  test = new StringSpecialValues(12, 1, false, false, testDataContainer);
         test.construct();
 
     }
     @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputLen() throws Exception {
-        StringSpecialValues  test = new StringSpecialValues(0, 1, true, false, column);
+        StringSpecialValues  test = new StringSpecialValues(0, 1, true, false, testDataContainer);
         test.construct();
 
     }
     @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputLenQUANTITY() throws Exception {
-        StringSpecialValues  test = new StringSpecialValues(12, -1, true, false, column);
+        StringSpecialValues  test = new StringSpecialValues(12, -1, true, false, testDataContainer);
         test.construct();
 
     }

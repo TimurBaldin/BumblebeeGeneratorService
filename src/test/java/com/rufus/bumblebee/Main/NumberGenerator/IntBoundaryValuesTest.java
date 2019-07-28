@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.Main.NumberGenerator;
 
-import com.rufus.bumblebee.Main.Columns.Column;
+import com.rufus.bumblebee.Main.Container.TestDataContainer;
 import com.rufus.bumblebee.Main.Exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.Main.Exeptions.TransferException;
 import com.rufus.bumblebee.Main.Datatype.TypeTestData;
@@ -19,16 +19,16 @@ public class IntBoundaryValuesTest {
     private final String matchForInt = "[0-9]*";
     private IntBoundaryValues test;
     private IntBoundaryValues test1;
-    private Column column;
+    private TestDataContainer testDataContainer;
     @Before
     public void precondition() {
-        column = new Column("Test");
-        test=new IntBoundaryValues(10L,1L,2,column);
-        test1=new IntBoundaryValues(10L,1L,0,column);
+        testDataContainer = new TestDataContainer("Test");
+        test=new IntBoundaryValues(10L,1L,2, testDataContainer);
+        test1=new IntBoundaryValues(10L,1L,0, testDataContainer);
     }
     @After
     public void delete(){
-        column=null;
+        testDataContainer =null;
         test=null;
         test1=null;
     }
@@ -40,7 +40,7 @@ public class IntBoundaryValuesTest {
         }
     }
     private String getValue(){
-        List<TypeTestData> arrayList = column.getValues();
+        List<TypeTestData> arrayList = testDataContainer.getValues();
         String buffer = (String) arrayList.get(arrayList.size() / 2).getValue();
         return buffer;
     }
@@ -48,12 +48,12 @@ public class IntBoundaryValuesTest {
     public void sizeValuesTest(){
         try {
             construct(test);
-            assertTrue(column.getValues().size() == Len);
-            column.clear();
+            assertTrue(testDataContainer.getValues().size() == Len);
+            testDataContainer.clear();
 
             construct(test1);
-            assertTrue(column.getValues().size() == noQuantity);
-            column.clear();
+            assertTrue(testDataContainer.getValues().size() == noQuantity);
+            testDataContainer.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -75,7 +75,7 @@ public class IntBoundaryValuesTest {
     }
     @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInput() throws Exception {
-        IntBoundaryValues  test2=new IntBoundaryValues(1L,100l,0,column);
+        IntBoundaryValues  test2=new IntBoundaryValues(1L,100l,0, testDataContainer);
         test2.construct();
         }
     @Test(expected=TransferException.class)
@@ -85,7 +85,7 @@ public class IntBoundaryValuesTest {
     }
     @Test(expected=GeneratorExceptionInputOptions.class)
     public void negativeInputEndEquallyStart() throws Exception {
-        IntBoundaryValues  test3=new IntBoundaryValues(1L,1L,0,column);
+        IntBoundaryValues  test3=new IntBoundaryValues(1L,1L,0, testDataContainer);
         test3.construct();
     }
 }
