@@ -18,7 +18,7 @@
         <property name="format_sql">true</property>
         <property name="use_sql_comments">false</property>
         <!-- Mapping for your tables -->
-        <mapping class="com.rufus.bumblebee.Main.Tables.StringTableBufer"></mapping>
+        <mapping class="com.rufus.bumblebee.tables.StringTableBufer"></mapping>
 
     </session-factory>
 
