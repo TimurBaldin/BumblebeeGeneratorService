@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.controllers.Requests;
 
-public class IntRangeTestRequest {
+public class IntRangeTestRequest extends BaseRequest{
 
     private Long maxIntVal;
     private Long minIntVal;

@@ -57,11 +57,11 @@ public class ReportTestService implements BaseTestService {
 
     @Override
     public void startGeneratingData() {
-        return false;
+      //  return false;
     }
 
     @Override
     public void saveTests() {
-        return false;
+     //   return false;
     }
 }

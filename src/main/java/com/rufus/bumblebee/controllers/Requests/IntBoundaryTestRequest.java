@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.controllers.Requests;
 
-public class IntBoundaryTestRequest {
+public class IntBoundaryTestRequest extends BaseRequest {
 
     private Long boundaryIntEnd;
     private Long boundaryIntStart;

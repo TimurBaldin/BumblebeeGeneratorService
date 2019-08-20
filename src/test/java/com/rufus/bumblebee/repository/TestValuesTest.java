@@ -15,12 +15,12 @@ import static org.junit.Assert.assertTrue;
 
 public class TestValuesTest {
    private final String COLUMN_NAME="TestClassRepositiryTestValuesTest";
-    private TestContainerRepository testValues;
+    private TestDataRepository testValues;
     private  ArrayList<TypeTestData> arr;
     private  List<Container> columns;
 @Before
 public void precondition(){
-    testValues = new TestContainerRepository();
+    testValues = new TestDataRepository();
     arr = new ArrayList<TypeTestData>();
     arr.add(new BaseDataType(null,"Line"));
     for (Integer i = 0; i <= 10; i++) {

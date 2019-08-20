@@ -24,6 +24,9 @@ public class StringTableBufer implements Serializable {
     @NotNull
     boolean alive;
 
+    @Column(name = "DATA_REF")
+    private Long dataRef;
+
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
@@ -63,4 +66,13 @@ public class StringTableBufer implements Serializable {
     public void setColumnName(String columnName) {
         ColumnName = columnName;
     }
+
+    public Long getDataRef() {
+        return dataRef;
+    }
+
+    public void setDataRef(Long dataRef) {
+        this.dataRef = dataRef;
+    }
+
 }

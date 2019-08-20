@@ -24,7 +24,7 @@ public class ContainerController {
         this.service = service;
     }
 
-    @RequestMapping(path = "/set_container", method = RequestMethod.GET)
+    @RequestMapping(path = "/add_container", method = RequestMethod.GET)
     public @ResponseBody
     BaseResponse<TestDataContainer> setTestDataContainer(@RequestBody TestDataContainerRequest request) {
         BaseResponse<TestDataContainer> response = new BaseResponse<>();

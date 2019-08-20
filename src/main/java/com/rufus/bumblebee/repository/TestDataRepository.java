@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class TestContainerRepository implements BaseRepository<Container, TypeTestData> {
+public class TestDataRepository implements BaseRepository<Container, TypeTestData> {
 
     private final String REPORT = "SELECT value FROM com.rufus.bumblebee.Main.Tables.StringTableBufer where ColumnName=:COLUMNNAME and user_id=:CLIENT_ID and alive=:live";
     private final String DEL_TEST_DATA = "UPDATE com.rufus.bumblebee.Main.Tables.StringTableBufer SET alive='false' where ColumnName=:COLUMNNAME and user_id=:CLIENT_ID";

@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.controllers.Requests;
 
-public class BoundaryTestRequest {
+public class BoundaryTestRequest extends BaseRequest{
 
     private Integer len;
     private Integer increaseQuantity;

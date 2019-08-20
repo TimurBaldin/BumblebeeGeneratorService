@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.controllers.Requests;
 
-public class SpecialLinesTestRequest {
+public class SpecialLinesTestRequest extends BaseRequest{
 
     private Integer specialLen;
     private Integer increaseQuantity;

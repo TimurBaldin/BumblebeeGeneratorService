@@ -6,7 +6,7 @@ import com.rufus.bumblebee.exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.exeptions.TransferException;
 import com.rufus.bumblebee.factories.TestsFactory;
 import com.rufus.bumblebee.generators.Rule;
-import com.rufus.bumblebee.repository.TestContainerRepository;
+import com.rufus.bumblebee.repository.TestDataRepository;
 import org.apache.log4j.Logger;
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +30,10 @@ public class BaseTestSuiteService implements BaseTestService {
     private TestDataContainer testDataContainer;
     private TestsFactory testsFactory;
     private List<Container> containers = new ArrayList<>();
-    private TestContainerRepository repository;
+    private TestDataRepository repository;
 
     @Autowired
-    public BaseTestSuiteService(TestContainerRepository repository, TestsFactory testsFactory) {
+    public BaseTestSuiteService(TestDataRepository repository, TestsFactory testsFactory) {
         this.repository = repository;
         this.testsFactory = testsFactory;
     }
