@@ -10,7 +10,7 @@ package com.rufus.bumblebee.repository;
 import com.rufus.bumblebee.container.Container;
 import com.rufus.bumblebee.datatype.TypeTestData;
 import com.rufus.bumblebee.repository.DAO.BaseRepository;
-import com.rufus.bumblebee.tables.StringTableBufer;
+import com.rufus.bumblebee.tables.TestData;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -32,7 +32,7 @@ public class TestDataRepository implements BaseRepository<Container, TypeTestDat
         Transaction transaction = session.beginTransaction();
         try {
             for (int i = 0; i <= values.size() - 1; i++) {
-                StringTableBufer bufer = new StringTableBufer();
+                TestData bufer = new TestData();
                 bufer.setValue(String.valueOf(values.get(i).getValue()));
                 bufer.setColumnName(COLUMN_NAME);
                 bufer.setAlive(true);

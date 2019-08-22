@@ -2,27 +2,36 @@ package com.rufus.bumblebee.tables;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
-
+@Entity
+@Table(name = "clients", schema = "repository")
 public class Client implements Serializable {
 
     @Id
     @SequenceGenerator(name = "client_id", sequenceName = "public.client_user_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_id")
-    @Column(name = "user_id", unique = true, nullable = false)
+    @Column(name = "CLIENT_ID", unique = true, nullable = false)
     private int user_id;
-    @Column(name = "surname")
-    private String surname;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "patronymic")
-    private String patronymic;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "login")
+
+    @Column(name = "LOGIN")
     private String login;
-    @Column(name = "password")
-    private String password;
+
+    @Column(name = "FIRST_NAME")
+    private String firstName;
+
+    @Column(name = "LAST_NAME")
+    private String lastName;
+
+    @Column(name = "SECOND_NAME")
+    private String secondName;
+
+    @Column(name = "EMAIL")
+    private String email;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "CLIENT_REF")
+    private List<Container> containers;
 
     public int getUser_id() {
         return user_id;
@@ -30,38 +39,6 @@ public class Client implements Serializable {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPatronymic() {
-        return patronymic;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getLogin() {
@@ -72,13 +49,35 @@ public class Client implements Serializable {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

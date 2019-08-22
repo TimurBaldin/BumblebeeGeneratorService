@@ -22,6 +22,49 @@ public class Container {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "DATA_REF")
-    private List<StringTableBufer> data;
+    private List<TestData> data;
+
+    @Column(name = "CLIENT_REF")
+    private Long clientRef;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public List<TestData> getData() {
+        return data;
+    }
+
+    public void setData(List<TestData> data) {
+        this.data = data;
+    }
+
+    public Long getClientRef() {
+        return clientRef;
+    }
+
+    public void setClientRef(Long clientRef) {
+        this.clientRef = clientRef;
+    }
 
 }
