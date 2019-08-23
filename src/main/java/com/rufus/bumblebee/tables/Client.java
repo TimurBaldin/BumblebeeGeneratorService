@@ -5,13 +5,13 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "clients", schema = "repository")
+@Table(name = "CLIENTS", schema = "REPOSITORY")
 public class Client implements Serializable {
 
     @Id
-    @SequenceGenerator(name = "client_id", sequenceName = "public.client_user_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "client_id", sequenceName = "repository.client_user_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_id")
-    @Column(name = "CLIENT_ID", unique = true, nullable = false)
+    @Column(name = "ID", unique = true, nullable = false)
     private int user_id;
 
     @Column(name = "LOGIN")

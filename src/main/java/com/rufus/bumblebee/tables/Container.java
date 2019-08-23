@@ -5,12 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "containers", schema = "repository")
+@Table(name = "CONTAINERS", schema = "REPOSITORY")
 public class Container {
 
     @Id
     @Column(name = "ID", unique = true, nullable = false)
-    @SequenceGenerator(name = "container_id", sequenceName = "container_id", allocationSize = 1)
+    @SequenceGenerator(name = "container_id", sequenceName = "repository.container_id", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "container_id")
     private Long id;
 
@@ -21,11 +21,18 @@ public class Container {
     private Date date;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "DATA_REF")
+    @JoinColumn(name = "CONTAINER_REF")
     private List<TestData> data;
 
     @Column(name = "CLIENT_REF")
     private Long clientRef;
+
+    @Column(name = "UPDATE_DATE")
+    private Date updateDate;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CONTAINER_REF")
+    private List<Report> reports;
 
     public Long getId() {
         return id;
@@ -65,6 +72,26 @@ public class Container {
 
     public void setClientRef(Long clientRef) {
         this.clientRef = clientRef;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Container{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", date=" + date +
+                ", data=" + data +
+                ", clientRef=" + clientRef +
+                ", updateDate=" + updateDate +
+                '}';
     }
 
 }

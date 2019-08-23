@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.systemlog;
+package com.rufus.bumblebee.utils;
 
 
 import org.aspectj.lang.annotation.AfterReturning;

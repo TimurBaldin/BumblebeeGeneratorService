@@ -7,7 +7,7 @@ create sequence users.client_user_id_seq
   as integer
   maxvalue 2147483647;
 
-create table bufer.stringtablebufer
+create table repository.stringtablebufer
 (
   row_id           integer      not null
     constraint table_name_pkey
