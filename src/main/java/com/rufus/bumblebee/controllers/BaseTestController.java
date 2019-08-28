@@ -1,11 +1,12 @@
 package com.rufus.bumblebee.controllers;
 
-import com.rufus.bumblebee.controllers.Requests.BoundaryTestRequest;
-import com.rufus.bumblebee.controllers.Requests.IntBoundaryTestRequest;
-import com.rufus.bumblebee.controllers.Requests.IntRangeTestRequest;
-import com.rufus.bumblebee.controllers.Requests.SpecialLinesTestRequest;
-import com.rufus.bumblebee.controllers.Responses.BaseResponse;
-import com.rufus.bumblebee.services.BaseTestSuiteService;
+import com.rufus.bumblebee.controllers.requests.BoundaryTestRequest;
+import com.rufus.bumblebee.controllers.requests.IntBoundaryTestRequest;
+import com.rufus.bumblebee.controllers.requests.IntRangeTestRequest;
+import com.rufus.bumblebee.controllers.requests.SpecialLinesTestRequest;
+import com.rufus.bumblebee.controllers.responses.BaseResponse;
+import com.rufus.bumblebee.generators.Rule;
+import com.rufus.bumblebee.services.TestSuiteBaseService;
 import com.rufus.bumblebee.utils.ValidatorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,13 +16,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/base_tests")
 public class BaseTestController {
 
-    private BaseTestSuiteService service;
+    private TestSuiteBaseService service;
 
-    public BaseTestController(@Autowired BaseTestSuiteService service) {
+    public BaseTestController(@Autowired TestSuiteBaseService service) {
         this.service = service;
     }
 
@@ -34,8 +39,10 @@ public class BaseTestController {
             service.selectionBoundaryTest(
                     request.getLen(), request.getIncreaseQuantity(),
                     request.getLow(), request.getCap(),
-                    request.getNullValue()
+                    request.getNullValue(),
+                    request.getContainerId()
             );
+
         } catch (Exception ex) {
             return getErrorResponse(
                     HttpStatus.INTERNAL_SERVER_ERROR.value(),
@@ -53,7 +60,8 @@ public class BaseTestController {
             ValidatorUtils.validate(request);
             service.selectionSpecialLinesTest(
                     request.getSpecialLen(), request.getIncreaseQuantity(),
-                    request.getEscSpecial(), request.getSpecial()
+                    request.getEscSpecial(), request.getSpecial(),
+                    request.getContainerId()
             );
         } catch (Exception ex) {
             return getErrorResponse(
@@ -70,7 +78,12 @@ public class BaseTestController {
         BaseResponse response = new BaseResponse();
         try {
             ValidatorUtils.validate(request);
-            service.selectionIntBoundary(request.getBoundaryIntEnd(), request.getBoundaryIntStart(), request.getQuantity());
+            service.selectionIntBoundary(
+                    request.getBoundaryIntEnd(),
+                    request.getBoundaryIntStart(),
+                    request.getQuantity(),
+                    request.getContainerId()
+            );
         } catch (Exception ex) {
             return getErrorResponse(
                     HttpStatus.INTERNAL_SERVER_ERROR.value(),
@@ -85,7 +98,11 @@ public class BaseTestController {
         BaseResponse response = new BaseResponse();
         try {
             ValidatorUtils.validate(request);
-            service.selectionIntRange(request.getMaxIntVal(), request.getMinIntVal());
+            service.selectionIntRange(
+                    request.getMaxIntVal(),
+                    request.getMinIntVal(),
+                    request.getContainerId()
+            );
         } catch (Exception ex) {
             return getErrorResponse(
                     HttpStatus.INTERNAL_SERVER_ERROR.value(),
@@ -101,20 +118,6 @@ public class BaseTestController {
         BaseResponse response = new BaseResponse();
         try {
             service.startGeneratingData();
-        } catch (Exception ex) {
-            return getErrorResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                    ex.getMessage(), response);
-        }
-        return response;
-    }
-
-    @RequestMapping(path = "/save_model", method = RequestMethod.GET)
-    public @ResponseBody
-    BaseResponse saveModel() {
-        BaseResponse response = new BaseResponse();
-        try {
-            service.saveTests();
         } catch (Exception ex) {
             return getErrorResponse(
                     HttpStatus.INTERNAL_SERVER_ERROR.value(),

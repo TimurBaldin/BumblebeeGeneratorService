@@ -1,18 +1,19 @@
 package com.rufus.bumblebee.generators.LineGenerator;
 
-import com.rufus.bumblebee.container.TestDataContainer;
 import com.rufus.bumblebee.datatype.BaseDataType;
 import com.rufus.bumblebee.datatype.TypeTestData;
 import com.rufus.bumblebee.exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.exeptions.TransferException;
 import com.rufus.bumblebee.generators.Rule;
+import lombok.Builder;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Class : Генерирует строки от 1 до Len+INCREASE_QUANTITY
+ * Class : Генерирует строки от 1 до len+increaseQuantity
  *
  * @author : Baldin Timur
  * @version : 0.0.1
@@ -25,61 +26,61 @@ public class StringBoundaryValues implements Rule {
     private final int MAX_ID_LOWERCASE = 122;
     private final String TYPE = "STRING";
     private Integer len;
-    private Boolean Low;
-    private Boolean Cap;
-    private Boolean NullValue;
-    private Integer INCREASE_QUANTITY;
-    private TestDataContainer testDataContainer;
+    private Boolean low;
+    private Boolean cap;
+    private Boolean nullValue;
+    private Integer increaseQuantity;
+    private Long containerRef;
     private List<TypeTestData> values = new ArrayList<TypeTestData>();
 
-    public StringBoundaryValues(Integer Len, Integer INCREASE_QUANTITY, Boolean Low, Boolean Cap, Boolean NullValue, TestDataContainer testDataContainer) {
-        this.len = Len;
-        this.Low = Low;
-        this.Cap = Cap;
-        this.INCREASE_QUANTITY = INCREASE_QUANTITY;
-        this.NullValue = NullValue;
-        this.testDataContainer = testDataContainer;
+    @Builder(toBuilder = true)
+    public StringBoundaryValues(Integer len, Integer increaseQuantity, Boolean low, Boolean cap, Boolean nullValue, Long containerRef) {
+        this.len = len;
+        this.low = low;
+        this.cap = cap;
+        this.increaseQuantity = increaseQuantity;
+        this.nullValue = nullValue;
+        this.containerRef = containerRef;
     }
 
     @Override
     public void construct() throws GeneratorExceptionInputOptions, TransferException {
         if (checkIn()) {
-            String paremeters = len.toString() + Low.toString() + Cap.toString() + INCREASE_QUANTITY.toString() + NullValue.toString();
+            String paremeters = len.toString() + low.toString() + cap.toString() + increaseQuantity.toString() + nullValue.toString();
             throw new GeneratorExceptionInputOptions("Your choice is not right.", paremeters);
         } else {
-            if (NullValue) {
+            if (nullValue) {
                 values.add(new BaseDataType(new StringNull().returnValue(), TYPE));
             }
-            if (Low && Cap) {
+            if (low && cap) {
                 stringBuildLowCap();
-                transfer();
-                return;
             } else {
-                if (Low && (!Cap)) {
+                if (low && (!cap)) {
                     stringBuildLow();
-                    transfer();
                 } else {
                     stringBuildCap();
-                    transfer();
                 }
             }
         }
     }
 
     @Override
-    public void transfer() throws TransferException {
-        if (checkOut()) {
-            throw new TransferException("Please create test data");
-        } else {
-            testDataContainer.setValues(this.values);
-            this.values.clear();
+    public List<TypeTestData> receivingTestData() throws TransferException {
+        if (CollectionUtils.isEmpty(values)) {
+            throw new TransferException("Collection is empty for generator : " + getClass().getCanonicalName());
         }
+        return values;
+    }
+
+    @Override
+    public Long getContainerRef() {
+        return containerRef;
     }
 
     private void stringBuildLowCap() {
         int id = 0;
         StringBuilder bufer = new StringBuilder();
-        for (Integer j = 1; j <= len + INCREASE_QUANTITY; j++) {
+        for (Integer j = 1; j <= len + increaseQuantity; j++) {
             for (Integer word = 1; word <= j; word++) {
                 if (word % 2 == 0) {
                     id = ThreadLocalRandom.current().nextInt(MIN_ID_CAPITALS, MAX_ID_CAPITALS + 1);
@@ -98,7 +99,7 @@ public class StringBoundaryValues implements Rule {
     private void stringBuildLow() {
         int id = 0;
         StringBuilder bufer = new StringBuilder();
-        for (Integer j = 1; j <= len + INCREASE_QUANTITY; j++) {
+        for (Integer j = 1; j <= len + increaseQuantity; j++) {
 
             for (Integer word = 1; word <= j; word++) {
                 id = ThreadLocalRandom.current().nextInt(MIN_ID_LOWERCASE, MAX_ID_LOWERCASE + 1);
@@ -114,7 +115,7 @@ public class StringBoundaryValues implements Rule {
     private void stringBuildCap() {
         int id = 0;
         StringBuilder bufer = new StringBuilder();
-        for (Integer j = 1; j <= len + INCREASE_QUANTITY; j++) {
+        for (Integer j = 1; j <= len + increaseQuantity; j++) {
             for (Integer word = 1; word <= j; word++) {
                 id = ThreadLocalRandom.current().nextInt(MIN_ID_CAPITALS, MAX_ID_CAPITALS + 1);
                 Character symbol = (char) id;
@@ -128,15 +129,7 @@ public class StringBoundaryValues implements Rule {
     }
 
     private boolean checkIn() {
-        if ((!Low && !Cap) || len <= 0 || INCREASE_QUANTITY < 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean checkOut() {
-        if ((values.size() == 0) || (testDataContainer == null)) {
+        if ((!low && !cap) || len <= 0 || increaseQuantity < 0) {
             return true;
         } else {
             return false;

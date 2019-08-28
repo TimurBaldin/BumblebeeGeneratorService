@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.reports;
 
-import com.rufus.bumblebee.container.Container;
+import com.rufus.bumblebee.tables.Container;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -18,9 +18,9 @@ import java.util.List;
  * @author : Baldin Timur
  * @version : 0.0.1
  */
-public class ExcelReport implements ReportExcel<Container> {
+public abstract class ExcelReport implements ReportExcel<Container> {
 
-    private XSSFRow row;
+ /*   private XSSFRow row;
     private XSSFCell cell;
     private XSSFSheet sheet;
     private XSSFWorkbook book;
@@ -93,5 +93,5 @@ public class ExcelReport implements ReportExcel<Container> {
     }
 
 
-
+*/
 }

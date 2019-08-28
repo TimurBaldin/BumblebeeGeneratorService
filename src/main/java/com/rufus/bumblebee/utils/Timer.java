@@ -49,22 +49,22 @@ public class Timer {
         }
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.services.BaseTestSuiteService.selectionBoundaryTest(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.services.TestSuiteBaseService.selectionBoundaryTest(..))")
     public void boundarytest() {
 
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.services.BaseTestSuiteService.selectionSpecialLinesTest(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.services.TestSuiteBaseService.selectionSpecialLinesTest(..))")
     public void specialtest() {
 
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.services.ReportTestService.createCSV(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.services.ReportBaseTestService.createCSV(..))")
     public void createreportCSV() {
 
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.services.ReportTestService.createExcel(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.services.ReportBaseTestService.createExcel(..))")
     public void createreportExcel() {
 
     }

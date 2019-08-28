@@ -1,9 +1,9 @@
 package com.rufus.bumblebee.controllers;
 
-import com.rufus.bumblebee.container.TestDataContainer;
-import com.rufus.bumblebee.controllers.Requests.TestDataContainerRequest;
-import com.rufus.bumblebee.controllers.Responses.BaseResponse;
+import com.rufus.bumblebee.controllers.requests.TestDataContainerRequest;
+import com.rufus.bumblebee.controllers.responses.BaseResponse;
 import com.rufus.bumblebee.services.ContainerService;
+import com.rufus.bumblebee.tables.Container;
 import com.rufus.bumblebee.utils.ValidatorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,11 +26,12 @@ public class ContainerController {
 
     @RequestMapping(path = "/add_container", method = RequestMethod.GET)
     public @ResponseBody
-    BaseResponse<TestDataContainer> setTestDataContainer(@RequestBody TestDataContainerRequest request) {
-        BaseResponse<TestDataContainer> response = new BaseResponse<>();
+    BaseResponse<Container> setTestDataContainer(@RequestBody TestDataContainerRequest request) {
+        BaseResponse<Container> response = new BaseResponse<>();
         try {
             ValidatorUtils.validate(request);
-            TestDataContainer container = service.createTestDataContainer(request.getName());
+            Container container = service.createTestDataContainer(request);
+            System.out.println(container);
             response.setResponse(container);
             return response;
         } catch (Exception ex) {

@@ -1,18 +1,19 @@
 package com.rufus.bumblebee.generators.LineGenerator;
 
-import com.rufus.bumblebee.container.TestDataContainer;
 import com.rufus.bumblebee.datatype.BaseDataType;
 import com.rufus.bumblebee.datatype.TypeTestData;
 import com.rufus.bumblebee.exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.exeptions.TransferException;
 import com.rufus.bumblebee.generators.Rule;
+import lombok.Builder;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Class : Генерирует строки из специальных символов длиной от 1 до SPECIAL_LEN+INCREASE_QUANTITY
+ * Class : Генерирует строки из специальных символов длиной от 1 до specialLen+increaseQuantity
  *
  * @author : Baldin Timur
  * @version : 0.0.1
@@ -29,56 +30,58 @@ public class StringSpecialValues implements Rule {
     private final int MAX_ID_SPECIAL_2 = SpecialID.KEY_ID.getMAX_ID_SPECIAL_2();
     private final String TYPE = "STRING";
     //Other symbols 2
-    private Integer SPECIAL_LEN;
-    private Boolean ESC_SPECIAL;
-    private Boolean SPECIAL;
-    private Integer INCREASE_QUANTITY;
-    private TestDataContainer testDataContainer;
-    private List<TypeTestData> values = new ArrayList<TypeTestData>();
+    private Integer specialLen;
+    private Boolean escSpecial;
+    private Boolean special;
+    private Integer increaseQuantity;
+    private Long containerRef;
+    private List<TypeTestData> values = new ArrayList<>();
 
-    public StringSpecialValues(Integer SPECIAL_LEN, Integer INCREASE_QUANTITY, Boolean ESC_SPECIAL, Boolean SPECIAL, TestDataContainer testDataContainer) {
-        this.SPECIAL_LEN = SPECIAL_LEN;
-        this.ESC_SPECIAL = ESC_SPECIAL;
-        this.SPECIAL = SPECIAL;
-        this.INCREASE_QUANTITY = INCREASE_QUANTITY;
-        this.testDataContainer = testDataContainer;
+    @Builder(toBuilder = true)
+    public StringSpecialValues(Integer specialLen, Integer increaseQuantity, Boolean escSpecial, Boolean special, Long containerRef) {
+        this.specialLen = specialLen;
+        this.escSpecial = escSpecial;
+        this.special = special;
+        this.increaseQuantity = increaseQuantity;
+        this.containerRef = containerRef;
     }
 
     @Override
     public void construct() throws GeneratorExceptionInputOptions, TransferException {
         if (checkIn()) {
-            throw new GeneratorExceptionInputOptions("Your choice is not right.Parameters : ", SPECIAL_LEN.toString() + ESC_SPECIAL.toString() + SPECIAL.toString() + INCREASE_QUANTITY.toString());
+            throw new GeneratorExceptionInputOptions("Your choice is not right.Parameters : ", specialLen.toString() + escSpecial.toString() + special.toString() + increaseQuantity.toString());
         } else {
-            if (ESC_SPECIAL && SPECIAL) {
-                if ((SPECIAL_LEN + INCREASE_QUANTITY) % 2 == 0) {
-                    stringEsc((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
-                    stringSpecial((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
-                    transfer();
+            if (escSpecial && special) {
+                if ((specialLen + increaseQuantity) % 2 == 0) {
+                    stringEsc((specialLen + increaseQuantity) / 2);
+                    stringSpecial((specialLen + increaseQuantity) / 2);
                 } else {
-                    stringEsc((SPECIAL_LEN + INCREASE_QUANTITY) / 2);
-                    stringSpecial(((SPECIAL_LEN + INCREASE_QUANTITY) / 2) + 1);
-                    transfer();
+                    stringEsc((specialLen + increaseQuantity) / 2);
+                    stringSpecial(((specialLen + increaseQuantity) / 2) + 1);
                 }
-
             } else {
-                if (SPECIAL) {
-                    stringSpecial(SPECIAL_LEN + INCREASE_QUANTITY);
-                    transfer();
+                if (special) {
+                    stringSpecial(specialLen + increaseQuantity);
+
                 } else {
-                    stringEsc(SPECIAL_LEN + INCREASE_QUANTITY);
-                    transfer();
+                    stringEsc(specialLen + increaseQuantity);
+
                 }
             }
         }
     }
 
     @Override
-    public void transfer() throws TransferException {
-        if (checkOut()) {
-            throw new TransferException("Please create test data");
-        } else {
-            testDataContainer.setValues(this.values);
+    public List<TypeTestData> receivingTestData() throws TransferException {
+        if (CollectionUtils.isEmpty(values)) {
+            throw new TransferException("Collection is empty for generator : "+getClass().getCanonicalName());
         }
+        return values;
+    }
+
+    @Override
+    public Long getContainerRef() {
+        return containerRef;
     }
 
     private void stringEsc(int size) {
@@ -118,15 +121,7 @@ public class StringSpecialValues implements Rule {
     }
 
     private boolean checkIn() {
-        if ((!ESC_SPECIAL && !SPECIAL) || SPECIAL_LEN <= 0 || INCREASE_QUANTITY < 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean checkOut() {
-        if ((values.size() == 0) || (testDataContainer == null)) {
+        if ((!escSpecial && !special) || specialLen <= 0 || increaseQuantity < 0) {
             return true;
         } else {
             return false;

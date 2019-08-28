@@ -1,8 +1,11 @@
 package com.rufus.bumblebee.utils;
 
+import lombok.experimental.UtilityClass;
+
 import javax.validation.*;
 import java.util.Set;
 
+@UtilityClass
 public class ValidatorUtils {
 
     public static void validate(Object object) throws ValidationException {

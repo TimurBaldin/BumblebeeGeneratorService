@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.reports;
 
-import com.rufus.bumblebee.container.Container;
+import com.rufus.bumblebee.tables.Container;
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 
 import java.io.ByteArrayOutputStream;
@@ -14,8 +14,8 @@ import java.util.List;
  * @author : Baldin Timur
  * @version : 0.0.1
  */
-public class CsvReport implements ReportCSV<Container> {
-    private List<Container> bufer = new ArrayList<>();
+public abstract class CsvReport implements ReportCSV<Container> {
+  /*  private List<Container> bufer = new ArrayList<>();
     private String delimiter;
     private String docName;
     private String path;
@@ -72,5 +72,5 @@ public class CsvReport implements ReportCSV<Container> {
             return false;
         }
     }
-
+*/
 }

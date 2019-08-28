@@ -1,6 +1,5 @@
 package com.rufus.bumblebee.services;
 
-import com.rufus.bumblebee.container.Container;
 import com.rufus.bumblebee.factories.ReportFactory;
 import com.rufus.bumblebee.reports.ReportCSV;
 import com.rufus.bumblebee.reports.ReportExcel;
@@ -16,14 +15,14 @@ import java.util.List;
  * @version : 0.0.1
  */
 @Service
-public class ReportTestService implements BaseTestService {
+public class ReportBaseTestService {
 
     @Autowired
     private ReportFactory config;
     private ReportCSV reportCSV;
     private ReportExcel reportExcel;
 
-    public ReportTestService(ReportFactory config) {
+    public ReportBaseTestService(ReportFactory config) {
         this.config = config;
     }
 
@@ -55,12 +54,12 @@ public class ReportTestService implements BaseTestService {
 
 
 
-    @Override
+
     public void startGeneratingData() {
       //  return false;
     }
 
-    @Override
+
     public void saveTests() {
      //   return false;
     }

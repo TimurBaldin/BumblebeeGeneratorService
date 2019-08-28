@@ -1,7 +1,5 @@
 package com.rufus.bumblebee.repository;
 
-import com.rufus.bumblebee.container.Container;
-import com.rufus.bumblebee.container.TestDataContainer;
 import com.rufus.bumblebee.datatype.BaseDataType;
 import com.rufus.bumblebee.datatype.TypeTestData;
 import org.junit.After;

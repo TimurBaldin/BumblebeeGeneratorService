@@ -1,11 +1,12 @@
 package com.rufus.bumblebee.generators.NumberGenerator;
 
-import com.rufus.bumblebee.container.Container;
 import com.rufus.bumblebee.datatype.BaseDataType;
 import com.rufus.bumblebee.datatype.TypeTestData;
 import com.rufus.bumblebee.exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.exeptions.TransferException;
 import com.rufus.bumblebee.generators.Rule;
+import lombok.Builder;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,43 +18,49 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author : Baldin Timur
  * @version : 0.0.1
  */
+
 public class IntFullRange implements Rule {
 
     private final String TYPE = "NUMERIC";
-    private Long MinIntVal;
-    private Long MaxIntVal;
-    private List<TypeTestData> values = new LinkedList<TypeTestData>();
-    private Container column;
+    private Long minIntVal;
+    private Long maxIntVal;
+    private List<TypeTestData> values = new LinkedList<>();
+    private Long containerRef;
 
-    public IntFullRange(Long MaxIntVal, Long MinIntVal, Container column) {
-        this.MinIntVal = MinIntVal;
-        this.MaxIntVal = MaxIntVal;
-        this.column = column;
+    @Builder(toBuilder = true)
+    public IntFullRange(Long maxIntVal, Long minIntVal, Long containerRef) {
+        this.minIntVal = minIntVal;
+        this.maxIntVal = maxIntVal;
+        this.containerRef = containerRef;
     }
 
     @Override
     public void construct() throws GeneratorExceptionInputOptions, TransferException {
         if (checkRule()) {
-            throw new GeneratorExceptionInputOptions("Your choice is not right. Parameters :", MaxIntVal.toString() + MinIntVal.toString());
+            throw new GeneratorExceptionInputOptions("Your choice is not right. Parameters :", maxIntVal.toString() + minIntVal.toString());
         } else {
-            for (Long i = MinIntVal; i <= MaxIntVal; i++) {
+            for (Long i = minIntVal; i <= maxIntVal; i++) {
                 values.add(new BaseDataType(buildRandNum().toString(), TYPE));
             }
-            transfer();
+            receivingTestData();
         }
     }
 
     @Override
-    public void transfer() throws TransferException {
-        if (column == null || values.size() == 0) {
-            throw new TransferException("Value column not be null  or test data was not generated ");
-        } else {
-            column.setValues(values);
+    public List<TypeTestData> receivingTestData() throws TransferException {
+        if (CollectionUtils.isEmpty(values)) {
+            throw new TransferException("Collection is empty for generator : " + getClass().getCanonicalName());
         }
+        return values;
+    }
+
+    @Override
+    public Long getContainerRef() {
+        return containerRef;
     }
 
     private boolean checkRule() {
-        if ((MaxIntVal < MinIntVal) || (Math.abs(MaxIntVal - MinIntVal) == 0)) {
+        if ((maxIntVal < minIntVal) || (Math.abs(maxIntVal - minIntVal) == 0)) {
             return true;
         } else {
             return false;
@@ -61,7 +68,7 @@ public class IntFullRange implements Rule {
     }
 
     private Long buildRandNum() {
-        return ThreadLocalRandom.current().nextLong(MinIntVal, MaxIntVal + 1);
+        return ThreadLocalRandom.current().nextLong(minIntVal, maxIntVal + 1);
     }
 
 }

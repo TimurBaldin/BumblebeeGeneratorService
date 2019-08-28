@@ -1,7 +1,10 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
              version="1.0">
     <persistence-unit name="generator">
-        <class>com.rufus.bumblebee.Main.Tables.TestData</class>
+        <class>com.rufus.bumblebee.tables.Container</class>
+        <class>com.rufus.bumblebee.tables.Client</class>
+        <class>com.rufus.bumblebee.tables.Report</class>
+        <class>com.rufus.bumblebee.tables.TestData</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>

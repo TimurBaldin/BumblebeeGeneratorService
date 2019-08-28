@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.controllers.Responses;
+package com.rufus.bumblebee.controllers.responses;
 
 public class BaseResponse<V> {
 

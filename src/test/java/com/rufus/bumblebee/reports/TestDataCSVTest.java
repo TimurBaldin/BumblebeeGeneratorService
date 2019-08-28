@@ -1,9 +1,7 @@
 package com.rufus.bumblebee.reports;
 
-import com.rufus.bumblebee.container.Container;
-import com.rufus.bumblebee.container.TestDataContainer;
 import com.rufus.bumblebee.factories.ReportFactory;
-import com.rufus.bumblebee.services.ReportTestService;
+import com.rufus.bumblebee.services.ReportBaseTestService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +15,7 @@ public class TestDataCSVTest {
    private final long SIZE = 17500;
     private ArrayList<String> str;
     private  ArrayList<Container> arr;
-    private ReportTestService service;
+    private ReportBaseTestService service;
     private final int QUANTITY_LINES=500;
     private final String COLUMN_NAME="Tester";
     private final int QUANTITY_COLUMN=10;
@@ -26,7 +24,7 @@ public class TestDataCSVTest {
 
     @Before
     public void precondition() {
-        service = new ReportTestService(new ReportFactory());
+        service = new ReportBaseTestService(new ReportFactory());
         str = new ArrayList<String>();
         arr = new ArrayList<Container>();
         for (Integer i = 0; i <= QUANTITY_LINES; i++) {

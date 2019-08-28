@@ -1,6 +1,5 @@
 package com.rufus.bumblebee.LineGenerator;
 
-import com.rufus.bumblebee.container.TestDataContainer;
 import com.rufus.bumblebee.exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.exeptions.TransferException;
 import com.rufus.bumblebee.datatype.TypeTestData;
@@ -162,7 +161,7 @@ public class StringSpecialValuesTest {
     }
     @Test(expected=TransferException.class)
     public void exceptionCall() throws Exception {
-        test.transfer();
+        test.receivingTestData();
 
     }
     @Test(expected=GeneratorExceptionInputOptions.class)
