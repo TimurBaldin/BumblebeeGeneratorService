@@ -4,7 +4,7 @@ import com.rufus.bumblebee.datatype.BaseDataType;
 import com.rufus.bumblebee.datatype.TypeTestData;
 import com.rufus.bumblebee.exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.exeptions.TransferException;
-import com.rufus.bumblebee.generators.Rule;
+import com.rufus.bumblebee.generators.BaseGenerator;
 import lombok.Builder;
 import org.springframework.util.CollectionUtils;
 
@@ -18,7 +18,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author : Baldin Timur
  * @version : 0.0.1
  */
-public class StringBoundaryValues implements Rule {
+public class StringBoundaryValues implements BaseGenerator {
 
     private final int MIN_ID_CAPITALS = 65;
     private final int MAX_ID_CAPITALS = 90;

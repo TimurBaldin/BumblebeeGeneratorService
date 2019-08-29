@@ -7,6 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
+import org.springframework.stereotype.Component;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -18,9 +19,10 @@ import java.util.List;
  * @author : Baldin Timur
  * @version : 0.0.1
  */
-public abstract class ExcelReport implements ReportExcel<Container> {
+@Component
+public class ExcelReport implements ReportExcel<Container> {
 
- /*   private XSSFRow row;
+    private XSSFRow row;
     private XSSFCell cell;
     private XSSFSheet sheet;
     private XSSFWorkbook book;
@@ -93,5 +95,5 @@ public abstract class ExcelReport implements ReportExcel<Container> {
     }
 
 
-*/
+
 }

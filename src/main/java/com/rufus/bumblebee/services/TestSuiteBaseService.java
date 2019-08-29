@@ -6,7 +6,7 @@ import com.rufus.bumblebee.generators.LineGenerator.StringBoundaryValues;
 import com.rufus.bumblebee.generators.LineGenerator.StringSpecialValues;
 import com.rufus.bumblebee.generators.NumberGenerator.IntBoundaryValues;
 import com.rufus.bumblebee.generators.NumberGenerator.IntFullRange;
-import com.rufus.bumblebee.generators.Rule;
+import com.rufus.bumblebee.generators.BaseGenerator;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.tables.Container;
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
@@ -25,7 +25,7 @@ import java.util.List;
 @Service
 public class TestSuiteBaseService extends BaseTestService {
 
-    private List<Rule> tests = new ArrayList<>();
+    private List<BaseGenerator> tests = new ArrayList<>();
     private ContainerRepository repository;
 
     @Autowired

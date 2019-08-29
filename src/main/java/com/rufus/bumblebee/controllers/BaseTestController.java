@@ -5,7 +5,6 @@ import com.rufus.bumblebee.controllers.requests.IntBoundaryTestRequest;
 import com.rufus.bumblebee.controllers.requests.IntRangeTestRequest;
 import com.rufus.bumblebee.controllers.requests.SpecialLinesTestRequest;
 import com.rufus.bumblebee.controllers.responses.BaseResponse;
-import com.rufus.bumblebee.generators.Rule;
 import com.rufus.bumblebee.services.TestSuiteBaseService;
 import com.rufus.bumblebee.utils.ValidatorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/base_tests")

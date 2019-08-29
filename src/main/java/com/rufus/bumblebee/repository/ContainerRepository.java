@@ -15,6 +15,14 @@ public class ContainerRepository {
     @PersistenceContext
     EntityManager em;
 
+    public Container createContainer(Container container) {
+        return em.merge(container);
+    }
+
+    public void removeContainer(Container container) {
+        em.remove(em.merge(container));
+    }
+
     public List<Container> getAll() {
         return em.createNamedQuery("SELECT c FROM Container c", Container.class).getResultList();
     }

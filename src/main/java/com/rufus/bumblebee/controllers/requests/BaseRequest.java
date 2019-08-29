@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @Setter
 @Getter
-class BaseRequest {
+public class BaseRequest {
 
     @NotNull
     private Long containerId;

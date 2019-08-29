@@ -1,6 +1,5 @@
 package com.rufus.bumblebee.reports;
 
-import com.rufus.bumblebee.factories.ReportFactory;
 import com.rufus.bumblebee.services.ReportBaseTestService;
 import org.junit.After;
 import org.junit.Before;

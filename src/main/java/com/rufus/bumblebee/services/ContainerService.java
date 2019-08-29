@@ -21,10 +21,18 @@ public class ContainerService {
     public Container createTestDataContainer(TestDataContainerRequest request) {
         Container container = new Container();
         container.setName(request.getName());
-        container.setDate(new Date());
-        container.setUpdateDate(new Date());
+        Date date = new Date();
+        container.setDate(date);
+        container.setUpdateDate(date);
         container.setClientRef(request.getClientRef());
-        return repository.create(container);
+        return repository.createContainer(container);
+    }
+
+    public void removeContainer(Long containerId) {
+        Container container = repository.getContainerById(containerId);
+        if (container != null) {
+            repository.removeContainer(container);
+        }
     }
 
 }

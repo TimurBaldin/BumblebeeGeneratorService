@@ -12,7 +12,7 @@ import java.util.List;
  * @author : Baldin Timur
  * @version : 0.0.1
  */
-public interface Rule {
+public interface BaseGenerator {
     /**
      * Вызов методов "генераторов"
      *
@@ -27,5 +27,9 @@ public interface Rule {
      */
     List<TypeTestData> receivingTestData() throws TransferException;
 
+    /**
+     * Ссылка на контейнер
+     */
     Long getContainerRef();
+
 }

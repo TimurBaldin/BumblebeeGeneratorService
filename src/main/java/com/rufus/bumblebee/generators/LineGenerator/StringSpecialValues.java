@@ -4,7 +4,7 @@ import com.rufus.bumblebee.datatype.BaseDataType;
 import com.rufus.bumblebee.datatype.TypeTestData;
 import com.rufus.bumblebee.exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.exeptions.TransferException;
-import com.rufus.bumblebee.generators.Rule;
+import com.rufus.bumblebee.generators.BaseGenerator;
 import lombok.Builder;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -18,7 +18,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author : Baldin Timur
  * @version : 0.0.1
  */
-public class StringSpecialValues implements Rule {
+public class StringSpecialValues implements BaseGenerator {
 
     private final int MIN_ID_ESC = SpecialID.KEY_ID.getMIN_ID_ESC();
     private final int MAX_ID_ESC = SpecialID.KEY_ID.getMAX_ID_ESC();

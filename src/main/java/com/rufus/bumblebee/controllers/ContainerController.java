@@ -1,5 +1,6 @@
 package com.rufus.bumblebee.controllers;
 
+import com.rufus.bumblebee.controllers.requests.BaseRequest;
 import com.rufus.bumblebee.controllers.requests.TestDataContainerRequest;
 import com.rufus.bumblebee.controllers.responses.BaseResponse;
 import com.rufus.bumblebee.services.ContainerService;
@@ -31,7 +32,6 @@ public class ContainerController {
         try {
             ValidatorUtils.validate(request);
             Container container = service.createTestDataContainer(request);
-            System.out.println(container);
             response.setResponse(container);
             return response;
         } catch (Exception ex) {
@@ -39,7 +39,21 @@ public class ContainerController {
             response.setErrorMessage(ex.getMessage());
             return response;
         }
+    }
 
+    @RequestMapping(path = "/remove_container", method = RequestMethod.GET)
+    public @ResponseBody
+    BaseResponse<Container> setTestDataContainer(@RequestBody BaseRequest request) {
+        BaseResponse<Container> response = new BaseResponse<>();
+        try {
+            ValidatorUtils.validate(request);
+            service.removeContainer(request.getContainerId());
+            return response;
+        } catch (Exception ex) {
+            response.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            response.setErrorMessage(ex.getMessage());
+            return response;
+        }
     }
 
 }
