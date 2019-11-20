@@ -17,7 +17,7 @@ public class Container {
 
     @Id
     @Column(name = "ID", unique = true, nullable = false)
-    @SequenceGenerator(name = "container_id", sequenceName = "repository.container_id", allocationSize = 1)
+    @SequenceGenerator(name = "container_id", sequenceName = "REPOSITORY.container_id", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "container_id")
     private Long id;
 
@@ -40,5 +40,6 @@ public class Container {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CONTAINER_REF")
     private List<Report> reports;
+
 
 }

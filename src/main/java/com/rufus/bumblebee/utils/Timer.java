@@ -59,12 +59,12 @@ public class Timer {
 
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.services.ReportBaseTestService.createCSV(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.services.ReportService.createCSV(..))")
     public void createreportCSV() {
 
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.services.ReportBaseTestService.createExcel(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.services.ReportService.createExcel(..))")
     public void createreportExcel() {
 
     }

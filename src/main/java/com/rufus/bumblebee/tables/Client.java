@@ -2,24 +2,22 @@ package com.rufus.bumblebee.tables;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Entity
-@Table(name = "CLIENTS", schema = "REPOSITORY")
 @Getter
 @Setter
-@ToString
+@Entity
+@Table(name = "CLIENTS", schema = "REPOSITORY")
 public class Client implements Serializable {
 
     @Id
-    @SequenceGenerator(name = "client_id", sequenceName = "repository.client_user_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "client_id", sequenceName = "REPOSITORY.client_user_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_id")
     @Column(name = "ID", unique = true, nullable = false)
-    private int user_id;
+    private Long userId;
 
     @Column(name = "LOGIN")
     private String login;
@@ -35,6 +33,12 @@ public class Client implements Serializable {
 
     @Column(name = "EMAIL")
     private String email;
+
+    @Column(name = "TOKEN")
+    private String token;
+
+    @Column(name = "SESSION_ID")
+    private String sessionId;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "CLIENT_REF")

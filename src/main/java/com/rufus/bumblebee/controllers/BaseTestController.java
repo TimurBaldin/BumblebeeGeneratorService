@@ -1,9 +1,9 @@
 package com.rufus.bumblebee.controllers;
 
-import com.rufus.bumblebee.controllers.requests.BoundaryTestRequest;
-import com.rufus.bumblebee.controllers.requests.IntBoundaryTestRequest;
-import com.rufus.bumblebee.controllers.requests.IntRangeTestRequest;
-import com.rufus.bumblebee.controllers.requests.SpecialLinesTestRequest;
+import com.rufus.bumblebee.controllers.requests.tests.BoundaryTestRequest;
+import com.rufus.bumblebee.controllers.requests.tests.IntBoundaryTestRequest;
+import com.rufus.bumblebee.controllers.requests.tests.IntRangeTestRequest;
+import com.rufus.bumblebee.controllers.requests.tests.SpecialLinesTestRequest;
 import com.rufus.bumblebee.controllers.responses.BaseResponse;
 import com.rufus.bumblebee.services.TestSuiteBaseService;
 import com.rufus.bumblebee.utils.ValidatorUtils;
@@ -25,7 +25,7 @@ public class BaseTestController {
         this.service = service;
     }
 
-    @RequestMapping(path = "/boundary", method = RequestMethod.GET)
+    @RequestMapping(path = "/boundary", method = RequestMethod.POST)
     public @ResponseBody
     BaseResponse createBoundaryTest(@RequestBody BoundaryTestRequest request) {
         BaseResponse response = new BaseResponse();
@@ -47,7 +47,7 @@ public class BaseTestController {
         return response;
     }
 
-    @RequestMapping(path = "/spec_symbol", method = RequestMethod.GET)
+    @RequestMapping(path = "/spec_symbol", method = RequestMethod.POST)
     public @ResponseBody
     BaseResponse createSpecialTest(@RequestBody SpecialLinesTestRequest request) {
         BaseResponse response = new BaseResponse();
@@ -67,7 +67,7 @@ public class BaseTestController {
 
     }
 
-    @RequestMapping(path = "/int_boundary", method = RequestMethod.GET)
+    @RequestMapping(path = "/int_boundary", method = RequestMethod.POST)
     public @ResponseBody
     BaseResponse createIntBoundaryTest(@RequestBody IntBoundaryTestRequest request) {
         BaseResponse response = new BaseResponse();
@@ -87,7 +87,7 @@ public class BaseTestController {
         return response;
     }
 
-    @RequestMapping(path = "/int_range", method = RequestMethod.GET)
+    @RequestMapping(path = "/int_range", method = RequestMethod.POST)
     public @ResponseBody
     BaseResponse createIntRangeTest(@RequestBody IntRangeTestRequest request) {
         BaseResponse response = new BaseResponse();
@@ -107,7 +107,7 @@ public class BaseTestController {
     }
 
 
-    @RequestMapping(path = "/start_generators", method = RequestMethod.GET)
+    @RequestMapping(path = "/start_generators", method = RequestMethod.POST)
     public @ResponseBody
     BaseResponse startGeneratingData() {
         BaseResponse response = new BaseResponse();

@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.reports;
 
-import com.rufus.bumblebee.services.ReportBaseTestService;
+import com.rufus.bumblebee.services.ReportService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,12 +9,12 @@ import java.io.File;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertTrue;
-
+/*
 public class TestDataCSVTest {
    private final long SIZE = 17500;
     private ArrayList<String> str;
     private  ArrayList<Container> arr;
-    private ReportBaseTestService service;
+    private ReportService service;
     private final int QUANTITY_LINES=500;
     private final String COLUMN_NAME="Tester";
     private final int QUANTITY_COLUMN=10;
@@ -23,7 +23,7 @@ public class TestDataCSVTest {
 
     @Before
     public void precondition() {
-        service = new ReportBaseTestService(new ReportFactory());
+        service = new ReportService(new ReportFactory());
         str = new ArrayList<String>();
         arr = new ArrayList<Container>();
         for (Integer i = 0; i <= QUANTITY_LINES; i++) {
@@ -84,3 +84,5 @@ public class TestDataCSVTest {
 
 
 }
+
+ */

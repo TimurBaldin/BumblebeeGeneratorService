@@ -1,8 +1,9 @@
 package com.rufus.bumblebee.services;
 
-import com.rufus.bumblebee.controllers.requests.TestDataContainerRequest;
+import com.rufus.bumblebee.controllers.requests.containers.TestDataContainerRequest;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.tables.Container;
+import com.sun.media.sound.InvalidDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class ContainerService {
         return repository.createContainer(container);
     }
 
-    public void removeContainer(Long containerId) {
+    public void removeContainer(Long containerId) throws InvalidDataException {
         Container container = repository.getContainerById(containerId);
         if (container != null) {
             repository.removeContainer(container);

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
-
+/*
 public class TestValuesTest {
    private final String COLUMN_NAME="TestClassRepositiryTestValuesTest";
     private TestDataRepository testValues;
@@ -60,3 +60,4 @@ public void delete(){
 
     }
 }
+*/

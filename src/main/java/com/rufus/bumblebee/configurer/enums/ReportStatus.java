@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.utils.enums;
+package com.rufus.bumblebee.configurer.enums;
 
 public enum ReportStatus {
 

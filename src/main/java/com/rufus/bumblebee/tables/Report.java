@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.tables;
 
-import com.rufus.bumblebee.utils.enums.ReportStatus;
-import com.rufus.bumblebee.utils.enums.ReportType;
+import com.rufus.bumblebee.configurer.enums.ReportStatus;
+import com.rufus.bumblebee.configurer.enums.ReportType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,7 +18,7 @@ public class Report {
 
     @Id
     @Column(name = "ID", unique = true, nullable = false)
-    @SequenceGenerator(name = "report_id", sequenceName = "repository.report_id", allocationSize = 1)
+    @SequenceGenerator(name = "report_id", sequenceName = "REPOSITORY.report_id", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "report_id")
     private Long id;
 

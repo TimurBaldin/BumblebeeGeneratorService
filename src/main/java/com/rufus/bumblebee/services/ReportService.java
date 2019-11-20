@@ -5,6 +5,7 @@ import com.rufus.bumblebee.reports.ReportExcel;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.tables.Container;
 import com.rufus.bumblebee.tables.TestData;
+import com.sun.media.sound.InvalidDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import java.util.Map;
  * @version : 0.0.1
  */
 @Service
-public class ReportBaseTestService {
+public class ReportService {
 
     @Autowired
     private ReportCSV reportCSV;
@@ -55,7 +56,7 @@ public class ReportBaseTestService {
 
     }
 
-    public Map<String, List<TestData>> loadDataByContainersRef(List<Long> containersRef) {
+    private Map<String, List<TestData>> loadDataByContainersRef(List<Long> containersRef) throws InvalidDataException {
         Map<String, List<TestData>> testData = new HashMap<>();
         for (Long id : containersRef) {
             Container container = repository.getContainerById(id);

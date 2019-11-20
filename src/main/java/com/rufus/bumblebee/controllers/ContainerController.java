@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.controllers;
 
-import com.rufus.bumblebee.controllers.requests.BaseRequest;
-import com.rufus.bumblebee.controllers.requests.TestDataContainerRequest;
+import com.rufus.bumblebee.controllers.requests.tests.BaseRequest;
+import com.rufus.bumblebee.controllers.requests.containers.TestDataContainerRequest;
 import com.rufus.bumblebee.controllers.responses.BaseResponse;
 import com.rufus.bumblebee.services.ContainerService;
 import com.rufus.bumblebee.tables.Container;

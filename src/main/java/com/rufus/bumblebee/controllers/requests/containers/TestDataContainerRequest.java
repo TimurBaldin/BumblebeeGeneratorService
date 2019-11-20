@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.controllers.requests;
+package com.rufus.bumblebee.controllers.requests.containers;
 
 import lombok.Getter;
 import lombok.Setter;

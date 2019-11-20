@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.controllers;
 
-import com.rufus.bumblebee.services.ReportBaseTestService;
+import com.rufus.bumblebee.services.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
@@ -17,10 +17,10 @@ import java.io.IOException;
 @RequestMapping("/getreport")
 public class ReportController {
 
-    private ReportBaseTestService service;
+    private ReportService service;
 
     @Autowired
-    public ReportController(ReportBaseTestService service) {
+    public ReportController(ReportService service) {
         this.service = service;
     }
 

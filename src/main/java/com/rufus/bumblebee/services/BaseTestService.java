@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BaseTestService implements TestService {
+public abstract class BaseTestService implements TestService {
 
     @Autowired
     private TestDataRepository repository;
@@ -21,11 +21,9 @@ public class BaseTestService implements TestService {
         if (tests.size() > 0) {
             for (BaseGenerator test : tests) {
                 test.construct();
-            }
-
-            for (BaseGenerator test : tests) {
                 repository.saveTestData(test.receivingTestData(), test.getContainerRef());
             }
+
         } else {
             throw new InvalidInputException("It is necessary to choose checks");
         }

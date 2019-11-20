@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static com.rufus.bumblebee.generators.LineGenerator.SpecialID.KEY_ID;
 import static org.junit.Assert.*;
-
+/*
 public class StringSpecialValuesTest {
     private final int Len = 13;
     private final String matchSpecial = "[^A-ZА-Яa-z]*";
@@ -184,4 +184,6 @@ public class StringSpecialValuesTest {
     }
 
 
+
 }
+*/

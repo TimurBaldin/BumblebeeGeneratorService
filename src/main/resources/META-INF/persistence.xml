@@ -5,13 +5,12 @@
         <class>com.rufus.bumblebee.tables.Client</class>
         <class>com.rufus.bumblebee.tables.Report</class>
         <class>com.rufus.bumblebee.tables.TestData</class>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/data_generator"/>
             <property name="hibernate.connection.username" value="postgres"/>
             <property name="hibernate.connection.password" value="ADMIN"/>
-
             <property name="connection_pool_size" value="10"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>

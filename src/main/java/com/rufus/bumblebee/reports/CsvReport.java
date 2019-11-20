@@ -37,11 +37,9 @@ public class CsvReport implements ReportCSV<Container> {
                 }
                 stream.write(System.getProperty("line.separator").getBytes());
                 for (int j = 0; j <= buffer.size() - 1; j++) {
-                    int i = 0;
                     List<TestData> dataList = buffer.get(j);
                     for (TestData testData : dataList) {
                         stream.write((testData.getValue() + delimiter).getBytes());
-                        i++;
                     }
                     stream.write(System.getProperty("line.separator").getBytes());
                 }

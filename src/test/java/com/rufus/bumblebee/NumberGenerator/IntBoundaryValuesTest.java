@@ -11,7 +11,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
+/*
 public class IntBoundaryValuesTest {
     private final int Len = 8;
     private final int noQuantity = 6;
@@ -88,3 +88,5 @@ public class IntBoundaryValuesTest {
         test3.construct();
     }
 }
+
+ */

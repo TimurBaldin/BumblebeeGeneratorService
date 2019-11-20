@@ -1,6 +1,7 @@
 package com.rufus.bumblebee.reports;
 
 import com.rufus.bumblebee.tables.Container;
+import com.rufus.bumblebee.tables.TestData;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -9,9 +10,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.stereotype.Component;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class : создание/удаление отчета формата xlsx
@@ -28,48 +31,44 @@ public class ExcelReport implements ReportExcel<Container> {
     private XSSFWorkbook book;
     private String docName;
     private String sheetName;
-    private List<Container> buffer = new ArrayList<>();
+    private Map<String, List<TestData>> buffer = new HashMap<>();
 
 
     @Override
-    public byte[] create(String docName, String sheetName, List<Container> bufer) throws InvalidInputException {
+    public byte[] create(String docName, String sheetName, Map<String, List<TestData>> data) throws InvalidInputException {
         this.docName = docName;
         this.sheetName = sheetName;
-        this.buffer.addAll(bufer);
+        this.buffer.putAll(data);
         if (check()) {
             throw new InvalidInputException("Invalid input");
         } else {
-            try (ByteArrayOutputStream baos = new ByteArrayOutputStream()){
+            try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
                 book = new XSSFWorkbook();
                 sheet = book.createSheet(sheetName);
                 row = sheet.createRow(0);
-                for (int j = 0; j <= bufer.size() - 1; j++) {
-                    cell = row.createCell(j);
+                int cellId = 0;
+                for (String key : buffer.keySet()) {
+                    cell = row.createCell(cellId);
                     cell.setCellType(CellType.STRING);
-                    cell.setCellValue(bufer.get(j).getContainerName());
+                    cell.setCellValue(key);
+                    cellId++;
                 }
                 int id = 1;
-                boolean flag = checkSize(id);
-                int value_id = 0;
-
-                while (flag) {
+                for (int j = 0; j <= buffer.size() - 1; j++) {
                     row = sheet.createRow(id);
+                    List<TestData> dataList = buffer.get(j);
                     int i = 0;
-                    for (Container column : bufer) {
+                    for (TestData testData : dataList) {
                         cell = row.createCell(i);
                         cell.setCellType(CellType.STRING);
-                        cell.setCellValue(column.getTestValue(value_id));
+                        cell.setCellValue(testData.getValue());
                         ++i;
                     }
-
-                    ++value_id;
                     ++id;
-                    flag = checkSize(id);
                 }
 
-
-                book.write(baos);
-               return baos.toByteArray();
+                book.write(stream);
+                return stream.toByteArray();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -84,16 +83,5 @@ public class ExcelReport implements ReportExcel<Container> {
             return false;
         }
     }
-
-    private boolean checkSize(int id) {
-        for (Container column : buffer) {
-            if (id <= (column.getSizeValue())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
 
 }

@@ -27,7 +27,7 @@ public class IntBoundaryValues implements BaseGenerator {
     private Long containerRef;
     private List<TypeTestData> values = new LinkedList<>();
 
-    @Builder(toBuilder = true)
+    @Builder(toBuilder = false)
     public IntBoundaryValues(Long boundaryIntEnd, Long boundaryIntStart, Integer quantity, Long containerRef) {
         this.maxInt = boundaryIntEnd;
         this.minInt = boundaryIntStart;
@@ -36,7 +36,7 @@ public class IntBoundaryValues implements BaseGenerator {
     }
 
     @Override
-    public void construct() throws GeneratorExceptionInputOptions, TransferException {
+    public void construct() throws GeneratorExceptionInputOptions {
         if (checkRule()) {
             throw new GeneratorExceptionInputOptions("Invalid input conditions.", maxInt.toString() + minInt.toString(), quantity.toString());
         } else {

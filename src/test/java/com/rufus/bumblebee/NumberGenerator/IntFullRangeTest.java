@@ -11,7 +11,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
+/*
 public class IntFullRangeTest {
     private final int Len = 10;
     private final String matchForInt = "[0-9]*";
@@ -81,3 +81,5 @@ public class IntFullRangeTest {
     }
 
 }
+
+ */
