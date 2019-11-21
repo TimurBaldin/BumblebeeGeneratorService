@@ -4,6 +4,6 @@ public enum ReportStatus {
 
     IN_PROGRESS,
     SUCCESSFULLY,
-    ERROR,
+    ERROR;
 
 }

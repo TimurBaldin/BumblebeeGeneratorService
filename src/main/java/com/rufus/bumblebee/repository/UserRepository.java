@@ -1,11 +1,13 @@
 package com.rufus.bumblebee.repository;
 
+import com.rufus.bumblebee.configurer.enums.ClientStatus;
 import com.rufus.bumblebee.tables.Client;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.Objects;
 
 /**
  * Class : CRUD операции с пользователем
@@ -16,7 +18,7 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public class ClientRepository {
+public class UserRepository {
 
     @PersistenceContext
     EntityManager em;
@@ -25,8 +27,14 @@ public class ClientRepository {
         return em.merge(client);
     }
 
-    public Client deleteClient(Client client){
-        em.remove(em.merge(client));
+    public Client disableClient(String login) {
+        Client client = em.createNamedQuery("SELECT c FROM Client c WHERE c.login :login ", Client.class)
+                .setParameter("login", login)
+                .getResultList().get(0);
+        if (Objects.nonNull(client)) {
+            client.setStatus(ClientStatus.LOCK);
+            em.merge(client);
+        }
         return client;
     }
 

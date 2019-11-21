@@ -1,23 +1,26 @@
 package com.rufus.bumblebee.services;
 
-import com.rufus.bumblebee.controllers.requests.user.UserRequest;
+import com.rufus.bumblebee.configurer.enums.ClientStatus;
+import com.rufus.bumblebee.configurer.enums.UserRole;
+import com.rufus.bumblebee.controllers.requests.user.AddUserRequest;
+import com.rufus.bumblebee.controllers.requests.user.BaseUserRequest;
 import com.rufus.bumblebee.controllers.responses.dto.UserDto;
-import com.rufus.bumblebee.repository.ClientRepository;
+import com.rufus.bumblebee.repository.UserRepository;
 import com.rufus.bumblebee.tables.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ClientService {
+public class UserService {
 
-    private ClientRepository repository;
+    private UserRepository repository;
 
     @Autowired
-    public ClientService(ClientRepository repository) {
+    public UserService(UserRepository repository) {
         this.repository = repository;
     }
 
-    public UserDto createClient(UserRequest request) {
+    public UserDto createUser(AddUserRequest request) {
         Client client = new Client();
         client.setLogin(request.getLogin());
         client.setFirstName(request.getFirstName());
@@ -25,15 +28,24 @@ public class ClientService {
         client.setLastName(request.getLastName());
         client.setEmail(request.getEmail());
         client.setToken(request.getToken());
+        client.setStatus(ClientStatus.NEW);
+        client.setRole(UserRole.valueOf(request.getRole()));
         return convertToUserDto(repository.createClient(client));
     }
 
-    public UserDto deleteClietn()
+    public UserDto disableUser(BaseUserRequest request) {
+        return convertToUserDto(repository.disableClient(request.getLogin()));
+    }
+
+    public boolean logIn(){
+        return true;
+    }
 
     private UserDto convertToUserDto(Client client) {
         UserDto userDto = new UserDto();
         userDto.setUserId(client.getUserId());
         userDto.setSessionId(client.getSessionId());
+        userDto.setStatus(client.getStatus().name());
         return userDto;
     }
 

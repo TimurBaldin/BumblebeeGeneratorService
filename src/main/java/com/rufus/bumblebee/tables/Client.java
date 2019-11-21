@@ -1,5 +1,7 @@
 package com.rufus.bumblebee.tables;
 
+import com.rufus.bumblebee.configurer.enums.ClientStatus;
+import com.rufus.bumblebee.configurer.enums.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,6 +41,12 @@ public class Client implements Serializable {
 
     @Column(name = "SESSION_ID")
     private String sessionId;
+
+    @Column(name = "STATUS")
+    private ClientStatus status;
+
+    @Column(name = "ROLE")
+    private UserRole role;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "CLIENT_REF")

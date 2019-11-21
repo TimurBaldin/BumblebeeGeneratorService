@@ -9,5 +9,6 @@ public class UserDto {
 
     private Long userId;
     private String sessionId;
+    private String status;
 
 }

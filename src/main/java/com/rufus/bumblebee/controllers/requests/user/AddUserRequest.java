@@ -1,5 +1,8 @@
 package com.rufus.bumblebee.controllers.requests.user;
 
+import com.sun.istack.internal.NotNull;
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,11 +11,7 @@ import javax.validation.constraints.Size;
 
 @Setter
 @Getter
-public class UserRequest {
-
-    @NotNull(message = "login не передан")
-    @Size(min = 1, max = 255)
-    private String login;
+public class AddUserRequest extends BaseUserRequest {
 
     @NotNull(message = "firstName не передан")
     @Size(min = 1, max = 255)
@@ -30,9 +29,8 @@ public class UserRequest {
     @Size(min = 1, max = 255)
     private String email;
 
-    @NotNull(message = "token не передан")
-    @Size(min = 1, max = 1000)
-    private String token;
-
+    @NotNull(message = "роль не передана")
+    @Size(min = 1, max = 255)
+    private String role;
 
 }

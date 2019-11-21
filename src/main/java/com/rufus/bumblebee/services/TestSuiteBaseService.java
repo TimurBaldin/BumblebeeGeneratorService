@@ -28,8 +28,7 @@ public class TestSuiteBaseService extends BaseTestService {
 
     private List<BaseGenerator> generators = new ArrayList<>();
     private ContainerRepository repository;
-    @Autowired
-    private ApplicationContext context;
+
 
     @Autowired
     public TestSuiteBaseService(ContainerRepository repository) {
@@ -89,10 +88,5 @@ public class TestSuiteBaseService extends BaseTestService {
     public void startGeneratingData() throws TransferException, GeneratorExceptionInputOptions, InvalidInputException {
         startGeneratingData(generators);
     }
-
-    public void addTest(String testName){
-        BaseGenerator generator=(BaseGenerator) context.getBean(testName);
-    }
-
 
 }

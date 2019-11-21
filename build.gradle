@@ -51,9 +51,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
     testCompile group: 'com.h2database', name: 'h2', version: '1.4.200'
-
-
-
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.security:spring-security-web:3.2.5.RELEASE")
 }
 
 task wrapper(type: Wrapper) {
