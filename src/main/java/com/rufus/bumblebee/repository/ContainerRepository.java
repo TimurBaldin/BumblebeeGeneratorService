@@ -21,7 +21,7 @@ public class ContainerRepository {
     }
 
     public void removeContainer(Long containerId) {
-        em.createNamedQuery("DELETE FROM Container WHERE ID:=s").setParameter("s",3).executeUpdate();
+        em.createNamedQuery("DELETE FROM Container WHERE ID:=s").setParameter("s",containerId).executeUpdate();
 
     }
 
