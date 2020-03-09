@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/base_tests")
-public class BaseTestController {
+public class BaseTestController extends BaseController {
 
     private TestSuiteBaseService service;
 
@@ -118,12 +118,6 @@ public class BaseTestController {
                     HttpStatus.INTERNAL_SERVER_ERROR.value(),
                     ex.getMessage(), response);
         }
-        return response;
-    }
-
-    private BaseResponse getErrorResponse(Integer errorCode, String errorMessage, BaseResponse response) {
-        response.setErrorCode(errorCode);
-        response.setErrorMessage(errorMessage);
         return response;
     }
 

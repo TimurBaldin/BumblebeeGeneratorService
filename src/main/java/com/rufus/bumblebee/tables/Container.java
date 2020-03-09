@@ -2,9 +2,11 @@ package com.rufus.bumblebee.tables;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +14,6 @@ import java.util.List;
 @Table(name = "CONTAINERS", schema = "REPOSITORY")
 @Getter
 @Setter
-@ToString
 public class Container {
 
     @Id
@@ -29,7 +30,7 @@ public class Container {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CONTAINER_REF")
-    private List<TestData> data;
+    private List<TestData> data = new ArrayList<>();
 
     @Column(name = "CLIENT_REF")
     private Long clientRef;
@@ -39,7 +40,29 @@ public class Container {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CONTAINER_REF")
-    private List<Report> reports;
+    private List<Report> reports = new ArrayList<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
 
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Container container = (Container) o;
+
+        return new EqualsBuilder()
+                .append(id, container.id)
+                .append(name, container.name)
+                .append(clientRef, container.clientRef)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(name)
+                .append(clientRef)
+                .toHashCode();
+    }
 }

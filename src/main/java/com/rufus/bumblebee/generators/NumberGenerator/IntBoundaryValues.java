@@ -36,13 +36,14 @@ public class IntBoundaryValues implements BaseGenerator {
     }
 
     @Override
-    public void construct() throws GeneratorExceptionInputOptions {
+    public IntBoundaryValues construct() throws GeneratorExceptionInputOptions {
         if (checkRule()) {
             throw new GeneratorExceptionInputOptions("Invalid input conditions.", maxInt.toString() + minInt.toString(), quantity.toString());
         } else {
             buildBoundary();
             buildTestNum();
         }
+        return this;
     }
 
     @Override

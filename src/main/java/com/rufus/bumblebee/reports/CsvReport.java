@@ -2,12 +2,10 @@ package com.rufus.bumblebee.reports;
 
 import com.rufus.bumblebee.tables.Container;
 import com.rufus.bumblebee.tables.TestData;
-import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,46 +17,48 @@ import java.util.Map;
  */
 @Component
 public class CsvReport implements ReportCSV<Container> {
-    private Map<String, List<TestData>> buffer = new HashMap<>();
-    private String delimiter;
-    private String docName;
 
     @Override
-    public byte[] create(String docName, String delimiter, Map<String, List<TestData>> data) throws InvalidInputException {
-        this.buffer.putAll(data);
-        this.docName = docName;
-        this.delimiter = delimiter;
-        if (check()) {
-            throw new InvalidInputException("Invalid input");
-        } else {
-            try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
-                for (String key : buffer.keySet()) {
-                    stream.write((key + delimiter).getBytes());
-                }
-                stream.write(System.getProperty("line.separator").getBytes());
-                for (int j = 0; j <= buffer.size() - 1; j++) {
-                    List<TestData> dataList = buffer.get(j);
-                    for (TestData testData : dataList) {
-                        stream.write((testData.getValue() + delimiter).getBytes());
-                    }
-                    stream.write(System.getProperty("line.separator").getBytes());
-                }
-
-                return stream.toByteArray();
-            } catch (IOException e) {
-                e.printStackTrace();
+    public byte[] create(String docName, String delimiter, Map<Container, List<TestData>> data) {
+        try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
+            for (Container container : data.keySet()) {
+                stream.write((container.getName() + delimiter).getBytes());
             }
+            stream.write(System.getProperty("line.separator").getBytes());
+            int countRow = 0;
+            do {
+                for (Container container : data.keySet()) {
+                    List<TestData> dataList = container.getData();
+                    String value = "";
+                    if (dataList.size() < countRow) {
+                        stream.write((value.concat(delimiter)).getBytes());
+                    } else {
+                        value = dataList.get(countRow).getValue();
+                        stream.write((value.concat(delimiter)).getBytes());
+                    }
+                }
+                countRow++;
+                stream.write(System.getProperty("line.separator").getBytes());
+            } while (
+                    checkSizeContainers(data, countRow)
+            );
+
+            return stream.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return null;
+
+        return new byte[0];
 
     }
 
-    private boolean check() {
-        if (docName == null || delimiter == null || buffer == null) {
-            return true;
-        } else {
-            return false;
+    private boolean checkSizeContainers(Map<Container, List<TestData>> data, int countRow) {
+        for (Container container : data.keySet()) {
+            if (container.getData().size() > countRow) {
+                return true;
+            }
         }
+        return false;
     }
 
 }

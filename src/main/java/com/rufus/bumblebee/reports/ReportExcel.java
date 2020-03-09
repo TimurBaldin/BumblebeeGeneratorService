@@ -19,6 +19,6 @@ public interface ReportExcel<T> {
      * @param data данные для создания отчета
      * @throws InvalidInputException параметры метода не могут быть null
      */
-    byte[] create(String docName, String sheetName, Map<String, List<TestData>> data) throws InvalidInputException;
+    byte[] create(String docName, String sheetName, Map<T, List<TestData>> data);
 
 }

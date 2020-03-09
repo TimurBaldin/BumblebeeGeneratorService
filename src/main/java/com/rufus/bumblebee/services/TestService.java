@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface TestService {
 
-    void startGeneratingData(List<BaseGenerator> tests) throws GeneratorExceptionInputOptions, TransferException, InvalidInputException;
+    void startSaveData(List<BaseGenerator> tests) throws GeneratorExceptionInputOptions, TransferException, InvalidInputException;
 
 }

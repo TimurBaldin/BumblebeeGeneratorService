@@ -1,11 +1,7 @@
 package com.rufus.bumblebee.controllers.requests.user;
 
-import com.sun.istack.internal.NotNull;
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 

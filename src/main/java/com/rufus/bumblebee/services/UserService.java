@@ -6,7 +6,7 @@ import com.rufus.bumblebee.controllers.requests.user.AddUserRequest;
 import com.rufus.bumblebee.controllers.requests.user.BaseUserRequest;
 import com.rufus.bumblebee.controllers.responses.dto.UserDto;
 import com.rufus.bumblebee.repository.UserRepository;
-import com.rufus.bumblebee.tables.Client;
+import com.rufus.bumblebee.tables.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,6 @@ public class UserService {
         client.setSecondName(request.getSecondName());
         client.setLastName(request.getLastName());
         client.setEmail(request.getEmail());
-        client.setToken(request.getToken());
         client.setStatus(ClientStatus.NEW);
         client.setRole(UserRole.valueOf(request.getRole()));
         return convertToUserDto(repository.createClient(client));
@@ -37,14 +36,9 @@ public class UserService {
         return convertToUserDto(repository.disableClient(request.getLogin()));
     }
 
-    public boolean logIn(){
-        return true;
-    }
-
     private UserDto convertToUserDto(Client client) {
         UserDto userDto = new UserDto();
         userDto.setUserId(client.getUserId());
-        userDto.setSessionId(client.getSessionId());
         userDto.setStatus(client.getStatus().name());
         return userDto;
     }

@@ -7,9 +7,11 @@ import com.sun.media.sound.InvalidDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 
 @Service
+@Transactional
 public class ContainerService {
 
     private ContainerRepository repository;
@@ -30,10 +32,7 @@ public class ContainerService {
     }
 
     public void removeContainer(Long containerId) throws InvalidDataException {
-        Container container = repository.getContainerById(containerId);
-        if (container != null) {
-            repository.removeContainer(container);
-        }
+        repository.removeContainer(containerId);
     }
 
 }

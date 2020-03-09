@@ -7,12 +7,10 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,59 +27,62 @@ public class ExcelReport implements ReportExcel<Container> {
     private XSSFCell cell;
     private XSSFSheet sheet;
     private XSSFWorkbook book;
-    private String docName;
-    private String sheetName;
-    private Map<String, List<TestData>> buffer = new HashMap<>();
-
 
     @Override
-    public byte[] create(String docName, String sheetName, Map<String, List<TestData>> data) throws InvalidInputException {
-        this.docName = docName;
-        this.sheetName = sheetName;
-        this.buffer.putAll(data);
-        if (check()) {
-            throw new InvalidInputException("Invalid input");
-        } else {
-            try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
-                book = new XSSFWorkbook();
-                sheet = book.createSheet(sheetName);
-                row = sheet.createRow(0);
-                int cellId = 0;
-                for (String key : buffer.keySet()) {
-                    cell = row.createCell(cellId);
-                    cell.setCellType(CellType.STRING);
-                    cell.setCellValue(key);
-                    cellId++;
-                }
-                int id = 1;
-                for (int j = 0; j <= buffer.size() - 1; j++) {
-                    row = sheet.createRow(id);
-                    List<TestData> dataList = buffer.get(j);
-                    int i = 0;
-                    for (TestData testData : dataList) {
-                        cell = row.createCell(i);
-                        cell.setCellType(CellType.STRING);
-                        cell.setCellValue(testData.getValue());
-                        ++i;
-                    }
-                    ++id;
-                }
+    public byte[] create(String docName, String sheetName, Map<Container, List<TestData>> data) {
 
-                book.write(stream);
-                return stream.toByteArray();
-            } catch (IOException e) {
-                e.printStackTrace();
+        try (ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
+            book = new XSSFWorkbook();
+            sheet = book.createSheet(sheetName);
+            row = sheet.createRow(0);
+            int cellId = 0;
+            for (Container key : data.keySet()) {
+                cell = row.createCell(cellId);
+                cell.setCellType(CellType.STRING);
+                cell.setCellValue(key.getName());
+                cellId++;
+            }
+            int id = 1;
+            int countRow = 0;
+            do {
+                row = sheet.createRow(id);
+                int i = 0;
+                for (Container container : data.keySet()) {
+                    List<TestData> dataList = container.getData();
+                    String value = "";
+                    cell = row.createCell(i);
+                    cell.setCellType(CellType.STRING);
+                    if (dataList.size() < countRow) {
+                        cell.setCellValue(value);
+                    } else {
+                        value = dataList.get(countRow).getValue();
+                        cell.setCellValue(value);
+                    }
+                    ++i;
+                }
+                countRow++;
+                ++id;
+            } while (
+                    checkSizeContainers(data, countRow)
+            );
+
+            book.write(stream);
+            return stream.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new byte[0];
+    }
+
+    private boolean checkSizeContainers(Map<Container, List<TestData>> data, int countRow) {
+        for (Container container : data.keySet()) {
+            if (container.getData().size() > countRow) {
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
-    private boolean check() {
-        if (docName == null || sheetName == null || buffer == null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
 }

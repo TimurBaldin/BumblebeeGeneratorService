@@ -20,8 +20,9 @@ public class ContainerRepository {
         return em.merge(container);
     }
 
-    public void removeContainer(Container container) {
-        em.remove(em.merge(container));
+    public void removeContainer(Long containerId) {
+        em.createNamedQuery("DELETE FROM Container WHERE ID:=s").setParameter("s",3).executeUpdate();
+
     }
 
     public List<Container> getAll() {

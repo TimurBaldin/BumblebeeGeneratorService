@@ -13,9 +13,14 @@
             <property name="hibernate.connection.password" value="ADMIN"/>
             <property name="connection_pool_size" value="10"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+
+            <property name="hibernate.hbm2ddl.auto" value="none"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
+           
+            
         </properties>
     </persistence-unit>
 </persistence>

@@ -9,6 +9,7 @@ import lombok.Builder;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -35,7 +36,7 @@ public class StringSpecialValues implements BaseGenerator {
     private Boolean special;
     private Integer increaseQuantity;
     private Long containerRef;
-    private List<TypeTestData> values = new ArrayList<>();
+    private List<TypeTestData> values = new LinkedList<>();
 
     @Builder(toBuilder = true)
     public StringSpecialValues(Integer specialLen, Integer increaseQuantity, Boolean escSpecial, Boolean special, Long containerRef) {
@@ -47,7 +48,7 @@ public class StringSpecialValues implements BaseGenerator {
     }
 
     @Override
-    public void construct() throws GeneratorExceptionInputOptions, TransferException {
+    public StringSpecialValues construct() throws GeneratorExceptionInputOptions, TransferException {
         if (checkIn()) {
             throw new GeneratorExceptionInputOptions("Your choice is not right.Parameters : ", specialLen.toString() + escSpecial.toString() + special.toString() + increaseQuantity.toString());
         } else {
@@ -69,6 +70,7 @@ public class StringSpecialValues implements BaseGenerator {
                 }
             }
         }
+        return this;
     }
 
     @Override

@@ -35,7 +35,7 @@ public class IntFullRange implements BaseGenerator {
     }
 
     @Override
-    public void construct() throws GeneratorExceptionInputOptions, TransferException {
+    public IntFullRange construct() throws GeneratorExceptionInputOptions, TransferException {
         if (checkRule()) {
             throw new GeneratorExceptionInputOptions("Your choice is not right. Parameters :", maxIntVal.toString() + minIntVal.toString());
         } else {
@@ -44,6 +44,7 @@ public class IntFullRange implements BaseGenerator {
             }
             receivingTestData();
         }
+        return this;
     }
 
     @Override

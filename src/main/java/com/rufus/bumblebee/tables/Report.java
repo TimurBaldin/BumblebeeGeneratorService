@@ -9,8 +9,9 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+
 @Table(name = "REPORTS", schema = "REPOSITORY")
+@Entity
 @Getter
 @Setter
 @ToString

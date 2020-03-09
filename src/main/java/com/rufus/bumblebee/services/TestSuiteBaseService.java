@@ -11,7 +11,6 @@ import com.rufus.bumblebee.repository.ContainerRepository;
 import com.sun.media.sound.InvalidDataException;
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class TestSuiteBaseService extends BaseTestService {
         this.repository = repository;
     }
 
-    public void selectionBoundaryTest(Integer len, Integer increaseQuantity, Boolean low, Boolean cap, Boolean nullValue, Long containerId) throws InvalidDataException {
+    public void selectionBoundaryTest(Integer len, Integer increaseQuantity, Boolean low, Boolean cap, Boolean nullValue, Long containerId) throws InvalidDataException, GeneratorExceptionInputOptions, TransferException {
         generators.add(
                 StringBoundaryValues.builder().
                         len(len).
@@ -44,12 +43,12 @@ public class TestSuiteBaseService extends BaseTestService {
                         cap(cap).
                         nullValue(nullValue).
                         containerRef(repository.getContainerById(containerId).getId()).
-                        build()
+                        build().construct()
         );
 
     }
 
-    public void selectionSpecialLinesTest(Integer specialLen, Integer increaseQuantity, Boolean escSpecial, Boolean special, Long containerId) throws InvalidDataException {
+    public void selectionSpecialLinesTest(Integer specialLen, Integer increaseQuantity, Boolean escSpecial, Boolean special, Long containerId) throws InvalidDataException, GeneratorExceptionInputOptions, TransferException {
         generators.add(
                 StringSpecialValues.builder().
                         specialLen(specialLen).
@@ -57,36 +56,36 @@ public class TestSuiteBaseService extends BaseTestService {
                         escSpecial(escSpecial).
                         special(special).
                         containerRef(repository.getContainerById(containerId).getId()).
-                        build()
+                        build().construct()
         );
 
     }
 
-    public void selectionIntBoundary(Long boundaryIntEnd, Long boundaryIntStart, Integer quantity, Long containerId) throws InvalidDataException {
+    public void selectionIntBoundary(Long boundaryIntEnd, Long boundaryIntStart, Integer quantity, Long containerId) throws InvalidDataException, GeneratorExceptionInputOptions {
         generators.add(
                 IntBoundaryValues.builder().
                         boundaryIntEnd(boundaryIntEnd).
                         boundaryIntStart(boundaryIntStart).
                         quantity(quantity).
                         containerRef(repository.getContainerById(containerId).getId()).
-                        build()
+                        build().construct()
         );
 
     }
 
-    public void selectionIntRange(Long maxIntVal, Long minIntVal, Long containerId) throws InvalidDataException {
+    public void selectionIntRange(Long maxIntVal, Long minIntVal, Long containerId) throws InvalidDataException, GeneratorExceptionInputOptions, TransferException {
         generators.add(
                 IntFullRange.builder().
                         maxIntVal(maxIntVal).
                         minIntVal(minIntVal).
                         containerRef(repository.getContainerById(containerId).getId()).
-                        build()
+                        build().construct()
         );
 
     }
 
-    public void startGeneratingData() throws TransferException, GeneratorExceptionInputOptions, InvalidInputException {
-        startGeneratingData(generators);
+    public void startGeneratingData() throws TransferException, InvalidInputException {
+        startSaveData(generators);
     }
 
 }

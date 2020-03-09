@@ -36,11 +36,8 @@ public class Client implements Serializable {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "TOKEN")
-    private String token;
-
-    @Column(name = "SESSION_ID")
-    private String sessionId;
+    @Column(name = "PWD")
+    private String pwd;
 
     @Column(name = "STATUS")
     private ClientStatus status;
@@ -49,7 +46,8 @@ public class Client implements Serializable {
     private UserRole role;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "CLIENT_REF")
+    @JoinColumn(name = "CLIENT_REF",
+            foreignKey =  @ForeignKey(name = "containers_clients_id_fk"))
     private List<Container> containers;
 
 }

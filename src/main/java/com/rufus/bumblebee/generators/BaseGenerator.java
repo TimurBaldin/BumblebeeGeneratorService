@@ -18,7 +18,7 @@ public interface BaseGenerator {
      *
      * @throws GeneratorExceptionInputOptions не корректные входные данные
      */
-    void construct() throws GeneratorExceptionInputOptions, TransferException;
+    Object construct() throws GeneratorExceptionInputOptions, TransferException;
 
     /**
      * Передача значений для записи в БД

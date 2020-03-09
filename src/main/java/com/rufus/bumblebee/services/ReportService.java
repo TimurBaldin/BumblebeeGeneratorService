@@ -22,15 +22,21 @@ import java.util.Map;
 @Service
 public class ReportService {
 
-    @Autowired
+
     private ReportCSV reportCSV;
 
-    @Autowired
+
     private ReportExcel reportExcel;
 
-    @Autowired
+
     private ContainerRepository repository;
 
+    @Autowired
+    public ReportService(ReportCSV reportCSV, ReportExcel reportExcel, ContainerRepository repository) {
+        this.reportCSV = reportCSV;
+        this.reportExcel = reportExcel;
+        this.repository = repository;
+    }
 
     public byte[] createExcel(String docName, String sheetName, List<Long> containersRef) {
         byte[] file = null;
@@ -56,11 +62,11 @@ public class ReportService {
 
     }
 
-    private Map<String, List<TestData>> loadDataByContainersRef(List<Long> containersRef) throws InvalidDataException {
-        Map<String, List<TestData>> testData = new HashMap<>();
+    private Map<Container, List<TestData>> loadDataByContainersRef(List<Long> containersRef) throws InvalidDataException {
+        Map<Container, List<TestData>> testData = new HashMap<>();
         for (Long id : containersRef) {
             Container container = repository.getContainerById(id);
-            testData.put(container.getName(), container.getData());
+            testData.put(container, container.getData());
         }
         return testData;
     }

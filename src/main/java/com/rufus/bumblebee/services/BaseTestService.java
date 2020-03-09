@@ -17,15 +17,20 @@ public abstract class BaseTestService implements TestService {
     private TestDataRepository repository;
 
     @Override
-    public void startGeneratingData(List<BaseGenerator> tests) throws GeneratorExceptionInputOptions, TransferException, InvalidInputException {
-        if (tests.size() > 0) {
-            for (BaseGenerator test : tests) {
-                test.construct();
-                repository.saveTestData(test.receivingTestData(), test.getContainerRef());
-            }
+    public void startSaveData(List<BaseGenerator> tests) throws InvalidInputException, TransferException {
+        try {
 
-        } else {
-            throw new InvalidInputException("It is necessary to choose checks");
+
+            if (tests.size() > 0) {
+                for (BaseGenerator test : tests) {
+                    repository.saveTestData(test.receivingTestData(), test.getContainerRef());
+                }
+
+            } else {
+                throw new InvalidInputException("It is necessary to choose checks");
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 

@@ -44,7 +44,7 @@ public class StringBoundaryValues implements BaseGenerator {
     }
 
     @Override
-    public void construct() throws GeneratorExceptionInputOptions, TransferException {
+    public StringBoundaryValues construct() throws GeneratorExceptionInputOptions, TransferException {
         if (checkIn()) {
             String paremeters = len.toString() + low.toString() + cap.toString() + increaseQuantity.toString() + nullValue.toString();
             throw new GeneratorExceptionInputOptions("Your choice is not right.", paremeters);
@@ -62,6 +62,7 @@ public class StringBoundaryValues implements BaseGenerator {
                 }
             }
         }
+        return this;
     }
 
     @Override

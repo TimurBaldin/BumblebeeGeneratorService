@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.repository;
 
 import com.rufus.bumblebee.configurer.enums.ClientStatus;
-import com.rufus.bumblebee.tables.Client;
+import com.rufus.bumblebee.tables.*;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

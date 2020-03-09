@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.controllers;
 
-import com.rufus.bumblebee.controllers.requests.tests.BaseRequest;
 import com.rufus.bumblebee.controllers.requests.containers.TestDataContainerRequest;
+import com.rufus.bumblebee.controllers.requests.tests.BaseRequest;
 import com.rufus.bumblebee.controllers.responses.BaseResponse;
 import com.rufus.bumblebee.services.ContainerService;
 import com.rufus.bumblebee.tables.Container;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/container_manager")
-public class ContainerController {
+public class ContainerController extends BaseController {
 
     private ContainerService service;
 
@@ -35,9 +35,9 @@ public class ContainerController {
             response.setResponse(container);
             return response;
         } catch (Exception ex) {
-            response.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-            response.setErrorMessage(ex.getMessage());
-            return response;
+            return getErrorResponse(
+                    HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                    ex.getMessage(), response);
         }
     }
 
@@ -50,9 +50,9 @@ public class ContainerController {
             service.removeContainer(request.getContainerId());
             return response;
         } catch (Exception ex) {
-            response.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-            response.setErrorMessage(ex.getMessage());
-            return response;
+            return getErrorResponse(
+                    HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                    ex.getMessage(), response);
         }
     }
 

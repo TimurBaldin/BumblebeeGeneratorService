@@ -8,11 +8,11 @@ package com.rufus.bumblebee.datatype;
  */
 public class BaseDataType implements TypeTestData<String, String> {
 
-    private String bufer;
+    private String buffer;
     private String key;
 
-    public BaseDataType(String bufer, String key) {
-        this.bufer = bufer;
+    public BaseDataType(String buffer, String key) {
+        this.buffer = buffer;
         this.key = key;
     }
 
@@ -23,7 +23,7 @@ public class BaseDataType implements TypeTestData<String, String> {
 
     @Override
     public String getValue() {
-        return bufer;
+        return buffer;
     }
 
 }
