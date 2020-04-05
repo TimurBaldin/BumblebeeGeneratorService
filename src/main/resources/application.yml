@@ -6,11 +6,6 @@ level:
   ROOT: debug
   org.hibernate: debug
   org.hibernate.type.descriptor.sql: debug
-spring:
-  mvc:
-    static-path-pattern: resources/**
-    favicon:
-      enabled: true
 
 
 

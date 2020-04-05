@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.generators;
+package com.rufus.bumblebee.generators.configurer;
 
 import com.rufus.bumblebee.datatype.TypeTestData;
 import com.rufus.bumblebee.exeptions.GeneratorExceptionInputOptions;
@@ -15,10 +15,8 @@ import java.util.List;
 public interface BaseGenerator {
     /**
      * Вызов методов "генераторов"
-     *
-     * @throws GeneratorExceptionInputOptions не корректные входные данные
      */
-    Object construct() throws GeneratorExceptionInputOptions, TransferException;
+    void construct();
 
     /**
      * Передача значений для записи в БД

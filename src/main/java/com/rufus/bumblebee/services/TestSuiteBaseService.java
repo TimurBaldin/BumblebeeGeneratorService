@@ -2,11 +2,7 @@ package com.rufus.bumblebee.services;
 
 import com.rufus.bumblebee.exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.exeptions.TransferException;
-import com.rufus.bumblebee.generators.BaseGenerator;
-import com.rufus.bumblebee.generators.LineGenerator.StringBoundaryValues;
-import com.rufus.bumblebee.generators.LineGenerator.StringSpecialValues;
-import com.rufus.bumblebee.generators.NumberGenerator.IntBoundaryValues;
-import com.rufus.bumblebee.generators.NumberGenerator.IntFullRange;
+import com.rufus.bumblebee.generators.configurer.BaseGenerator;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.sun.media.sound.InvalidDataException;
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
@@ -36,7 +32,7 @@ public class TestSuiteBaseService extends BaseTestService {
 
     public void selectionBoundaryTest(Integer len, Integer increaseQuantity, Boolean low, Boolean cap, Boolean nullValue, Long containerId) throws InvalidDataException, GeneratorExceptionInputOptions, TransferException {
         generators.add(
-                StringBoundaryValues.builder().
+                StringBoundaryValuesGenerator.builder().
                         len(len).
                         increaseQuantity(increaseQuantity).
                         low(low).
@@ -50,7 +46,7 @@ public class TestSuiteBaseService extends BaseTestService {
 
     public void selectionSpecialLinesTest(Integer specialLen, Integer increaseQuantity, Boolean escSpecial, Boolean special, Long containerId) throws InvalidDataException, GeneratorExceptionInputOptions, TransferException {
         generators.add(
-                StringSpecialValues.builder().
+                StringSpecialValuesGenerator.builder().
                         specialLen(specialLen).
                         increaseQuantity(increaseQuantity).
                         escSpecial(escSpecial).
@@ -63,7 +59,7 @@ public class TestSuiteBaseService extends BaseTestService {
 
     public void selectionIntBoundary(Long boundaryIntEnd, Long boundaryIntStart, Integer quantity, Long containerId) throws InvalidDataException, GeneratorExceptionInputOptions {
         generators.add(
-                IntBoundaryValues.builder().
+                NumericGenerator.builder().
                         boundaryIntEnd(boundaryIntEnd).
                         boundaryIntStart(boundaryIntStart).
                         quantity(quantity).
@@ -75,7 +71,7 @@ public class TestSuiteBaseService extends BaseTestService {
 
     public void selectionIntRange(Long maxIntVal, Long minIntVal, Long containerId) throws InvalidDataException, GeneratorExceptionInputOptions, TransferException {
         generators.add(
-                IntFullRange.builder().
+                IntFullRangeGenerator.builder().
                         maxIntVal(maxIntVal).
                         minIntVal(minIntVal).
                         containerRef(repository.getContainerById(containerId).getId()).

@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.generators.LineGenerator;
+package com.rufus.bumblebee.generators.configurer;
 
 /**
  * Class : Всегда возвращает null значение
@@ -8,9 +8,9 @@ package com.rufus.bumblebee.generators.LineGenerator;
  */
 public final class StringNull {
 
-    private final String NULL = null;
+    private static final String NULL = null;
 
-    public String returnValue() {
+    public static String returnValue() {
         return NULL;
     }
 
