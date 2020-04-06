@@ -31,11 +31,9 @@ public class BaseTestController extends BaseController {
         BaseResponse response = new BaseResponse();
         try {
             ValidatorUtils.validate(request);
-            service.selectionBoundaryTest(
-                    request.getLen(), request.getIncreaseQuantity(),
-                    request.getLow(), request.getCap(),
-                    request.getNullValue(),
-                    request.getContainerId()
+            service.addSymbolGenerator(
+                   request.getLen(),
+                    request.
             );
 
         } catch (Exception ex) {

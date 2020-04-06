@@ -13,6 +13,7 @@ import java.util.List;
  * @version : 0.0.1
  */
 public interface BaseGenerator {
+
     /**
      * Вызов методов "генераторов"
      */
@@ -23,7 +24,7 @@ public interface BaseGenerator {
      *
      * @throws TransferException ошибка при передачи данных
      */
-    List<TypeTestData> receivingTestData() throws TransferException;
+    List<TypeTestData> getTestData() throws TransferException;
 
     /**
      * Ссылка на контейнер

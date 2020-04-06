@@ -49,7 +49,7 @@ public class Timer {
         }
     }
 
-    @Pointcut("execution(* com.rufus.bumblebee.services.TestSuiteBaseService.selectionBoundaryTest(..))")
+    @Pointcut("execution(* com.rufus.bumblebee.services.TestSuiteBaseService.addSymbolGenerator(..))")
     public void boundarytest() {
 
     }

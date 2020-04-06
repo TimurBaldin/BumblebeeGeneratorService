@@ -10,27 +10,25 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public abstract class BaseTestService implements TestService {
+public class BaseTestService implements TestService {
 
-    @Autowired
+
     private TestDataRepository repository;
 
     @Override
-    public void startSaveData(List<BaseGenerator> tests) throws InvalidInputException, TransferException {
-        try {
-
-
-            if (tests.size() > 0) {
-                for (BaseGenerator test : tests) {
-                    repository.saveTestData(test.receivingTestData(), test.getContainerRef());
-                }
-
-            } else {
-                throw new InvalidInputException("It is necessary to choose checks");
+    public void saveData(List<BaseGenerator> tests) throws InvalidInputException, TransferException {
+        if (tests.size() > 0) {
+            for (BaseGenerator test : tests) {
+                repository.saveTestData(test.getTestData(), test.getContainerRef());
             }
-        }catch (Exception ex){
-            ex.printStackTrace();
+        } else {
+            throw new InvalidInputException("It is necessary to choose checks");
         }
+
     }
 
+    @Autowired
+    public void setRepository(TestDataRepository repository) {
+        this.repository = repository;
+    }
 }

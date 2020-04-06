@@ -47,7 +47,7 @@ public class SymbolGenerator implements BaseGenerator {
     }
 
     @Override
-    public List<TypeTestData> receivingTestData() throws TransferException {
+    public List<TypeTestData> getTestData() throws TransferException {
         if (CollectionUtils.isEmpty(values)) {
             throw new TransferException("Collection is empty for generator : " + getClass().getCanonicalName());
         }
