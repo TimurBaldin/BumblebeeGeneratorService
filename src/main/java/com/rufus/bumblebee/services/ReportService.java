@@ -41,7 +41,10 @@ public class ReportService {
     public byte[] createExcel(String docName, String sheetName, List<Long> containersRef) {
         byte[] file = null;
         try {
-            file = reportExcel.create(docName, sheetName, loadDataByContainersRef(containersRef));
+            file = reportExcel.create(
+                    docName,
+                    sheetName,
+                    loadDataByContainersRef(containersRef));
         } catch (Exception e) {
             e.printStackTrace();
         }

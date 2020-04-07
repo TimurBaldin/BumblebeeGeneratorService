@@ -4,6 +4,7 @@ import com.rufus.bumblebee.controllers.requests.reports.CsvReportRequest;
 import com.rufus.bumblebee.controllers.requests.reports.ExcelReportRequest;
 import com.rufus.bumblebee.controllers.responses.BaseResponse;
 import com.rufus.bumblebee.services.ReportService;
+import com.rufus.bumblebee.utils.ValidatorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
@@ -16,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
 
-@Controller
-@RequestMapping("/reports")
+@Controller("/reports_manager")
 public class ReportController extends BaseController {
 
     private ReportService service;
@@ -27,41 +27,50 @@ public class ReportController extends BaseController {
         this.service = service;
     }
 
-    @RequestMapping(path = "/csvreport", method = RequestMethod.GET)
+    @RequestMapping(path = "/csv_report", method = RequestMethod.GET)
     public ResponseEntity<Object> csvReport(@RequestBody CsvReportRequest request) {
-
-        byte[] file = service.createCSV(
-                request.getDocName(),
-                request.getDelimiter(),
-                request.getContainerId()
-        );
         try {
+            ValidatorUtils.validate(request);
+            byte[] file = service.createCSV(
+                    request.getDocName(),
+                    request.getDelimiter(),
+                    request.getContainerId()
+            );
             ByteArrayResource resource = getResource(file);
             return ResponseEntity.ok().contentLength(resource.contentLength())
                     .contentType(MediaType.parseMediaType("text/csv")).
                             header("Content-disposition", "form-data; filename=" + request.getDocName() + ".csv")
                     .body(resource);
-        } catch (IOException ex) {
-            return ResponseEntity.ok().body(getErrorResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                    ex.getMessage(), new BaseResponse()));
+        } catch (Exception ex) {
+            return ResponseEntity.ok().
+                    body(
+                            getErrorResponse(
+                                    HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                                    ex.getMessage(), new BaseResponse()
+                            )
+                    );
         }
 
     }
 
-    @RequestMapping(path = "/excelreport", method = RequestMethod.GET)
+    @RequestMapping(path = "/excel_report", method = RequestMethod.GET)
     public ResponseEntity<Object> excelReport(@RequestBody ExcelReportRequest request) {
-        byte[] file = service.createExcel(request.getDocName(), request.getSheetName(), request.getContainerId());
         try {
+            ValidatorUtils.validate(request);
+            byte[] file = service.createExcel(request.getDocName(), request.getSheetName(), request.getContainerId());
+
             ByteArrayResource resource = getResource(file);
             return ResponseEntity.ok().contentLength(resource.contentLength())
                     .contentType(MediaType.parseMediaType("application/vnd.ms-excel")).
                             header("Content-disposition", "attachment; filename=" + request.getDocName() + ".xlsx")
                     .body(resource);
-        } catch (IOException ex) {
-            return ResponseEntity.ok().body(getErrorResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                    ex.getMessage(), new BaseResponse()));
+        } catch (Exception ex) {
+            return ResponseEntity.ok().
+                    body(getErrorResponse(
+                            HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                            ex.getMessage(), new BaseResponse()
+                            )
+                    );
         }
 
     }

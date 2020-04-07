@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BaseTestService implements TestService {
+public abstract class BaseTestService implements TestService {
 
 
     private TestDataRepository repository;

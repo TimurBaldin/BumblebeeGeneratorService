@@ -2,6 +2,7 @@ package com.rufus.bumblebee.reports;
 
 import com.rufus.bumblebee.tables.Container;
 import com.rufus.bumblebee.tables.TestData;
+import jdk.nashorn.internal.runtime.logging.Logger;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
