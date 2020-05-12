@@ -3,7 +3,7 @@ package com.rufus.bumblebee.controllers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -14,12 +14,12 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(BaseTestController.class)
+//@RunWith(SpringRunner.class)
+//@WebMvcTest(BaseTestController.class)
 public class LineTestControllerBaseTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+  //  @Autowired
+    //private MockMvc mockMvc;
 
     @Test
     public void addColumn() throws Exception {

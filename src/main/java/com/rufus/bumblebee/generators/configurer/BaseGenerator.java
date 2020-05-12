@@ -1,7 +1,6 @@
 package com.rufus.bumblebee.generators.configurer;
 
 import com.rufus.bumblebee.datatype.TypeTestData;
-import com.rufus.bumblebee.exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.exeptions.TransferException;
 
 import java.util.List;

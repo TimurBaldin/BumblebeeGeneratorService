@@ -1,17 +1,12 @@
 package com.rufus.bumblebee.services;
 
-import com.rufus.bumblebee.exeptions.GeneratorExceptionInputOptions;
 import com.rufus.bumblebee.exeptions.TransferException;
 import com.rufus.bumblebee.generators.SymbolGenerator;
 import com.rufus.bumblebee.generators.configurer.BaseGenerator;
 import com.rufus.bumblebee.generators.configurer.DataMode;
-import com.rufus.bumblebee.repository.ContainerRepository;
-import com.sun.media.sound.InvalidDataException;
 import org.aspectj.org.eclipse.jdt.core.compiler.InvalidInputException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,8 +26,7 @@ public class TestSuiteBaseService extends BaseTestService {
                                    boolean isNull,
                                    boolean isCascade,
                                    long containerId,
-                                   DataMode mode
-    ) throws GeneratorExceptionInputOptions, TransferException {
+                                   DataMode mode) {
         SymbolGenerator generator = new SymbolGenerator(
                 len, count, mode, isNull, isCascade, containerId
         );

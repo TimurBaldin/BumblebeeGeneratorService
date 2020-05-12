@@ -15,7 +15,7 @@ public class TestDataContainerRequest {
     private String name;
 
     @NotNull(message = "Ссылка на пользователя не передана")
-    private Long clientRef;
+    private String clientRef;
 
 
 }

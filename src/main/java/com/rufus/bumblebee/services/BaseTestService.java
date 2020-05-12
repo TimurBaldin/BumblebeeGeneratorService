@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public abstract class BaseTestService implements TestService {
 
-
     private TestDataRepository repository;
 
     @Override

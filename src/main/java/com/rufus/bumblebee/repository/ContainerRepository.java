@@ -20,13 +20,13 @@ public class ContainerRepository {
         return em.merge(container);
     }
 
-    public void removeContainer(Long containerId) {
-        em.createNamedQuery("DELETE FROM Container WHERE ID:=s").setParameter("s",containerId).executeUpdate();
-
+    public void removeContainer(Long containerId) throws InvalidDataException {
+        em.remove(getContainerById(containerId));
+        flushAndClear();
     }
 
     public List<Container> getAll() {
-        return em.createNamedQuery("SELECT c FROM Container c", Container.class).getResultList();
+        return em.createQuery("SELECT c FROM Container c", Container.class).getResultList();
     }
 
     public Container getContainerById(Long id) throws InvalidDataException {
@@ -37,8 +37,9 @@ public class ContainerRepository {
         return container;
     }
 
-    public List<Container> getAllByUser(Long userId) {
-        return em.createNamedQuery("SELECT c FROM Container c ", Container.class).getResultList();
+    void flushAndClear() {
+        em.flush();
+        em.clear();
     }
 
 }

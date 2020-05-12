@@ -31,26 +31,35 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile group: 'org.hibernate.orm', name: 'hibernate-core', version: '6.0.0.Alpha2'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.16.Final'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
     compile group: 'org.apache.poi', name: 'poi', version: '3.17'
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
-
-    compile group: 'org.springframework', name: 'spring-context', version: '5.0.6.RELEASE'
-    compile group: 'org.springframework', name: 'spring-core', version: '5.0.6.RELEASE'
-    compile("org.springframework.boot:spring-boot-starter-web:+")
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-    compile group: 'org.springframework', name: 'spring-aop', version: '5.0.6.RELEASE'
     compile group: 'org.aspectj', name: 'aspectjtools', version: '1.9.1'
-    compile group: 'org.springframework', name: 'spring-orm', version: '5.0.6.RELEASE'
-    compile group: 'org.springframework', name: 'spring-tx', version: '5.0.6.RELEASE'
-    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.1.5.RELEASE'
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.16.Final'
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
-    testCompile group: 'com.h2database', name: 'h2', version: '1.4.200'
+    testCompile('com.h2database:h2')
+
+    compile group: 'org.springframework', name: 'spring-beans', version: '5.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version: '5.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-core', version: '5.2.6.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.7.RELEASE'
+    compile group: 'org.springframework', name: 'spring-aop', version: '5.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-orm', version: '5.2.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version: '5.2.6.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.1.7.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version: '2.2.7.RELEASE'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-test', version: '2.2.7.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.2.7.RELEASE'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.2.7.RELEASE'
+    testCompile group: 'org.springframework', name: 'spring-test', version: '5.1.15.RELEASE'
+    compile group: 'org.springframework.batch', name: 'spring-batch-core', version: '4.2.2.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '5.2.6.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.2.7.RELEASE'
+
+
 }
 
 task wrapper(type: Wrapper) {

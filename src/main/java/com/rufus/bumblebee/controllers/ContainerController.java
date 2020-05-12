@@ -9,16 +9,13 @@ import com.rufus.bumblebee.utils.ValidatorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/container_manager")
 public class ContainerController extends BaseController {
 
-    private ContainerService service;
+    private final ContainerService service;
 
     @Autowired
     public ContainerController(ContainerService service) {

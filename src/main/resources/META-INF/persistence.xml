@@ -2,10 +2,9 @@
              version="1.0">
     <persistence-unit name="generator">
         <class>com.rufus.bumblebee.tables.Container</class>
-        <class>com.rufus.bumblebee.tables.Client</class>
-        <class>com.rufus.bumblebee.tables.Report</class>
         <class>com.rufus.bumblebee.tables.TestData</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
         <properties>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/data_generator"/>
@@ -13,14 +12,9 @@
             <property name="hibernate.connection.password" value="ADMIN"/>
             <property name="connection_pool_size" value="10"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-
-            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
-
-            <property name="hibernate.hbm2ddl.auto" value="none"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-           
-            
         </properties>
     </persistence-unit>
 </persistence>

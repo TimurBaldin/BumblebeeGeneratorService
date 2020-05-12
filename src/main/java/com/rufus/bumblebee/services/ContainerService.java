@@ -14,7 +14,7 @@ import java.util.Date;
 @Transactional
 public class ContainerService {
 
-    private ContainerRepository repository;
+    private final ContainerRepository repository;
 
     @Autowired
     public ContainerService(ContainerRepository repository) {
@@ -27,9 +27,9 @@ public class ContainerService {
         Date date = new Date();
         container.setDate(date);
         container.setUpdateDate(date);
-        container.setClientRef(request.getClientRef());
         return repository.createContainer(container);
     }
+
 
     public void removeContainer(Long containerId) throws InvalidDataException {
         repository.removeContainer(containerId);

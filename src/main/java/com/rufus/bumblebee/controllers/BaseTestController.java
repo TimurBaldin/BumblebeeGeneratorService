@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController("/base_tests")
 public class BaseTestController extends BaseController {
 
-    private TestSuiteBaseService service;
+    private final TestSuiteBaseService service;
 
     @Autowired
     public BaseTestController(TestSuiteBaseService service) {
