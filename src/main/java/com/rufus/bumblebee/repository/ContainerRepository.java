@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Repository
 @Transactional
@@ -23,10 +22,6 @@ public class ContainerRepository {
     public void removeContainer(Long containerId) throws InvalidDataException {
         em.remove(getContainerById(containerId));
         flushAndClear();
-    }
-
-    public List<Container> getAll() {
-        return em.createQuery("SELECT c FROM Container c", Container.class).getResultList();
     }
 
     public Container getContainerById(Long id) throws InvalidDataException {

@@ -41,6 +41,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
     testCompile('com.h2database:h2')
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
+    testCompile group: 'org.hamcrest', name: 'hamcrest-library', version: '2.2'
+    compile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.4.0'
 
     compile group: 'org.springframework', name: 'spring-beans', version: '5.2.6.RELEASE'
     compile group: 'org.springframework', name: 'spring-context', version: '5.2.6.RELEASE'
