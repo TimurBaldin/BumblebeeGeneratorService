@@ -1,15 +1,19 @@
-logging:
-  file: app.log
-  pattern:
-    file: "%d{HH:mm:ss} %-5p [%c] - %m%n"
-level:
-  ROOT: debug
-  org.hibernate: debug
-  org.hibernate.type.descriptor.sql: debug
 spring:
-  mvc:
-    static-path-pattern: resources/**
-    favicon:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+server:
+  port: 8080
+management:
+  server:
+    port: 8090
+  endpoints:
+    web:
+      exposure:
+        exclude: all
+  endpoint:
+    shutdown:
       enabled: true
 
 
