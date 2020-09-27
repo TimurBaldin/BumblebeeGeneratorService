@@ -10,5 +10,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @DataJpaTest
 @AutoConfigureTestDatabase
 @EnableTransactionManagement
-public abstract class BaseRepositoryTest {
+public abstract class BaseRepositoryGeneratorInformation {
 }

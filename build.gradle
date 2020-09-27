@@ -1,7 +1,8 @@
-group 'Data Generator'
+group 'bumblebee_generator_service'
 version '1.0'
 buildscript {
     repositories {
+        jcenter()
         mavenCentral()
     }
     dependencies {
@@ -13,20 +14,15 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-
 bootJar {
-    baseName = 'Bumblebee'
-    version =  '0.0.1'
+    baseName = 'bumblebee'
+    version =  '1.0'
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 repositories {
     jcenter()
-    mavenCentral()
-    maven {
-        url 'http://repository.primefaces.org'
-    }
 }
 
 dependencies {
@@ -61,11 +57,9 @@ dependencies {
     compile group: 'org.springframework.batch', name: 'spring-batch-core', version: '4.2.2.RELEASE'
     compile group: 'org.springframework', name: 'spring-jdbc', version: '5.2.6.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.2.7.RELEASE'
-
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.8.1'
-}
 

@@ -8,7 +8,7 @@ package com.rufus.bumblebee.repository;
  */
 
 import com.rufus.bumblebee.datatype.TypeTestData;
-import com.rufus.bumblebee.tables.TestData;
+import com.rufus.bumblebee.repository.tables.TestData;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -30,7 +30,6 @@ public class TestDataRepository {
             testData.setContainerRef(containerRef);
             em.persist(testData);
         }
-
     }
 
 }

@@ -2,7 +2,8 @@ package com.rufus.bumblebee.services;
 
 import com.rufus.bumblebee.controllers.requests.containers.TestDataContainerRequest;
 import com.rufus.bumblebee.repository.ContainerRepository;
-import com.rufus.bumblebee.tables.Container;
+import com.rufus.bumblebee.repository.tables.Container;
+import com.rufus.bumblebee.repository.tables.ContainerStatus;
 import com.sun.media.sound.InvalidDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,8 @@ public class ContainerService {
         Date date = new Date();
         container.setDate(date);
         container.setUpdateDate(date);
-        return repository.createContainer(container);
+        container.setStatus(ContainerStatus.NEW);
+        return repository.createOrUpdateContainer(container);
     }
 
 

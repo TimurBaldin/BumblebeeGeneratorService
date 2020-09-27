@@ -4,16 +4,19 @@ import com.rufus.bumblebee.controllers.requests.containers.TestDataContainerRequ
 import com.rufus.bumblebee.controllers.requests.tests.BaseRequest;
 import com.rufus.bumblebee.controllers.responses.BaseResponse;
 import com.rufus.bumblebee.services.ContainerService;
-import com.rufus.bumblebee.tables.Container;
+import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.utils.ValidatorUtils;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import static com.rufus.bumblebee.controllers.config.ControllerURL.CONTAINER_CONTROLLER;
+
+import static com.rufus.bumblebee.controllers.config.ControllerURL.CONTAINER_MANAGER;
 
 
 @RestController
-@RequestMapping(path = CONTAINER_CONTROLLER)
+@RequestMapping(path = CONTAINER_MANAGER)
+@Api(value = "Container manager", tags = {"Container manager"})
 public class ContainerController extends BaseController {
 
     private final ContainerService service;
@@ -52,12 +55,6 @@ public class ContainerController extends BaseController {
                     HttpStatus.INTERNAL_SERVER_ERROR.value(),
                     ex.getMessage(), response);
         }
-    }
-
-    @Override
-    @GetMapping("/test")
-    String urlRequestTest() {
-        return TEST_RESULT;
     }
 
 }

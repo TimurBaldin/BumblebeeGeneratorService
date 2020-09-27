@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.tables;
+package com.rufus.bumblebee.repository.tables;
 
 import lombok.Getter;
 import lombok.Setter;

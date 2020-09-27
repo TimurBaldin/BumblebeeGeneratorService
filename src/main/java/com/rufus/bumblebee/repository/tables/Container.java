@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.tables;
+package com.rufus.bumblebee.repository.tables;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,25 +27,14 @@ public class Container implements Serializable {
     @Column(name = "creation_date")
     private Date date;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "container_ref")
-    private List<TestData> data = new ArrayList<>();
-
     @Column(name = "update_date")
     private Date updateDate;
 
-    @Column(name = "user_ref")
-    private String userRef;
+    @Enumerated(EnumType.STRING)
+    private ContainerStatus status;
 
-    @Override
-    public String toString() {
-        return "Container{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", date=" + date +
-                ", data=" + data +
-                ", updateDate=" + updateDate +
-                '}';
-    }
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "container_ref")
+    private List<TestData> data = new ArrayList<>();
 
 }
