@@ -28,7 +28,7 @@ public class ContainerController extends BaseController {
 
 
     @PostMapping(value = "/addContainer")
-    public BaseResponse<Container> setTestDataContainer(@RequestBody ContainerRequest request) {
+    public BaseResponse<Container> addContainer(@RequestBody ContainerRequest request) {
         BaseResponse<Container> response = new BaseResponse<>();
         try {
             ValidatorUtils.validate(request);
@@ -43,7 +43,7 @@ public class ContainerController extends BaseController {
     }
 
     @GetMapping(path = "/removeContainer")
-    public BaseResponse<Container> setTestDataContainer(@RequestBody BaseRequest request) {
+    public BaseResponse<Container> removeContainer(@RequestBody BaseRequest request) {
         BaseResponse<Container> response = new BaseResponse<>();
         try {
             ValidatorUtils.validate(request);
@@ -55,5 +55,4 @@ public class ContainerController extends BaseController {
                     ex.getMessage(), response);
         }
     }
-
 }

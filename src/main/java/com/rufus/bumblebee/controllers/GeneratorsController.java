@@ -24,7 +24,7 @@ public class GeneratorsController extends BaseController {
     private final GeneratorService service;
 
     @PostMapping(value = "/addGenerator")
-    public BaseResponse createTest(@RequestBody GeneratorsRequest request) {
+    public BaseResponse addGenerator(@RequestBody GeneratorsRequest request) {
         BaseResponse response = new BaseResponse();
         try {
             validate(request);
@@ -42,7 +42,7 @@ public class GeneratorsController extends BaseController {
 
 
     @GetMapping(path = "/getGenerators")
-    public BaseResponse getGeneratorsInfo() {
+    public BaseResponse getGenerators() {
         BaseResponse response = new BaseResponse();
         response.setResponse(service.getGeneratorsInformation());
         return response;
