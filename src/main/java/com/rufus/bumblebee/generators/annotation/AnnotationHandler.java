@@ -37,7 +37,6 @@ public class AnnotationHandler {
                         bean.getAnnotation(GeneratorDescription.class),
                         getGeneratorParameters(bean)
                 );
-                System.out.println("generatorBeans : " + generatorBeans);
             }
         }
     }

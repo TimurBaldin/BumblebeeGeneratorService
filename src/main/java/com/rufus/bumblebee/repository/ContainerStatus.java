@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.repository.tables;
+package com.rufus.bumblebee.repository;
 
 public enum ContainerStatus {
 

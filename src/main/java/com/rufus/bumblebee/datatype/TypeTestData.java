@@ -8,12 +8,12 @@ import java.io.Serializable;
  * @author : Baldin Timur
  * @version : 0.0.1
  */
-public interface TypeTestData<Type, Key> extends Serializable {
+public interface TypeTestData<Type, DataTypeId> extends Serializable {
 
     /**
      * Идентификатор типа данных
      */
-    Key getKey();
+    DataTypeId getDataType();
 
     /**
      * Тестовое значение

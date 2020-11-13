@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.utils;
 
-import com.rufus.bumblebee.controllers.requests.tests.TestRequest;
+import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
 import com.rufus.bumblebee.generators.GeneratorInformation;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import lombok.experimental.UtilityClass;
@@ -11,7 +11,7 @@ import java.util.Map;
 import static com.rufus.bumblebee.generators.annotation.AnnotationHandler.getGeneratorBeans;
 
 @UtilityClass
-public class GeneratorValidatorUtil {
+public class GeneratorValidatorUtils {
 
     private static boolean checkGeneratorParameters(Map<String, String> generatorParameters, String generatorName) {
         for (GeneratorDescription description : getGeneratorBeans().keySet()) {
@@ -27,11 +27,11 @@ public class GeneratorValidatorUtil {
 
     private static boolean checkGenerator(String generatorName) {
         return getGeneratorBeans().keySet()
-                .stream().anyMatch(s -> s.description().equals(generatorName));
+                .stream().anyMatch(s -> s.generatorName().equals(generatorName));
     }
 
-    public static void validate(TestRequest request) throws ValidationException {
-        for (GeneratorInformation information : request.getGeneratorInformations()) {
+    public static void validate(GeneratorsRequest request) throws ValidationException {
+        for (GeneratorInformation information : request.getGeneratorInfo()) {
             if (!checkGenerator(information.getGeneratorName())) {
                 throw new ValidationException("Invalid value passed generatorName: " + information.getGeneratorName());
             }

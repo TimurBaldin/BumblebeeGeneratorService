@@ -35,7 +35,6 @@ public class PersistenceJPAConfig {
         dataSource.setUsername(userName);
         dataSource.setPassword(password);
         dataSource.setUrl(host);
-
         return dataSource;
     }
 
@@ -61,7 +60,7 @@ public class PersistenceJPAConfig {
     }
 
     @Bean("exceptionTranslation")
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
@@ -72,7 +71,7 @@ public class PersistenceJPAConfig {
         properties.setProperty("connection_pool_size", "100");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.format_sql", "true");
-        properties.setProperty("hibernate.temp.use_jdbc_metadata_defaults","false");
+        properties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
         return properties;
     }
 

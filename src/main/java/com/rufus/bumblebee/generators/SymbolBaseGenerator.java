@@ -2,11 +2,9 @@ package com.rufus.bumblebee.generators;
 
 import com.rufus.bumblebee.datatype.BaseDataType;
 import com.rufus.bumblebee.datatype.TypeTestData;
-import com.rufus.bumblebee.exeptions.TransferException;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 import com.rufus.bumblebee.generators.configurer.StringNull;
-import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +25,7 @@ import static com.rufus.bumblebee.generators.configurer.SpecialID.KEY;
 @Scope("prototype")
 public class SymbolBaseGenerator implements BaseGenerator {
 
-    private List<TypeTestData> values = new LinkedList<>();
+    private List<TypeTestData> values = new LinkedList<TypeTestData>();
 
     @GeneratorParameter(name = "len", InClass = Integer.class)
     public Integer len;
@@ -52,12 +50,8 @@ public class SymbolBaseGenerator implements BaseGenerator {
     }
 
     @Override
-    public List<TypeTestData> getTestData() throws TransferException {
-        if (CollectionUtils.isEmpty(values)) {
-            throw new TransferException("Collection is empty for generator : " + getClass().getCanonicalName());
-        }
+    public List<TypeTestData> getTestData() {
         return values;
-
     }
 
     private void generateData(int startSeq, int endSeq) {

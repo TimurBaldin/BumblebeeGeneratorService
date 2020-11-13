@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.controllers.config;
+package com.rufus.bumblebee.configuration;
 
 public class ControllerURL {
 

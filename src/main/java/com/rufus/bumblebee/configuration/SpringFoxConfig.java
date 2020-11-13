@@ -31,5 +31,4 @@ public class SpringFoxConfig {
                 new Contact("Baldin Timur", "https://t.me/@fox_cs", "qazxswsxz111@gmail.com"),
                 "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0", Collections.emptyList());
     }
-
 }

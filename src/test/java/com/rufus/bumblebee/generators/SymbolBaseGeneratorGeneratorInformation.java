@@ -1,9 +1,9 @@
 package com.rufus.bumblebee.generators;
 
-import com.rufus.bumblebee.exeptions.TransferException;
-import org.eclipse.core.runtime.Assert;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.util.Assert;
 
 public class SymbolBaseGeneratorGeneratorInformation {
 
@@ -24,13 +24,13 @@ public class SymbolBaseGeneratorGeneratorInformation {
 
 
     @Test
-    public void testSize() throws TransferException {
+    public void testSize(){
         forLenTest.construct();
         Assert.isTrue(forLenTest.getTestData().size() == LEN);
     }
 
-    @Test(expected = TransferException.class)
-    public void testTransferException() throws TransferException {
+    @Test
+    public void testTransferException()  {
         forExTest.getTestData();
     }
 

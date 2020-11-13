@@ -3,8 +3,8 @@ package com.rufus.bumblebee.controllers.responses;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 public class GeneratorParametersDto {
-    private String parameter;
-    private String parameterDescription;
+    private final String parameter;
+    private final String parameterDescription;
 
     public GeneratorParametersDto(String parameter, String parameterDescription) {
         this.parameter = parameter;

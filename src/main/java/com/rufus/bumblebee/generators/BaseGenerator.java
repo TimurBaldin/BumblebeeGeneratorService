@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.generators;
 
+import com.rufus.bumblebee.datatype.BaseDataType;
 import com.rufus.bumblebee.datatype.TypeTestData;
-import com.rufus.bumblebee.exeptions.TransferException;
 
 import java.io.Serializable;
 import java.util.List;
@@ -22,8 +22,8 @@ public interface BaseGenerator extends Serializable {
     /**
      * Передача значений для записи в БД
      *
-     * @throws TransferException ошибка при передачи данных
+     * @return
      */
-    List<TypeTestData> getTestData() throws TransferException;
+    List<TypeTestData> getTestData();
 
 }

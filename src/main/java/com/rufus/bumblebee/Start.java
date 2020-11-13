@@ -1,5 +1,9 @@
 package com.rufus.bumblebee;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.rufus.bumblebee.datatype.BaseDataType;
+import com.rufus.bumblebee.datatype.TypeTestData;
 import com.rufus.bumblebee.generators.SymbolBaseGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +31,6 @@ public class Start implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-
         logger.info("Application started with command-line arguments: {}", Arrays.toString(args.getSourceArgs()));
         logger.info("NonOptionArgs: {}", args.getNonOptionArgs());
         logger.info("OptionNames: {}", args.getOptionNames());
@@ -35,6 +38,7 @@ public class Start implements ApplicationRunner {
         for (String name : args.getOptionNames()) {
             logger.info("arg-" + name + "=" + args.getOptionValues(name));
         }
+
     }
 
     @Bean(name = "threadPoolTaskExecutor")

@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import java.util.List;
 
 public class GeneratorDto {
-    private String generatorName;
-    private String generatorDescription;
+    private final String generatorName;
+    private final String generatorDescription;
     List<GeneratorParametersDto> parameters;
 
     public GeneratorDto(String generatorName, String generatorDescription, List<GeneratorParametersDto> parameters) {

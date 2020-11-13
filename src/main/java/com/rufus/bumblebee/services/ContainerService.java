@@ -1,15 +1,15 @@
 package com.rufus.bumblebee.services;
 
-import com.rufus.bumblebee.controllers.requests.containers.TestDataContainerRequest;
+import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.repository.ContainerRepository;
+import com.rufus.bumblebee.repository.ContainerStatus;
 import com.rufus.bumblebee.repository.tables.Container;
-import com.rufus.bumblebee.repository.tables.ContainerStatus;
 import com.sun.media.sound.InvalidDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Service
 @Transactional
@@ -22,10 +22,10 @@ public class ContainerService {
         this.repository = repository;
     }
 
-    public Container createTestDataContainer(TestDataContainerRequest request) {
+    public Container createTestDataContainer(ContainerRequest request) {
         Container container = new Container();
         container.setName(request.getName());
-        Date date = new Date();
+        LocalDateTime date = LocalDateTime.now();
         container.setDate(date);
         container.setUpdateDate(date);
         container.setStatus(ContainerStatus.NEW);
@@ -36,5 +36,4 @@ public class ContainerService {
     public void removeContainer(Long containerId) throws InvalidDataException {
         repository.removeContainer(containerId);
     }
-
 }

@@ -1,12 +1,10 @@
 package com.rufus.bumblebee.generators;
 import com.rufus.bumblebee.datatype.TypeTestData;
-import com.rufus.bumblebee.exeptions.TransferException;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,7 +17,7 @@ import java.util.List;
 @Scope("prototype")
 public class PhoneNumberBaseGenerator implements BaseGenerator {
 
-    private List<TypeTestData> values = new LinkedList<>();
+    private List<TypeTestData> values = new LinkedList<TypeTestData>();
     private String[] countryCodes, cityCodes;
 
     @GeneratorParameter(name = "delimiter", InClass = String.class)
@@ -57,22 +55,10 @@ public class PhoneNumberBaseGenerator implements BaseGenerator {
      * Передача значений для записи в БД
      *
      * @throws TransferException ошибка при передачи данных
+     * @return
      */
     @Override
-    public List<TypeTestData> getTestData() throws TransferException {
+    public List<TypeTestData> getTestData(){
         return values;
-    }
-
-    @Override
-    public String toString() {
-        return "PhoneNumberBaseGenerator{" +
-                "values=" + values +
-                ", countryCodes=" + Arrays.toString(countryCodes) +
-                ", cityCodes=" + Arrays.toString(cityCodes) +
-                ", delimiter='" + delimiter + '\'' +
-                ", containerRef=" + containerRef +
-                ", len=" + len +
-                ", count=" + count +
-                '}';
     }
 }

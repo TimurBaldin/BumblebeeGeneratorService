@@ -1,10 +1,12 @@
 package com.rufus.bumblebee.repository.tables;
 
+import com.rufus.bumblebee.repository.ContainerStatus;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,10 +27,10 @@ public class Container implements Serializable {
     private String name;
 
     @Column(name = "creation_date")
-    private Date date;
+    private LocalDateTime date;
 
     @Column(name = "update_date")
-    private Date updateDate;
+    private LocalDateTime updateDate;
 
     @Enumerated(EnumType.STRING)
     private ContainerStatus status;
