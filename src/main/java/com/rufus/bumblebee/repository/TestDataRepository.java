@@ -7,8 +7,9 @@ package com.rufus.bumblebee.repository;
  * @author : Baldin Timur
  */
 
+import com.google.gson.Gson;
 import com.rufus.bumblebee.datatype.TypeTestData;
-import com.rufus.bumblebee.tables.TestData;
+import com.rufus.bumblebee.repository.tables.TestData;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -24,13 +25,10 @@ public class TestDataRepository {
     EntityManager em;
 
     public void saveTestData(List<TypeTestData> dataList, Long containerRef) {
-        for (TypeTestData data : dataList) {
-            TestData testData = new TestData();
-            testData.setValue(String.valueOf(data.getValue()));
-            testData.setContainerRef(containerRef);
-            em.persist(testData);
-        }
-
+        TestData testData = new TestData();
+        testData.setValue(new Gson().toJson(dataList));
+        testData.setContainerRef(containerRef);
+        em.persist(testData);
     }
 
 }

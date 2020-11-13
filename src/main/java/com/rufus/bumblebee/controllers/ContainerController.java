@@ -1,19 +1,22 @@
 package com.rufus.bumblebee.controllers;
 
-import com.rufus.bumblebee.controllers.requests.containers.TestDataContainerRequest;
-import com.rufus.bumblebee.controllers.requests.tests.BaseRequest;
+import com.rufus.bumblebee.controllers.requests.BaseRequest;
+import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.controllers.responses.BaseResponse;
+import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.ContainerService;
-import com.rufus.bumblebee.tables.Container;
 import com.rufus.bumblebee.utils.ValidatorUtils;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import static com.rufus.bumblebee.controllers.config.ControllerURL.CONTAINER_CONTROLLER;
+
+import static com.rufus.bumblebee.configuration.ControllerURL.CONTAINER_MANAGER;
 
 
 @RestController
-@RequestMapping(path = CONTAINER_CONTROLLER)
+@RequestMapping(path = CONTAINER_MANAGER)
+@Api(value = "Controller for containers", tags = {"Controller for containers"})
 public class ContainerController extends BaseController {
 
     private final ContainerService service;
@@ -24,9 +27,8 @@ public class ContainerController extends BaseController {
     }
 
 
-    @PostMapping(
-            value = "/add_container", consumes = "application/json", produces = "application/json")
-    public BaseResponse<Container> setTestDataContainer(@RequestBody TestDataContainerRequest request) {
+    @PostMapping(value = "/addContainer")
+    public BaseResponse<Container> addContainer(@RequestBody ContainerRequest request) {
         BaseResponse<Container> response = new BaseResponse<>();
         try {
             ValidatorUtils.validate(request);
@@ -40,8 +42,8 @@ public class ContainerController extends BaseController {
         }
     }
 
-    @GetMapping(path = "/remove_container")
-    public BaseResponse<Container> setTestDataContainer(@RequestBody BaseRequest request) {
+    @GetMapping(path = "/removeContainer")
+    public BaseResponse<Container> removeContainer(@RequestBody BaseRequest request) {
         BaseResponse<Container> response = new BaseResponse<>();
         try {
             ValidatorUtils.validate(request);
@@ -53,11 +55,4 @@ public class ContainerController extends BaseController {
                     ex.getMessage(), response);
         }
     }
-
-    @Override
-    @GetMapping("/test")
-    String urlRequestTest() {
-        return TEST_RESULT;
-    }
-
 }

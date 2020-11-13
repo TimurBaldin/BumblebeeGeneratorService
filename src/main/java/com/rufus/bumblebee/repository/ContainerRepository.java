@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.repository;
 
-import com.rufus.bumblebee.tables.Container;
+import com.rufus.bumblebee.repository.tables.Container;
 import com.sun.media.sound.InvalidDataException;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +15,7 @@ public class ContainerRepository {
     @PersistenceContext
     EntityManager em;
 
-    public Container createContainer(Container container) {
+    public Container createOrUpdateContainer(Container container) {
         return em.merge(container);
     }
 

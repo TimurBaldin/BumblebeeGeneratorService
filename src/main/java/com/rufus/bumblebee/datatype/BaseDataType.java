@@ -1,5 +1,7 @@
 package com.rufus.bumblebee.datatype;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 /**
  * Class : Основные типы данных (числа/строки/даты)
  *
@@ -8,22 +10,23 @@ package com.rufus.bumblebee.datatype;
  */
 public class BaseDataType implements TypeTestData<String, String> {
 
-    private String buffer;
-    private String key;
+    private String value;
+    private String dataType;
 
-    public BaseDataType(String buffer, String key) {
-        this.buffer = buffer;
-        this.key = key;
+    public BaseDataType(String value, String dataType) {
+        this.value = value;
+        this.dataType = dataType;
     }
 
     @Override
-    public String getKey() {
-        return key;
+    @JsonGetter
+    public String getDataType() {
+        return dataType;
     }
 
     @Override
+    @JsonGetter
     public String getValue() {
-        return buffer;
+        return value;
     }
-
 }

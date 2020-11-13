@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.repository;
 
-import com.rufus.bumblebee.tables.Container;
+import com.rufus.bumblebee.repository.tables.Container;
 import com.sun.media.sound.InvalidDataException;
 import org.eclipse.core.runtime.Assert;
 import org.junit.BeforeClass;
@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Objects;
 
 
-public class ContainerRepositoryTest extends BaseRepositoryTest {
+public class ContainerRepositoryGeneratorInformation extends BaseRepositoryGeneratorInformation {
 
     @Autowired
     public ContainerRepository repository;
@@ -30,13 +30,13 @@ public class ContainerRepositoryTest extends BaseRepositoryTest {
 
     @Test
     public void testSaveContainer() {
-        Container savedContainer = repository.createContainer(container);
+        Container savedContainer = repository.createOrUpdateContainer(container);
         Assert.isTrue(Objects.nonNull(savedContainer));
     }
 
     @Test
     public void testGetContainer() throws InvalidDataException {
-        Container savedContainer = repository.createContainer(container);
+        Container savedContainer = repository.createOrUpdateContainer(container);
         Assert.isTrue(Objects.nonNull(
                 repository.getContainerById(savedContainer.getId())
         ));
