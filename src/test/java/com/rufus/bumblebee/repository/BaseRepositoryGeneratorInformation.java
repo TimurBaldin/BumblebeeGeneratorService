@@ -5,10 +5,11 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
+/*
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase
 @EnableTransactionManagement
 public abstract class BaseRepositoryGeneratorInformation {
 }
+ */

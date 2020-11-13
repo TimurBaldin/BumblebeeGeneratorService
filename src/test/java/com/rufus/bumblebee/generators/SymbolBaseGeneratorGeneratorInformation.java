@@ -25,13 +25,12 @@ public class SymbolBaseGeneratorGeneratorInformation {
 
     @Test
     public void testSize(){
-        forLenTest.construct();
-        Assert.isTrue(forLenTest.getTestData().size() == LEN);
+
     }
 
     @Test
     public void testTransferException()  {
-        forExTest.getTestData();
+
     }
 
 }
