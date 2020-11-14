@@ -42,7 +42,7 @@ public class ContainerController extends BaseController {
         }
     }
 
-    @GetMapping(path = "/removeContainer")
+    @DeleteMapping(path = "/removeContainer")
     public BaseResponse<Container> removeContainer(@RequestBody BaseRequest request) {
         BaseResponse<Container> response = new BaseResponse<>();
         try {
