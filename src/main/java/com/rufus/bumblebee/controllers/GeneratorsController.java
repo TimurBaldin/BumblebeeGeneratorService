@@ -23,7 +23,7 @@ public class GeneratorsController extends BaseController {
 
     private final GeneratorService service;
 
-    @PostMapping(value = "/addGenerator")
+    @PostMapping(path = "/addGenerator")
     public BaseResponse addGenerator(@RequestBody GeneratorsRequest request) {
         BaseResponse response = new BaseResponse();
         try {

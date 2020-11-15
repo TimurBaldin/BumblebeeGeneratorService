@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog.yaml
+  - changeSet:
+      id: 0
+      author: Baldin T.V
+      changes:
+        - sql:
+            sql: create schema if not exists repository
+
+        - createTable:
+            tableName: containers
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: creation_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: update_date
+                  type: timestamp
+              - column:
+                  name: status
+                  type: varchar(50)
+
+        - createTable:
+            tableName: test_data
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: container_ref
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: value
+                  type: jsonb

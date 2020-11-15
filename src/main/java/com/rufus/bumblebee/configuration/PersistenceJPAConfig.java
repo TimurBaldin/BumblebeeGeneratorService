@@ -1,11 +1,10 @@
 package com.rufus.bumblebee.configuration;
 
+import liquibase.integration.spring.SpringLiquibase;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -35,14 +34,17 @@ public class PersistenceJPAConfig {
     @SneakyThrows
     @Bean("dataSource")
     public DataSource dataSource() {
-        /*
+/*
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUsername(userName);
         dataSource.setPassword(password);
         dataSource.setUrl(host);
+        return dataSource;
 
-         */
+ */
+
+
         URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
         String username = dbUri.getUserInfo().split(":")[0];
@@ -82,9 +84,17 @@ public class PersistenceJPAConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:db/changelog/db.changelog.yaml");
+        liquibase.setDataSource(dataSource());
+        return liquibase;
+    }
+
     private Properties additionalProperties() {
         final Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         properties.setProperty("connection_pool_size", "100");
         properties.setProperty("hibernate.show_sql", "true");

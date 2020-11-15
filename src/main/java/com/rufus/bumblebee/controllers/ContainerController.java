@@ -27,7 +27,7 @@ public class ContainerController extends BaseController {
     }
 
 
-    @PostMapping(value = "/addContainer")
+    @PostMapping(path = "/addContainer")
     public BaseResponse<Container> addContainer(@RequestBody ContainerRequest request) {
         BaseResponse<Container> response = new BaseResponse<>();
         try {
