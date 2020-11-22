@@ -31,4 +31,8 @@ public class TestDataRepository {
         em.persist(testData);
     }
 
+    public List<Integer> getCountryCodes() {
+        return em.createNativeQuery("select code from repository.сountry_сode").getResultList();
+    }
+
 }

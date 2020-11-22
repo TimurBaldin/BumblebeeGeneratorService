@@ -12,7 +12,3 @@ management:
   endpoint:
     shutdown:
       enabled: true
-
-spring:
-  liquibase:
-    enabled: false

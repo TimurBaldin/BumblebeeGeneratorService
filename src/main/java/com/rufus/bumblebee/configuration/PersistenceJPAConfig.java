@@ -2,9 +2,11 @@ package com.rufus.bumblebee.configuration;
 
 import liquibase.integration.spring.SpringLiquibase;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -31,22 +33,12 @@ public class PersistenceJPAConfig {
     @Value("${spring.datasource.password}")
     private String password;
 
+
     @SneakyThrows
     @Bean("dataSource")
-    public DataSource dataSource() {
-/*
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUsername(userName);
-        dataSource.setPassword(password);
-        dataSource.setUrl(host);
-        return dataSource;
-
- */
-
-
+    @Profile("web")
+    public DataSource dataSourceHeroku() {
         URI dbUri = new URI(System.getenv("DATABASE_URL"));
-
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
         String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
@@ -58,10 +50,21 @@ public class PersistenceJPAConfig {
         return basicDataSource;
     }
 
+    @Bean("dataSource")
+    @Profile("dev")
+    public DataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUsername(userName);
+        dataSource.setPassword(password);
+        dataSource.setUrl(host);
+        return dataSource;
+    }
+
     @Bean("entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Autowired DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
+        em.setDataSource(dataSource);
         em.setPackagesToScan("com.rufus.bumblebee.repository");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -72,10 +75,9 @@ public class PersistenceJPAConfig {
     }
 
     @Bean("transactionManager")
-    public PlatformTransactionManager transactionManager() {
+    public PlatformTransactionManager transactionManager(@Autowired LocalContainerEntityManagerFactoryBean factoryBean) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-
+        transactionManager.setEntityManagerFactory(factoryBean.getObject());
         return transactionManager;
     }
 
@@ -102,6 +104,5 @@ public class PersistenceJPAConfig {
         properties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
         return properties;
     }
-
 
 }
