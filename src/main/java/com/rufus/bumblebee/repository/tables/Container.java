@@ -19,8 +19,8 @@ public class Container implements Serializable {
 
     @Id
     @Column(name = "id", unique = true, nullable = false)
-    @SequenceGenerator(name = "container_id", sequenceName = "repository.container_id", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "container_id")
+    @SequenceGenerator(name = "containers_id", sequenceName = "repository.containers_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "containers_id")
     private Long id;
 
     @Column(name = "name")

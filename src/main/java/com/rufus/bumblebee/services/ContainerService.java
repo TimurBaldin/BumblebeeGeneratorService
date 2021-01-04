@@ -1,10 +1,9 @@
 package com.rufus.bumblebee.services;
 
-import com.rufus.bumblebee.controllers.requests.ContainerRequest;
+import com.rufus.bumblebee.controllers.responses.ContainerDto;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.ContainerStatus;
 import com.rufus.bumblebee.repository.tables.Container;
-import com.sun.media.sound.InvalidDataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,18 +21,24 @@ public class ContainerService {
         this.repository = repository;
     }
 
-    public Container createTestDataContainer(ContainerRequest request) {
+    public ContainerDto createTestDataContainer(String name) {
         Container container = new Container();
-        container.setName(request.getName());
+        container.setName(name);
         LocalDateTime date = LocalDateTime.now();
         container.setDate(date);
-        container.setUpdateDate(date);
         container.setStatus(ContainerStatus.NEW);
-        return repository.createOrUpdateContainer(container);
+        return getContainerDto(repository.createOrUpdateContainer(container));
     }
 
-
-    public void removeContainer(Long containerId) throws InvalidDataException {
+    public void removeContainer(Long containerId) throws Exception {
         repository.removeContainer(containerId);
+    }
+
+    private ContainerDto getContainerDto(Container container) {
+        ContainerDto dto = new ContainerDto();
+        dto.setId(container.getId());
+        dto.setName(container.getName());
+        dto.setStatus(container.getStatus());
+        return dto;
     }
 }

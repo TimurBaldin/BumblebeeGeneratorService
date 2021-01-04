@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.repository;
 
 import com.rufus.bumblebee.repository.tables.Container;
-import com.sun.media.sound.InvalidDataException;
+import javassist.NotFoundException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -19,15 +19,15 @@ public class ContainerRepository {
         return em.merge(container);
     }
 
-    public void removeContainer(Long containerId) throws InvalidDataException {
+    public void removeContainer(Long containerId) throws Exception {
         em.remove(getContainerById(containerId));
         flushAndClear();
     }
 
-    public Container getContainerById(Long id) throws InvalidDataException {
+    public Container getContainerById(Long id) throws NotFoundException {
         Container container = em.find(Container.class, id);
         if (container == null) {
-            throw new InvalidDataException("Контейнер не найден по ID : " + id);
+            throw new NotFoundException("Контейнер не найден по ID : " + id);
         }
         return container;
     }
@@ -36,5 +36,4 @@ public class ContainerRepository {
         em.flush();
         em.clear();
     }
-
 }

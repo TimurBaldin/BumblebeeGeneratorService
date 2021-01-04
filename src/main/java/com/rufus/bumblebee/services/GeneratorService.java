@@ -11,9 +11,7 @@ import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.ContainerStatus;
 import com.rufus.bumblebee.repository.tables.Container;
-import com.sun.media.sound.InvalidDataException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
@@ -31,10 +29,7 @@ import java.util.stream.Collectors;
 @Service
 public class GeneratorService {
 
-    private static Logger log = LoggerFactory.getLogger(GeneratorService.class);
-
     private final AnnotationHandler handler;
-
     private final ContainerRepository containerRepository;
 
     private final AsyncGeneratorService asyncGeneratorService;
@@ -46,7 +41,7 @@ public class GeneratorService {
     }
 
 
-    public void addGenerators(GeneratorsRequest request) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InvalidDataException {
+    public void addGenerators(GeneratorsRequest request) throws NotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Container container = containerRepository.getContainerById(request.getContainerId());
 
         List<BaseGenerator> generators = new ArrayList<>(request.getGeneratorInfo().size());

@@ -1,15 +1,17 @@
 package com.rufus.bumblebee.controllers;
 
-import com.rufus.bumblebee.controllers.requests.BaseRequest;
-import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.controllers.responses.BaseResponse;
-import com.rufus.bumblebee.repository.tables.Container;
+import com.rufus.bumblebee.controllers.responses.ContainerDto;
 import com.rufus.bumblebee.services.ContainerService;
-import com.rufus.bumblebee.utils.ValidatorUtils;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import static com.rufus.bumblebee.configuration.ControllerURL.CONTAINER_MANAGER;
 
@@ -17,6 +19,7 @@ import static com.rufus.bumblebee.configuration.ControllerURL.CONTAINER_MANAGER;
 @RestController
 @RequestMapping(path = CONTAINER_MANAGER)
 @Api(value = "Controller for containers", tags = {"Controller for containers"})
+@Validated
 public class ContainerController extends BaseController {
 
     private final ContainerService service;
@@ -27,30 +30,27 @@ public class ContainerController extends BaseController {
     }
 
 
-    @PostMapping(path = "/addContainer")
-    public BaseResponse<Container> addContainer(@RequestBody ContainerRequest request) {
-        BaseResponse<Container> response = new BaseResponse<>();
+    @PostMapping(path = "/add/{name}")
+    public BaseResponse<ContainerDto> addContainer(@PathVariable("name") @NotBlank @Size(max = 100) String name) {
+        BaseResponse<ContainerDto> response = new BaseResponse<>();
         try {
-            ValidatorUtils.validate(request);
-            Container container = service.createTestDataContainer(request);
-            response.setResponse(container);
+            response.setResponse(service.createTestDataContainer(name));
             return response;
         } catch (Exception ex) {
-            return getErrorResponse(
+            return sendErrorResponse(
                     HttpStatus.INTERNAL_SERVER_ERROR.value(),
                     ex.getMessage(), response);
         }
     }
 
-    @DeleteMapping(path = "/removeContainer")
-    public BaseResponse<Container> removeContainer(@RequestBody BaseRequest request) {
-        BaseResponse<Container> response = new BaseResponse<>();
+    @DeleteMapping(path = "/remove/{id}")
+    public BaseResponse removeContainer(@PathVariable("id") @Min(0) Long id) {
+        BaseResponse response = new BaseResponse<>();
         try {
-            ValidatorUtils.validate(request);
-            service.removeContainer(request.getContainerId());
+            service.removeContainer(id);
             return response;
         } catch (Exception ex) {
-            return getErrorResponse(
+            return sendErrorResponse(
                     HttpStatus.INTERNAL_SERVER_ERROR.value(),
                     ex.getMessage(), response);
         }

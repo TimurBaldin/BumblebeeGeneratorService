@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class TestData implements Serializable {
 
     @Id
-    @SequenceGenerator(name = "row_id", sequenceName = "repository.row_id", allocationSize = 1)
+    @SequenceGenerator(name = "row_id", sequenceName = "repository.test_data_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "row_id")
     @Column(name = "id", unique = true, nullable = false)
     private int id;

@@ -8,7 +8,8 @@ databaseChangeLog:
             sql: create schema if not exists repository
 
         - createTable:
-            tableName: repository.containers
+            schemaName: repository
+            tableName: containers
             columns:
               - column:
                   name: id
@@ -21,7 +22,6 @@ databaseChangeLog:
                   name: name
                   type: varchar(100)
                   constraints:
-                    unique: true
                     nullable: false
               - column:
                   name: creation_date
@@ -36,7 +36,8 @@ databaseChangeLog:
                   type: varchar(50)
 
         - createTable:
-            tableName: repository.test_data
+            schemaName: repository
+            tableName: test_data
             columns:
               - column:
                   name: id
