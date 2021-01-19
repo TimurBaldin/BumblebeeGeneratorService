@@ -8,7 +8,7 @@ import com.rufus.bumblebee.generators.configurer.StringNull;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -25,12 +25,10 @@ import static com.rufus.bumblebee.generators.configurer.SpecialID.KEY;
 @Scope("prototype")
 public class SymbolBaseGenerator implements BaseGenerator {
 
-    private List<TypeTestData> values = new LinkedList<TypeTestData>();
-
     @GeneratorParameter(name = "len", InClass = Integer.class)
     public Integer len;
     @GeneratorParameter(name = "count", InClass = Integer.class)
-    public Integer count;
+    public Integer amount;
     @GeneratorParameter(name = "mode", description = "Maybe value STRING or NUMBER", InClass = String.class)
     public String mode;
     @GeneratorParameter(name = "isNull", InClass = Boolean.class)
@@ -39,27 +37,24 @@ public class SymbolBaseGenerator implements BaseGenerator {
     public Boolean isCascade;
 
     @Override
-    public void construct() {
+    public List<TypeTestData> build() {
+        List<TypeTestData> values = new ArrayList<>(len);
         if (DataMode.valueOf(mode).equals(STRING)) {
-            generateData(KEY.MIN_ID_STRING, KEY.MAX_ID_STRING);
+            generateData(KEY.MIN_ID_STRING, KEY.MAX_ID_STRING, values);
         }
 
         if (DataMode.valueOf(mode).equals(NUMBER)) {
-            generateData(KEY.MIN_ID_NUMERIC, KEY.MAX_ID_NUMERIC);
+            generateData(KEY.MIN_ID_NUMERIC, KEY.MAX_ID_NUMERIC, values);
         }
-    }
-
-    @Override
-    public List<TypeTestData> getTestData() {
         return values;
     }
 
-    private void generateData(int startSeq, int endSeq) {
+    private void generateData(int startSeq, int endSeq, List<TypeTestData> values) {
         StringBuilder buffer = new StringBuilder();
         if (isNull) {
             buffer.append(StringNull.returnValue());
         }
-        for (int i = 1; i <= count; i++) {
+        for (int i = 1; i <= amount; i++) {
             if (isCascade) {
                 for (int j = 1; j <= i; j++) {
                     buffer.append((char) ThreadLocalRandom.current().nextInt(startSeq, endSeq));

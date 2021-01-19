@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.repository;
 
-/**
+/*
  * Class : класс для CRUD операций с тестовыми данными
  *
  * @version : 0.0.1
@@ -24,15 +24,10 @@ public class TestDataRepository {
     @PersistenceContext
     EntityManager em;
 
-    public void saveTestData(List<TypeTestData> dataList, Long containerRef) {
+    public TestData saveTestData(List<TypeTestData> dataList, Long containerRef) {
         TestData testData = new TestData();
         testData.setValue(new Gson().toJson(dataList));
         testData.setContainerRef(containerRef);
-        em.persist(testData);
+       return em.merge(testData);
     }
-
-    public List<Integer> getCountryCodes() {
-        return em.createNativeQuery("select code from repository.сountry_сode").getResultList();
-    }
-
 }

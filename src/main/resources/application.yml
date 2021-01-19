@@ -12,3 +12,9 @@ management:
   endpoint:
     shutdown:
       enabled: true
+
+spring:
+  datasource:
+    url: jdbc:postgresql://dg-database:5432/data_generator
+    username: postgres
+    password: 1

@@ -43,12 +43,11 @@ public class GeneratorService {
 
     public void addGenerators(GeneratorsRequest request) throws NotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         Container container = containerRepository.getContainerById(request.getContainerId());
-
         List<BaseGenerator> generators = new ArrayList<>(request.getGeneratorInfo().size());
 
         for (GeneratorInformation information : request.getGeneratorInfo()) {
             BaseGenerator generator = (BaseGenerator) handler.getBeanByName(information.getGeneratorName());
-            handler.setParameters(generator.getClass().getDeclaredFields(), information.getValues(), generator);
+            handler.setParameters(generator.getClass().getFields(), information.getValues(), generator);
             generators.add(generator);
         }
         container.setStatus(ContainerStatus.PREPARATION_FOR_GENERATION);

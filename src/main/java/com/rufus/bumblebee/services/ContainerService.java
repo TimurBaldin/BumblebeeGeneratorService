@@ -11,7 +11,6 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
 @Service
-@Transactional
 public class ContainerService {
 
     private final ContainerRepository repository;

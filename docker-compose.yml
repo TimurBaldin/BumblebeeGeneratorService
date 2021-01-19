@@ -11,15 +11,16 @@ services:
    dockerfile: Dockerfile
   ports:
    - 8080:8080
+   - 8090:8090
   networks:
    - dev
   depends_on:
-   - dgBD
+   - postgres
 
- dgBD:
+ postgres:
   image: postgres:12-alpine
   restart: always
-  container_name:  dgBD
+  container_name:  dg-database
   ports:
    - 5432:5432
   environment:

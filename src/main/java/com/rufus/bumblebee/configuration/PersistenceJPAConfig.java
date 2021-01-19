@@ -1,7 +1,6 @@
 package com.rufus.bumblebee.configuration;
 
 import liquibase.integration.spring.SpringLiquibase;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -102,5 +101,4 @@ public class PersistenceJPAConfig {
         properties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
         return properties;
     }
-
 }

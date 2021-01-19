@@ -35,8 +35,6 @@ public class Container implements Serializable {
     @Enumerated(EnumType.STRING)
     private ContainerStatus status;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "container_ref")
-    private List<TestData> data = new ArrayList<>();
-
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy="container")
+    private List<TestData> data;
 }

@@ -53,3 +53,6 @@ databaseChangeLog:
               - column:
                   name: value
                   type: jsonb
+
+        - sql:
+            sql: alter table repository.test_data add constraint test_data_containers_id_fk foreign key (container_ref) references repository.containers;

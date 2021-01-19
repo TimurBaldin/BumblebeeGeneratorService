@@ -1,7 +1,4 @@
 package com.rufus.bumblebee.repository.tables;
-
-//import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +20,7 @@ public class TestData implements Serializable {
     @SequenceGenerator(name = "row_id", sequenceName = "repository.test_data_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "row_id")
     @Column(name = "id", unique = true, nullable = false)
-    private int id;
+    private Long id;
 
     @Type(type = "jsonb")
     @Column(name = "value")
@@ -31,4 +28,8 @@ public class TestData implements Serializable {
 
     @Column(name = "container_ref")
     private Long containerRef;
+
+    @ManyToOne
+    @JoinColumn(name = "container_ref",insertable = false,updatable = false)
+    Container container;
 }
