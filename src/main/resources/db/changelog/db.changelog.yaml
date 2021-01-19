@@ -1,5 +1,4 @@
 databaseChangeLog:
-  - logicalFilePath: db/changelog/db.changelog.yaml
   - changeSet:
       id: 0
       author: Baldin T.V
