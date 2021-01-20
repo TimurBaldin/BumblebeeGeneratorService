@@ -1,7 +1,6 @@
 package com.rufus.bumblebee.generators.annotation;
 
 import com.rufus.bumblebee.generators.BaseGenerator;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -16,17 +15,20 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-@AllArgsConstructor
 public class AnnotationHandler {
 
     private static final Map<GeneratorDescription, List<GeneratorParameter>>
             generatorBeans = new HashMap<>();
 
-    @Autowired
     private final List<BaseGenerator> generators;
 
-    @Autowired
     private final ApplicationContext context;
+
+    @Autowired
+    public AnnotationHandler(List<BaseGenerator> generators, ApplicationContext context) {
+        this.generators = generators;
+        this.context = context;
+    }
 
     @PostConstruct
     public void init() {

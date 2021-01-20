@@ -21,8 +21,8 @@ public class ContainerRepository {
         return em.merge(container);
     }
 
-    public void removeContainer(Long containerId) throws NotFoundException {
-        em.remove(getContainerById(containerId));
+    public void removeContainer(Container container){
+        em.remove(container);
     }
 
     public Container getContainerById(Long id) throws NotFoundException {

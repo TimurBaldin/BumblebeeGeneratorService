@@ -10,13 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class ContainerRepositoryTest extends ConfigurationRepository {
 
-
     @Autowired
     private ContainerRepository repository;
-
-    @Autowired
-    private TestDataRepository dataRepository;
-
 
     @Test
     public void testSaveContainer() {
@@ -38,7 +33,7 @@ public class ContainerRepositoryTest extends ConfigurationRepository {
     @Test(expected = NotFoundException.class)
     public void testRemoveContainer() throws NotFoundException {
         Container containerAfterSave = repository.createOrUpdateContainer(getTestContainer());
-        repository.removeContainer(containerAfterSave.getId());
+        repository.removeContainer(containerAfterSave);
         repository.getContainerById(containerAfterSave.getId());
     }
 }
