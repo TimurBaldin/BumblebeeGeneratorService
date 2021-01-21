@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-ENV PROFILE dev
+ENV PROFILE docker
 
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} generator_service-1.0.jar

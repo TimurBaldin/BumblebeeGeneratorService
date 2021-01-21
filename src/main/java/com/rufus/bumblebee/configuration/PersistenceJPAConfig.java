@@ -50,7 +50,7 @@ public class PersistenceJPAConfig {
     }
 
     @Bean("dataSource")
-    @Profile("dev")
+    @Profile("dev || docker")
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
