@@ -1,7 +1,5 @@
 package com.rufus.bumblebee.generators;
 
-import com.rufus.bumblebee.datatype.TypeTestData;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,6 +14,6 @@ public interface BaseGenerator extends Serializable {
     /**
      * Запуск генерации тестовых данных
      */
-    List<TypeTestData> build();
+    List<String> build();
 
 }

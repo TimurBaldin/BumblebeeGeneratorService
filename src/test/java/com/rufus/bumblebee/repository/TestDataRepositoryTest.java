@@ -1,7 +1,5 @@
 package com.rufus.bumblebee.repository;
 
-import com.rufus.bumblebee.datatype.BaseDataType;
-import com.rufus.bumblebee.datatype.TypeTestData;
 import com.rufus.bumblebee.repository.config.ConfigurationRepository;
 import com.rufus.bumblebee.repository.tables.TestData;
 import org.junit.Assert;
@@ -20,8 +18,8 @@ public class TestDataRepositoryTest extends ConfigurationRepository {
 
     @Test
     public void testSaveTestData() {
-        List<TypeTestData> dataList = new ArrayList<>();
-        dataList.add(new BaseDataType("STRING", "TEST"));
+        List<String> dataList = new ArrayList<>();
+        dataList.add("TEST");
         TestData data = repository.saveTestData(
                 dataList,
                 containerRepository.createOrUpdateContainer(getTestContainer()).getId()

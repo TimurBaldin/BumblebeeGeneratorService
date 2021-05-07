@@ -27,7 +27,7 @@ public class SymbolBaseGeneratorTest {
         generator.isCascade=false;
         generator.isNull=false;
         generator.build();
-        assertEquals(generator.build().get(0).getValue().toString().length(), (int) generator.len);
+        assertEquals(generator.build().get(0).length(), (int) generator.len);
     }
 
 }
