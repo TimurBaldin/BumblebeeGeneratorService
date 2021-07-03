@@ -14,24 +14,44 @@ import static com.rufus.bumblebee.generators.SymbolBaseGenerator.DataMode.NUMBER
 import static com.rufus.bumblebee.generators.SymbolBaseGenerator.DataMode.STRING;
 import static com.rufus.bumblebee.generators.configurer.SpecialID.KEY;
 
-@GeneratorDescription(
-        generatorName = "SymbolGenerator",
-        generatorClass = SymbolBaseGenerator.class,
-        description = "Generator for create random values"
-)
+@GeneratorDescription(generatorName = "SymbolGenerator", generatorClass = SymbolBaseGenerator.class, description = "Generator for create random values")
 @Component
 @Scope("prototype")
 public class SymbolBaseGenerator implements BaseGenerator {
 
-    @GeneratorParameter(name = "len", description = "The length of the text value, applied if isCascade = false", InClass = Integer.class)
+    @GeneratorParameter(
+            name = "len",
+            description = "The length of the text value, applied if isCascade = false",
+            InClass = Integer.class
+    )
     public Integer len;
-    @GeneratorParameter(name = "count", description = "Number of text values in the list", InClass = Integer.class)
+
+    @GeneratorParameter(
+            name = "count",
+            description = "Number of text values in the list",
+            InClass = Integer.class
+    )
     public Integer count;
-    @GeneratorParameter(name = "mode", description = "Maybe value STRING or NUMBER", InClass = String.class)
+
+    @GeneratorParameter(
+            name = "mode",
+            description = "Maybe value STRING or NUMBER",
+            InClass = String.class
+    )
     public String mode;
-    @GeneratorParameter(name = "isNull", description = "The presence of a NULL value", InClass = Boolean.class)
+
+    @GeneratorParameter(
+            name = "isNull",
+            description = "The presence of a NULL value",
+            InClass = Boolean.class
+    )
     public Boolean isNull;
-    @GeneratorParameter(name = "isCascade", description = "Cascading increment of values in a text expression", InClass = Boolean.class)
+
+    @GeneratorParameter(
+            name = "isCascade",
+            description = "Cascading increment of values in a text expression",
+            InClass = Boolean.class
+    )
     public Boolean isCascade;
 
     @Override

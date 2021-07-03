@@ -1,5 +1,7 @@
 package com.rufus.bumblebee.configuration;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +24,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-public class PersistenceJPAConfig {
+public class DataSourceConfig {
 
     @Value("${spring.datasource.url}")
     private String host;
@@ -32,7 +34,6 @@ public class PersistenceJPAConfig {
 
     @Value("${spring.datasource.password}")
     private String password;
-
 
     @Bean("dataSource")
     @Profile("web")
@@ -52,12 +53,17 @@ public class PersistenceJPAConfig {
     @Bean("dataSource")
     @Profile("dev || docker")
     public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUsername(userName);
-        dataSource.setPassword(password);
-        dataSource.setUrl(host);
-        return dataSource;
+        HikariConfig config = new HikariConfig();
+        config.setUsername(userName);
+        config.setPassword(password);
+        config.setJdbcUrl(host);
+        config.addDataSourceProperty("databaseName", "data_generator");
+        config.addDataSourceProperty("connectionTimeout", "10000");
+        config.addDataSourceProperty("idleTimeout", "600000");
+        config.addDataSourceProperty("maxLifetime", "1800000");
+        config.addDataSourceProperty("maximumPoolSize", "10");
+        config.addDataSourceProperty("poolName", "dataGeneratorPool");
+        return new HikariDataSource(config);
     }
 
     @Bean("entityManagerFactory")
@@ -65,6 +71,7 @@ public class PersistenceJPAConfig {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
         em.setPackagesToScan("com.rufus.bumblebee.repository");
+        em.setPersistenceUnitName("dataGenerator");
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());
@@ -83,11 +90,11 @@ public class PersistenceJPAConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    @Bean
-    public SpringLiquibase liquibase() {
+    @Bean("liquibase")
+    public SpringLiquibase liquibase(@Autowired DataSource dataSource) {
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setChangeLog("classpath:db/changelog/db.changelog.yaml");
-        liquibase.setDataSource(dataSource());
+        liquibase.setDataSource(dataSource);
         return liquibase;
     }
 
@@ -95,9 +102,12 @@ public class PersistenceJPAConfig {
         final Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        properties.setProperty("connection_pool_size", "100");
         properties.setProperty("hibernate.show_sql", "true");
         properties.setProperty("hibernate.format_sql", "true");
+        properties.setProperty("hibernate.jdbc.batch_size", "50");
+        properties.setProperty("hibernate.order_inserts", "true");
+        properties.setProperty("hibernate.order_updates", "true");
+        properties.setProperty("hibernate.generate_statistics", "true");
         properties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
         return properties;
     }

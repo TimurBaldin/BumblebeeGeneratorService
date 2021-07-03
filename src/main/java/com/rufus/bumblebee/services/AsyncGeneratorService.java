@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,7 +27,6 @@ public class AsyncGeneratorService {
     }
 
     @Async("threadPoolTaskExecutor")
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public void asyncGenerateTestData(List<BaseGenerator> generators, Container container) {
         log.info("AsyncGeneratorService started");
         generators.forEach(s -> repository.saveTestData(s.build(), container.getId()));
