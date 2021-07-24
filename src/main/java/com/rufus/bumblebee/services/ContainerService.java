@@ -30,9 +30,10 @@ public class ContainerService {
         return getContainerDto(repository.createOrUpdateContainer(container));
     }
 
-    public void removeContainer(Long containerId) throws NotFoundException {
+    public Long removeContainer(Long containerId) throws NotFoundException {
         Container container=repository.getContainerById(containerId);
         repository.removeContainer(container);
+        return containerId;
     }
 
     private ContainerDto getContainerDto(Container container) {

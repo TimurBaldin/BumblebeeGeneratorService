@@ -7,10 +7,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class BaseResponse<V> {
+public class BaseResponse{
 
     private Integer errorCode = 0;
     private String errorMessage;
-    private V response;
 
 }

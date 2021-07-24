@@ -2,6 +2,7 @@ package com.rufus.bumblebee.configuration;
 
 import com.rufus.bumblebee.controllers.ContainerController;
 import com.rufus.bumblebee.controllers.GeneratorsController;
+import com.rufus.bumblebee.controllers.RestExceptionHandler;
 import com.rufus.bumblebee.generators.BaseGenerator;
 import com.rufus.bumblebee.generators.SymbolBaseGenerator;
 import com.rufus.bumblebee.generators.annotation.AnnotationHandler;
@@ -87,5 +88,10 @@ public class AppConfig {
     @Bean("symbolBaseGenerator")
     public SymbolBaseGenerator getSymbolBaseGenerator(){
         return new SymbolBaseGenerator();
+    }
+
+    @Bean("restResponseEntityExceptionHandler")
+    public RestExceptionHandler getRestResponseEntityExceptionHandler(){
+        return new RestExceptionHandler();
     }
 }
