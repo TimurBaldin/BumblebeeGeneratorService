@@ -29,6 +29,9 @@ public class TestData implements Serializable {
     @Column(name = "container_ref")
     private Long containerRef;
 
+    @Column(name = "generator_name")
+    private String generatorName;
+
     @ManyToOne
     @JoinColumn(name = "container_ref",insertable = false,updatable = false)
     Container container;

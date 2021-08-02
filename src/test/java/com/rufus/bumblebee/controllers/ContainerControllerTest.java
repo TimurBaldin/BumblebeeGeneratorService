@@ -1,27 +1,6 @@
 package com.rufus.bumblebee.controllers;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.rufus.bumblebee.controllers.responses.BaseResponse;
-import com.rufus.bumblebee.controllers.responses.ContainerDto;
-import com.rufus.bumblebee.repository.ContainerStatus;
-import com.rufus.bumblebee.services.ContainerService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+/*
 @RunWith(SpringRunner.class)
 @WebMvcTest(ContainerController.class)
 public class ContainerControllerTest {
@@ -37,6 +16,7 @@ public class ContainerControllerTest {
 
     @Test
     public void testAddContainer() throws Exception {
+
         BaseResponse<ContainerDto> baseResponse = new BaseResponse<>();
         ContainerDto dto = getContainerDto();
         baseResponse.setResponse(dto);
@@ -47,6 +27,8 @@ public class ContainerControllerTest {
                 .andExpect(status().isOk()).
                         andReturn().getResponse();
         assertEquals(response.getContentAsString(), gson.toJson(baseResponse));
+
+
     }
 
     @Test
@@ -67,3 +49,5 @@ public class ContainerControllerTest {
     }
 
 }
+
+ */

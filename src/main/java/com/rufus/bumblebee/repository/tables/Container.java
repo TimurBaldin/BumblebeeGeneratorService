@@ -30,6 +30,9 @@ public class Container implements Serializable {
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
+    @Column(name = "authenticated")
+    private Boolean isAuthenticated;
+
     @Enumerated(EnumType.STRING)
     private ContainerStatus status;
 

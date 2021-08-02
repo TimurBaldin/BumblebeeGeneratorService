@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.rufus.bumblebee.generators.SymbolBaseGenerator.DataMode.NUMBER;
@@ -65,6 +66,13 @@ public class SymbolBaseGenerator implements BaseGenerator {
             generateData(KEY.MIN_ID_NUMERIC, KEY.MAX_ID_NUMERIC, values);
         }
         return values;
+    }
+
+    @Override
+    public String getGeneratorName() {
+        return Optional.of(
+                this.getClass().getAnnotation(GeneratorDescription.class).generatorName()
+        ).orElse("DEFAULT");
     }
 
     private void generateData(int startSeq, int endSeq, List<String> values) {

@@ -16,4 +16,6 @@ public interface BaseGenerator extends Serializable {
      */
     List<String> build();
 
+    String getGeneratorName();
+
 }

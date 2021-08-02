@@ -18,7 +18,8 @@ create table repository.test_data
         constraint test_data_pkey
             primary key,
     container_ref bigint not null,
-    value         jsonb
+    value         jsonb,
+    generator_name text
 );
 commit;
 alter table repository.test_data add constraint test_data_containers_id_fk foreign key (container_ref) references repository.containers;

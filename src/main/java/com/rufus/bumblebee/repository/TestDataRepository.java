@@ -8,6 +8,7 @@ package com.rufus.bumblebee.repository;
  */
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.rufus.bumblebee.repository.tables.TestData;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @Transactional
@@ -23,10 +25,17 @@ public class TestDataRepository {
     @PersistenceContext
     EntityManager em;
 
-    public TestData saveTestData(List<String> dataList, Long containerRef) {
-        TestData testData = new TestData();
-        testData.setValue(new Gson().toJson(dataList));
-        testData.setContainerRef(containerRef);
-        return em.merge(testData);
+    private static final Gson gson = new GsonBuilder().serializeNulls().create();
+
+    public void saveTestData(List<Map<String, List<String>>> dataList, Long containerRef) {
+        for (Map<String, List<String>> data : dataList) {
+            data.forEach((key, value) -> {
+                TestData testData = new TestData();
+                testData.setGeneratorName(key);
+                testData.setContainerRef(containerRef);
+                testData.setValue(gson.toJson(value));
+                em.persist(testData);
+            });
+        }
     }
 }

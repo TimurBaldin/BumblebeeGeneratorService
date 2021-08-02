@@ -11,10 +11,13 @@ import com.rufus.bumblebee.repository.TestDataRepository;
 import com.rufus.bumblebee.services.AsyncGeneratorService;
 import com.rufus.bumblebee.services.ContainerService;
 import com.rufus.bumblebee.services.GeneratorService;
+import com.rufus.bumblebee.services.KafkaService;
+import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
@@ -42,56 +45,62 @@ public class AppConfig {
     }
 
     @Bean("containerController")
-    public ContainerController getContainerController(@Autowired ContainerService service){
+    public ContainerController getContainerController(@Autowired ContainerService service) {
         return new ContainerController(service);
     }
 
     @Bean("containerService")
-    public ContainerService getContainerService(@Autowired ContainerRepository repository){
+    public ContainerService getContainerService(@Autowired ContainerRepository repository) {
         return new ContainerService(repository);
     }
 
     @Bean("containerRepository")
-    public ContainerRepository getContainerRepository(){
+    public ContainerRepository getContainerRepository() {
         return new ContainerRepository();
     }
 
     @Bean("generatorsController")
-    public GeneratorsController getGeneratorsController(@Autowired GeneratorService service){
+    public GeneratorsController getGeneratorsController(@Autowired GeneratorService service) {
         return new GeneratorsController(service);
     }
 
     @Bean("generatorService")
     public GeneratorService getGeneratorService(@Autowired AnnotationHandler handler,
                                                 @Autowired ContainerRepository repository,
-                                                @Autowired AsyncGeneratorService service){
-        return new GeneratorService(handler,repository,service);
+                                                @Autowired AsyncGeneratorService service) {
+        return new GeneratorService(handler, repository, service);
     }
 
     @Bean("annotationHandler")
     public AnnotationHandler getAnnotationHandler(@Autowired List<BaseGenerator> generators,
-                                                  @Autowired ApplicationContext context){
-        return new AnnotationHandler(generators,context);
+                                                  @Autowired ApplicationContext context) {
+        return new AnnotationHandler(generators, context);
     }
 
     @Bean("asyncGeneratorService")
     public AsyncGeneratorService getAsyncGeneratorService(@Autowired ContainerRepository repository,
-                                                          @Autowired TestDataRepository testDataRepository){
-        return new AsyncGeneratorService(testDataRepository,repository);
+                                                          @Autowired TestDataRepository testDataRepository,
+                                                          @Autowired KafkaService kafkaService) {
+        return new AsyncGeneratorService(testDataRepository, repository, kafkaService);
     }
 
     @Bean("testDataRepository")
-    public TestDataRepository getTestDataRepository(){
+    public TestDataRepository getTestDataRepository() {
         return new TestDataRepository();
     }
 
     @Bean("symbolBaseGenerator")
-    public SymbolBaseGenerator getSymbolBaseGenerator(){
+    public SymbolBaseGenerator getSymbolBaseGenerator() {
         return new SymbolBaseGenerator();
     }
 
     @Bean("restResponseEntityExceptionHandler")
-    public RestExceptionHandler getRestResponseEntityExceptionHandler(){
+    public RestExceptionHandler getRestResponseEntityExceptionHandler() {
         return new RestExceptionHandler();
+    }
+
+    @Bean("kafkaService")
+    public KafkaService getKafkaService(@Autowired KafkaTemplate template, @Autowired NewTopic topic) {
+        return new KafkaService(template, topic);
     }
 }

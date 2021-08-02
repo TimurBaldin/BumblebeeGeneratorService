@@ -1,29 +1,18 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
 group 'bumblebee_generator_service'
 version '1.0'
-buildscript {
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.2.RELEASE")
-    }
-}
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+
 bootJar {
     baseName = 'generator_service'
     version =  '1.0'
 }
 
 repositories {
-    jcenter()
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.8.1'
+    mavenCentral()
 }
 
 dependencies {
@@ -31,29 +20,28 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.16.Final'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.16.Final'
-    compileOnly 'org.projectlombok:lombok:1.18.8'
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.10.Final'
+
+    compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     compile group: 'org.mockito', name: 'mockito-core', version: '2.22.0'
-    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.10.Final'
-    compile group: 'org.springframework', name: 'spring-beans', version: '5.2.6.RELEASE'
-    compile group: 'org.springframework', name: 'spring-context', version: '5.2.6.RELEASE'
-    compile group: 'org.springframework', name: 'spring-core', version: '5.2.6.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.7.RELEASE'
-    compile group: 'org.springframework', name: 'spring-aop', version: '5.2.6.RELEASE'
-    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.1.7.RELEASE'
-    compile group: 'org.springframework.data', name: 'spring-data-commons', version: '2.2.7.RELEASE'
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-test', version: '2.2.7.RELEASE'
-    testCompile group: 'org.springframework', name: 'spring-test', version: '5.1.15.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.2.7.RELEASE'
+
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
     compile group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.10.0'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
     compile group: 'org.liquibase', name: 'liquibase-core', version: '4.2.0'
     implementation group: 'com.zaxxer', name: 'HikariCP', version: '4.0.3'
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.3.7.RELEASE'
+
     testCompile group: 'com.opentable.components', name: 'otj-pg-embedded', version: '0.13.3'
     compile group: 'commons-io', name: 'commons-io', version: '2.8.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'org.springframework.data:spring-data-jpa'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
 
 }
 
