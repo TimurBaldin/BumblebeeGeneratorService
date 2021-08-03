@@ -18,7 +18,7 @@ import java.util.Map;
 @Configuration
 public class KafkaConfig {
 
-   @Value(value = "${spring.kafka.producer.bootstrap-servers}")
+    @Value(value = "${spring.kafka.producer.bootstrap-servers}")
     private String bootstrapAddress;
 
     @Bean
@@ -43,8 +43,6 @@ public class KafkaConfig {
 
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 StringSerializer.class);
-
-
 
         return new DefaultKafkaProducerFactory<>(configProps);
     }

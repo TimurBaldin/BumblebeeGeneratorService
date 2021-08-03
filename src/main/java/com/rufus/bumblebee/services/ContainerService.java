@@ -22,16 +22,17 @@ public class ContainerService {
         this.repository = repository;
     }
 
-    public ContainerDto createTestDataContainer(String name) {
+    public ContainerDto createTestDataContainer(String name, Boolean auth) {
         Container container = new Container();
         container.setName(name);
+        container.setIsAuthenticated(auth);
         container.setDate(LocalDateTime.now());
         container.setStatus(ContainerStatus.NEW);
         return getContainerDto(repository.createOrUpdateContainer(container));
     }
 
     public Long removeContainer(Long containerId) throws NotFoundException {
-        Container container=repository.getContainerById(containerId);
+        Container container = repository.getContainerById(containerId);
         repository.removeContainer(container);
         return containerId;
     }

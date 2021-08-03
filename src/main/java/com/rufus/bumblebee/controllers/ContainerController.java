@@ -21,7 +21,7 @@ import static com.rufus.bumblebee.configuration.ControllerURL.CONTAINER_MANAGER;
 @RequestMapping(path = CONTAINER_MANAGER)
 @Api(value = "Controller for containers", tags = {"Controller for containers"})
 @Validated
-public class ContainerController{
+public class ContainerController {
 
     private final ContainerService service;
 
@@ -30,9 +30,11 @@ public class ContainerController{
         this.service = service;
     }
 
-    @PostMapping(path = "/add/{name}")
-    public ResponseEntity<ContainerDto> addContainer(@PathVariable("name") @NotBlank @Size(max = 100) String name) {
-        return new ResponseEntity<ContainerDto>(service.createTestDataContainer(name), HttpStatus.OK);
+    @PostMapping(path = "/add/{name}/{auth}")
+    public ResponseEntity<ContainerDto> addContainer(
+            @PathVariable("name") @NotBlank @Size(max = 100) String name,
+            @PathVariable("auth") Boolean auth) {
+        return new ResponseEntity<ContainerDto>(service.createTestDataContainer(name, auth), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/remove/{id}")

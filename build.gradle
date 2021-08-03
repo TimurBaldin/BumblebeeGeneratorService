@@ -22,8 +22,9 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.16.Final'
     compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.10.Final'
 
-    compileOnly 'org.projectlombok:lombok:1.18.20'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.18'
+
     compile group: 'org.mockito', name: 'mockito-core', version: '2.22.0'
 
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
