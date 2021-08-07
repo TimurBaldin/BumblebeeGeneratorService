@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.16.Final'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.16.Final'
