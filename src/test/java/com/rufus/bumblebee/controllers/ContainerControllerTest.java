@@ -3,6 +3,8 @@ package com.rufus.bumblebee.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.rufus.bumblebee.controllers.requests.ContainerRequest;
+import com.rufus.bumblebee.controllers.requests.ReportType;
 import com.rufus.bumblebee.controllers.responses.ContainerDto;
 import com.rufus.bumblebee.repository.ContainerStatus;
 import com.rufus.bumblebee.services.ContainerService;
@@ -43,10 +45,15 @@ public class ContainerControllerTest {
     public void testAddContainer() throws Exception {
         ContainerDto dto = getContainerDto();
         ResponseEntity<ContainerDto> baseResponse = new ResponseEntity<ContainerDto>(dto, HttpStatus.OK);
-        given(service.createTestDataContainer(TEST_VALUE, false)).willReturn(dto);
+        given(service.createTestDataContainer(TEST_VALUE, false, ReportType.EXCEL_TYPE)).willReturn(dto);
 
-        MockHttpServletResponse response = mvc.perform(post("/containerManager/add/" + TEST_VALUE + "/" + Boolean.FALSE)
-                        .contentType(MediaType.APPLICATION_JSON))
+        ContainerRequest request=new ContainerRequest();
+        request.setAuth(false);
+        request.setReportType(ReportType.EXCEL_TYPE);
+        request.setName(TEST_VALUE);
+
+        MockHttpServletResponse response = mvc.perform(post("/containerManager/add")
+                        .contentType(MediaType.APPLICATION_JSON).content(gson.toJson(request)))
                 .andExpect(status().isOk()).
                 andReturn().getResponse();
         assertEquals(response.getContentAsString(), gson.toJson(baseResponse.getBody()));

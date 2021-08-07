@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.controllers;
+package com.rufus.bumblebee.controllers.handlers;
 
 import com.rufus.bumblebee.controllers.responses.BaseResponse;
 import javassist.NotFoundException;

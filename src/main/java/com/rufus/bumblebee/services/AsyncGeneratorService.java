@@ -36,8 +36,7 @@ public class AsyncGeneratorService {
     public void asyncGenerateTestData(List<BaseGenerator> generators, Container container) {
         log.info("AsyncGeneratorService started");
         List<Map<String, List<String>>> data = buildData(generators);
-
-        if (container.getIsAuthenticated()) {
+        if (container.getAuthenticated()) {
             repository.saveTestData(data, container.getId());
         }
         kafkaService.sendTestDataToReportService(data, container);

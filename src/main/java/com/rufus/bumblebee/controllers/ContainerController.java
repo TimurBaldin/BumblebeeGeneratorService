@@ -1,5 +1,6 @@
 package com.rufus.bumblebee.controllers;
 
+import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.controllers.responses.ContainerDto;
 import com.rufus.bumblebee.services.ContainerService;
 import io.swagger.annotations.Api;
@@ -11,8 +12,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 import static com.rufus.bumblebee.configuration.ControllerURL.CONTAINER_MANAGER;
 
@@ -30,11 +29,11 @@ public class ContainerController {
         this.service = service;
     }
 
-    @PostMapping(path = "/add/{name}/{auth}")
-    public ResponseEntity<ContainerDto> addContainer(
-            @PathVariable("name") @NotBlank @Size(max = 100) String name,
-            @PathVariable("auth") Boolean auth) {
-        return new ResponseEntity<ContainerDto>(service.createTestDataContainer(name, auth), HttpStatus.OK);
+    @PostMapping(path = "/add")
+    public ResponseEntity<ContainerDto> addContainer(@RequestBody ContainerRequest request) {
+        return new ResponseEntity<ContainerDto>(
+                service.createTestDataContainer(request.getName(), request.getAuth(), request.getReportType()), HttpStatus.OK
+        );
     }
 
     @DeleteMapping(path = "/remove/{id}")

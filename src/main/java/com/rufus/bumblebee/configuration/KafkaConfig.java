@@ -29,21 +29,21 @@ public class KafkaConfig {
     }
 
     @Bean
-    public NewTopic topic1() {
-        return new NewTopic("reports_data", 1, (short) 1);
+    public NewTopic topic() {
+        NewTopic topic = new NewTopic("reports_data", 1, (short) 1);
+        Map<String, String> configs = new HashMap<>();
+        configs.put("max.message.bytes", "524288000");
+        topic.configs(configs);
+        return topic;
     }
 
     @Bean("producerFactory")
     public ProducerFactory<String, String> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
-        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                bootstrapAddress);
-        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-                StringSerializer.class);
-
-        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-                StringSerializer.class);
-
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.MAX_REQUEST_SIZE_CONFIG, "524288000");
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 

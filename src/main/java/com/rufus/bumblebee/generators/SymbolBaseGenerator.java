@@ -15,7 +15,10 @@ import static com.rufus.bumblebee.generators.SymbolBaseGenerator.DataMode.NUMBER
 import static com.rufus.bumblebee.generators.SymbolBaseGenerator.DataMode.STRING;
 import static com.rufus.bumblebee.generators.configurer.SpecialID.KEY;
 
-@GeneratorDescription(generatorName = "SymbolGenerator", generatorClass = SymbolBaseGenerator.class, description = "Generator for create random values")
+@GeneratorDescription(
+        generatorName = "SymbolGenerator",
+        generatorClass = SymbolBaseGenerator.class, description = "Generator for create random values"
+)
 @Component
 @Scope("prototype")
 public class SymbolBaseGenerator implements BaseGenerator {

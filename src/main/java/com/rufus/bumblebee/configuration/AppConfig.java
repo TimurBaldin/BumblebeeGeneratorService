@@ -2,7 +2,7 @@ package com.rufus.bumblebee.configuration;
 
 import com.rufus.bumblebee.controllers.ContainerController;
 import com.rufus.bumblebee.controllers.GeneratorsController;
-import com.rufus.bumblebee.controllers.RestExceptionHandler;
+import com.rufus.bumblebee.controllers.handlers.RestExceptionHandler;
 import com.rufus.bumblebee.generators.BaseGenerator;
 import com.rufus.bumblebee.generators.SymbolBaseGenerator;
 import com.rufus.bumblebee.generators.annotation.AnnotationHandler;

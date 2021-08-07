@@ -1,5 +1,6 @@
 package com.rufus.bumblebee.services;
 
+import com.rufus.bumblebee.controllers.requests.ReportType;
 import com.rufus.bumblebee.controllers.responses.ContainerDto;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.ContainerStatus;
@@ -22,12 +23,13 @@ public class ContainerService {
         this.repository = repository;
     }
 
-    public ContainerDto createTestDataContainer(String name, Boolean auth) {
+    public ContainerDto createTestDataContainer(String name, boolean auth, ReportType type) {
         Container container = new Container();
         container.setName(name);
-        container.setIsAuthenticated(auth);
+        container.setAuthenticated(auth);
         container.setDate(LocalDateTime.now());
         container.setStatus(ContainerStatus.NEW);
+        container.setType(type);
         return getContainerDto(repository.createOrUpdateContainer(container));
     }
 
