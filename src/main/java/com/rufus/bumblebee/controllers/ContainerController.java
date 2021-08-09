@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 import static com.rufus.bumblebee.configuration.ControllerURL.CONTAINER_MANAGER;
 
@@ -32,12 +32,12 @@ public class ContainerController {
     @PostMapping(path = "/add")
     public ResponseEntity<ContainerDto> addContainer(@RequestBody ContainerRequest request) {
         return new ResponseEntity<ContainerDto>(
-                service.createTestDataContainer(request.getName(), request.getAuth(), request.getReportType()), HttpStatus.OK
+                service.createContainer(request.getName(), request.getAuth(), request.getReportType()), HttpStatus.OK
         );
     }
 
-    @DeleteMapping(path = "/remove/{id}")
-    public ResponseEntity<String> removeContainer(@PathVariable("id") @Min(0) Long id) throws NotFoundException {
-        return new ResponseEntity<String>("The container with the ID " + service.removeContainer(id).toString() + " was deleted", HttpStatus.OK);
+    @DeleteMapping(path = "/remove/{cuid}")
+    public ResponseEntity<String> removeContainer(@PathVariable("cuid") @NotEmpty String cuid) throws NotFoundException {
+        return new ResponseEntity<String>("The container with the ID " + service.removeContainer(cuid) + " was deleted", HttpStatus.OK);
     }
 }

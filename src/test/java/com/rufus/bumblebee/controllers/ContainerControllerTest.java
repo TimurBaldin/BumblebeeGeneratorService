@@ -45,7 +45,7 @@ public class ContainerControllerTest {
     public void testAddContainer() throws Exception {
         ContainerDto dto = getContainerDto();
         ResponseEntity<ContainerDto> baseResponse = new ResponseEntity<ContainerDto>(dto, HttpStatus.OK);
-        given(service.createTestDataContainer(TEST_VALUE, false, ReportType.EXCEL_TYPE)).willReturn(dto);
+        given(service.createContainer(TEST_VALUE, false, ReportType.EXCEL_TYPE)).willReturn(dto);
 
         ContainerRequest request=new ContainerRequest();
         request.setAuth(false);
@@ -72,7 +72,7 @@ public class ContainerControllerTest {
 
     private ContainerDto getContainerDto() {
         ContainerDto dto = new ContainerDto();
-        dto.setId(1L);
+        dto.setCuid("1L");
         dto.setName(TEST_VALUE);
         dto.setStatus(ContainerStatus.NEW);
         return dto;

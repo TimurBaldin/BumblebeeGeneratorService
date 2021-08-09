@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "containers", schema = "repository")
@@ -35,6 +36,9 @@ public class Container implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private ReportType type;
+
+    @Column(columnDefinition = "UUID")
+    private UUID cuid;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "container")
     private List<TestData> data;
@@ -101,5 +105,13 @@ public class Container implements Serializable {
 
     public void setData(List<TestData> data) {
         this.data = data;
+    }
+
+    public UUID getCuid() {
+        return cuid;
+    }
+
+    public void setCuid(UUID cuid) {
+        this.cuid = cuid;
     }
 }

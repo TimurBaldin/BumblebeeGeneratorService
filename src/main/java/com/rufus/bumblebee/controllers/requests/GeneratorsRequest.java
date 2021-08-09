@@ -7,15 +7,15 @@ import java.util.List;
 
 public class GeneratorsRequest {
     @NotNull
-    private Long containerId;
+    private String cuid;
     private List<GeneratorInformation> generatorInfo;
 
-    public Long getContainerId() {
-        return containerId;
+    public String getCuid() {
+        return cuid;
     }
 
-    public void setContainerId(Long containerId) {
-        this.containerId = containerId;
+    public void setCuid(String cuid) {
+        this.cuid = cuid;
     }
 
     public List<GeneratorInformation> getGeneratorInfo() {

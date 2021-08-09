@@ -24,7 +24,7 @@ public class ContainerRepositoryTest extends ConfigurationRepository {
     @Test
     public void testGetContainerById() throws NotFoundException {
         Container containerAfterSave = repository.createOrUpdateContainer(getTestContainer());
-        Container containerAfterGet = repository.getContainerById(containerAfterSave.getId());
+        Container containerAfterGet = repository.getContainerById(containerAfterSave.getCuid().toString());
 
         Assert.assertNotNull(containerAfterGet);
         Assert.assertEquals(containerAfterGet.getId(), containerAfterSave.getId());
@@ -34,6 +34,6 @@ public class ContainerRepositoryTest extends ConfigurationRepository {
     public void testRemoveContainer() throws NotFoundException {
         Container containerAfterSave = repository.createOrUpdateContainer(getTestContainer());
         repository.removeContainer(containerAfterSave);
-        repository.getContainerById(containerAfterSave.getId());
+        repository.getContainerById(containerAfterSave.getCuid().toString());
     }
 }

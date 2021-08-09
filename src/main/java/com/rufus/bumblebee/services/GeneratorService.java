@@ -41,8 +41,8 @@ public class GeneratorService {
     }
 
 
-    public Long addGenerators(GeneratorsRequest request) throws NotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        Container container = containerRepository.getContainerById(request.getContainerId());
+    public String addGenerators(GeneratorsRequest request) throws NotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Container container = containerRepository.getContainerById(request.getCuid());
         List<BaseGenerator> generators = new ArrayList<>(request.getGeneratorInfo().size());
 
         for (GeneratorInformation information : request.getGeneratorInfo()) {
@@ -52,7 +52,7 @@ public class GeneratorService {
         }
         container.setStatus(ContainerStatus.PREPARATION_FOR_GENERATION);
         asyncGeneratorService.asyncGenerateTestData(generators, containerRepository.createOrUpdateContainer(container));
-        return container.getId();
+        return container.getCuid().toString();
     }
 
     public List<GeneratorDto> getGeneratorsInformation() {

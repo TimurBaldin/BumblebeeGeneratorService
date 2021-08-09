@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -23,25 +24,26 @@ public class ContainerService {
         this.repository = repository;
     }
 
-    public ContainerDto createTestDataContainer(String name, boolean auth, ReportType type) {
+    public ContainerDto createContainer(String name, boolean auth, ReportType type) {
         Container container = new Container();
         container.setName(name);
         container.setAuthenticated(auth);
         container.setDate(LocalDateTime.now());
         container.setStatus(ContainerStatus.NEW);
         container.setType(type);
+        container.setCuid(UUID.randomUUID());
         return getContainerDto(repository.createOrUpdateContainer(container));
     }
 
-    public Long removeContainer(Long containerId) throws NotFoundException {
-        Container container = repository.getContainerById(containerId);
+    public String removeContainer(String cuid) throws NotFoundException {
+        Container container = repository.getContainerById(cuid);
         repository.removeContainer(container);
-        return containerId;
+        return cuid;
     }
 
     private ContainerDto getContainerDto(Container container) {
         ContainerDto dto = new ContainerDto();
-        dto.setId(container.getId());
+        dto.setCuid(container.getCuid().toString());
         dto.setName(container.getName());
         dto.setStatus(container.getStatus());
         return dto;

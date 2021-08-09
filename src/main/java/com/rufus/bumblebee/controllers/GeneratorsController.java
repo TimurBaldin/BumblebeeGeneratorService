@@ -30,7 +30,7 @@ public class GeneratorsController {
     @PostMapping(path = "/add")
     public ResponseEntity<String> addGenerator(@RequestBody GeneratorsRequest request) throws NotFoundException, InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         return new ResponseEntity<String>(
-                "The task for generating test data for a container with an ID " + service.addGenerators(request) + " is registered",
+                "The task for generating test data for a container with an CUID " + service.addGenerators(request) + " is registered",
                 HttpStatus.OK
         );
     }

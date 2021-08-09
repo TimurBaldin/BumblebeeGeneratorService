@@ -3,16 +3,16 @@ package com.rufus.bumblebee.controllers.responses;
 import com.rufus.bumblebee.repository.ContainerStatus;
 
 public class ContainerDto {
-    private Long id;
+    private String cuid;
     private String name;
     private ContainerStatus status;
 
-    public Long getId() {
-        return id;
+    public String getCuid() {
+        return cuid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCuid(String cuid) {
+        this.cuid = cuid;
     }
 
     public String getName() {
@@ -29,14 +29,5 @@ public class ContainerDto {
 
     public void setStatus(ContainerStatus status) {
         this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "ContainerDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", status=" + status +
-                '}';
     }
 }
