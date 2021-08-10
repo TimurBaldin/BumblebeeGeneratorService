@@ -1,6 +1,7 @@
 package com.rufus.bumblebee.repository.config;
 
 import com.opentable.db.postgres.embedded.EmbeddedPostgres;
+import com.rufus.bumblebee.controllers.requests.ReportType;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.ContainerStatus;
 import com.rufus.bumblebee.repository.TestDataRepository;
@@ -28,6 +29,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.Properties;
+import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @TestPropertySource(properties =
@@ -81,8 +83,11 @@ public class ConfigurationRepository extends AbstractTransactionalJUnit4SpringCo
     protected Container getTestContainer() {
         Container container = new Container();
         container.setName("test");
+        container.setAuthenticated(false);
         container.setDate(LocalDateTime.now());
-        container.setStatus(ContainerStatus.CONTAINER_INACTIVE);
+        container.setStatus(ContainerStatus.NEW);
+        container.setType(ReportType.EXCEL_TYPE);
+        container.setCuid(UUID.randomUUID());
         return container;
     }
 

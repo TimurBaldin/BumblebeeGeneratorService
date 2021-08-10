@@ -33,6 +33,15 @@ databaseChangeLog:
               - column:
                   name: status
                   type: varchar(50)
+              - column:
+                  name: authenticated
+                  type: boolean
+              - column:
+                  name: type
+                  type: text
+              - column:
+                  name: cuid
+                  type: uuid
 
         - createTable:
             schemaName: repository

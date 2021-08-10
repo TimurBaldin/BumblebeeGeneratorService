@@ -26,7 +26,7 @@ public class KafkaService {
 
     public void sendTestDataToReportService(List<Map<String, List<String>>> data, Container container) {
         KafkaDto dto = new KafkaDto();
-        dto.setContainerId(container.getCuid().toString());
+        dto.setCuid(container.getCuid().toString());
         dto.setContainerName(container.getName());
         dto.setAuthenticated(container.getAuthenticated());
         dto.setReportType(container.getType());
@@ -36,18 +36,18 @@ public class KafkaService {
     }
 
     private class KafkaDto {
-        private String containerId;
+        private String cuid;
         private String containerName;
         private Boolean isAuthenticated;
         private ReportType reportType;
         private List<Map<String, List<String>>> data;
 
-        public String getContainerId() {
-            return containerId;
+        public String getCuid() {
+            return cuid;
         }
 
-        public void setContainerId(String containerId) {
-            this.containerId = containerId;
+        public void setCuid(String cuid) {
+            this.cuid = cuid;
         }
 
         public String getContainerName() {

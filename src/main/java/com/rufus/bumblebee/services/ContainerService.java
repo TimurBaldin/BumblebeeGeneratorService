@@ -5,10 +5,10 @@ import com.rufus.bumblebee.controllers.responses.ContainerDto;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.ContainerStatus;
 import com.rufus.bumblebee.repository.tables.Container;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -35,7 +35,7 @@ public class ContainerService {
         return getContainerDto(repository.createOrUpdateContainer(container));
     }
 
-    public String removeContainer(String cuid) throws NotFoundException {
+    public String removeContainer(String cuid) throws NoResultException {
         Container container = repository.getContainerById(cuid);
         repository.removeContainer(container);
         return cuid;
