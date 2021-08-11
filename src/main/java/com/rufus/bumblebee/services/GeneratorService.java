@@ -56,10 +56,10 @@ public class GeneratorService {
     }
 
     public List<GeneratorDto> getGeneratorsInformation() {
-        List<GeneratorDto> generatorDtos = new ArrayList<>();
+        List<GeneratorDto> generatorInfo = new ArrayList<>();
         Map<GeneratorDescription, List<GeneratorParameter>> map = AnnotationHandler.getGeneratorBeans();
         for (Map.Entry<GeneratorDescription, List<GeneratorParameter>> entry : map.entrySet()) {
-            generatorDtos.add(new GeneratorDto(
+            generatorInfo.add(new GeneratorDto(
                     entry.getKey().generatorName(),
                     entry.getKey().description(),
                     entry.getValue().stream()
@@ -67,6 +67,6 @@ public class GeneratorService {
                             .collect(Collectors.toList()))
             );
         }
-        return generatorDtos;
+        return generatorInfo;
     }
 }

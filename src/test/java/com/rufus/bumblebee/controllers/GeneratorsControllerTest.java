@@ -46,7 +46,7 @@ public class GeneratorsControllerTest {
 
     @Test
     public void testGetGenerators() throws Exception {
-        MockHttpServletResponse response = mvc.perform(get("/generatorManager/generatorInformation")
+        MockHttpServletResponse response = mvc.perform(get("/generatorManager/information")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).
                 andReturn().getResponse();
