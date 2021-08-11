@@ -8,13 +8,17 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.rufus.bumblebee.generators.SymbolBaseGenerator.DataMode.NUMBER;
 import static com.rufus.bumblebee.generators.SymbolBaseGenerator.DataMode.STRING;
 import static com.rufus.bumblebee.generators.configurer.SpecialID.KEY;
 
-@GeneratorDescription(generatorName = "SymbolGenerator", generatorClass = SymbolBaseGenerator.class, description = "Generator for create random values")
+@GeneratorDescription(
+        generatorName = "SymbolGenerator",
+        generatorClass = SymbolBaseGenerator.class, description = "Generator for create random values"
+)
 @Component
 @Scope("prototype")
 public class SymbolBaseGenerator implements BaseGenerator {
@@ -65,6 +69,13 @@ public class SymbolBaseGenerator implements BaseGenerator {
             generateData(KEY.MIN_ID_NUMERIC, KEY.MAX_ID_NUMERIC, values);
         }
         return values;
+    }
+
+    @Override
+    public String getGeneratorName() {
+        return Optional.of(
+                this.getClass().getAnnotation(GeneratorDescription.class).generatorName()
+        ).orElse("DEFAULT");
     }
 
     private void generateData(int startSeq, int endSeq, List<String> values) {

@@ -11,9 +11,9 @@ import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.ContainerStatus;
 import com.rufus.bumblebee.repository.tables.Container;
-import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +41,8 @@ public class GeneratorService {
     }
 
 
-    public void addGenerators(GeneratorsRequest request) throws NotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        Container container = containerRepository.getContainerById(request.getContainerId());
+    public String addGenerators(GeneratorsRequest request) throws NoResultException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        Container container = containerRepository.getContainerById(request.getCuid());
         List<BaseGenerator> generators = new ArrayList<>(request.getGeneratorInfo().size());
 
         for (GeneratorInformation information : request.getGeneratorInfo()) {
@@ -52,13 +52,14 @@ public class GeneratorService {
         }
         container.setStatus(ContainerStatus.PREPARATION_FOR_GENERATION);
         asyncGeneratorService.asyncGenerateTestData(generators, containerRepository.createOrUpdateContainer(container));
+        return container.getCuid().toString();
     }
 
     public List<GeneratorDto> getGeneratorsInformation() {
-        List<GeneratorDto> generatorDtos = new ArrayList<>();
+        List<GeneratorDto> generatorInfo = new ArrayList<>();
         Map<GeneratorDescription, List<GeneratorParameter>> map = AnnotationHandler.getGeneratorBeans();
         for (Map.Entry<GeneratorDescription, List<GeneratorParameter>> entry : map.entrySet()) {
-            generatorDtos.add(new GeneratorDto(
+            generatorInfo.add(new GeneratorDto(
                     entry.getKey().generatorName(),
                     entry.getKey().description(),
                     entry.getValue().stream()
@@ -66,6 +67,6 @@ public class GeneratorService {
                             .collect(Collectors.toList()))
             );
         }
-        return generatorDtos;
+        return generatorInfo;
     }
 }

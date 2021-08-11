@@ -1,17 +1,33 @@
 package com.rufus.bumblebee.controllers.responses;
 
 import com.rufus.bumblebee.repository.ContainerStatus;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
 public class ContainerDto {
-
-    private Long id;
+    private String cuid;
     private String name;
     private ContainerStatus status;
 
+    public String getCuid() {
+        return cuid;
+    }
+
+    public void setCuid(String cuid) {
+        this.cuid = cuid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ContainerStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ContainerStatus status) {
+        this.status = status;
+    }
 }

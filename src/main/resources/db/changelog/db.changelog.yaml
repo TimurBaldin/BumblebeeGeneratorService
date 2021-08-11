@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 15
+      id: 1
       author: Baldin T.V
       changes:
         - sql:
@@ -33,6 +33,21 @@ databaseChangeLog:
               - column:
                   name: status
                   type: varchar(50)
+              - column:
+                  name: authenticated
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cuid
+                  type: uuid
+                  constraints:
+                    nullable: false
 
         - createTable:
             schemaName: repository
@@ -44,6 +59,11 @@ databaseChangeLog:
                   autoIncrement: true
                   constraints:
                     primaryKey: true
+                    nullable: false
+              - column:
+                  name: generator_name
+                  type: varchar(100)
+                  constraints:
                     nullable: false
               - column:
                   name: container_ref

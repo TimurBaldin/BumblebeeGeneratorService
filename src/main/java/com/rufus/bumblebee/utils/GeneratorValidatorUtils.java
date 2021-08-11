@@ -3,15 +3,16 @@ package com.rufus.bumblebee.utils;
 import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
 import com.rufus.bumblebee.generators.GeneratorInformation;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
-import lombok.experimental.UtilityClass;
 
 import javax.validation.ValidationException;
 import java.util.Map;
 
 import static com.rufus.bumblebee.generators.annotation.AnnotationHandler.getGeneratorBeans;
 
-@UtilityClass
-public class GeneratorValidatorUtils {
+public final class GeneratorValidatorUtils {
+
+    private GeneratorValidatorUtils() {
+    }
 
     private static boolean checkGeneratorParameters(Map<String, String> generatorParameters, String generatorName) {
         for (GeneratorDescription description : getGeneratorBeans().keySet()) {

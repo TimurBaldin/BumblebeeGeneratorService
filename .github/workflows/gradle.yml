@@ -1,0 +1,27 @@
+# This workflow will build a Java project with Gradle
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: Java CI with Gradle
+
+on:
+  push:
+    branches: [ addKafka ]
+  pull_request:
+    branches: [ addKafka ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up JDK 8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 8
+    - name: Build with Gradle
+      uses: eskatos/gradle-command-action@v1
+      with: 
+        gradle-version: current
+        arguments: build -x test

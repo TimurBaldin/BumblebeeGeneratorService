@@ -1,14 +1,13 @@
 package com.rufus.bumblebee.repository;
 
 import com.rufus.bumblebee.repository.tables.Container;
-import com.rufus.bumblebee.repository.tables.TestData;
-import javassist.NotFoundException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.util.List;
+import java.util.UUID;
 
 @Repository
 @Transactional
@@ -21,19 +20,14 @@ public class ContainerRepository {
         return em.merge(container);
     }
 
-    public void removeContainer(Container container){
+    public void removeContainer(Container container) {
         em.remove(container);
     }
 
-    public Container getContainerById(Long id) throws NotFoundException {
-        Container container = em.find(Container.class, id);
-        if (container == null) {
-            throw new NotFoundException("Контейнер не найден по ID : " + id);
-        }
-        return container;
+    public Container getContainerById(String cuid) throws NoResultException {
+        return em.createQuery("select c from Container as c where c.cuid=:cuid", Container.class)
+                .setParameter("cuid", UUID.fromString(cuid))
+                .getSingleResult();
     }
 
-    public List<TestData> getTestDataByContainerId(Long id) throws NotFoundException {
-        return getContainerById(id).getData();
-    }
 }

@@ -1,7 +1,5 @@
 package com.rufus.bumblebee.repository.tables;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
@@ -11,8 +9,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "test_data", schema = "repository")
-@Getter
-@Setter
 @TypeDefs(@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class))
 public class TestData implements Serializable {
 
@@ -29,7 +25,50 @@ public class TestData implements Serializable {
     @Column(name = "container_ref")
     private Long containerRef;
 
+    @Column(name = "generator_name")
+    private String generatorName;
+
     @ManyToOne
     @JoinColumn(name = "container_ref",insertable = false,updatable = false)
     Container container;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public Long getContainerRef() {
+        return containerRef;
+    }
+
+    public void setContainerRef(Long containerRef) {
+        this.containerRef = containerRef;
+    }
+
+    public String getGeneratorName() {
+        return generatorName;
+    }
+
+    public void setGeneratorName(String generatorName) {
+        this.generatorName = generatorName;
+    }
+
+    public Container getContainer() {
+        return container;
+    }
+
+    public void setContainer(Container container) {
+        this.container = container;
+    }
 }

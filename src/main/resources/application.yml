@@ -14,3 +14,7 @@ management:
       enabled: true
     health:
       show-details: always
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:29092

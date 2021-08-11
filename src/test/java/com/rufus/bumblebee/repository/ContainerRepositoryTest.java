@@ -2,11 +2,11 @@ package com.rufus.bumblebee.repository;
 
 import com.rufus.bumblebee.repository.config.ConfigurationRepository;
 import com.rufus.bumblebee.repository.tables.Container;
-import javassist.NotFoundException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.NoResultException;
 
 public class ContainerRepositoryTest extends ConfigurationRepository {
 
@@ -22,18 +22,18 @@ public class ContainerRepositoryTest extends ConfigurationRepository {
 
 
     @Test
-    public void testGetContainerById() throws NotFoundException {
+    public void testGetContainerById() throws NoResultException {
         Container containerAfterSave = repository.createOrUpdateContainer(getTestContainer());
-        Container containerAfterGet = repository.getContainerById(containerAfterSave.getId());
+        Container containerAfterGet = repository.getContainerById(containerAfterSave.getCuid().toString());
 
         Assert.assertNotNull(containerAfterGet);
         Assert.assertEquals(containerAfterGet.getId(), containerAfterSave.getId());
     }
 
-    @Test(expected = NotFoundException.class)
-    public void testRemoveContainer() throws NotFoundException {
+    @Test(expected = NoResultException.class)
+    public void testRemoveContainer() throws NoResultException {
         Container containerAfterSave = repository.createOrUpdateContainer(getTestContainer());
         repository.removeContainer(containerAfterSave);
-        repository.getContainerById(containerAfterSave.getId());
+        repository.getContainerById(containerAfterSave.getCuid().toString());
     }
 }
