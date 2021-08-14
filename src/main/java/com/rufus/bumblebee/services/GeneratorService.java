@@ -11,6 +11,7 @@ import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.ContainerStatus;
 import com.rufus.bumblebee.repository.tables.Container;
+import com.rufus.bumblebee.services.exceptions.GeneratorCreatingException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
@@ -41,8 +42,11 @@ public class GeneratorService {
     }
 
 
-    public String addGenerators(GeneratorsRequest request) throws NoResultException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public String addGenerators(GeneratorsRequest request) throws NoResultException, GeneratorCreatingException, InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         Container container = containerRepository.getContainerById(request.getCuid());
+        if (!container.getStatus().equals(ContainerStatus.NEW)) {
+            throw new GeneratorCreatingException("It is not possible to add generators to a container that is not in the NEW status");
+        }
         List<BaseGenerator> generators = new ArrayList<>(request.getGeneratorInfo().size());
 
         for (GeneratorInformation information : request.getGeneratorInfo()) {

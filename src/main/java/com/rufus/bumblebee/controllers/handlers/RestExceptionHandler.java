@@ -1,6 +1,7 @@
 package com.rufus.bumblebee.controllers.handlers;
 
 import com.rufus.bumblebee.controllers.responses.BaseResponse;
+import com.rufus.bumblebee.services.exceptions.GeneratorCreatingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,7 +14,7 @@ import javax.validation.ValidationException;
 public class RestExceptionHandler {
 
     @ExceptionHandler(
-            value = {NoResultException.class, ValidationException.class}
+            value = {NoResultException.class, ValidationException.class, GeneratorCreatingException.class}
     )
     protected ResponseEntity<Object> handle(Exception ex) {
         BaseResponse response = new BaseResponse();

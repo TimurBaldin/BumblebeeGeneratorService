@@ -17,7 +17,8 @@ import static com.rufus.bumblebee.generators.configurer.SpecialID.KEY;
 
 @GeneratorDescription(
         generatorName = "SymbolGenerator",
-        generatorClass = SymbolBaseGenerator.class, description = "Generator for create random values"
+        generatorClass = SymbolBaseGenerator.class,
+        description = "Generator for create random values"
 )
 @Component
 @Scope("prototype")
