@@ -53,6 +53,7 @@ public class DataSourceConfig {
     @Bean("dataSource")
     @Profile("dev || docker")
     public DataSource dataSource() {
+        //Вынести в конфиги проектa
         HikariConfig config = new HikariConfig();
         config.setUsername(userName);
         config.setPassword(password);
@@ -104,7 +105,7 @@ public class DataSourceConfig {
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         properties.setProperty("hibernate.show_sql", "false");
         properties.setProperty("hibernate.format_sql", "false");
-        properties.setProperty("hibernate.jdbc.batch_size", "50");
+        properties.setProperty("hibernate.jdbc.batch_size", "100");
         properties.setProperty("hibernate.order_inserts", "true");
         properties.setProperty("hibernate.order_updates", "true");
         properties.setProperty("hibernate.generate_statistics", "false");

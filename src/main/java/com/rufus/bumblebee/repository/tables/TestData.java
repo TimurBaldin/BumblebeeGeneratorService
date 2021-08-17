@@ -32,6 +32,12 @@ public class TestData implements Serializable {
     @JoinColumn(name = "container_ref",insertable = false,updatable = false)
     Container container;
 
+    public TestData(String value, Long containerRef, String generatorName) {
+        this.value = value;
+        this.containerRef = containerRef;
+        this.generatorName = generatorName;
+    }
+
     public Long getId() {
         return id;
     }

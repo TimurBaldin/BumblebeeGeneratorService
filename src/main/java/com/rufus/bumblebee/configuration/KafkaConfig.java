@@ -39,6 +39,7 @@ public class KafkaConfig {
 
     @Bean("producerFactory")
     public ProducerFactory<String, String> producerFactory() {
+        //TODO Использовать сериаализотор StringToJson см пример в telegram
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);

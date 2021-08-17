@@ -1,21 +1,24 @@
 package com.rufus.bumblebee.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.rufus.bumblebee.generators.BaseGenerator;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.ContainerStatus;
-import com.rufus.bumblebee.repository.TestDataRepository;
 import com.rufus.bumblebee.repository.tables.Container;
+import com.rufus.bumblebee.repository.tables.TestData;
+import com.rufus.bumblebee.repositoryV2.TestDataRepository;
+import com.rufus.bumblebee.services.dto.TestDataDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import static java.util.Collections.singletonMap;
 
 @Service
 public class AsyncGeneratorService {
@@ -26,6 +29,7 @@ public class AsyncGeneratorService {
     private final ContainerRepository containerRepository;
     private final KafkaService kafkaService;
 
+    @Autowired
     public AsyncGeneratorService(TestDataRepository repository, ContainerRepository containerRepository, KafkaService kafkaService) {
         this.repository = repository;
         this.containerRepository = containerRepository;
@@ -33,13 +37,15 @@ public class AsyncGeneratorService {
     }
 
     @Async("threadPoolTaskExecutor")
-    public void asyncGenerateTestData(List<BaseGenerator> generators, Container container) {
+    public void asyncGenerateTestData(List<BaseGenerator> generators, Container container) throws JsonProcessingException {
         log.info("AsyncGeneratorService started");
-        List<Map<String, List<String>>> data = buildData(generators);
+        List<TestDataDto> dto = mapToDto(generators);
+
+        kafkaService.sendTestDataToReportService(dto, container);
+
         if (container.getAuthenticated()) {
-            repository.saveTestData(data, container.getId());
+            repository.saveAll(mapFromDto(dto, container.getId()));
         }
-        kafkaService.sendTestDataToReportService(data, container);
 
         container.setStatus(ContainerStatus.GENERATION_COMPLETED);
         container.setUpdateDate(LocalDateTime.now());
@@ -47,9 +53,23 @@ public class AsyncGeneratorService {
         log.info("AsyncGeneratorService finished");
     }
 
-    private List<Map<String, List<String>>> buildData(List<BaseGenerator> generators) {
-        List<Map<String, List<String>>> data = new ArrayList<>();
-        generators.forEach(g -> data.add(singletonMap(g.getGeneratorName(), g.build())));
-        return data;
+
+    private List<TestDataDto> mapToDto(List<BaseGenerator> generators) {
+        List<TestDataDto> dto = new ArrayList<>(generators.size());
+        generators.forEach(
+                g -> dto.add(new TestDataDto(g.getGeneratorName(), g.build()))
+        );
+        return dto;
+    }
+
+    private List<TestData> mapFromDto(List<TestDataDto> dtos, Long containerRef) throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        List<TestData> testDataList = new ArrayList<>(dtos.size());
+        for (TestDataDto dto : dtos) {
+            testDataList.add(new TestData(
+                    ow.writeValueAsString(dto.getData()), containerRef, dto.getGeneratorName())
+            );
+        }
+        return testDataList;
     }
 }

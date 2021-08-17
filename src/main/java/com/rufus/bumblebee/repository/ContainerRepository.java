@@ -11,6 +11,8 @@ import java.util.UUID;
 
 @Repository
 @Transactional
+//@Transactional использовать от spring
+//TODO Использовать CRUDrepository
 public class ContainerRepository {
 
     @PersistenceContext

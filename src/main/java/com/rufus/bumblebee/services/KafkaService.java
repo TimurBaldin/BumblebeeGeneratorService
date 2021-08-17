@@ -1,15 +1,15 @@
 package com.rufus.bumblebee.services;
 
 import com.google.gson.Gson;
-import com.rufus.bumblebee.controllers.requests.ReportType;
 import com.rufus.bumblebee.repository.tables.Container;
+import com.rufus.bumblebee.services.dto.KafkaDto;
+import com.rufus.bumblebee.services.dto.TestDataDto;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class KafkaService {
@@ -24,63 +24,13 @@ public class KafkaService {
         this.topic = topic;
     }
 
-    public void sendTestDataToReportService(List<Map<String, List<String>>> data, Container container) {
+    public void sendTestDataToReportService(List<TestDataDto> data, Container container) {
         KafkaDto dto = new KafkaDto();
         dto.setCuid(container.getCuid().toString());
         dto.setContainerName(container.getName());
         dto.setAuthenticated(container.getAuthenticated());
         dto.setReportType(container.getType());
         dto.setData(data);
-
         template.send(topic.name(), gson.toJson(dto));
     }
-
-    private class KafkaDto {
-        private String cuid;
-        private String containerName;
-        private Boolean isAuthenticated;
-        private ReportType reportType;
-        private List<Map<String, List<String>>> data;
-
-        public String getCuid() {
-            return cuid;
-        }
-
-        public void setCuid(String cuid) {
-            this.cuid = cuid;
-        }
-
-        public String getContainerName() {
-            return containerName;
-        }
-
-        public void setContainerName(String containerName) {
-            this.containerName = containerName;
-        }
-
-        public Boolean getAuthenticated() {
-            return isAuthenticated;
-        }
-
-        public void setAuthenticated(Boolean authenticated) {
-            isAuthenticated = authenticated;
-        }
-
-        public ReportType getReportType() {
-            return reportType;
-        }
-
-        public void setReportType(ReportType reportType) {
-            this.reportType = reportType;
-        }
-
-        public List<Map<String, List<String>>> getData() {
-            return data;
-        }
-
-        public void setData(List<Map<String, List<String>>> data) {
-            this.data = data;
-        }
-    }
-
 }

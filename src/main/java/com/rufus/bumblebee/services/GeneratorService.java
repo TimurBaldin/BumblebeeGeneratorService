@@ -1,5 +1,6 @@
 package com.rufus.bumblebee.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
 import com.rufus.bumblebee.controllers.responses.GeneratorDto;
 import com.rufus.bumblebee.controllers.responses.GeneratorParametersDto;
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
  * @version : 0.0.1
  */
 @Service
+//TODO Добавить интерфейсы для сервисов
 public class GeneratorService {
 
     private final AnnotationHandler handler;
@@ -42,9 +44,9 @@ public class GeneratorService {
     }
 
 
-    public String addGenerators(GeneratorsRequest request) throws NoResultException, GeneratorCreatingException, InvocationTargetException, NoSuchMethodException, IllegalAccessException {
+    public String addGenerators(GeneratorsRequest request) throws NoResultException, GeneratorCreatingException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, JsonProcessingException {
         Container container = containerRepository.getContainerById(request.getCuid());
-        if (!container.getStatus().equals(ContainerStatus.NEW)) {
+        if ((container.getStatus()!=ContainerStatus.NEW)) {
             throw new GeneratorCreatingException("It is not possible to add generators to a container that is not in the NEW status");
         }
         List<BaseGenerator> generators = new ArrayList<>(request.getGeneratorInfo().size());

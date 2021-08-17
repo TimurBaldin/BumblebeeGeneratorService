@@ -1,5 +1,6 @@
 package com.rufus.bumblebee.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
 import com.rufus.bumblebee.controllers.responses.GeneratorDto;
 import com.rufus.bumblebee.services.GeneratorService;
@@ -29,7 +30,7 @@ public class GeneratorsController {
     }
 
     @PostMapping(path = "/add")
-    public ResponseEntity<String> addGenerators(@RequestBody GeneratorsRequest request) throws NoResultException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, GeneratorCreatingException {
+    public ResponseEntity<String> addGenerators(@RequestBody GeneratorsRequest request) throws NoResultException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, GeneratorCreatingException, JsonProcessingException {
         return new ResponseEntity<>(
                 "The task for generating test data for a container with CUID " + service.addGenerators(request) + " is registered",
                 HttpStatus.OK

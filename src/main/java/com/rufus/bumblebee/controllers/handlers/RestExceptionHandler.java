@@ -1,5 +1,6 @@
 package com.rufus.bumblebee.controllers.handlers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.rufus.bumblebee.controllers.responses.BaseResponse;
 import com.rufus.bumblebee.services.exceptions.GeneratorCreatingException;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,8 @@ import javax.validation.ValidationException;
 public class RestExceptionHandler {
 
     @ExceptionHandler(
-            value = {NoResultException.class, ValidationException.class, GeneratorCreatingException.class}
+            value = {NoResultException.class, ValidationException.class,
+                    GeneratorCreatingException.class, JsonProcessingException.class}
     )
     protected ResponseEntity<Object> handle(Exception ex) {
         BaseResponse response = new BaseResponse();

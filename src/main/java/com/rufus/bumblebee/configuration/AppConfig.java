@@ -7,7 +7,7 @@ import com.rufus.bumblebee.generators.BaseGenerator;
 import com.rufus.bumblebee.generators.SymbolBaseGenerator;
 import com.rufus.bumblebee.generators.annotation.AnnotationHandler;
 import com.rufus.bumblebee.repository.ContainerRepository;
-import com.rufus.bumblebee.repository.TestDataRepository;
+import com.rufus.bumblebee.repositoryV2.TestDataRepository;
 import com.rufus.bumblebee.services.AsyncGeneratorService;
 import com.rufus.bumblebee.services.ContainerService;
 import com.rufus.bumblebee.services.GeneratorService;
@@ -31,6 +31,7 @@ public class AppConfig {
 
     @Bean(name = "threadPoolTaskExecutor")
     public Executor threadPoolTaskExecutor() {
+        //Вынести в конфигурацию с паомощью Value
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(100);
         executor.setMaxPoolSize(1000);
@@ -82,11 +83,6 @@ public class AppConfig {
                                                           @Autowired TestDataRepository testDataRepository,
                                                           @Autowired KafkaService kafkaService) {
         return new AsyncGeneratorService(testDataRepository, repository, kafkaService);
-    }
-
-    @Bean("testDataRepository")
-    public TestDataRepository getTestDataRepository() {
-        return new TestDataRepository();
     }
 
     @Bean("symbolBaseGenerator")

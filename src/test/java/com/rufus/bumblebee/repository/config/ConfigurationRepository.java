@@ -4,7 +4,6 @@ import com.opentable.db.postgres.embedded.EmbeddedPostgres;
 import com.rufus.bumblebee.controllers.requests.ReportType;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.ContainerStatus;
-import com.rufus.bumblebee.repository.TestDataRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import org.apache.commons.io.FileUtils;
 import org.junit.Ignore;
@@ -75,10 +74,13 @@ public class ConfigurationRepository extends AbstractTransactionalJUnit4SpringCo
         return new ContainerRepository();
     }
 
+    /*
     @Bean
     public TestDataRepository testDataRepository() {
         return new TestDataRepository();
     }
+
+     */
 
     protected Container getTestContainer() {
         Container container = new Container();

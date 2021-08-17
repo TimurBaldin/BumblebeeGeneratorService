@@ -3,6 +3,7 @@ package com.rufus.bumblebee.repository;
 import com.rufus.bumblebee.repository.config.ConfigurationRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.repository.tables.TestData;
+import com.rufus.bumblebee.repositoryV2.TestDataRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class TestDataRepositoryTest extends ConfigurationRepository {
                 "SymbolGenerator", Collections.singletonList("test")
         ));
         Container container = containerRepository.createOrUpdateContainer(getTestContainer());
-        repository.saveTestData(data, container.getId());
+        //repository.save()data, container.getId());
 
         TestData testData = em.find(TestData.class, container.getId());
         Assert.assertNotNull(testData);
