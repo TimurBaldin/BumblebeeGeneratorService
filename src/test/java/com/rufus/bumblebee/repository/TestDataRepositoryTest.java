@@ -3,7 +3,6 @@ package com.rufus.bumblebee.repository;
 import com.rufus.bumblebee.repository.config.ConfigurationRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.repository.tables.TestData;
-import com.rufus.bumblebee.repositoryV2.TestDataRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

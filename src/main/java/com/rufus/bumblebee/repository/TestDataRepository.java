@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.repositoryV2;
+package com.rufus.bumblebee.repository;
 
 import com.rufus.bumblebee.repository.tables.TestData;
 import org.springframework.data.repository.CrudRepository;

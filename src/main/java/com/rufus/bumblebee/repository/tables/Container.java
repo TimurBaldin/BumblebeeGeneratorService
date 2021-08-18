@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.repository.tables;
 
 import com.rufus.bumblebee.controllers.requests.ReportType;
-import com.rufus.bumblebee.repository.ContainerStatus;
+import com.rufus.bumblebee.services.dto.ContainerStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,13 +10,12 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-//TODO удалить имя схемы , перенести в конфиги
 @Table(name = "containers", schema = "repository")
 public class Container implements Serializable {
 
     @Id
     @Column(name = "id", unique = true, nullable = false)
-  // @SequenceGenerator(name = "containers_id", sequenceName = "repository.containers_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "containers_id", sequenceName = "repository.containers_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "containers_id")
     private Long id;
 
@@ -26,7 +25,6 @@ public class Container implements Serializable {
     @Column(name = "creation_date")
     private LocalDateTime date;
 
-    //Можно не писать name
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 

@@ -3,7 +3,7 @@ package com.rufus.bumblebee.controllers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
-import com.rufus.bumblebee.services.GeneratorService;
+import com.rufus.bumblebee.services.GeneratorServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class GeneratorsControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    private GeneratorService service;
+    private GeneratorServiceImpl service;
 
     private static final Gson gson = new GsonBuilder().serializeNulls().create();
 

@@ -38,6 +38,8 @@ public class TestData implements Serializable {
         this.generatorName = generatorName;
     }
 
+    public TestData() {}
+
     public Long getId() {
         return id;
     }

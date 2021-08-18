@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/data_generator?currentSchema=repository
+    url: jdbc:postgresql://localhost:5432/data_generator
     username: postgres
     password: 1

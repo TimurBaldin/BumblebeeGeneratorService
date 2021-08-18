@@ -5,11 +5,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.rufus.bumblebee.generators.BaseGenerator;
 import com.rufus.bumblebee.repository.ContainerRepository;
-import com.rufus.bumblebee.repository.ContainerStatus;
+import com.rufus.bumblebee.repository.TestDataRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.repository.tables.TestData;
-import com.rufus.bumblebee.repositoryV2.TestDataRepository;
+import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.dto.TestDataDto;
+import com.rufus.bumblebee.services.interfaces.AsyncGeneratorService;
+import com.rufus.bumblebee.services.interfaces.KafkaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,23 +23,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AsyncGeneratorService {
+public class AsyncGeneratorServiceImpl implements AsyncGeneratorService {
 
-    private static final Logger log = LoggerFactory.getLogger(AsyncGeneratorService.class);
+    private static final Logger log = LoggerFactory.getLogger(AsyncGeneratorServiceImpl.class);
 
     private final TestDataRepository repository;
     private final ContainerRepository containerRepository;
-    private final KafkaService kafkaService;
+    private final KafkaService<List<TestDataDto>> kafkaService;
 
     @Autowired
-    public AsyncGeneratorService(TestDataRepository repository, ContainerRepository containerRepository, KafkaService kafkaService) {
+    public AsyncGeneratorServiceImpl(TestDataRepository repository, ContainerRepository containerRepository, KafkaService<List<TestDataDto>> kafkaService) {
         this.repository = repository;
         this.containerRepository = containerRepository;
         this.kafkaService = kafkaService;
     }
 
     @Async("threadPoolTaskExecutor")
-    public void asyncGenerateTestData(List<BaseGenerator> generators, Container container) throws JsonProcessingException {
+    public void asyncGenerateTestData(List<BaseGenerator> generators, Container container) throws Exception {
         log.info("AsyncGeneratorService started");
         List<TestDataDto> dto = mapToDto(generators);
 
@@ -49,7 +51,7 @@ public class AsyncGeneratorService {
 
         container.setStatus(ContainerStatus.GENERATION_COMPLETED);
         container.setUpdateDate(LocalDateTime.now());
-        containerRepository.createOrUpdateContainer(container);
+        containerRepository.save(container);
         log.info("AsyncGeneratorService finished");
     }
 

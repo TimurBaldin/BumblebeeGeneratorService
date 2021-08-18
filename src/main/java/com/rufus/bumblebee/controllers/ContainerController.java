@@ -2,7 +2,7 @@ package com.rufus.bumblebee.controllers;
 
 import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.controllers.responses.ContainerDto;
-import com.rufus.bumblebee.services.ContainerService;
+import com.rufus.bumblebee.services.interfaces.ContainerService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

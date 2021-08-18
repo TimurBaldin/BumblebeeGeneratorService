@@ -6,8 +6,8 @@ import com.google.gson.GsonBuilder;
 import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.controllers.requests.ReportType;
 import com.rufus.bumblebee.controllers.responses.ContainerDto;
-import com.rufus.bumblebee.repository.ContainerStatus;
-import com.rufus.bumblebee.services.ContainerService;
+import com.rufus.bumblebee.services.dto.ContainerStatus;
+import com.rufus.bumblebee.services.ContainerServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class ContainerControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    private ContainerService service;
+    private ContainerServiceImpl service;
 
     private static final Gson gson = new GsonBuilder().serializeNulls().create();
     private static final String TEST_VALUE = "TEST";

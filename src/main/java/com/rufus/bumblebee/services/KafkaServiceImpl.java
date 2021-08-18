@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.dto.KafkaDto;
 import com.rufus.bumblebee.services.dto.TestDataDto;
+import com.rufus.bumblebee.services.interfaces.KafkaService;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -12,14 +13,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class KafkaService {
+public class KafkaServiceImpl implements KafkaService<List<TestDataDto>> {
 
     private final KafkaTemplate<String, String> template;
     private final Gson gson = new Gson();
     private final NewTopic topic;
 
     @Autowired
-    public KafkaService(KafkaTemplate<String, String> template, NewTopic topic) {
+    public KafkaServiceImpl(KafkaTemplate<String, String> template, NewTopic topic) {
         this.template = template;
         this.topic = topic;
     }

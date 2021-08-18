@@ -2,9 +2,8 @@ package com.rufus.bumblebee.repository.config;
 
 import com.opentable.db.postgres.embedded.EmbeddedPostgres;
 import com.rufus.bumblebee.controllers.requests.ReportType;
-import com.rufus.bumblebee.repository.ContainerRepository;
-import com.rufus.bumblebee.repository.ContainerStatus;
 import com.rufus.bumblebee.repository.tables.Container;
+import com.rufus.bumblebee.services.dto.ContainerStatus;
 import org.apache.commons.io.FileUtils;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
@@ -69,10 +68,12 @@ public class ConfigurationRepository extends AbstractTransactionalJUnit4SpringCo
         return transactionManager;
     }
 
+    /*
     @Bean
     public ContainerRepository containerRepository() {
         return new ContainerRepository();
     }
+     */
 
     /*
     @Bean
