@@ -19,5 +19,4 @@ public class ContainerRepositoryImpl implements CustomContainerRepository {
                 .setParameter("cuid", UUID.fromString(cuid))
                 .getSingleResult();
     }
-
 }

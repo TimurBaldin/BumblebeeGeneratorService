@@ -5,7 +5,7 @@ import com.rufus.bumblebee.repository.tables.Container;
 
 import java.util.List;
 
-public interface AsyncGeneratorService {
+public interface TestDataGenerationService {
 
     void asyncGenerateTestData(List<BaseGenerator> generators, Container container) throws Exception;
 

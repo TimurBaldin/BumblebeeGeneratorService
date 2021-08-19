@@ -31,7 +31,7 @@ public final class GeneratorValidatorUtils {
                 .stream().anyMatch(s -> s.generatorName().equals(generatorName));
     }
 
-    public static void validate(GeneratorsRequest request) throws ValidationException {
+    public static void validateGeneratorsRequest(GeneratorsRequest request) throws ValidationException {
         for (GeneratorInformation information : request.getGeneratorInfo()) {
             if (!checkGenerator(information.getGeneratorName())) {
                 throw new ValidationException("Invalid value passed generatorName: " + information.getGeneratorName());

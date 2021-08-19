@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.NoResultException;
 import javax.validation.constraints.NotEmpty;
 
-import static com.rufus.bumblebee.configuration.ControllerURL.CONTAINER_MANAGER;
-
 
 @RestController
-@RequestMapping(path = CONTAINER_MANAGER)
+@RequestMapping(path = "/containerManager")
 @Api(value = "Controller for containers", tags = {"Controller for containers"})
 @Validated
 public class ContainerController {

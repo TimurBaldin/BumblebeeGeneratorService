@@ -1,8 +1,14 @@
 spring:
   datasource:
     url: jdbc:postgresql://dg-database:5432/data_generator
-    username: postgres
-    password: 1
+    hikari:
+      username: postgres
+      password: 1
+      connection-timeout: 10000
+      maximum-pool-size: 10
+      poolName: dataGeneratorPool
+      idle-timeout: 600000
+      max-lifetime: 1800000
 
   kafka:
     producer:

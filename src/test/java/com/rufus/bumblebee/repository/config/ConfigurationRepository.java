@@ -1,7 +1,9 @@
 package com.rufus.bumblebee.repository.config;
 
 import com.opentable.db.postgres.embedded.EmbeddedPostgres;
+import com.rufus.bumblebee.configuration.DataSourceConfig;
 import com.rufus.bumblebee.controllers.requests.ReportType;
+import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 import org.apache.commons.io.FileUtils;
@@ -32,9 +34,12 @@ import java.util.UUID;
 @RunWith(SpringRunner.class)
 @TestPropertySource(properties =
         {"spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration",})
-@ContextConfiguration(classes = ConfigurationRepository.class)
+@ContextConfiguration(classes = DataSourceConfig.class)
 @Ignore
 public class ConfigurationRepository extends AbstractTransactionalJUnit4SpringContextTests {
+
+    @Autowired
+    private ContainerRepository repository;
 
     @Bean("dataSource")
     public DataSource dataSource() throws IOException, SQLException {
@@ -67,21 +72,6 @@ public class ConfigurationRepository extends AbstractTransactionalJUnit4SpringCo
         transactionManager.setEntityManagerFactory(factoryBean.getObject());
         return transactionManager;
     }
-
-    /*
-    @Bean
-    public ContainerRepository containerRepository() {
-        return new ContainerRepository();
-    }
-     */
-
-    /*
-    @Bean
-    public TestDataRepository testDataRepository() {
-        return new TestDataRepository();
-    }
-
-     */
 
     protected Container getTestContainer() {
         Container container = new Container();

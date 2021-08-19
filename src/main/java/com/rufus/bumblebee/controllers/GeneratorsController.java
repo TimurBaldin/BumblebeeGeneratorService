@@ -18,10 +18,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.rufus.bumblebee.configuration.ControllerURL.GENERATOR_MANAGER;
-
 @RestController
-@RequestMapping(path = GENERATOR_MANAGER)
+@RequestMapping(path = "/generatorManager")
 @Api(value = "Controller for generators", tags = {"Controller for generators"})
 public class GeneratorsController {
 
@@ -35,7 +33,9 @@ public class GeneratorsController {
     @PostMapping(path = "/add")
     public ResponseEntity<String> addGenerators(@RequestBody GeneratorsRequest request) throws Exception {
         return new ResponseEntity<>(
-                "The task for generating test data for a container with CUID " + generatorService.addGenerators(request) + " is registered",
+                "The task for generating test data for a container with CUID "
+                        .concat(generatorService.addGenerators(request))
+                        .concat(" is registered"),
                 HttpStatus.OK
         );
     }

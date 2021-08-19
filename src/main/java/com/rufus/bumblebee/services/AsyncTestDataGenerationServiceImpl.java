@@ -10,7 +10,7 @@ import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.repository.tables.TestData;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.dto.TestDataDto;
-import com.rufus.bumblebee.services.interfaces.AsyncGeneratorService;
+import com.rufus.bumblebee.services.interfaces.TestDataGenerationService;
 import com.rufus.bumblebee.services.interfaces.KafkaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,16 +23,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AsyncGeneratorServiceImpl implements AsyncGeneratorService {
+public class AsyncTestDataGenerationServiceImpl implements TestDataGenerationService {
 
-    private static final Logger log = LoggerFactory.getLogger(AsyncGeneratorServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(AsyncTestDataGenerationServiceImpl.class);
 
     private final TestDataRepository repository;
     private final ContainerRepository containerRepository;
     private final KafkaService<List<TestDataDto>> kafkaService;
 
     @Autowired
-    public AsyncGeneratorServiceImpl(TestDataRepository repository, ContainerRepository containerRepository, KafkaService<List<TestDataDto>> kafkaService) {
+    public AsyncTestDataGenerationServiceImpl(TestDataRepository repository, ContainerRepository containerRepository, KafkaService<List<TestDataDto>> kafkaService) {
         this.repository = repository;
         this.containerRepository = containerRepository;
         this.kafkaService = kafkaService;
