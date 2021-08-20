@@ -1,18 +1,16 @@
 package com.rufus.bumblebee.repository;
 
+
 import com.rufus.bumblebee.repository.config.ConfigurationRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.repository.tables.TestData;
-import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class TestDataRepositoryTest extends ConfigurationRepository {
 
@@ -27,15 +25,21 @@ public class TestDataRepositoryTest extends ConfigurationRepository {
 
     @Test
     public void testSaveTestData() {
-        List<Map<String, List<String>>> data = new ArrayList<>();
-        data.add(Collections.singletonMap(
-                "SymbolGenerator", Collections.singletonList("test")
-        ));
-        Container container = containerRepository.createOrUpdateContainer(getTestContainer());
-        //repository.save()data, container.getId());
+        Container container = containerRepository.save(getTestContainer());
 
-        TestData testData = em.find(TestData.class, container.getId());
-        Assert.assertNotNull(testData);
-        Assert.assertEquals("SymbolGenerator", testData.getGeneratorName());
+        List<TestData> testData=new ArrayList<>();
+        testData.add(new TestData("TEST",container.getId(),"SymbolGenerator"));
+
+        Iterable<TestData> result=repository.saveAll(testData);
+
+        result.forEach(
+                r->System.out.println("$$$$: "+r.getId())
+        );
+
+       // TestData testData = em.find(TestData.class, container.getId());
+      //  Assert.assertNotNull(testData);
+       // Assert.assertEquals("SymbolGenerator", testData.getGeneratorName());
+
+
     }
 }
