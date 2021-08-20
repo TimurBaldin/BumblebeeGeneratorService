@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Properties;
 
 @Configuration
@@ -34,7 +33,7 @@ public class DataSourceConfig {
 
     @Bean("dataSource")
     @Profile("test")
-    public DataSource dataSource() throws IOException, SQLException {
+    public DataSource dataSource() throws IOException {
         EmbeddedPostgres embeddedPostgres = EmbeddedPostgres.builder().setPort(1890).start();
         return embeddedPostgres.getPostgresDatabase();
     }
