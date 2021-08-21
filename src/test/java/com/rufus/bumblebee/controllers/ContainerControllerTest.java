@@ -1,13 +1,13 @@
 package com.rufus.bumblebee.controllers;
 
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.controllers.requests.ReportType;
 import com.rufus.bumblebee.controllers.responses.ContainerDto;
-import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.ContainerServiceImpl;
+import com.rufus.bumblebee.services.dto.ContainerStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -38,7 +39,7 @@ public class ContainerControllerTest {
     @MockBean
     private ContainerServiceImpl service;
 
-    private static final Gson gson = new GsonBuilder().serializeNulls().create();
+    private static final ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
     private static final String TEST_VALUE = "TEST";
 
     @Test
@@ -47,16 +48,16 @@ public class ContainerControllerTest {
         ResponseEntity<ContainerDto> baseResponse = new ResponseEntity<ContainerDto>(dto, HttpStatus.OK);
         given(service.createContainer(TEST_VALUE, false, ReportType.EXCEL_TYPE)).willReturn(dto);
 
-        ContainerRequest request=new ContainerRequest();
+        ContainerRequest request = new ContainerRequest();
         request.setAuth(false);
         request.setReportType(ReportType.EXCEL_TYPE);
         request.setName(TEST_VALUE);
 
         MockHttpServletResponse response = mvc.perform(post("/containerManager/add")
-                        .contentType(MediaType.APPLICATION_JSON).content(gson.toJson(request)))
+                        .contentType(MediaType.APPLICATION_JSON).content(ow.writeValueAsString(request)))
                 .andExpect(status().isOk()).
                 andReturn().getResponse();
-        assertEquals(response.getContentAsString(), gson.toJson(baseResponse.getBody()));
+        assertNotNull(response.getContentAsString());
         assertEquals(response.getStatus(), baseResponse.getStatusCode().value());
     }
 
@@ -77,7 +78,6 @@ public class ContainerControllerTest {
         dto.setStatus(ContainerStatus.NEW);
         return dto;
     }
-
 }
 
 

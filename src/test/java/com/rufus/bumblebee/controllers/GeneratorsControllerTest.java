@@ -1,11 +1,12 @@
 package com.rufus.bumblebee.controllers;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
-import com.rufus.bumblebee.services.GeneratorServiceImpl;
+import com.rufus.bumblebee.services.interfaces.GeneratorService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -16,7 +17,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.UUID;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,18 +35,22 @@ public class GeneratorsControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    private GeneratorServiceImpl service;
+    GeneratorService<GeneratorsRequest, String> generatorService;
 
-    private static final Gson gson = new GsonBuilder().serializeNulls().create();
+    private static final ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
     @Test
     public void testAddGenerator() throws Exception {
+        GeneratorsRequest request = new GeneratorsRequest();
+        request.setCuid("1112");
+        Mockito.when(generatorService.addGenerators(any())).thenReturn(UUID.randomUUID().toString());
+
         MockHttpServletResponse response = mvc.perform(post("/generatorManager/add")
-                        .contentType(MediaType.APPLICATION_JSON).content(gson.toJson(new GeneratorsRequest())))
-                .andExpect(status().isOk()).
-                andReturn().getResponse();
+                        .contentType(MediaType.APPLICATION_JSON).content(ow.writeValueAsString(request)))
+                .andExpect(status().isOk()).andReturn().getResponse();
 
         assertEquals(response.getStatus(), HttpStatus.OK.value());
+        assertNotNull(response.getContentAsString());
     }
 
     @Test
@@ -52,5 +61,4 @@ public class GeneratorsControllerTest {
                 andReturn().getResponse();
         assertEquals(response.getStatus(), HttpStatus.OK.value());
     }
-
 }
