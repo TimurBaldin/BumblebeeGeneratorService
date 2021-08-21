@@ -15,16 +15,15 @@ public class ContainerRepositoryTest extends ConfigurationRepository {
 
     @Test
     public void testSaveContainer() {
-        Container saveContainer = repository.createOrUpdateContainer(getTestContainer());
+        Container saveContainer = repository.save(getTestContainer());
         Assert.assertNotNull(saveContainer.getId());
         Assert.assertTrue(saveContainer.getId() != 0);
     }
 
-
     @Test
     public void testGetContainerById() throws NoResultException {
-        Container containerAfterSave = repository.createOrUpdateContainer(getTestContainer());
-        Container containerAfterGet = repository.getContainerById(containerAfterSave.getCuid().toString());
+        Container containerAfterSave = repository.save(getTestContainer());
+        Container containerAfterGet = repository.getContainerByCuid(containerAfterSave.getCuid().toString());
 
         Assert.assertNotNull(containerAfterGet);
         Assert.assertEquals(containerAfterGet.getId(), containerAfterSave.getId());
@@ -32,8 +31,8 @@ public class ContainerRepositoryTest extends ConfigurationRepository {
 
     @Test(expected = NoResultException.class)
     public void testRemoveContainer() throws NoResultException {
-        Container containerAfterSave = repository.createOrUpdateContainer(getTestContainer());
-        repository.removeContainer(containerAfterSave);
-        repository.getContainerById(containerAfterSave.getCuid().toString());
+        Container containerAfterSave = repository.save(getTestContainer());
+        repository.delete(containerAfterSave);
+        repository.getContainerByCuid(containerAfterSave.getCuid().toString());
     }
 }

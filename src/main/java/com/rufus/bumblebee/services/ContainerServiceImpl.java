@@ -3,24 +3,23 @@ package com.rufus.bumblebee.services;
 import com.rufus.bumblebee.controllers.requests.ReportType;
 import com.rufus.bumblebee.controllers.responses.ContainerDto;
 import com.rufus.bumblebee.repository.ContainerRepository;
-import com.rufus.bumblebee.repository.ContainerStatus;
 import com.rufus.bumblebee.repository.tables.Container;
+import com.rufus.bumblebee.services.dto.ContainerStatus;
+import com.rufus.bumblebee.services.interfaces.ContainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
-@Transactional
-public class ContainerService {
+public class ContainerServiceImpl implements ContainerService {
 
     private final ContainerRepository repository;
 
     @Autowired
-    public ContainerService(ContainerRepository repository) {
+    public ContainerServiceImpl(ContainerRepository repository) {
         this.repository = repository;
     }
 
@@ -32,12 +31,12 @@ public class ContainerService {
         container.setStatus(ContainerStatus.NEW);
         container.setType(type);
         container.setCuid(UUID.randomUUID());
-        return getContainerDto(repository.createOrUpdateContainer(container));
+        return getContainerDto(repository.save(container));
     }
 
     public String removeContainer(String cuid) throws NoResultException {
-        Container container = repository.getContainerById(cuid);
-        repository.removeContainer(container);
+        Container container = repository.getContainerByCuid(cuid);
+        repository.delete(container);
         return cuid;
     }
 

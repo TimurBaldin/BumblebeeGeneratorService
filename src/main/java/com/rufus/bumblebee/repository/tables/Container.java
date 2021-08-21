@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.repository.tables;
 
 import com.rufus.bumblebee.controllers.requests.ReportType;
-import com.rufus.bumblebee.repository.ContainerStatus;
+import com.rufus.bumblebee.services.dto.ContainerStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +16,7 @@ public class Container implements Serializable {
     @Id
     @Column(name = "id", unique = true, nullable = false)
     @SequenceGenerator(name = "containers_id", sequenceName = "repository.containers_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "containers_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "containers_id")
     private Long id;
 
     @Column(name = "name")

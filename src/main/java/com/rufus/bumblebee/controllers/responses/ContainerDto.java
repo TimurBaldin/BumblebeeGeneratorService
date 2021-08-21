@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.controllers.responses;
 
-import com.rufus.bumblebee.repository.ContainerStatus;
+import com.rufus.bumblebee.services.dto.ContainerStatus;
 
 public class ContainerDto {
     private String cuid;

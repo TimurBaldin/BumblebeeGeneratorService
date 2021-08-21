@@ -2,7 +2,6 @@ package com.rufus.bumblebee.generators;
 
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
-import com.rufus.bumblebee.generators.configurer.StringNull;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +12,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static com.rufus.bumblebee.generators.SymbolBaseGenerator.DataMode.NUMBER;
 import static com.rufus.bumblebee.generators.SymbolBaseGenerator.DataMode.STRING;
-import static com.rufus.bumblebee.generators.configurer.SpecialID.KEY;
 
 @GeneratorDescription(
         generatorName = "SymbolGenerator",
@@ -59,15 +57,20 @@ public class SymbolBaseGenerator implements BaseGenerator {
     )
     public Boolean isCascade;
 
+    private final int MIN_ID_STRING = 1;
+    private final int MAX_ID_STRING = 192;
+    private final int MIN_ID_NUMERIC = 48;
+    private final int MAX_ID_NUMERIC = 58;
+
     @Override
     public List<String> build() {
         List<String> values = new ArrayList<>(count + 1);
         if (DataMode.valueOf(mode).equals(STRING)) {
-            generateData(KEY.MIN_ID_STRING, KEY.MAX_ID_STRING, values);
+            generateData(MIN_ID_STRING, MAX_ID_STRING, values);
         }
 
         if (DataMode.valueOf(mode).equals(NUMBER)) {
-            generateData(KEY.MIN_ID_NUMERIC, KEY.MAX_ID_NUMERIC, values);
+            generateData(MIN_ID_NUMERIC, MAX_ID_NUMERIC, values);
         }
         return values;
     }
@@ -82,7 +85,8 @@ public class SymbolBaseGenerator implements BaseGenerator {
     private void generateData(int startSeq, int endSeq, List<String> values) {
         StringBuilder buffer = new StringBuilder();
         if (isNull) {
-            buffer.append(StringNull.returnValue());
+            String nullValue = null;
+            buffer.append(nullValue);
         }
         for (int i = 1; i <= count; i++) {
             if (isCascade) {

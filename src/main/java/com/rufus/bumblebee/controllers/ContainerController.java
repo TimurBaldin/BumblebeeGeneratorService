@@ -2,7 +2,7 @@ package com.rufus.bumblebee.controllers;
 
 import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.controllers.responses.ContainerDto;
-import com.rufus.bumblebee.services.ContainerService;
+import com.rufus.bumblebee.services.interfaces.ContainerService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.NoResultException;
 import javax.validation.constraints.NotEmpty;
 
-import static com.rufus.bumblebee.configuration.ControllerURL.CONTAINER_MANAGER;
-
 
 @RestController
-@RequestMapping(path = CONTAINER_MANAGER)
+@RequestMapping(path = "/containerManager")
 @Api(value = "Controller for containers", tags = {"Controller for containers"})
 @Validated
 public class ContainerController {
