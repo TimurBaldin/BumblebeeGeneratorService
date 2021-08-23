@@ -34,7 +34,7 @@ public class GeneratorsController {
     public ResponseEntity<String> addGenerators(@RequestBody GeneratorsRequest request) throws Exception {
         return new ResponseEntity<>(
                 "The task for generating test data for a container with CUID "
-                        .concat(generatorService.addGenerators(request))
+                        .concat(generatorService.initGenerators(request))
                         .concat(" is registered"),
                 HttpStatus.OK
         );

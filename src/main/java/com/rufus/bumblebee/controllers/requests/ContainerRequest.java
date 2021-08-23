@@ -2,7 +2,7 @@ package com.rufus.bumblebee.controllers.requests;
 
 public class ContainerRequest {
     private String name;
-    private Boolean auth;
+    private Boolean historyOn;
     private ReportType reportType;
 
     public String getName() {
@@ -13,19 +13,19 @@ public class ContainerRequest {
         this.name = name;
     }
 
-    public Boolean getAuth() {
-        return auth;
-    }
-
-    public void setAuth(Boolean auth) {
-        this.auth = auth;
-    }
-
     public ReportType getReportType() {
         return reportType;
     }
 
     public void setReportType(ReportType reportType) {
         this.reportType = reportType;
+    }
+
+    public Boolean getHistoryOn() {
+        return historyOn;
+    }
+
+    public void setHistoryOn(Boolean historyOn) {
+        this.historyOn = historyOn;
     }
 }

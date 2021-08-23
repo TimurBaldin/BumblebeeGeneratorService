@@ -45,7 +45,7 @@ public class AsyncTestDataGenerationServiceImpl implements TestDataGenerationSer
 
         kafkaService.sendTestDataToReportService(dto, container);
 
-        if (container.getAuthenticated()) {
+        if (container.getHistoryOn()) {
             repository.saveAll(mapFromDto(dto, container.getId()));
         }
 

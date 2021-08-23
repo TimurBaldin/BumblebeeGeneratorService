@@ -2,6 +2,7 @@ package com.rufus.bumblebee.services.interfaces;
 
 import com.rufus.bumblebee.controllers.requests.ReportType;
 import com.rufus.bumblebee.controllers.responses.ContainerDto;
+import com.rufus.bumblebee.services.dto.HistoryDto;
 
 import javax.persistence.NoResultException;
 

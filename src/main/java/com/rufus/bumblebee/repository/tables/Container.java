@@ -28,8 +28,8 @@ public class Container implements Serializable {
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
-    @Column(name = "authenticated")
-    private Boolean isAuthenticated;
+    @Column(name = "history_on")
+    private Boolean historyOn;
 
     @Enumerated(EnumType.STRING)
     private ContainerStatus status;
@@ -75,12 +75,12 @@ public class Container implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public Boolean getAuthenticated() {
-        return isAuthenticated;
+    public Boolean getHistoryOn() {
+        return historyOn;
     }
 
-    public void setAuthenticated(Boolean authenticated) {
-        isAuthenticated = authenticated;
+    public void setHistoryOn(Boolean historyOn) {
+        this.historyOn = historyOn;
     }
 
     public ContainerStatus getStatus() {

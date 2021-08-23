@@ -8,7 +8,7 @@ public class KafkaDto {
 
     private String cuid;
     private String containerName;
-    private Boolean isAuthenticated;
+    private Boolean historyOn;
     private ReportType reportType;
     private List<TestDataDto> data;
 
@@ -28,12 +28,12 @@ public class KafkaDto {
         this.containerName = containerName;
     }
 
-    public Boolean getAuthenticated() {
-        return isAuthenticated;
+    public Boolean getHistoryOn() {
+        return historyOn;
     }
 
-    public void setAuthenticated(Boolean authenticated) {
-        isAuthenticated = authenticated;
+    public void setHistoryOn(Boolean historyOn) {
+        this.historyOn = historyOn;
     }
 
     public ReportType getReportType() {

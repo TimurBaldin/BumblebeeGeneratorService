@@ -37,7 +37,8 @@ public class GeneratorServiceImpl implements GeneratorService<GeneratorsRequest,
         this.testDataGenerationService = testDataGenerationService;
     }
 
-    public String addGenerators(GeneratorsRequest request) throws Exception {
+    @Override
+    public String initGenerators(GeneratorsRequest request) throws Exception {
         validateGeneratorsRequest(request);
         Container container = containerRepository.getContainerByCuid(request.getCuid());
         if ((container.getStatus() != ContainerStatus.NEW)) {
