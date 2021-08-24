@@ -47,4 +47,9 @@ public class ContainerController {
     public ResponseEntity<HistoryDto> getHistory(@PathVariable("cuid") @NotEmpty String cuid) {
         return new ResponseEntity<HistoryDto>(historyService.getHistory(cuid), HttpStatus.OK);
     }
+
+    @GetMapping(path = "/information/{name}")
+    public ResponseEntity<ContainerDto> getContainerByName(@PathVariable("name") @NotEmpty String name) {
+        return new ResponseEntity<ContainerDto>(service.getContainerByName(name), HttpStatus.OK);
+    }
 }

@@ -24,7 +24,7 @@ public class ConfigurationRepository {
     protected Container getTestContainer() {
         Container container = new Container();
         container.setName("test");
-        container.setAuthenticated(false);
+        container.setHistoryOn(false);
         container.setDate(LocalDateTime.now());
         container.setStatus(ContainerStatus.NEW);
         container.setType(ReportType.EXCEL_TYPE);

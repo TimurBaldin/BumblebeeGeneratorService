@@ -45,6 +45,11 @@ public class ContainerServiceImpl implements ContainerService {
         return cuid;
     }
 
+    @Override
+    public ContainerDto getContainerByName(String name) {
+        return getContainerDto(repository.getContainerByName(name));
+    }
+
     private ContainerDto getContainerDto(Container container) {
         ContainerDto dto = new ContainerDto();
         dto.setCuid(container.getCuid().toString());

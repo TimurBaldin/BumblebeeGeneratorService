@@ -10,4 +10,6 @@ public interface CustomContainerRepository {
 
     Container getContainerByCuid(String cuid) throws NoResultException;
 
+    Container getContainerByName(String name);
+
 }

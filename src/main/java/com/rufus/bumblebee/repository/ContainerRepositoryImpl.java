@@ -19,4 +19,11 @@ public class ContainerRepositoryImpl implements CustomContainerRepository {
                 .setParameter("cuid", UUID.fromString(cuid))
                 .getSingleResult();
     }
+
+    @Override
+    public Container getContainerByName(String name) {
+        return em.createQuery("select c from Container as c where c.name=:name", Container.class)
+                .setParameter("name", name)
+                .getSingleResult();
+    }
 }
