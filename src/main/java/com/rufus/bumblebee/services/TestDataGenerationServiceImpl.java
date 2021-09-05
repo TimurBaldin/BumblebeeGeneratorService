@@ -10,49 +10,67 @@ import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.repository.tables.TestData;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.dto.TestDataDto;
-import com.rufus.bumblebee.services.interfaces.TestDataGenerationService;
 import com.rufus.bumblebee.services.interfaces.KafkaService;
+import com.rufus.bumblebee.services.interfaces.TestDataGenerationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AsyncTestDataGenerationServiceImpl implements TestDataGenerationService {
+public class TestDataGenerationServiceImpl implements TestDataGenerationService {
 
-    private static final Logger log = LoggerFactory.getLogger(AsyncTestDataGenerationServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(TestDataGenerationServiceImpl.class);
 
     private final TestDataRepository repository;
     private final ContainerRepository containerRepository;
     private final KafkaService<List<TestDataDto>> kafkaService;
 
     @Autowired
-    public AsyncTestDataGenerationServiceImpl(TestDataRepository repository, ContainerRepository containerRepository, KafkaService<List<TestDataDto>> kafkaService) {
+    public TestDataGenerationServiceImpl(TestDataRepository repository, ContainerRepository containerRepository, KafkaService<List<TestDataDto>> kafkaService) {
         this.repository = repository;
         this.containerRepository = containerRepository;
         this.kafkaService = kafkaService;
     }
 
-    @Async("threadPoolTaskExecutor")
-    public void asyncGenerateTestData(List<BaseGenerator> generators, Container container) throws Exception {
+
+    public void generateTestData(List<BaseGenerator> generators, Container container, SseEmitter emitter) throws IOException {
+        String cuid=container.getCuid().toString();
+        emitter.send(
+                    SseEmitter.event()
+                            .data("The task of generating test data is started")
+                            .id(cuid)
+                            .name(LocalDateTime.now().toString())
+            );
+
         log.info("AsyncGeneratorService started");
         List<TestDataDto> dto = mapToDto(generators);
 
         kafkaService.sendTestDataToReportService(dto, container);
 
         if (container.getHistoryOn()) {
-            repository.saveAll(mapFromDto(dto, container.getId()));
+            try {
+                repository.saveAll(mapFromDto(dto, container.getId()));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
         }
 
         container.setStatus(ContainerStatus.GENERATION_COMPLETED);
         container.setUpdateDate(LocalDateTime.now());
         containerRepository.save(container);
-        log.info("AsyncGeneratorService finished");
+        emitter.send(
+                SseEmitter.event()
+                        .data("The task of generating test data is finished")
+                        .id(cuid)
+                        .name(LocalDateTime.now().toString())
+        );
     }
 
 

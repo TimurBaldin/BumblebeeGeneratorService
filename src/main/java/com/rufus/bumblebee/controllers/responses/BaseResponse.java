@@ -1,15 +1,16 @@
 package com.rufus.bumblebee.controllers.responses;
 
-public class BaseResponse{
-    private Integer errorCode = 0;
-    private String errorMessage;
+public class BaseResponse {
 
-    public Integer getErrorCode() {
-        return errorCode;
+    private String errorMessage;
+    private String detailErrorMessage;
+
+    public String getDetailErrorMessage() {
+        return detailErrorMessage;
     }
 
-    public void setErrorCode(Integer errorCode) {
-        this.errorCode = errorCode;
+    public void setDetailErrorMessage(String detailErrorMessage) {
+        this.detailErrorMessage = detailErrorMessage;
     }
 
     public String getErrorMessage() {
@@ -18,13 +19,5 @@ public class BaseResponse{
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
-    }
-
-    @Override
-    public String toString() {
-        return "BaseResponse{" +
-                "errorCode=" + errorCode +
-                ", errorMessage='" + errorMessage + '\'' +
-                '}';
     }
 }

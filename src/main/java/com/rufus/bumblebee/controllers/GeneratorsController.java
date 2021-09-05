@@ -10,8 +10,10 @@ import com.rufus.bumblebee.services.interfaces.GeneratorService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,21 +25,18 @@ import java.util.stream.Collectors;
 @Api(value = "Controller for generators", tags = {"Controller for generators"})
 public class GeneratorsController {
 
-    private final GeneratorService<GeneratorsRequest, String> generatorService;
+    private final GeneratorService<GeneratorsRequest> generatorService;
 
     @Autowired
-    public GeneratorsController(GeneratorService<GeneratorsRequest, String> generatorService) {
+    public GeneratorsController(GeneratorService<GeneratorsRequest> generatorService) {
         this.generatorService = generatorService;
     }
 
-    @PostMapping(path = "/add")
-    public ResponseEntity<String> addGenerators(@RequestBody GeneratorsRequest request) throws Exception {
-        return new ResponseEntity<>(
-                "The task for generating test data for a container with CUID "
-                        .concat(generatorService.initGenerators(request))
-                        .concat(" is registered"),
-                HttpStatus.OK
-        );
+    @PostMapping(path = "/add", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public SseEmitter addGenerators(@RequestBody GeneratorsRequest request) throws Exception {
+        SseEmitter emitter = new SseEmitter();
+        generatorService.initGenerators(request, emitter);
+        return emitter;
     }
 
     @GetMapping(path = "/information")

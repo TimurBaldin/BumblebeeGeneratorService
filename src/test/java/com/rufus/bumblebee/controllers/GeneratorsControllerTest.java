@@ -43,7 +43,7 @@ public class GeneratorsControllerTest {
     public void testAddGenerator() throws Exception {
         GeneratorsRequest request = new GeneratorsRequest();
         request.setCuid("1112");
-        Mockito.when(generatorService.initGenerators(any())).thenReturn(UUID.randomUUID().toString());
+        //Mockito.when(generatorService.initGenerators(any(),any())).thenReturn(UUID.randomUUID().toString());
 
         MockHttpServletResponse response = mvc.perform(post("/generatorManager/add")
                         .contentType(MediaType.APPLICATION_JSON).content(ow.writeValueAsString(request)))
