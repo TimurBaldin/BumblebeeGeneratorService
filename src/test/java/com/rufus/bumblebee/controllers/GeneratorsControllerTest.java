@@ -6,7 +6,6 @@ import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
 import com.rufus.bumblebee.services.interfaces.GeneratorService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -17,11 +16,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.UUID;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -35,7 +31,7 @@ public class GeneratorsControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    GeneratorService<GeneratorsRequest, String> generatorService;
+    GeneratorService<GeneratorsRequest> generatorService;
 
     private static final ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
@@ -43,8 +39,6 @@ public class GeneratorsControllerTest {
     public void testAddGenerator() throws Exception {
         GeneratorsRequest request = new GeneratorsRequest();
         request.setCuid("1112");
-        //Mockito.when(generatorService.initGenerators(any(),any())).thenReturn(UUID.randomUUID().toString());
-
         MockHttpServletResponse response = mvc.perform(post("/generatorManager/add")
                         .contentType(MediaType.APPLICATION_JSON).content(ow.writeValueAsString(request)))
                 .andExpect(status().isOk()).andReturn().getResponse();
