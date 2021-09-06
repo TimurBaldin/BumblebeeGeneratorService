@@ -5,6 +5,7 @@ public enum ContainerStatus {
     NEW,
     PREPARATION_FOR_GENERATION,
     GENERATION_COMPLETED,
+    GENERATION_ERROR,
     CONTAINER_INACTIVE;
 
 }

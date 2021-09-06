@@ -7,11 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.io.IOException;
+
 @ControllerAdvice
 public class RestExceptionHandler {
 
-    @ExceptionHandler(value = {AppException.class})
-    protected ResponseEntity<BaseResponse> handle(AppException ex) {
+    @ExceptionHandler(value = {AppException.class, IOException.class})
+    protected ResponseEntity<BaseResponse> handle(Exception ex) {
         BaseResponse response = new BaseResponse();
         response.setErrorMessage(ex.getMessage());
         response.setDetailErrorMessage(ex.getCause().getMessage());

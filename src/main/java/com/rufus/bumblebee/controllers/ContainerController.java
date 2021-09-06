@@ -9,6 +9,7 @@ import com.rufus.bumblebee.services.interfaces.HistoryService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -31,24 +32,24 @@ public class ContainerController {
         this.historyService = historyService;
     }
 
-    @PostMapping(path = "/add")
+    @PostMapping(path = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ContainerDto> addContainer(@RequestBody ContainerRequest request) throws AppException {
         return new ResponseEntity<ContainerDto>(
                 service.createContainer(request.getName(), request.getHistoryOn(), request.getReportType()), HttpStatus.OK
         );
     }
 
-    @DeleteMapping(path = "/remove/{cuid}")
+    @DeleteMapping(path = "/remove/{cuid}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> removeContainer(@PathVariable("cuid") @NotEmpty String cuid) throws AppException {
         return new ResponseEntity<String>("The container with the ID " + service.removeContainer(cuid) + " was deleted", HttpStatus.OK);
     }
 
-    @GetMapping(path = "/history/{cuid}")
-    public ResponseEntity<HistoryDto> getHistory(@PathVariable("cuid") @NotEmpty String cuid)throws AppException {
+    @GetMapping(path = "/history/{cuid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<HistoryDto> getHistory(@PathVariable("cuid") @NotEmpty String cuid) throws AppException {
         return new ResponseEntity<HistoryDto>(historyService.getHistory(cuid), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/information/{name}")
+    @GetMapping(path = "/information/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ContainerDto> getContainerByName(@PathVariable("name") @NotEmpty String name) throws AppException {
         return new ResponseEntity<ContainerDto>(service.getContainerByName(name), HttpStatus.OK);
     }

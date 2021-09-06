@@ -3,8 +3,8 @@ package com.rufus.bumblebee.utils;
 import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
 import com.rufus.bumblebee.generators.GeneratorInformation;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
+import com.rufus.bumblebee.services.exceptions.AppException;
 
-import javax.validation.ValidationException;
 import java.util.Map;
 
 import static com.rufus.bumblebee.generators.annotation.AnnotationHandler.getGeneratorBeans;
@@ -31,13 +31,13 @@ public final class GeneratorValidatorUtils {
                 .stream().anyMatch(s -> s.generatorName().equals(generatorName));
     }
 
-    public static void validateGeneratorsRequest(GeneratorsRequest request) throws ValidationException {
+    public static void validateGeneratorsRequest(GeneratorsRequest request) throws AppException {
         for (GeneratorInformation information : request.getGeneratorInfo()) {
             if (!checkGenerator(information.getGeneratorName())) {
-                throw new ValidationException("Invalid value passed generatorName: " + information.getGeneratorName());
+                throw new AppException("Invalid value passed generatorName: " + information.getGeneratorName());
             }
             if (!checkGeneratorParameters(information.getValues(), information.getGeneratorName())) {
-                throw new ValidationException("Invalid value passed generatorParameters: " + information.getValues());
+                throw new AppException("Invalid value passed generatorParameters: " + information.getValues());
             }
         }
     }

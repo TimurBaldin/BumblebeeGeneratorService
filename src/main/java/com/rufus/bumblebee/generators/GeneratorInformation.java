@@ -10,15 +10,17 @@ public class GeneratorInformation {
         return generatorName;
     }
 
-    public void setGeneratorName(String generatorName) {
+    public GeneratorInformation setGeneratorName(String generatorName) {
         this.generatorName = generatorName;
+        return this;
     }
 
     public Map<String, String> getValues() {
         return values;
     }
 
-    public void setValues(Map<String, String> values) {
+    public GeneratorInformation setValues(Map<String, String> values) {
         this.values = values;
+        return this;
     }
 }

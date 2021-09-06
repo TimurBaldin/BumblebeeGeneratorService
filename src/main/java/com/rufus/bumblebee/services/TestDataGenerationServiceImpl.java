@@ -23,6 +23,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.http.MediaType.TEXT_PLAIN;
+import static org.springframework.web.servlet.mvc.method.annotation.SseEmitter.event;
+
 @Service
 public class TestDataGenerationServiceImpl implements TestDataGenerationService {
 
@@ -41,36 +44,36 @@ public class TestDataGenerationServiceImpl implements TestDataGenerationService 
 
 
     public void generateTestData(List<BaseGenerator> generators, Container container, SseEmitter emitter) throws IOException {
-        String cuid=container.getCuid().toString();
-        emitter.send(
-                    SseEmitter.event()
-                            .data("The task of generating test data is started")
-                            .id(cuid)
-                            .name(LocalDateTime.now().toString())
-            );
+        String cuid = container.getCuid().toString();
+        emitter.send(event()
+                .data("The task of generating test data is started", TEXT_PLAIN)
+                .id(cuid)
+                .name(LocalDateTime.now().toString()));
 
-        log.info("AsyncGeneratorService started");
         List<TestDataDto> dto = mapToDto(generators);
 
         kafkaService.sendTestDataToReportService(dto, container);
+        emitter.send(event().data("The test data has been sent to kafka")
+                .id(cuid)
+                .name(LocalDateTime.now().toString()));
 
         if (container.getHistoryOn()) {
             try {
                 repository.saveAll(mapFromDto(dto, container.getId()));
+                emitter.send(event().data("The test data has been save to bd", TEXT_PLAIN)
+                        .id(cuid)
+                        .name(LocalDateTime.now().toString()));
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+                log.error(e.getMessage());
+                containerUpdateStatus(ContainerStatus.GENERATION_ERROR, container);
+                emitter.completeWithError(e);
+                return;
             }
         }
-
-        container.setStatus(ContainerStatus.GENERATION_COMPLETED);
-        container.setUpdateDate(LocalDateTime.now());
-        containerRepository.save(container);
-        emitter.send(
-                SseEmitter.event()
-                        .data("The task of generating test data is finished")
-                        .id(cuid)
-                        .name(LocalDateTime.now().toString())
-        );
+        containerUpdateStatus(ContainerStatus.GENERATION_COMPLETED, container);
+        emitter.send(event().data("The task of generating test data is finished", TEXT_PLAIN)
+                .id(cuid)
+                .name(LocalDateTime.now().toString()));
     }
 
 
@@ -91,5 +94,11 @@ public class TestDataGenerationServiceImpl implements TestDataGenerationService 
             );
         }
         return testDataList;
+    }
+
+    private void containerUpdateStatus(ContainerStatus status, Container container) {
+        container.setStatus(status);
+        container.setUpdateDate(LocalDateTime.now());
+        containerRepository.save(container);
     }
 }

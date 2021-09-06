@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,14 +33,14 @@ public class GeneratorsController {
         this.generatorService = generatorService;
     }
 
-    @PostMapping(path = "/add", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public SseEmitter addGenerators(@RequestBody GeneratorsRequest request) throws Exception {
+    @PostMapping(path = "/stream-sse-add", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public SseEmitter addGenerators(@RequestBody GeneratorsRequest request) throws IOException {
         SseEmitter emitter = new SseEmitter();
         generatorService.initGenerators(request, emitter);
         return emitter;
     }
 
-    @GetMapping(path = "/information")
+    @GetMapping(path = "/information", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<GeneratorDto>> getGenerators() {
         return new ResponseEntity<>(getGeneratorsInformation(), HttpStatus.OK);
     }
