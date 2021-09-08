@@ -48,17 +48,6 @@ public class GeneratorServiceImpl implements GeneratorService<GeneratorsRequest>
     @Override
     @Async("threadPoolTaskExecutor")
     public void initGenerators(GeneratorsRequest request, SseEmitter emitter) throws IOException {
-        emitter.send(SseEmitter.event()
-                .data("The task of creating generators has begun", MediaType.TEXT_PLAIN)
-                .id(String.valueOf(request.getCuid()))
-                .name(LocalDateTime.now().toString()));
-
-        Container container = containerRepository.getContainerByCuid(request.getCuid());
-        if ((container.getStatus() != ContainerStatus.NEW)) {
-            emitter.completeWithError(
-                    new AppException("It is not possible to add generators to a container that is not in the NEW status")
-            );
-        }
         try {
             validateGeneratorsRequest(request);
         } catch (AppException ex) {
@@ -66,7 +55,19 @@ public class GeneratorServiceImpl implements GeneratorService<GeneratorsRequest>
             emitter.completeWithError(ex);
             return;
         }
+        String cuid = request.getCuid();
+        emitter.send(SseEmitter.event()
+                .data("The task of creating generators has begun", MediaType.TEXT_PLAIN)
+                .id(cuid)
+                .name(LocalDateTime.now().toString()));
 
+        Container container = containerRepository.getContainerByCuid(cuid);
+        if (container.getStatus() != ContainerStatus.NEW) {
+            emitter.completeWithError(
+                    new AppException("It is not possible to add generators to a container that is not in the NEW status")
+            );
+            return;
+        }
         List<BaseGenerator> generators = new ArrayList<>(request.getGeneratorInfo().size());
         for (GeneratorInformation information : request.getGeneratorInfo()) {
             BaseGenerator generator = (BaseGenerator) handler.getBeanByName(information.getGeneratorName());
@@ -80,15 +81,15 @@ public class GeneratorServiceImpl implements GeneratorService<GeneratorsRequest>
 
         container.setStatus(ContainerStatus.PREPARATION_FOR_GENERATION);
         emitter.send(SseEmitter.event()
-                .data("The creation of the generators is completed, the transition to the generation of test data", MediaType.TEXT_PLAIN)
-                .id(String.valueOf(request.getCuid()))
-                .name("sse event, date:" + LocalDateTime.now()));
+                .data("The creation of the generators is completed, starting the process generation of test data", MediaType.TEXT_PLAIN)
+                .id(cuid)
+                .name(LocalDateTime.now().toString()));
 
         testDataGenerationService.generateTestData(generators, containerRepository.save(container), emitter);
         emitter.send(
                 SseEmitter.event()
                         .data("The task of generating test data is completed", MediaType.TEXT_PLAIN)
-                        .id(String.valueOf(request.getCuid()))
+                        .id(cuid)
                         .name(LocalDateTime.now().toString())
         );
         emitter.complete();

@@ -4,6 +4,7 @@ import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
 import com.rufus.bumblebee.generators.GeneratorInformation;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import com.rufus.bumblebee.services.exceptions.AppException;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 
@@ -32,6 +33,9 @@ public final class GeneratorValidatorUtils {
     }
 
     public static void validateGeneratorsRequest(GeneratorsRequest request) throws AppException {
+        if (StringUtils.isEmpty(request.getCuid())) {
+            throw new AppException("Parameter cuid is null or empty ");
+        }
         for (GeneratorInformation information : request.getGeneratorInfo()) {
             if (!checkGenerator(information.getGeneratorName())) {
                 throw new AppException("Invalid value passed generatorName: " + information.getGeneratorName());
