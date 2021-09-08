@@ -39,7 +39,7 @@ public class GeneratorsControllerTest {
     public void testAddGenerator() throws Exception {
         GeneratorsRequest request = new GeneratorsRequest();
         request.setCuid("1112");
-        MockHttpServletResponse response = mvc.perform(post("/generatorManager/add")
+        MockHttpServletResponse response = mvc.perform(post("/generatorManager/stream-sse-add")
                         .contentType(MediaType.APPLICATION_JSON).content(ow.writeValueAsString(request)))
                 .andExpect(status().isOk()).andReturn().getResponse();
 
