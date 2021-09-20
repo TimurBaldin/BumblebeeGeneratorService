@@ -7,15 +7,12 @@ import com.rufus.bumblebee.repository.config.ConfigurationRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.repository.tables.TestData;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Ignore
-//TODO выпилить EmbeddedPostgres
 public class TestDataRepositoryTest extends ConfigurationRepository {
 
     @Autowired
@@ -30,9 +27,7 @@ public class TestDataRepositoryTest extends ConfigurationRepository {
         Container container = containerRepository.save(getTestContainer());
         List<TestData> testData = new ArrayList<>();
         testData.add(new TestData(ow.writeValueAsString("test"), container.getId(), "SymbolGenerator"));
-
         Iterable<TestData> result = repository.saveAll(testData);
-
         result.forEach(
                 r -> Assert.assertTrue(r.getId() != 0)
         );

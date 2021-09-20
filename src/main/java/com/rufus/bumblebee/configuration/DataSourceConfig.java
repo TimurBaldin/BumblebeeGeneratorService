@@ -1,23 +1,22 @@
 package com.rufus.bumblebee.configuration;
 
-import com.opentable.db.postgres.embedded.EmbeddedPostgres;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.CustomContainerRepository;
 import com.rufus.bumblebee.repository.TestDataRepository;
+import com.zaxxer.hikari.HikariDataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.testcontainers.containers.PostgreSQLContainer;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -35,8 +34,13 @@ public class DataSourceConfig {
     @Bean("dataSource")
     @Profile("test")
     public DataSource dataSource() throws IOException {
-        EmbeddedPostgres embeddedPostgres = EmbeddedPostgres.builder().setPort(1890).start();
-        return embeddedPostgres.getPostgresDatabase();
+        PostgreSQLContainer sqlContainer = new PostgreSQLContainer("postgres:11.1");
+        sqlContainer.start();
+        HikariDataSource ds = new HikariDataSource();
+        ds.setJdbcUrl(sqlContainer.getJdbcUrl());
+        ds.setUsername(sqlContainer.getUsername());
+        ds.setPassword(sqlContainer.getPassword());
+        return ds;
     }
 
     @Bean("entityManagerFactory")

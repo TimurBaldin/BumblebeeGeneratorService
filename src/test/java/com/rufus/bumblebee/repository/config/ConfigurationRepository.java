@@ -23,7 +23,7 @@ public class ConfigurationRepository {
 
     protected Container getTestContainer() {
         Container container = new Container();
-        container.setName("test");
+        container.setName(UUID.randomUUID().toString());
         container.setHistoryOn(false);
         container.setDate(LocalDateTime.now());
         container.setStatus(ContainerStatus.NEW);

@@ -3,14 +3,12 @@ package com.rufus.bumblebee.repository;
 import com.rufus.bumblebee.repository.config.ConfigurationRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import javax.persistence.NoResultException;
 
-@Ignore
-//TODO выпилить EmbeddedPostgres
 public class ContainerRepositoryTest extends ConfigurationRepository {
 
     @Autowired
@@ -32,7 +30,7 @@ public class ContainerRepositoryTest extends ConfigurationRepository {
         Assert.assertEquals(containerAfterGet.getId(), containerAfterSave.getId());
     }
 
-    @Test(expected = NoResultException.class)
+    @Test(expected = EmptyResultDataAccessException.class)
     public void testRemoveContainer() throws NoResultException {
         Container containerAfterSave = repository.save(getTestContainer());
         repository.delete(containerAfterSave);
