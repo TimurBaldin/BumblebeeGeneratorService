@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.controllers.requests.ReportType;
-import com.rufus.bumblebee.controllers.responses.ContainerDto;
+import com.rufus.bumblebee.controllers.dto.ContainerDto;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.dto.HistoryDto;
 import com.rufus.bumblebee.services.interfaces.ContainerService;
@@ -49,7 +49,7 @@ public class ContainerControllerTest {
     @Test
     public void testAddContainer() throws Exception {
         ContainerDto dto = getContainerDto();
-        ResponseEntity<ContainerDto> baseResponse = new ResponseEntity<ContainerDto>(dto, HttpStatus.OK);
+        ResponseEntity<ContainerDto> baseResponse = new ResponseEntity<>(dto, HttpStatus.OK);
         given(service.createContainer(TEST_VALUE, false, ReportType.EXCEL_TYPE)).willReturn(dto);
 
         ContainerRequest request = new ContainerRequest();

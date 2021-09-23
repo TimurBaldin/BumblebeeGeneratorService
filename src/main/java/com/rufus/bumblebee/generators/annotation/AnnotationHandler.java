@@ -1,7 +1,6 @@
 package com.rufus.bumblebee.generators.annotation;
 
 import com.rufus.bumblebee.generators.BaseGenerator;
-import com.rufus.bumblebee.services.exceptions.AppException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,14 +76,14 @@ public class AnnotationHandler {
         return new Object();
     }
 
-    public void setParameters(Field[] fields, Map<String, String> values, BaseGenerator generator) throws AppException, ReflectiveOperationException {
+    public void setParameters(Field[] fields, Map<String, String> values, BaseGenerator generator) throws Exception{
         for (Field field : fields) {
             GeneratorParameter annotation = field.getAnnotation(GeneratorParameter.class);
             if (annotation != null) {
                 String value = values.get(annotation.name());
                 if (value == null) {
                     log.error("For one of the parameters of the {} generator, a name is not specified in the annotation GeneratorParameter", generator.getGeneratorName());
-                    throw new AppException("The parameter name is not specified in the GeneratorParameter annotation for the generator: " + generator.getGeneratorName());
+                    throw new Exception("The parameter name is not specified in the GeneratorParameter annotation for the generator: " + generator.getGeneratorName());
                 }
 
                 if (StringUtils.isNotEmpty(annotation.convertMethod())) {
@@ -100,7 +99,7 @@ public class AnnotationHandler {
                 }
             } else {
                 log.error("An annotation GeneratorParameter was not found for one of the fields of the generator {}", generator.getGeneratorName());
-                throw new AppException("For one of the parameters , the annotation GeneratorParameter was not found , for the generator: " + generator.getGeneratorName());
+                throw new Exception("For one of the parameters , the annotation GeneratorParameter was not found , for the generator: " + generator.getGeneratorName());
             }
         }
     }

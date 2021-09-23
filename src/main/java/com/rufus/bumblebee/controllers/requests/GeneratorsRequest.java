@@ -3,7 +3,6 @@ package com.rufus.bumblebee.controllers.requests;
 import com.rufus.bumblebee.generators.GeneratorInformation;
 import java.util.List;
 
-
 public class GeneratorsRequest {
 
     private String cuid;

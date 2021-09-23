@@ -15,11 +15,11 @@ public class Start {
         SpringApplication.run(Start.class, args);
     }
 
-    @Bean(name = "threadPoolTaskExecutor")
+    @Bean
     public Executor threadPoolTaskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(10);
-        executor.setMaxPoolSize(100);
+        executor.setMaxPoolSize(20);
         executor.setWaitForTasksToCompleteOnShutdown(true);
         executor.setThreadNamePrefix("Async-");
         return executor;

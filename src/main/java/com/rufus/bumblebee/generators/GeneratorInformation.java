@@ -3,8 +3,8 @@ package com.rufus.bumblebee.generators;
 import java.util.Map;
 
 public class GeneratorInformation {
-    String generatorName;
-    Map<String, String> values;
+    private String generatorName;
+    private Map<String, String> values;
 
     public String getGeneratorName() {
         return generatorName;
@@ -19,8 +19,7 @@ public class GeneratorInformation {
         return values;
     }
 
-    public GeneratorInformation setValues(Map<String, String> values) {
+    public void setValues(Map<String, String> values) {
         this.values = values;
-        return this;
     }
 }

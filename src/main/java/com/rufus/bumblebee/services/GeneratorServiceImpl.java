@@ -7,7 +7,6 @@ import com.rufus.bumblebee.generators.annotation.AnnotationHandler;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
-import com.rufus.bumblebee.services.exceptions.AppException;
 import com.rufus.bumblebee.services.interfaces.GeneratorService;
 import com.rufus.bumblebee.services.interfaces.TestDataGenerationService;
 import org.slf4j.Logger;
@@ -47,10 +46,10 @@ public class GeneratorServiceImpl implements GeneratorService<GeneratorsRequest>
 
     @Override
     @Async("threadPoolTaskExecutor")
-    public void initGenerators(GeneratorsRequest request, SseEmitter emitter) throws IOException {
+    public void initGenerators(GeneratorsRequest request, SseEmitter emitter) throws Exception {
         try {
             validateGeneratorsRequest(request);
-        } catch (AppException ex) {
+        } catch (Exception ex) {
             log.error(ex.getMessage());
             emitter.completeWithError(ex);
             return;
@@ -64,7 +63,7 @@ public class GeneratorServiceImpl implements GeneratorService<GeneratorsRequest>
         Container container = containerRepository.getContainerByCuid(cuid);
         if (container.getStatus() != ContainerStatus.NEW) {
             emitter.completeWithError(
-                    new AppException("It is not possible to add generators to a container that is not in the NEW status")
+                    new Exception("It is not possible to add generators to a container that is not in the NEW status")
             );
             return;
         }
@@ -73,7 +72,7 @@ public class GeneratorServiceImpl implements GeneratorService<GeneratorsRequest>
             BaseGenerator generator = (BaseGenerator) handler.getBeanByName(information.getGeneratorName());
             try {
                 handler.setParameters(generator.getClass().getFields(), information.getValues(), generator);
-            } catch (AppException | ReflectiveOperationException exception) {
+            } catch (Exception exception) {
                 emitter.completeWithError(exception);
             }
             generators.add(generator);

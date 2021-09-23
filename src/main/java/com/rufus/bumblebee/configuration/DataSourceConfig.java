@@ -3,12 +3,10 @@ package com.rufus.bumblebee.configuration;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.CustomContainerRepository;
 import com.rufus.bumblebee.repository.TestDataRepository;
-import com.zaxxer.hikari.HikariDataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -16,10 +14,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.testcontainers.containers.PostgreSQLContainer;
 
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
@@ -31,19 +27,7 @@ import java.util.Properties;
 })
 public class DataSourceConfig {
 
-    @Bean("dataSource")
-    @Profile("test")
-    public DataSource dataSource() throws IOException {
-        PostgreSQLContainer sqlContainer = new PostgreSQLContainer("postgres:11.1");
-        sqlContainer.start();
-        HikariDataSource ds = new HikariDataSource();
-        ds.setJdbcUrl(sqlContainer.getJdbcUrl());
-        ds.setUsername(sqlContainer.getUsername());
-        ds.setPassword(sqlContainer.getPassword());
-        return ds;
-    }
-
-    @Bean("entityManagerFactory")
+    @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Autowired DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
@@ -55,14 +39,14 @@ public class DataSourceConfig {
         return em;
     }
 
-    @Bean("transactionManager")
+    @Bean
     public PlatformTransactionManager transactionManager(@Autowired LocalContainerEntityManagerFactoryBean factoryBean) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(factoryBean.getObject());
         return transactionManager;
     }
 
-    @Bean("liquibase")
+    @Bean
     public SpringLiquibase liquibase(@Autowired DataSource dataSource) {
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setChangeLog("classpath:db/changelog/db.changelog.yaml");

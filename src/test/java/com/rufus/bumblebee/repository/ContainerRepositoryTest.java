@@ -1,6 +1,5 @@
 package com.rufus.bumblebee.repository;
 
-import com.rufus.bumblebee.repository.config.ConfigurationRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,7 +8,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 
 import javax.persistence.NoResultException;
 
-public class ContainerRepositoryTest extends ConfigurationRepository {
+public class ContainerRepositoryTest extends BaseRepository {
 
     @Autowired
     private ContainerRepository repository;
@@ -17,7 +16,6 @@ public class ContainerRepositoryTest extends ConfigurationRepository {
     @Test
     public void testSaveContainer() {
         Container saveContainer = repository.save(getTestContainer());
-        Assert.assertNotNull(saveContainer.getId());
         Assert.assertTrue(saveContainer.getId() != 0);
     }
 

@@ -3,7 +3,6 @@ package com.rufus.bumblebee.repository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.rufus.bumblebee.repository.config.ConfigurationRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.repository.tables.TestData;
 import org.junit.Assert;
@@ -13,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestDataRepositoryTest extends ConfigurationRepository {
+public class TestDataRepositoryTest extends BaseRepository {
 
     @Autowired
     private TestDataRepository repository;

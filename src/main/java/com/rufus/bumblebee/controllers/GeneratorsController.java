@@ -1,8 +1,8 @@
 package com.rufus.bumblebee.controllers;
 
+import com.rufus.bumblebee.controllers.dto.GeneratorDto;
+import com.rufus.bumblebee.controllers.dto.GeneratorParametersDto;
 import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
-import com.rufus.bumblebee.controllers.responses.GeneratorDto;
-import com.rufus.bumblebee.controllers.responses.GeneratorParametersDto;
 import com.rufus.bumblebee.generators.annotation.AnnotationHandler;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +33,7 @@ public class GeneratorsController {
     }
 
     @PostMapping(path = "/stream-sse-add", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public SseEmitter addGenerators(@RequestBody GeneratorsRequest request) throws IOException {
+    public SseEmitter addGenerators(@RequestBody GeneratorsRequest request) throws Exception {
         SseEmitter emitter = new SseEmitter();
         generatorService.initGenerators(request, emitter);
         return emitter;
