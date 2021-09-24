@@ -57,7 +57,7 @@ public class ContainerControllerTest {
         request.setReportType(ReportType.EXCEL_TYPE);
         request.setName(TEST_VALUE);
 
-        MockHttpServletResponse response = mvc.perform(post("/containerManager/add")
+        MockHttpServletResponse response = mvc.perform(post("/containers")
                         .contentType(MediaType.APPLICATION_JSON).content(ow.writeValueAsString(request)))
                 .andExpect(status().isOk()).
                 andReturn().getResponse();
@@ -68,7 +68,7 @@ public class ContainerControllerTest {
 
     @Test
     public void testRemoveContainer() throws Exception {
-        MockHttpServletResponse response = mvc.perform(delete("/containerManager/remove/1")
+        MockHttpServletResponse response = mvc.perform(delete("/containers/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).
                 andReturn().getResponse();
@@ -77,7 +77,7 @@ public class ContainerControllerTest {
 
     @Test
     public void testGetHistory() throws Exception {
-        MockHttpServletResponse response = mvc.perform(get("/containerManager/history/1")
+        MockHttpServletResponse response = mvc.perform(get("/containers/1/history")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).
                 andReturn().getResponse();

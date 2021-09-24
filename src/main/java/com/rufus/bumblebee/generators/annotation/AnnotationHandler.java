@@ -24,7 +24,6 @@ public class AnnotationHandler {
     private static final Map<GeneratorDescription, List<GeneratorParameter>> generatorBeans = new HashMap<>();
 
     private final List<BaseGenerator> generators;
-
     private final ApplicationContext context;
 
     @Autowired
@@ -37,7 +36,7 @@ public class AnnotationHandler {
     public void init() {
         for (BaseGenerator generator : generators) {
             Class<?> bean = generator.getClass();
-            if (bean.isAnnotationPresent(GeneratorDescription.class) && haveTestGeneratorParameters(bean)) {
+            if (bean.isAnnotationPresent(GeneratorDescription.class) && isGeneratorParameter(bean)) {
                 generatorBeans.put(
                         bean.getAnnotation(GeneratorDescription.class),
                         getGeneratorParameters(bean)
@@ -46,8 +45,7 @@ public class AnnotationHandler {
         }
     }
 
-
-    private boolean haveTestGeneratorParameters(Class<?> generatorClass) {
+    private boolean isGeneratorParameter(Class<?> generatorClass) {
         for (Field field : generatorClass.getDeclaredFields()) {
             if (field.getAnnotation(GeneratorParameter.class) != null) {
                 return true;
@@ -67,13 +65,13 @@ public class AnnotationHandler {
         return parameters;
     }
 
-    public Object getBeanByName(String generatorName) {
+    public Object getGeneratorByName(String generatorName) throws Exception {
         for (GeneratorDescription description : generatorBeans.keySet()) {
             if (description.generatorName().equals(generatorName)) {
                 return context.getBean(description.generatorClass());
             }
         }
-        return new Object();
+        throw new Exception("Generator not found: " + generatorName);
     }
 
     public void setParameters(Field[] fields, Map<String, String> values, BaseGenerator generator) throws Exception {

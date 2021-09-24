@@ -2,7 +2,7 @@ package com.rufus.bumblebee.services;
 
 import com.rufus.bumblebee.controllers.requests.ReportType;
 import com.rufus.bumblebee.controllers.dto.ContainerDto;
-import com.rufus.bumblebee.repository.interfaces.ContainerRepository;
+import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.interfaces.ContainerService;
@@ -11,12 +11,17 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
 public class ContainerServiceImpl implements ContainerService {
 
     private final ContainerRepository repository;
+
+    private static final String KEY_UID = "UID";
+    private static final String KEY_STATUS = "STATUS";
 
     @Autowired
     public ContainerServiceImpl(ContainerRepository repository) {
@@ -41,14 +46,18 @@ public class ContainerServiceImpl implements ContainerService {
     }
 
     @Override
-    public String removeContainer(String cuid) throws Exception {
+    public Map<String, String> removeContainer(String cuid) throws Exception {
         try {
             Container container = repository.getContainerByCuid(cuid);
             repository.delete(container);
         } catch (DataAccessException exception) {
             throw new Exception("Error in the remove container operation for cuid: " + cuid, exception);
         }
-        return cuid;
+
+        return new HashMap<String, String>() {{
+            put(KEY_UID, cuid);
+            put(KEY_STATUS, ContainerStatus.CONTAINER_INACTIVE.name());
+        }};
     }
 
     @Override

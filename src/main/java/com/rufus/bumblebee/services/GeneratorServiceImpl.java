@@ -4,7 +4,7 @@ import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
 import com.rufus.bumblebee.generators.BaseGenerator;
 import com.rufus.bumblebee.generators.GeneratorInformation;
 import com.rufus.bumblebee.generators.annotation.AnnotationHandler;
-import com.rufus.bumblebee.repository.interfaces.ContainerRepository;
+import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.interfaces.GeneratorService;
@@ -68,7 +68,7 @@ public class GeneratorServiceImpl implements GeneratorService<GeneratorsRequest>
         }
         List<BaseGenerator> generators = new ArrayList<>(request.getGeneratorInfo().size());
         for (GeneratorInformation information : request.getGeneratorInfo()) {
-            BaseGenerator generator = (BaseGenerator) handler.getBeanByName(information.getGeneratorName());
+            BaseGenerator generator = (BaseGenerator) handler.getGeneratorByName(information.getGeneratorName());
             try {
                 handler.setParameters(generator.getClass().getFields(), information.getValues(), generator);
             } catch (Exception exception) {

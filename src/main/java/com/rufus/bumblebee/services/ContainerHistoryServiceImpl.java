@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.services;
 
-import com.rufus.bumblebee.repository.interfaces.ContainerRepository;
+import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.repository.tables.TestData;
 import com.rufus.bumblebee.services.dto.HistoryDto;

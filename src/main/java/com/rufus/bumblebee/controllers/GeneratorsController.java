@@ -9,7 +9,6 @@ import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 import com.rufus.bumblebee.services.interfaces.GeneratorService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +40,7 @@ public class GeneratorsController {
 
     @GetMapping(path = "/information")
     public ResponseEntity<List<GeneratorDto>> getGenerators() {
-        return new ResponseEntity<>(getGeneratorsInformation(), HttpStatus.OK);
+        return ResponseEntity.ok(getGeneratorsInformation());
     }
 
     private List<GeneratorDto> getGeneratorsInformation() {

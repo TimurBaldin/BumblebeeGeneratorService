@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.Map;
 
 
 @RestController
@@ -35,8 +36,8 @@ public class ContainerController {
     }
 
     @DeleteMapping(path = "/{cuid}")
-    public ResponseEntity<String> removeContainer(@PathVariable("cuid") @NotEmpty String cuid) throws Exception {
-        return ResponseEntity.ok("The container with the ID " + service.removeContainer(cuid) + " was deleted");
+    public ResponseEntity<Map<String, String>> removeContainer(@PathVariable("cuid") @NotEmpty String cuid) throws Exception {
+        return ResponseEntity.ok(service.removeContainer(cuid));
     }
 
     @GetMapping(path = "/{cuid}/history")

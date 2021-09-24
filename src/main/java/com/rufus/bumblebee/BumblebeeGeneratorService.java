@@ -10,9 +10,10 @@ import java.util.concurrent.Executor;
 
 @SpringBootApplication(scanBasePackages = {"com.rufus.bumblebee.*"})
 @EnableAsync
-public class Start {
+public class BumblebeeGeneratorService {
+
     public static void main(String[] args) {
-        SpringApplication.run(Start.class, args);
+        SpringApplication.run(BumblebeeGeneratorService.class, args);
     }
 
     @Bean
