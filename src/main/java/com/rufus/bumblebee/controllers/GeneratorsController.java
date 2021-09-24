@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(path = "/generatorManager")
+@RequestMapping(path = "/generators")
 @Api(value = "Controller for generators", tags = {"Controller for generators"})
 public class GeneratorsController {
 
@@ -32,14 +32,14 @@ public class GeneratorsController {
         this.generatorService = generatorService;
     }
 
-    @PostMapping(path = "/stream-sse-add", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @PostMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter addGenerators(@RequestBody GeneratorsRequest request) throws Exception {
         SseEmitter emitter = new SseEmitter();
         generatorService.initGenerators(request, emitter);
         return emitter;
     }
 
-    @GetMapping(path = "/information", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/information")
     public ResponseEntity<List<GeneratorDto>> getGenerators() {
         return new ResponseEntity<>(getGeneratorsInformation(), HttpStatus.OK);
     }

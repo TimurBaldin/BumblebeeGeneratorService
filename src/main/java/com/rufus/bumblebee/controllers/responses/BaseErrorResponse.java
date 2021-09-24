@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.controllers.responses;
 
-public class BaseResponse {
+public class BaseErrorResponse {
 
     private String errorMessage;
     private String detailErrorMessage;

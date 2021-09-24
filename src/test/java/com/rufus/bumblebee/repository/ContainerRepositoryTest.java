@@ -1,5 +1,6 @@
 package com.rufus.bumblebee.repository;
 
+import com.rufus.bumblebee.repository.interfaces.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,8 +1,8 @@
 package com.rufus.bumblebee.configuration;
 
-import com.rufus.bumblebee.repository.ContainerRepository;
-import com.rufus.bumblebee.repository.CustomContainerRepository;
-import com.rufus.bumblebee.repository.TestDataRepository;
+import com.rufus.bumblebee.repository.interfaces.ContainerRepository;
+import com.rufus.bumblebee.repository.interfaces.CustomContainerRepository;
+import com.rufus.bumblebee.repository.interfaces.TestDataRepository;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

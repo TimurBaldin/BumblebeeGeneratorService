@@ -2,7 +2,7 @@ package com.rufus.bumblebee.services;
 
 import com.rufus.bumblebee.controllers.requests.ReportType;
 import com.rufus.bumblebee.controllers.dto.ContainerDto;
-import com.rufus.bumblebee.repository.ContainerRepository;
+import com.rufus.bumblebee.repository.interfaces.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.interfaces.ContainerService;

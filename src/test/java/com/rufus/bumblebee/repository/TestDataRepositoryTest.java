@@ -3,6 +3,8 @@ package com.rufus.bumblebee.repository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.rufus.bumblebee.repository.interfaces.ContainerRepository;
+import com.rufus.bumblebee.repository.interfaces.TestDataRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.repository.tables.TestData;
 import org.junit.Assert;
