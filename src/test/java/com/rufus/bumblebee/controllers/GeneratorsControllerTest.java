@@ -2,7 +2,7 @@ package com.rufus.bumblebee.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
+import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
 import com.rufus.bumblebee.services.interfaces.GeneratorService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,13 +31,13 @@ public class GeneratorsControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    GeneratorService<GeneratorsRequest> generatorService;
+    GeneratorService<GeneratorRequest> generatorService;
 
     private static final ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
     @Test
     public void testAddGenerator() throws Exception {
-        GeneratorsRequest request = new GeneratorsRequest();
+        GeneratorRequest request = new GeneratorRequest();
         request.setCuid("1112");
         MockHttpServletResponse response = mvc.perform(post("/generators")
                         .contentType(MediaType.APPLICATION_JSON).content(ow.writeValueAsString(request)))

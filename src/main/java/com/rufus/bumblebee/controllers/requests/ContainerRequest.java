@@ -1,5 +1,6 @@
 package com.rufus.bumblebee.controllers.requests;
 
+//TODO добавить валидацию
 public class ContainerRequest {
     private String name;
     private boolean historyOn;

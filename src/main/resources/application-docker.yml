@@ -10,6 +10,6 @@ spring:
       idle-timeout: 600000
       max-lifetime: 1800000
 
-  kafka:
-    producer:
-      bootstrap-servers: kafka:9092
+kafka:
+  producer:
+    server: kafka:9092

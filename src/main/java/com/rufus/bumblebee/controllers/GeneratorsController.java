@@ -2,8 +2,8 @@ package com.rufus.bumblebee.controllers;
 
 import com.rufus.bumblebee.controllers.dto.GeneratorDto;
 import com.rufus.bumblebee.controllers.dto.GeneratorParametersDto;
-import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
-import com.rufus.bumblebee.generators.annotation.AnnotationHandler;
+import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
+import com.rufus.bumblebee.generators.annotation.GeneratorAnnotationHandler;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 import com.rufus.bumblebee.services.interfaces.GeneratorService;
@@ -24,15 +24,15 @@ import java.util.stream.Collectors;
 @Api(value = "Controller for generators", tags = {"Controller for generators"})
 public class GeneratorsController {
 
-    private final GeneratorService<GeneratorsRequest> generatorService;
+    private final GeneratorService<GeneratorRequest> generatorService;
 
     @Autowired
-    public GeneratorsController(GeneratorService<GeneratorsRequest> generatorService) {
+    public GeneratorsController(GeneratorService<GeneratorRequest> generatorService) {
         this.generatorService = generatorService;
     }
 
     @PostMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public SseEmitter addGenerators(@RequestBody GeneratorsRequest request) throws Exception {
+    public SseEmitter addGenerators(@RequestBody GeneratorRequest request) throws Exception {
         SseEmitter emitter = new SseEmitter();
         generatorService.initGenerators(request, emitter);
         return emitter;
@@ -45,7 +45,7 @@ public class GeneratorsController {
 
     private List<GeneratorDto> getGeneratorsInformation() {
         List<GeneratorDto> generatorInfo = new ArrayList<>();
-        Map<GeneratorDescription, List<GeneratorParameter>> map = AnnotationHandler.getGeneratorBeans();
+        Map<GeneratorDescription, List<GeneratorParameter>> map = GeneratorAnnotationHandler.getGeneratorBeans();
         for (Map.Entry<GeneratorDescription, List<GeneratorParameter>> entry : map.entrySet()) {
             generatorInfo.add(new GeneratorDto(
                     entry.getKey().generatorName(),

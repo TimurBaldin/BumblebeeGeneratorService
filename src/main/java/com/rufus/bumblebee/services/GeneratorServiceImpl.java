@@ -1,9 +1,9 @@
 package com.rufus.bumblebee.services;
 
-import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
+import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
 import com.rufus.bumblebee.generators.BaseGenerator;
 import com.rufus.bumblebee.generators.GeneratorInformation;
-import com.rufus.bumblebee.generators.annotation.AnnotationHandler;
+import com.rufus.bumblebee.generators.annotation.GeneratorAnnotationHandler;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
@@ -29,15 +29,15 @@ import static com.rufus.bumblebee.utils.GeneratorValidatorUtils.validateGenerato
  * @version : 0.0.1
  */
 @Service
-public class GeneratorServiceImpl implements GeneratorService<GeneratorsRequest> {
+public class GeneratorServiceImpl implements GeneratorService<GeneratorRequest> {
 
     private static final Logger log = LoggerFactory.getLogger(GeneratorServiceImpl.class);
 
-    private final AnnotationHandler handler;
+    private final GeneratorAnnotationHandler handler;
     private final ContainerRepository containerRepository;
     private final TestDataGenerationService testDataGenerationService;
 
-    public GeneratorServiceImpl(AnnotationHandler handler, ContainerRepository containerRepository, TestDataGenerationService testDataGenerationService) {
+    public GeneratorServiceImpl(GeneratorAnnotationHandler handler, ContainerRepository containerRepository, TestDataGenerationService testDataGenerationService) {
         this.handler = handler;
         this.containerRepository = containerRepository;
         this.testDataGenerationService = testDataGenerationService;
@@ -45,7 +45,7 @@ public class GeneratorServiceImpl implements GeneratorService<GeneratorsRequest>
 
     @Override
     @Async("threadPoolTaskExecutor")
-    public void initGenerators(GeneratorsRequest request, SseEmitter emitter) throws Exception {
+    public void initGenerators(GeneratorRequest request, SseEmitter emitter) throws Exception {
         try {
             validateGeneratorsRequest(request);
         } catch (Exception ex) {

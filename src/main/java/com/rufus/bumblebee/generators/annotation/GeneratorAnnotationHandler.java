@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class AnnotationHandler {
+public class GeneratorAnnotationHandler {
 
-    private static final Logger log = LoggerFactory.getLogger(AnnotationHandler.class);
+    private static final Logger log = LoggerFactory.getLogger(GeneratorAnnotationHandler.class);
 
     private static final Map<GeneratorDescription, List<GeneratorParameter>> generatorBeans = new HashMap<>();
 
@@ -27,7 +27,7 @@ public class AnnotationHandler {
     private final ApplicationContext context;
 
     @Autowired
-    public AnnotationHandler(List<BaseGenerator> generators, ApplicationContext context) {
+    public GeneratorAnnotationHandler(List<BaseGenerator> generators, ApplicationContext context) {
         this.generators = generators;
         this.context = context;
     }

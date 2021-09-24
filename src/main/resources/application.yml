@@ -14,3 +14,30 @@ management:
       enabled: true
     health:
       show-details: always
+
+hibernate:
+  hbm2ddl:
+    auto: none
+  jdbc:
+    batch_size: 100
+  temp:
+    use_jdbc_metadata_defaults: false
+
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+  show_sql: false
+  format_sql: false
+  order_inserts: true
+  generate_statistics: false
+
+thread-pool:
+  core-size: 10
+  max-size: 20
+
+kafka:
+  topic:
+    name: reports_data
+    partition: 1
+    partition-factory: 1
+  message:
+      max-size: 524288000
+
