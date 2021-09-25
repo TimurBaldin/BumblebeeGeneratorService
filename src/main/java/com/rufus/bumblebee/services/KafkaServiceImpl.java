@@ -29,7 +29,7 @@ public class KafkaServiceImpl implements KafkaService<List<TestDataDto>> {
         KafkaDto dto = new KafkaDto();
         dto.setCuid(container.getCuid().toString());
         dto.setContainerName(container.getName());
-        dto.setAuthenticated(container.getAuthenticated());
+        dto.setHistoryOn(container.getHistoryOn());
         dto.setReportType(container.getType());
         dto.setData(data);
         template.send(topic.name(), gson.toJson(dto));

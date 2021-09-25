@@ -1,13 +1,13 @@
 package com.rufus.bumblebee.utils;
 
-import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
+import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
 import com.rufus.bumblebee.generators.GeneratorInformation;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
+import org.apache.commons.lang3.StringUtils;
 
-import javax.validation.ValidationException;
 import java.util.Map;
 
-import static com.rufus.bumblebee.generators.annotation.AnnotationHandler.getGeneratorBeans;
+import static com.rufus.bumblebee.generators.annotation.GeneratorAnnotationHandler.getGeneratorBeans;
 
 public final class GeneratorValidatorUtils {
 
@@ -31,13 +31,16 @@ public final class GeneratorValidatorUtils {
                 .stream().anyMatch(s -> s.generatorName().equals(generatorName));
     }
 
-    public static void validateGeneratorsRequest(GeneratorsRequest request) throws ValidationException {
+    public static void validateGeneratorsRequest(GeneratorRequest request) throws Exception {
+        if (StringUtils.isEmpty(request.getCuid())) {
+            throw new Exception("Parameter cuid is null or empty ");
+        }
         for (GeneratorInformation information : request.getGeneratorInfo()) {
             if (!checkGenerator(information.getGeneratorName())) {
-                throw new ValidationException("Invalid value passed generatorName: " + information.getGeneratorName());
+                throw new Exception("Invalid value passed generatorName: " + information.getGeneratorName());
             }
             if (!checkGeneratorParameters(information.getValues(), information.getGeneratorName())) {
-                throw new ValidationException("Invalid value passed generatorParameters: " + information.getValues());
+                throw new Exception("Invalid value passed generatorParameters: " + information.getValues());
             }
         }
     }

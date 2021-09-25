@@ -1,17 +1,18 @@
 package com.rufus.bumblebee.controllers;
 
-import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
-import com.rufus.bumblebee.controllers.responses.GeneratorDto;
-import com.rufus.bumblebee.controllers.responses.GeneratorParametersDto;
-import com.rufus.bumblebee.generators.annotation.AnnotationHandler;
+import com.rufus.bumblebee.controllers.dto.GeneratorDto;
+import com.rufus.bumblebee.controllers.dto.GeneratorParametersDto;
+import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
+import com.rufus.bumblebee.generators.annotation.GeneratorAnnotationHandler;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 import com.rufus.bumblebee.services.interfaces.GeneratorService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,35 +20,32 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(path = "/generatorManager")
+@RequestMapping(path = "/generators")
 @Api(value = "Controller for generators", tags = {"Controller for generators"})
 public class GeneratorsController {
 
-    private final GeneratorService<GeneratorsRequest, String> generatorService;
+    private final GeneratorService<GeneratorRequest> generatorService;
 
     @Autowired
-    public GeneratorsController(GeneratorService<GeneratorsRequest, String> generatorService) {
+    public GeneratorsController(GeneratorService<GeneratorRequest> generatorService) {
         this.generatorService = generatorService;
     }
 
-    @PostMapping(path = "/add")
-    public ResponseEntity<String> addGenerators(@RequestBody GeneratorsRequest request) throws Exception {
-        return new ResponseEntity<>(
-                "The task for generating test data for a container with CUID "
-                        .concat(generatorService.addGenerators(request))
-                        .concat(" is registered"),
-                HttpStatus.OK
-        );
+    @PostMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public SseEmitter addGenerators(@RequestBody GeneratorRequest request) throws Exception {
+        SseEmitter emitter = new SseEmitter();
+        generatorService.initGenerators(request, emitter);
+        return emitter;
     }
 
     @GetMapping(path = "/information")
     public ResponseEntity<List<GeneratorDto>> getGenerators() {
-        return new ResponseEntity<>(getGeneratorsInformation(), HttpStatus.OK);
+        return ResponseEntity.ok(getGeneratorsInformation());
     }
 
     private List<GeneratorDto> getGeneratorsInformation() {
         List<GeneratorDto> generatorInfo = new ArrayList<>();
-        Map<GeneratorDescription, List<GeneratorParameter>> map = AnnotationHandler.getGeneratorBeans();
+        Map<GeneratorDescription, List<GeneratorParameter>> map = GeneratorAnnotationHandler.getGeneratorBeans();
         for (Map.Entry<GeneratorDescription, List<GeneratorParameter>> entry : map.entrySet()) {
             generatorInfo.add(new GeneratorDto(
                     entry.getKey().generatorName(),

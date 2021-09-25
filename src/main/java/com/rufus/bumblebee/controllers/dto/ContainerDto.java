@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.controllers.responses;
+package com.rufus.bumblebee.controllers.dto;
 
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 

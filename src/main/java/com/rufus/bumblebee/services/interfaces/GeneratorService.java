@@ -1,7 +1,9 @@
 package com.rufus.bumblebee.services.interfaces;
 
-public interface GeneratorService<T, R> {
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-    R addGenerators(T request) throws Exception;
+public interface GeneratorService<T> {
+
+    void initGenerators(T request, SseEmitter emitter) throws Exception;
 
 }

@@ -2,11 +2,10 @@ package com.rufus.bumblebee.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.rufus.bumblebee.controllers.requests.GeneratorsRequest;
+import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
 import com.rufus.bumblebee.services.interfaces.GeneratorService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -17,11 +16,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.UUID;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -35,17 +31,15 @@ public class GeneratorsControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    GeneratorService<GeneratorsRequest, String> generatorService;
+    GeneratorService<GeneratorRequest> generatorService;
 
     private static final ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
     @Test
     public void testAddGenerator() throws Exception {
-        GeneratorsRequest request = new GeneratorsRequest();
+        GeneratorRequest request = new GeneratorRequest();
         request.setCuid("1112");
-        Mockito.when(generatorService.addGenerators(any())).thenReturn(UUID.randomUUID().toString());
-
-        MockHttpServletResponse response = mvc.perform(post("/generatorManager/add")
+        MockHttpServletResponse response = mvc.perform(post("/generators")
                         .contentType(MediaType.APPLICATION_JSON).content(ow.writeValueAsString(request)))
                 .andExpect(status().isOk()).andReturn().getResponse();
 
@@ -55,7 +49,7 @@ public class GeneratorsControllerTest {
 
     @Test
     public void testGetGenerators() throws Exception {
-        MockHttpServletResponse response = mvc.perform(get("/generatorManager/information")
+        MockHttpServletResponse response = mvc.perform(get("/generators/information")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).
                 andReturn().getResponse();

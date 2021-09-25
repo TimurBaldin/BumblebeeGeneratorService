@@ -16,14 +16,14 @@ public class TestData implements Serializable {
     @SequenceGenerator(name = "row_id", sequenceName = "repository.test_data_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "row_id")
     @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+    private long id;
 
     @Type(type = "jsonb")
     @Column(name = "value")
     private String value;
 
     @Column(name = "container_ref")
-    private Long containerRef;
+    private long containerRef;
 
     @Column(name = "generator_name")
     private String generatorName;
@@ -32,7 +32,7 @@ public class TestData implements Serializable {
     @JoinColumn(name = "container_ref",insertable = false,updatable = false)
     Container container;
 
-    public TestData(String value, Long containerRef, String generatorName) {
+    public TestData(String value, long containerRef, String generatorName) {
         this.value = value;
         this.containerRef = containerRef;
         this.generatorName = generatorName;
@@ -40,11 +40,11 @@ public class TestData implements Serializable {
 
     public TestData() {}
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -56,11 +56,11 @@ public class TestData implements Serializable {
         this.value = value;
     }
 
-    public Long getContainerRef() {
+    public long getContainerRef() {
         return containerRef;
     }
 
-    public void setContainerRef(Long containerRef) {
+    public void setContainerRef(long containerRef) {
         this.containerRef = containerRef;
     }
 

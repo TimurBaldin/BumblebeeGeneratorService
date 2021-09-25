@@ -17,7 +17,7 @@ public class Container implements Serializable {
     @Column(name = "id", unique = true, nullable = false)
     @SequenceGenerator(name = "containers_id", sequenceName = "repository.containers_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "containers_id")
-    private Long id;
+    private long id;
 
     @Column(name = "name")
     private String name;
@@ -28,8 +28,8 @@ public class Container implements Serializable {
     @Column(name = "update_date")
     private LocalDateTime updateDate;
 
-    @Column(name = "authenticated")
-    private Boolean isAuthenticated;
+    @Column(name = "history_on")
+    private boolean historyOn;
 
     @Enumerated(EnumType.STRING)
     private ContainerStatus status;
@@ -43,11 +43,11 @@ public class Container implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "container")
     private List<TestData> data;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -75,12 +75,12 @@ public class Container implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public Boolean getAuthenticated() {
-        return isAuthenticated;
+    public boolean getHistoryOn() {
+        return historyOn;
     }
 
-    public void setAuthenticated(Boolean authenticated) {
-        isAuthenticated = authenticated;
+    public void setHistoryOn(boolean historyOn) {
+        this.historyOn = historyOn;
     }
 
     public ContainerStatus getStatus() {

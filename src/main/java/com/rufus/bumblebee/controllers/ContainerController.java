@@ -1,41 +1,52 @@
 package com.rufus.bumblebee.controllers;
 
+import com.rufus.bumblebee.controllers.dto.ContainerDto;
 import com.rufus.bumblebee.controllers.requests.ContainerRequest;
-import com.rufus.bumblebee.controllers.responses.ContainerDto;
+import com.rufus.bumblebee.services.dto.HistoryDto;
 import com.rufus.bumblebee.services.interfaces.ContainerService;
+import com.rufus.bumblebee.services.interfaces.HistoryService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.NoResultException;
 import javax.validation.constraints.NotEmpty;
+import java.util.Map;
 
 
 @RestController
-@RequestMapping(path = "/containerManager")
+@RequestMapping(path = "/containers")
 @Api(value = "Controller for containers", tags = {"Controller for containers"})
 @Validated
 public class ContainerController {
 
     private final ContainerService service;
+    private final HistoryService<HistoryDto, String> historyService;
 
     @Autowired
-    public ContainerController(ContainerService service) {
+    public ContainerController(ContainerService service, HistoryService<HistoryDto, String> historyService) {
         this.service = service;
+        this.historyService = historyService;
     }
 
-    @PostMapping(path = "/add")
-    public ResponseEntity<ContainerDto> addContainer(@RequestBody ContainerRequest request) {
-        return new ResponseEntity<ContainerDto>(
-                service.createContainer(request.getName(), request.getAuth(), request.getReportType()), HttpStatus.OK
-        );
+    @PostMapping
+    public ResponseEntity<ContainerDto> addContainer(@RequestBody ContainerRequest request) throws Exception {
+        return ResponseEntity.ok(service.createContainer(request.getName(), request.getHistoryOn(), request.getReportType()));
     }
 
-    @DeleteMapping(path = "/remove/{cuid}")
-    public ResponseEntity<String> removeContainer(@PathVariable("cuid") @NotEmpty String cuid) throws NoResultException {
-        return new ResponseEntity<String>("The container with the ID " + service.removeContainer(cuid) + " was deleted", HttpStatus.OK);
+    @DeleteMapping(path = "/{cuid}")
+    public ResponseEntity<Map<String, String>> removeContainer(@PathVariable("cuid") @NotEmpty String cuid) throws Exception {
+        return ResponseEntity.ok(service.removeContainer(cuid));
+    }
+
+    @GetMapping(path = "/{cuid}/history")
+    public ResponseEntity<HistoryDto> getHistory(@PathVariable("cuid") @NotEmpty String cuid) {
+        return ResponseEntity.ok(historyService.getHistory(cuid));
+    }
+
+    @GetMapping(path = "/{name}/information")
+    public ResponseEntity<ContainerDto> getContainerByName(@PathVariable("name") @NotEmpty String name) throws Exception {
+        return ResponseEntity.ok(service.getContainerByName(name));
     }
 }

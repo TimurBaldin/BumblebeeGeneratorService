@@ -1,6 +1,5 @@
 package com.rufus.bumblebee.configuration;
 
-import com.opentable.db.postgres.embedded.EmbeddedPostgres;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.CustomContainerRepository;
 import com.rufus.bumblebee.repository.TestDataRepository;
@@ -8,8 +7,7 @@ import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -19,7 +17,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
@@ -31,14 +28,19 @@ import java.util.Properties;
 })
 public class DataSourceConfig {
 
-    @Bean("dataSource")
-    @Profile("test")
-    public DataSource dataSource() throws IOException {
-        EmbeddedPostgres embeddedPostgres = EmbeddedPostgres.builder().setPort(1890).start();
-        return embeddedPostgres.getPostgresDatabase();
-    }
+    @Autowired
+    private Environment env;
 
-    @Bean("entityManagerFactory")
+    private static final String HIBERNATE_DDL = "hibernate.hbm2ddl.auto";
+    private static final String HIBERNATE_DIALECT = "hibernate.dialect";
+    private static final String HIBERNATE_SHOW_SQL = "hibernate.show_sql";
+    private static final String HIBERNATE_FORMAT_SQL = "hibernate.format_sql";
+    private static final String HIBERNATE_BATCH_SIZE = "hibernate.jdbc.batch_size";
+    private static final String HIBERNATE_ORDER_INSERTS = "hibernate.order_inserts";
+    private static final String HIBERNATE_STATISTICS = "hibernate.generate_statistics";
+    private static final String HIBERNATE_METADATA = "hibernate.temp.use_jdbc_metadata_defaults";
+
+    @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Autowired DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
@@ -50,19 +52,14 @@ public class DataSourceConfig {
         return em;
     }
 
-    @Bean("transactionManager")
+    @Bean
     public PlatformTransactionManager transactionManager(@Autowired LocalContainerEntityManagerFactoryBean factoryBean) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(factoryBean.getObject());
         return transactionManager;
     }
 
-    @Bean("exceptionTranslation")
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-        return new PersistenceExceptionTranslationPostProcessor();
-    }
-
-    @Bean("liquibase")
+    @Bean
     public SpringLiquibase liquibase(@Autowired DataSource dataSource) {
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setChangeLog("classpath:db/changelog/db.changelog.yaml");
@@ -72,14 +69,14 @@ public class DataSourceConfig {
 
     private Properties additionalProperties() {
         final Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "none");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        properties.setProperty("hibernate.show_sql", "false");
-        properties.setProperty("hibernate.format_sql", "false");
-        properties.setProperty("hibernate.jdbc.batch_size", "100");
-        properties.setProperty("hibernate.order_inserts", "true");
-        properties.setProperty("hibernate.generate_statistics", "false");
-        properties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
+        properties.setProperty(HIBERNATE_DDL, env.getProperty(HIBERNATE_DDL));
+        properties.setProperty(HIBERNATE_DIALECT, env.getProperty(HIBERNATE_DIALECT));
+        properties.setProperty(HIBERNATE_SHOW_SQL, env.getProperty(HIBERNATE_SHOW_SQL));
+        properties.setProperty(HIBERNATE_FORMAT_SQL, env.getProperty(HIBERNATE_FORMAT_SQL));
+        properties.setProperty(HIBERNATE_BATCH_SIZE, env.getProperty(HIBERNATE_BATCH_SIZE));
+        properties.setProperty(HIBERNATE_ORDER_INSERTS, env.getProperty(HIBERNATE_ORDER_INSERTS));
+        properties.setProperty(HIBERNATE_STATISTICS, env.getProperty(HIBERNATE_STATISTICS));
+        properties.setProperty(HIBERNATE_METADATA, env.getProperty(HIBERNATE_METADATA));
         return properties;
     }
 }

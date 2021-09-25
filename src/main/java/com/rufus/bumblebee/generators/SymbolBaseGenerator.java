@@ -2,8 +2,6 @@ package com.rufus.bumblebee.generators;
 
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +16,6 @@ import static com.rufus.bumblebee.generators.SymbolBaseGenerator.DataMode.STRING
         generatorClass = SymbolBaseGenerator.class,
         description = "Generator for create random values"
 )
-@Component
-@Scope("prototype")
 public class SymbolBaseGenerator implements BaseGenerator {
 
     @GeneratorParameter(

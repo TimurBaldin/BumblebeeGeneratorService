@@ -5,9 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.controllers.requests.ReportType;
-import com.rufus.bumblebee.controllers.responses.ContainerDto;
-import com.rufus.bumblebee.services.ContainerServiceImpl;
+import com.rufus.bumblebee.controllers.dto.ContainerDto;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
+import com.rufus.bumblebee.services.dto.HistoryDto;
+import com.rufus.bumblebee.services.interfaces.ContainerService;
+import com.rufus.bumblebee.services.interfaces.HistoryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -37,7 +38,10 @@ public class ContainerControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    private ContainerServiceImpl service;
+    private ContainerService service;
+
+    @MockBean
+    private HistoryService<HistoryDto, String> historyService;
 
     private static final ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
     private static final String TEST_VALUE = "TEST";
@@ -45,15 +49,15 @@ public class ContainerControllerTest {
     @Test
     public void testAddContainer() throws Exception {
         ContainerDto dto = getContainerDto();
-        ResponseEntity<ContainerDto> baseResponse = new ResponseEntity<ContainerDto>(dto, HttpStatus.OK);
+        ResponseEntity<ContainerDto> baseResponse = new ResponseEntity<>(dto, HttpStatus.OK);
         given(service.createContainer(TEST_VALUE, false, ReportType.EXCEL_TYPE)).willReturn(dto);
 
         ContainerRequest request = new ContainerRequest();
-        request.setAuth(false);
+        request.setHistoryOn(false);
         request.setReportType(ReportType.EXCEL_TYPE);
         request.setName(TEST_VALUE);
 
-        MockHttpServletResponse response = mvc.perform(post("/containerManager/add")
+        MockHttpServletResponse response = mvc.perform(post("/containers")
                         .contentType(MediaType.APPLICATION_JSON).content(ow.writeValueAsString(request)))
                 .andExpect(status().isOk()).
                 andReturn().getResponse();
@@ -64,7 +68,16 @@ public class ContainerControllerTest {
 
     @Test
     public void testRemoveContainer() throws Exception {
-        MockHttpServletResponse response = mvc.perform(delete("/containerManager/remove/1")
+        MockHttpServletResponse response = mvc.perform(delete("/containers/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk()).
+                andReturn().getResponse();
+        assertEquals(response.getStatus(), HttpStatus.OK.value());
+    }
+
+    @Test
+    public void testGetHistory() throws Exception {
+        MockHttpServletResponse response = mvc.perform(get("/containers/1/history")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).
                 andReturn().getResponse();

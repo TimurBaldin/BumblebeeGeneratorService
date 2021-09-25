@@ -1,12 +1,11 @@
 package com.rufus.bumblebee.controllers.requests;
 
 import com.rufus.bumblebee.generators.GeneratorInformation;
-import javax.validation.constraints.NotNull;
+
 import java.util.List;
 
+public class GeneratorRequest {
 
-public class GeneratorsRequest {
-    @NotNull
     private String cuid;
     private List<GeneratorInformation> generatorInfo;
 

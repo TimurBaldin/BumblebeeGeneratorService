@@ -1,16 +1,18 @@
 package com.rufus.bumblebee.services;
 
 import com.rufus.bumblebee.controllers.requests.ReportType;
-import com.rufus.bumblebee.controllers.responses.ContainerDto;
+import com.rufus.bumblebee.controllers.dto.ContainerDto;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.interfaces.ContainerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.NoResultException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -18,26 +20,53 @@ public class ContainerServiceImpl implements ContainerService {
 
     private final ContainerRepository repository;
 
+    private static final String KEY_UID = "UID";
+    private static final String KEY_STATUS = "STATUS";
+
     @Autowired
     public ContainerServiceImpl(ContainerRepository repository) {
         this.repository = repository;
     }
 
-    public ContainerDto createContainer(String name, boolean auth, ReportType type) {
+    @Override
+    public ContainerDto createContainer(String name, boolean historyOn, ReportType type) throws Exception {
         Container container = new Container();
         container.setName(name);
-        container.setAuthenticated(auth);
+        container.setHistoryOn(historyOn);
         container.setDate(LocalDateTime.now());
         container.setStatus(ContainerStatus.NEW);
         container.setType(type);
         container.setCuid(UUID.randomUUID());
-        return getContainerDto(repository.save(container));
+
+        try {
+            return getContainerDto(repository.save(container));
+        } catch (DataAccessException exception) {
+            throw new Exception("Error in the create container operation for name: " + name, exception);
+        }
     }
 
-    public String removeContainer(String cuid) throws NoResultException {
-        Container container = repository.getContainerByCuid(cuid);
-        repository.delete(container);
-        return cuid;
+    @Override
+    public Map<String, String> removeContainer(String cuid) throws Exception {
+        try {
+            Container container = repository.getContainerByCuid(cuid);
+            repository.delete(container);
+        } catch (DataAccessException exception) {
+            throw new Exception("Error in the remove container operation for cuid: " + cuid, exception);
+        }
+
+        return new HashMap<String, String>() {{
+            put(KEY_UID, cuid);
+            put(KEY_STATUS, ContainerStatus.CONTAINER_INACTIVE.name());
+        }};
+    }
+
+    @Override
+    public ContainerDto getContainerByName(String name) throws Exception {
+        try {
+            return getContainerDto(repository.getContainerByName(name));
+        } catch (DataAccessException exception) {
+            throw new Exception("Error in the get container by name operation for name: " + name, exception);
+        }
     }
 
     private ContainerDto getContainerDto(Container container) {

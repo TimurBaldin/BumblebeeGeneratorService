@@ -3,15 +3,16 @@ package com.rufus.bumblebee.generators;
 import java.util.Map;
 
 public class GeneratorInformation {
-    String generatorName;
-    Map<String, String> values;
+    private String generatorName;
+    private Map<String, String> values;
 
     public String getGeneratorName() {
         return generatorName;
     }
 
-    public void setGeneratorName(String generatorName) {
+    public GeneratorInformation setGeneratorName(String generatorName) {
         this.generatorName = generatorName;
+        return this;
     }
 
     public Map<String, String> getValues() {
