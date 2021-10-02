@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.services.interfaces;
 
-import com.rufus.bumblebee.controllers.dto.ContainerDto;
+import com.rufus.bumblebee.services.dto.ContainerDto;
 import com.rufus.bumblebee.controllers.requests.ReportType;
 
 import java.util.Map;

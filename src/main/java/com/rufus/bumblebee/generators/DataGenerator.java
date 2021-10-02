@@ -9,7 +9,7 @@ import java.util.List;
  * @author : Baldin Timur
  * @version : 0.0.1
  */
-public interface BaseGenerator extends Serializable {
+public interface DataGenerator extends Serializable {
 
     /**
      * Запуск генерации тестовых данных

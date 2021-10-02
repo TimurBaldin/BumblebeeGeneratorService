@@ -1,10 +1,17 @@
 package com.rufus.bumblebee.controllers.requests;
 
-//TODO добавить валидацию
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class ContainerRequest {
+
+    @NotNull
+    @NotEmpty
     private String name;
-    private boolean historyOn;
+
+    @NotNull
     private ReportType reportType;
+    private boolean historyOn;
 
     public String getName() {
         return name;

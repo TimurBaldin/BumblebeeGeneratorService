@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.services;
+package com.rufus.bumblebee.services.containers;
 
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
