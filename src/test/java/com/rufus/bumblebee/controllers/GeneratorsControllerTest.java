@@ -3,6 +3,8 @@ package com.rufus.bumblebee.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
+import com.rufus.bumblebee.services.dto.GeneratorDto;
+import com.rufus.bumblebee.services.interfaces.GeneratorInformationService;
 import com.rufus.bumblebee.services.interfaces.GeneratorService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +17,8 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -32,6 +36,9 @@ public class GeneratorsControllerTest {
 
     @MockBean
     GeneratorService<GeneratorRequest> generatorService;
+
+    @MockBean
+    GeneratorInformationService<List<GeneratorDto>> informationService;
 
     private static final ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 

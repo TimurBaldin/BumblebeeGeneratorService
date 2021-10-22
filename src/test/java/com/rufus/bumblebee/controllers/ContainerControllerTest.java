@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.controllers.requests.ReportType;
-import com.rufus.bumblebee.controllers.dto.ContainerDto;
+import com.rufus.bumblebee.services.dto.ContainerDto;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.dto.HistoryDto;
 import com.rufus.bumblebee.services.interfaces.ContainerService;

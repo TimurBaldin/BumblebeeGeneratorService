@@ -16,11 +16,16 @@ import static java.lang.Integer.parseInt;
 @EnableAsync
 public class BumblebeeGeneratorService {
 
-    @Autowired
+   @Autowired
     private Environment env;
 
-    public static void main(String[] args) {
-        SpringApplication.run(BumblebeeGeneratorService.class, args);
+    public static final String KEY_UID = "CONTAINER_UID";
+    public static final String KEY_STATUS = "CONTAINER_STATUS";
+    public static final String KEY_GENERATORS_SIZE = "GENERATORS_SIZE";
+    public static final String KEY_CONTAINER_NAME = "CONTAINER_NAME";
+
+    public static void main(String[] args){
+       SpringApplication.run(BumblebeeGeneratorService.class, args);
     }
 
     @Bean

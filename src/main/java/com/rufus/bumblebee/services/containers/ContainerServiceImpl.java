@@ -1,7 +1,7 @@
-package com.rufus.bumblebee.services;
+package com.rufus.bumblebee.services.containers;
 
 import com.rufus.bumblebee.controllers.requests.ReportType;
-import com.rufus.bumblebee.controllers.dto.ContainerDto;
+import com.rufus.bumblebee.services.dto.ContainerDto;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
@@ -15,13 +15,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import static com.rufus.bumblebee.BumblebeeGeneratorService.KEY_STATUS;
+import static com.rufus.bumblebee.BumblebeeGeneratorService.KEY_UID;
+
 @Service
 public class ContainerServiceImpl implements ContainerService {
 
     private final ContainerRepository repository;
-
-    private static final String KEY_UID = "UID";
-    private static final String KEY_STATUS = "STATUS";
 
     @Autowired
     public ContainerServiceImpl(ContainerRepository repository) {
@@ -56,7 +56,7 @@ public class ContainerServiceImpl implements ContainerService {
 
         return new HashMap<String, String>() {{
             put(KEY_UID, cuid);
-            put(KEY_STATUS, ContainerStatus.CONTAINER_INACTIVE.name());
+            put(KEY_STATUS, ContainerStatus.CONTAINER_REMOVED.name());
         }};
     }
 

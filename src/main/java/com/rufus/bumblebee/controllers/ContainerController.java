@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.controllers;
 
-import com.rufus.bumblebee.controllers.dto.ContainerDto;
+import com.rufus.bumblebee.services.dto.ContainerDto;
 import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.services.dto.HistoryDto;
 import com.rufus.bumblebee.services.interfaces.ContainerService;
@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class ContainerController {
     }
 
     @PostMapping
-    public ResponseEntity<ContainerDto> addContainer(@RequestBody ContainerRequest request) throws Exception {
+    public ResponseEntity<ContainerDto> addContainer(@Valid @RequestBody ContainerRequest request) throws Exception {
         return ResponseEntity.ok(service.createContainer(request.getName(), request.getHistoryOn(), request.getReportType()));
     }
 

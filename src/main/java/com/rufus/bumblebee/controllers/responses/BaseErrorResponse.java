@@ -1,23 +1,15 @@
 package com.rufus.bumblebee.controllers.responses;
 
-public class BaseErrorResponse {
+public class BaseErrorResponse<M> {
 
-    private String errorMessage;
-    private String detailErrorMessage;
+    private M errorMessage;
 
-    public String getDetailErrorMessage() {
-        return detailErrorMessage;
-    }
-
-    public void setDetailErrorMessage(String detailErrorMessage) {
-        this.detailErrorMessage = detailErrorMessage;
-    }
-
-    public String getErrorMessage() {
+    public M getErrorMessage() {
         return errorMessage;
     }
 
-    public void setErrorMessage(String errorMessage) {
+    public BaseErrorResponse setErrorMessage(M errorMessage) {
         this.errorMessage = errorMessage;
+        return this;
     }
 }

@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.controllers.dto;
+package com.rufus.bumblebee.services.dto;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 

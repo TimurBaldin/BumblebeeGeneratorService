@@ -8,50 +8,50 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static com.rufus.bumblebee.generators.SymbolBaseGenerator.DataMode.NUMBER;
-import static com.rufus.bumblebee.generators.SymbolBaseGenerator.DataMode.STRING;
+import static com.rufus.bumblebee.generators.SymbolDataGenerator.DataMode.NUMBER;
+import static com.rufus.bumblebee.generators.SymbolDataGenerator.DataMode.STRING;
 
 @GeneratorDescription(
         generatorName = "SymbolGenerator",
-        generatorClass = SymbolBaseGenerator.class,
+        generatorClass = SymbolDataGenerator.class,
         description = "Generator for create random values"
 )
-public class SymbolBaseGenerator implements BaseGenerator {
+public class SymbolDataGenerator implements DataGenerator {
 
     @GeneratorParameter(
             name = "len",
             description = "The length of the text value, applied if isCascade = false",
             InClass = Integer.class
     )
-    public Integer len;
+    private Integer len;
 
     @GeneratorParameter(
             name = "count",
             description = "Number of text values in the list",
             InClass = Integer.class
     )
-    public Integer count;
+    private Integer count;
 
     @GeneratorParameter(
             name = "mode",
             description = "Maybe value STRING or NUMBER",
             InClass = String.class
     )
-    public String mode;
+    private String mode;
 
     @GeneratorParameter(
             name = "isNull",
             description = "The presence of a NULL value",
             InClass = Boolean.class
     )
-    public Boolean isNull;
+    private Boolean isNull;
 
     @GeneratorParameter(
             name = "isCascade",
             description = "Cascading increment of values in a text expression",
             InClass = Boolean.class
     )
-    public Boolean isCascade;
+    private Boolean isCascade;
 
     private final int MIN_ID_STRING = 1;
     private final int MAX_ID_STRING = 192;
@@ -107,5 +107,33 @@ public class SymbolBaseGenerator implements BaseGenerator {
         DataMode(String key) {
             this.key = key;
         }
+    }
+
+    public void setLen(Integer len) {
+        this.len = len;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public void setNull(Boolean aNull) {
+        isNull = aNull;
+    }
+
+    public void setCascade(Boolean cascade) {
+        isCascade = cascade;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public Integer getLen() {
+        return len;
     }
 }

@@ -30,7 +30,7 @@ hibernate:
   generate_statistics: false
 
 thread-pool:
-  core-size: 10
+  core-size: 1
   max-size: 20
 
 kafka:
