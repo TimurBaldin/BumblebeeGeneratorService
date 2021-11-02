@@ -2,6 +2,9 @@ package com.rufus.bumblebee.services.dto;
 
 import java.util.List;
 
+/**
+ * Class Dto для исторических данных о генераторах
+ */
 public class HistoryDto {
 
     private final String containerName;

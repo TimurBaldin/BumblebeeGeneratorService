@@ -14,43 +14,37 @@ import static com.rufus.bumblebee.generators.SymbolDataGenerator.DataMode.STRING
 @GeneratorDescription(
         generatorName = "SymbolGenerator",
         generatorClass = SymbolDataGenerator.class,
-        description = "Generator for create random values"
-)
+        description = "Generator for create random values")
 public class SymbolDataGenerator implements DataGenerator {
 
     @GeneratorParameter(
             name = "len",
             description = "The length of the text value, applied if isCascade = false",
-            InClass = Integer.class
-    )
+            InClass = Integer.class)
     private Integer len;
 
     @GeneratorParameter(
             name = "count",
             description = "Number of text values in the list",
-            InClass = Integer.class
-    )
+            InClass = Integer.class)
     private Integer count;
 
     @GeneratorParameter(
             name = "mode",
             description = "Maybe value STRING or NUMBER",
-            InClass = String.class
-    )
+            InClass = String.class)
     private String mode;
 
     @GeneratorParameter(
             name = "isNull",
             description = "The presence of a NULL value",
-            InClass = Boolean.class
-    )
+            InClass = Boolean.class)
     private Boolean isNull;
 
     @GeneratorParameter(
             name = "isCascade",
             description = "Cascading increment of values in a text expression",
-            InClass = Boolean.class
-    )
+            InClass = Boolean.class)
     private Boolean isCascade;
 
     private final int MIN_ID_STRING = 1;
