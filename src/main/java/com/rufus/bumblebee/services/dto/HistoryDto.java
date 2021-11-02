@@ -4,9 +4,9 @@ import java.util.List;
 
 public class HistoryDto {
 
-    private String containerName;
-    private ContainerStatus status;
-    private List<String> generators;
+    private final String containerName;
+    private final ContainerStatus status;
+    private final List<String> generators;
 
     public HistoryDto(String containerName, ContainerStatus status, List<String> generators) {
         this.containerName = containerName;

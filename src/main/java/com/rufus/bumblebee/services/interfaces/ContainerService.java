@@ -5,6 +5,9 @@ import com.rufus.bumblebee.controllers.requests.ReportType;
 
 import java.util.Map;
 
+/**
+ * Class : сервис для работы с контейнерами
+ */
 public interface ContainerService {
 
     ContainerDto createContainer(String name, boolean auth, ReportType type) throws Exception;

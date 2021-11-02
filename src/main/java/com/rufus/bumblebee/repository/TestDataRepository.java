@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TestDataRepository extends CrudRepository<TestData, Long> {
-
     @Override
     <S extends TestData> Iterable<S> saveAll(Iterable<S> entities);
 }

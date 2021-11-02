@@ -5,7 +5,7 @@ import com.rufus.bumblebee.generators.GeneratorInformation;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 import com.rufus.bumblebee.generators.annotation.InformationAnnotationHandler;
-import com.rufus.bumblebee.services.interfaces.GeneratorService;
+import com.rufus.bumblebee.services.interfaces.InitGeneratorService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public abstract class BaseGeneratorService<R> implements GeneratorService<R> {
+public abstract class BaseInitGeneratorService<R> implements InitGeneratorService<R> {
 
     private final ApplicationContext context;
     private final InformationAnnotationHandler<Map<GeneratorDescription, List<GeneratorParameter>>> handler;
 
     @Autowired
-    protected BaseGeneratorService(ApplicationContext context, InformationAnnotationHandler<Map<GeneratorDescription, List<GeneratorParameter>>> handler) {
+    protected BaseInitGeneratorService(ApplicationContext context, InformationAnnotationHandler<Map<GeneratorDescription, List<GeneratorParameter>>> handler) {
         this.context = context;
         this.handler = handler;
     }

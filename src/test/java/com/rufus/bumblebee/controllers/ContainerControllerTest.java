@@ -9,7 +9,7 @@ import com.rufus.bumblebee.services.dto.ContainerDto;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.dto.HistoryDto;
 import com.rufus.bumblebee.services.interfaces.ContainerService;
-import com.rufus.bumblebee.services.interfaces.HistoryService;
+import com.rufus.bumblebee.services.interfaces.ContainerHistoryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class ContainerControllerTest {
     private ContainerService service;
 
     @MockBean
-    private HistoryService<HistoryDto, String> historyService;
+    private ContainerHistoryService<HistoryDto, String> containerHistoryService;
 
     private static final ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
     private static final String TEST_VALUE = "TEST";

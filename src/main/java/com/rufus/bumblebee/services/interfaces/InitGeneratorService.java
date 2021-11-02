@@ -2,8 +2,9 @@ package com.rufus.bumblebee.services.interfaces;
 
 import java.util.Map;
 
-public interface GeneratorService<T> {
-
+/**
+ * Class : сервис инициализации генераторов
+ */
+public interface InitGeneratorService<T> {
     Map<String, String> initGenerators(T request) throws Exception;
-
 }

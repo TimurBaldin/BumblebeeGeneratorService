@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.controllers.handlers;
+package com.rufus.bumblebee.services.handlers;
 
 import org.springframework.validation.ObjectError;
 

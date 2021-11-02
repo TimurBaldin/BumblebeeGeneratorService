@@ -11,7 +11,7 @@ import com.rufus.bumblebee.repository.tables.TestData;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.dto.TestDataDto;
 import com.rufus.bumblebee.services.interfaces.KafkaService;
-import com.rufus.bumblebee.services.interfaces.TestDataGenerationService;
+import com.rufus.bumblebee.services.interfaces.DataGenerationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +23,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class TestDataGenerationServiceImpl implements TestDataGenerationService {
+public class DataGenerationServiceImpl implements DataGenerationService {
 
-    private static final Logger log = LoggerFactory.getLogger(TestDataGenerationServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(DataGenerationServiceImpl.class);
 
     private final TestDataRepository repository;
     private final ContainerRepository containerRepository;
     private final KafkaService<List<TestDataDto>> kafkaService;
 
     @Autowired
-    public TestDataGenerationServiceImpl(TestDataRepository repository, ContainerRepository containerRepository, KafkaService<List<TestDataDto>> kafkaService) {
+    public DataGenerationServiceImpl(TestDataRepository repository, ContainerRepository containerRepository, KafkaService<List<TestDataDto>> kafkaService) {
         this.repository = repository;
         this.containerRepository = containerRepository;
         this.kafkaService = kafkaService;
@@ -41,7 +41,7 @@ public class TestDataGenerationServiceImpl implements TestDataGenerationService 
     @Async
     public void generateTestData(List<DataGenerator> generators, Container container){
         List<TestDataDto> dto = mapToDto(generators);
-        kafkaService.sendTestDataToReportService(dto, container);
+        kafkaService.sendTestData(dto, container);
 
         if (container.getHistoryOn()) {
             try {

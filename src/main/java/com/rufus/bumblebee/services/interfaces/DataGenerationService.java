@@ -5,8 +5,9 @@ import com.rufus.bumblebee.repository.tables.Container;
 
 import java.util.List;
 
-public interface TestDataGenerationService {
-
+/**
+ * Class : сервис генерации тестовых данных
+ */
+public interface DataGenerationService {
     void generateTestData(List<DataGenerator> generators, Container container);
-
 }

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
 import com.rufus.bumblebee.services.dto.GeneratorDto;
 import com.rufus.bumblebee.services.interfaces.GeneratorInformationService;
-import com.rufus.bumblebee.services.interfaces.GeneratorService;
+import com.rufus.bumblebee.services.interfaces.InitGeneratorService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class GeneratorsControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    GeneratorService<GeneratorRequest> generatorService;
+    InitGeneratorService<GeneratorRequest> initGeneratorService;
 
     @MockBean
     GeneratorInformationService<List<GeneratorDto>> informationService;

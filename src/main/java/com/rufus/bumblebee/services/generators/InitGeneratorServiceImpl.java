@@ -9,7 +9,7 @@ import com.rufus.bumblebee.generators.annotation.InformationAnnotationHandler;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.interfaces.GeneratorParametersService;
-import com.rufus.bumblebee.services.interfaces.TestDataGenerationService;
+import com.rufus.bumblebee.services.interfaces.DataGenerationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -23,28 +23,23 @@ import java.util.Map;
 import static com.rufus.bumblebee.BumblebeeGeneratorService.*;
 import static com.rufus.bumblebee.services.dto.ContainerStatus.*;
 
-/**
- * Class : Сервис создания тестовых данных
- *
- * @author : Baldin Timur
- */
 @Service
-public class GeneratorServiceImpl extends BaseGeneratorService<GeneratorRequest> {
+public class InitGeneratorServiceImpl extends BaseInitGeneratorService<GeneratorRequest> {
 
-    private static final Logger log = LoggerFactory.getLogger(GeneratorServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(InitGeneratorServiceImpl.class);
 
     private final ContainerRepository containerRepository;
-    private final TestDataGenerationService testDataGenerationService;
+    private final DataGenerationService dataGenerationService;
     private final GeneratorParametersService generatorParametersService;
 
-    public GeneratorServiceImpl(
-            ContainerRepository containerRepository, TestDataGenerationService testDataGenerationService,
-            GeneratorParametersService generatorParametersService, ApplicationContext context,
-            InformationAnnotationHandler<Map<GeneratorDescription, List<GeneratorParameter>>> handler
-    ) {
+    public InitGeneratorServiceImpl(ContainerRepository containerRepository,
+                                    DataGenerationService dataGenerationService,
+                                    GeneratorParametersService generatorParametersService,
+                                    ApplicationContext context,
+                                    InformationAnnotationHandler<Map<GeneratorDescription, List<GeneratorParameter>>> handler) {
         super(context, handler);
         this.containerRepository = containerRepository;
-        this.testDataGenerationService = testDataGenerationService;
+        this.dataGenerationService = dataGenerationService;
         this.generatorParametersService = generatorParametersService;
     }
 
@@ -71,7 +66,7 @@ public class GeneratorServiceImpl extends BaseGeneratorService<GeneratorRequest>
         }
         container.setStatus(PREPARATION_FOR_GENERATION);
 
-        testDataGenerationService.generateTestData(generators, containerRepository.save(container));
+        dataGenerationService.generateTestData(generators, containerRepository.save(container));
 
         return new HashMap<String, String>() {{
             put(KEY_CONTAINER_NAME, container.getName());

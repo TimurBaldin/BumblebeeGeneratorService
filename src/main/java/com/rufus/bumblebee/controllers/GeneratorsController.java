@@ -3,7 +3,7 @@ package com.rufus.bumblebee.controllers;
 import com.rufus.bumblebee.services.dto.GeneratorDto;
 import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
 import com.rufus.bumblebee.services.interfaces.GeneratorInformationService;
-import com.rufus.bumblebee.services.interfaces.GeneratorService;
+import com.rufus.bumblebee.services.interfaces.InitGeneratorService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,19 +19,19 @@ import java.util.Map;
 @Validated
 public class GeneratorsController {
 
-    private final GeneratorService<GeneratorRequest> generatorService;
+    private final InitGeneratorService<GeneratorRequest> initGeneratorService;
     private final GeneratorInformationService<List<GeneratorDto>> informationService;
 
     @Autowired
-    public GeneratorsController(GeneratorService<GeneratorRequest> generatorService,
+    public GeneratorsController(InitGeneratorService<GeneratorRequest> initGeneratorService,
                                 GeneratorInformationService<List<GeneratorDto>> informationService) {
-        this.generatorService = generatorService;
+        this.initGeneratorService = initGeneratorService;
         this.informationService = informationService;
     }
 
     @PostMapping
     public ResponseEntity<Map<String, String>> addGenerators(@RequestBody GeneratorRequest request) throws Exception {
-        return ResponseEntity.ok(generatorService.initGenerators(request));
+        return ResponseEntity.ok(initGeneratorService.initGenerators(request));
     }
 
     @GetMapping(path = "/information")

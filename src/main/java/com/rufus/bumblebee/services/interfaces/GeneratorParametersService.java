@@ -6,8 +6,9 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class : сервис для инициализации параметров генератора
+ */
 public interface GeneratorParametersService {
-
     void setParameters(List<Field> fields, Map<String, String> values, DataGenerator generator) throws Exception;
-
 }

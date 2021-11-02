@@ -4,7 +4,7 @@ import com.rufus.bumblebee.services.dto.ContainerDto;
 import com.rufus.bumblebee.controllers.requests.ContainerRequest;
 import com.rufus.bumblebee.services.dto.HistoryDto;
 import com.rufus.bumblebee.services.interfaces.ContainerService;
-import com.rufus.bumblebee.services.interfaces.HistoryService;
+import com.rufus.bumblebee.services.interfaces.ContainerHistoryService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +23,12 @@ import java.util.Map;
 public class ContainerController {
 
     private final ContainerService service;
-    private final HistoryService<HistoryDto, String> historyService;
+    private final ContainerHistoryService<HistoryDto, String> containerHistoryService;
 
     @Autowired
-    public ContainerController(ContainerService service, HistoryService<HistoryDto, String> historyService) {
+    public ContainerController(ContainerService service, ContainerHistoryService<HistoryDto, String> containerHistoryService) {
         this.service = service;
-        this.historyService = historyService;
+        this.containerHistoryService = containerHistoryService;
     }
 
     @PostMapping
@@ -43,7 +43,7 @@ public class ContainerController {
 
     @GetMapping(path = "/{cuid}/history")
     public ResponseEntity<HistoryDto> getHistory(@PathVariable("cuid") @NotEmpty String cuid) {
-        return ResponseEntity.ok(historyService.getHistory(cuid));
+        return ResponseEntity.ok(containerHistoryService.getHistory(cuid));
     }
 
     @GetMapping(path = "/{name}/information")

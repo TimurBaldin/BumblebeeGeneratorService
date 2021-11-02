@@ -2,8 +2,9 @@ package com.rufus.bumblebee.services.interfaces;
 
 import com.rufus.bumblebee.repository.tables.Container;
 
+/**
+ * Class : сервис для работы с kafka
+ */
 public interface KafkaService<T> {
-
-    void sendTestDataToReportService(T data, Container container);
-
+    void sendTestData(T data, Container container);
 }

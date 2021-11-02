@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.controllers.handlers;
+package com.rufus.bumblebee.services.handlers;
 
 import com.rufus.bumblebee.controllers.responses.BaseErrorResponse;
 import org.springframework.http.HttpStatus;

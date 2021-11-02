@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.services;
+package com.rufus.bumblebee.services.generators;
 
 import com.google.gson.Gson;
 import com.rufus.bumblebee.repository.tables.Container;
@@ -25,7 +25,7 @@ public class KafkaServiceImpl implements KafkaService<List<TestDataDto>> {
         this.topic = topic;
     }
 
-    public void sendTestDataToReportService(List<TestDataDto> data, Container container) {
+    public void sendTestData(List<TestDataDto> data, Container container) {
         KafkaDto dto = new KafkaDto();
         dto.setCuid(container.getCuid().toString());
         dto.setContainerName(container.getName());

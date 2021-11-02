@@ -1,8 +1,23 @@
 package com.rufus.bumblebee.services.dto;
 
+/**
+ * Class Dto для контейнеров
+ */
 public class ContainerDto {
+
+    /**
+     * Уникальный id контейнера
+     */
     private String cuid;
+
+    /**
+     * Уникальной имя контейнера
+     */
     private String name;
+
+    /**
+     * Контейнер статус
+     */
     private ContainerStatus status;
 
     public String getCuid() {

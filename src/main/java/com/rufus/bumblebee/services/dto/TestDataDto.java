@@ -4,8 +4,8 @@ import java.util.List;
 
 public class TestDataDto {
 
-    private String generatorName;
-    private List<String> data;
+    private final String generatorName;
+    private final List<String> data;
 
     public TestDataDto(String generatorName, List<String> data) {
         this.generatorName = generatorName;
