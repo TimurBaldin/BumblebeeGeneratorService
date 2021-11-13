@@ -8,8 +8,8 @@ import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 import com.rufus.bumblebee.generators.annotation.InformationAnnotationHandler;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
-import com.rufus.bumblebee.services.interfaces.GeneratorParametersService;
 import com.rufus.bumblebee.services.interfaces.DataGenerationService;
+import com.rufus.bumblebee.services.interfaces.GeneratorParametersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -46,13 +46,13 @@ public class InitGeneratorServiceImpl extends BaseInitGeneratorService<Generator
     @Override
     public Map<String, String> initGenerators(GeneratorRequest request) throws Exception {
         validateGeneratorsRequest(request);
-        Container container = containerRepository.getContainerByCuid(request.getCuid());
 
+        Container container = containerRepository.getContainerByCuid(request.getCuid());
         if (GENERATION_COMPLETED.equals(container.getStatus()) || PREPARATION_FOR_GENERATION.equals(container.getStatus())) {
             throw new Exception("Container status exception for status: " + container.getStatus());
         }
-        List<DataGenerator> generators = new ArrayList<>(request.getGeneratorInfo().size());
 
+        List<DataGenerator> generators = new ArrayList<>(request.getGeneratorInfo().size());
         for (GeneratorInformation information : request.getGeneratorInfo()) {
             try {
                 DataGenerator generator = (DataGenerator) getGeneratorByName(information.getGeneratorName());
@@ -64,8 +64,8 @@ public class InitGeneratorServiceImpl extends BaseInitGeneratorService<Generator
                 throw exception;
             }
         }
-        container.setStatus(PREPARATION_FOR_GENERATION);
 
+        container.setStatus(PREPARATION_FOR_GENERATION);
         dataGenerationService.generateTestData(generators, containerRepository.save(container));
 
         return new HashMap<String, String>() {{

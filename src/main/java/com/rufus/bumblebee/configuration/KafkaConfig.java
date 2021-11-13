@@ -26,18 +26,18 @@ public class KafkaConfig {
     @Autowired
     private Environment env;
 
-    private static final String KAFKA_SERVER_KEY = "kafka.producer.server";
-    private static final String KAFKA_TOPIC_NAME = "kafka.topic.name";
-    private static final String KAFKA_TOPIC_PARTITION = "kafka.topic.partition";
-    private static final String KAFKA_TOPIC_PARTITION_FACTORY = "kafka.topic.partition-factory";
-    private static final String KAFKA_TOPIC_MESSAGE_SIZE = "kafka.message.max-size";
+    private static final String KAFKA_SERVER_KEY_PROPERTY = "kafka.producer.server";
+    private static final String KAFKA_TOPIC_NAME_PROPERTY = "kafka.topic.name";
+    private static final String KAFKA_TOPIC_PARTITION_PROPERTY = "kafka.topic.partition";
+    private static final String KAFKA_TOPIC_PARTITION_FACTORY_PROPERTY = "kafka.topic.partition-factory";
+    private static final String KAFKA_TOPIC_MESSAGE_SIZE_PROPERTY = "kafka.message.max-size";
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
         Map<String, Object> configs = new HashMap<>();
         configs.put(
                 AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG,
-                env.getProperty(KAFKA_SERVER_KEY)
+                env.getProperty(KAFKA_SERVER_KEY_PROPERTY)
         );
         return new KafkaAdmin(configs);
     }
@@ -45,12 +45,12 @@ public class KafkaConfig {
     @Bean
     public NewTopic topic() {
         NewTopic topic = new NewTopic(
-                env.getProperty(KAFKA_TOPIC_NAME),
-                parseInt(env.getProperty(KAFKA_TOPIC_PARTITION)),
-                parseShort(env.getProperty(KAFKA_TOPIC_PARTITION_FACTORY))
+                env.getProperty(KAFKA_TOPIC_NAME_PROPERTY),
+                parseInt(env.getProperty(KAFKA_TOPIC_PARTITION_PROPERTY)),
+                parseShort(env.getProperty(KAFKA_TOPIC_PARTITION_FACTORY_PROPERTY))
         );
         Map<String, String> configs = new HashMap<>();
-        configs.put(TopicConfig.MAX_MESSAGE_BYTES_CONFIG, env.getProperty(KAFKA_TOPIC_MESSAGE_SIZE));
+        configs.put(TopicConfig.MAX_MESSAGE_BYTES_CONFIG, env.getProperty(KAFKA_TOPIC_MESSAGE_SIZE_PROPERTY));
         topic.configs(configs);
         return topic;
     }
@@ -58,10 +58,10 @@ public class KafkaConfig {
     @Bean
     public ProducerFactory<String, String> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
-        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, env.getProperty(KAFKA_SERVER_KEY));
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, env.getProperty(KAFKA_SERVER_KEY_PROPERTY));
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        configProps.put(ProducerConfig.MAX_REQUEST_SIZE_CONFIG, env.getProperty(KAFKA_TOPIC_MESSAGE_SIZE));
+        configProps.put(ProducerConfig.MAX_REQUEST_SIZE_CONFIG, env.getProperty(KAFKA_TOPIC_MESSAGE_SIZE_PROPERTY));
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 

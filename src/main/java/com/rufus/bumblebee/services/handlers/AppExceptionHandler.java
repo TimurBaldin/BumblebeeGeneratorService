@@ -22,7 +22,6 @@ public class AppExceptionHandler {
         if (ex instanceof MethodArgumentNotValidException) {
             status = HttpStatus.BAD_REQUEST;
             response = handleRqValidateException((MethodArgumentNotValidException) ex);
-
         } else if (ex instanceof ValidationException) {
             status = HttpStatus.BAD_REQUEST;
             response = handleValidationException((ValidationException) ex);
@@ -36,9 +35,7 @@ public class AppExceptionHandler {
     private BaseErrorResponse handleRqValidateException(MethodArgumentNotValidException exception) {
         Map<String, String> errors = new HashMap<>();
         exception.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
+            errors.put(((FieldError) error).getField(), error.getDefaultMessage());
         });
         return new BaseErrorResponse<Map<String, String>>().setErrorMessage(errors);
     }
@@ -54,7 +51,7 @@ public class AppExceptionHandler {
             return new BaseErrorResponse<String>().setErrorMessage(exception.getMessage());
         }
         Map<String, String> errors = new HashMap<>();
-        exception.getErrors().stream().forEach(error -> {
+        exception.getErrors().forEach(error -> {
             errors.put(error.getObjectName(), error.getDefaultMessage());
         });
         return new BaseErrorResponse<Map<String, String>>().setErrorMessage(errors);

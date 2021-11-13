@@ -54,6 +54,9 @@ public abstract class BaseInitGeneratorService<R> implements InitGeneratorServic
     }
 
     protected void validateGeneratorsRequest(GeneratorRequest request) throws Exception {
+        if (request == null) {
+            throw new Exception("Request is null");
+        }
         if (StringUtils.isEmpty(request.getCuid())) {
             throw new Exception("Parameter cuid is null or empty ");
         }

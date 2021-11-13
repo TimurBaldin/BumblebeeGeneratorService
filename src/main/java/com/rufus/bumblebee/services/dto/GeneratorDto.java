@@ -24,7 +24,7 @@ public class GeneratorDto {
     /**
      * Массив параметров генератора {@link GeneratorParameter}
      */
-    List<GeneratorParametersDto> parameters;
+    private final List<GeneratorParametersDto> parameters;
 
     public GeneratorDto(String generatorName, String generatorDescription, List<GeneratorParametersDto> parameters) {
         this.generatorName = generatorName;

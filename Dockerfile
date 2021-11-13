@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM mcr.microsoft.com/java/jre:8-zulu-alpine
 
 ENV PROFILE docker
 

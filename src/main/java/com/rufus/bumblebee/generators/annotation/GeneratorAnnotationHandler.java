@@ -28,7 +28,7 @@ public class GeneratorAnnotationHandler implements InformationAnnotationHandler<
     public void handler() {
         for (DataGenerator generator : generators) {
             Class<?> bean = generator.getClass();
-            if (bean.isAnnotationPresent(GeneratorDescription.class) && isGeneratorParameter(bean)) {
+            if (bean.isAnnotationPresent(GeneratorDescription.class)) {
                 generatorBeans.put(
                         bean.getAnnotation(GeneratorDescription.class),
                         getGeneratorParameters(bean)
@@ -40,15 +40,6 @@ public class GeneratorAnnotationHandler implements InformationAnnotationHandler<
     @Override
     public Map<GeneratorDescription, List<GeneratorParameter>> getInformation() {
         return generatorBeans;
-    }
-
-    private boolean isGeneratorParameter(Class<?> generatorClass) {
-        for (Field field : generatorClass.getDeclaredFields()) {
-            if (field.getAnnotation(GeneratorParameter.class) != null) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private List<GeneratorParameter> getGeneratorParameters(Class<?> generatorClass) {

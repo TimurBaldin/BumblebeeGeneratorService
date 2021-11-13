@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.controllers;
 
-import com.rufus.bumblebee.services.dto.GeneratorDto;
 import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
+import com.rufus.bumblebee.services.dto.GeneratorDto;
 import com.rufus.bumblebee.services.interfaces.GeneratorInformationService;
 import com.rufus.bumblebee.services.interfaces.InitGeneratorService;
 import io.swagger.annotations.Api;
