@@ -13,8 +13,6 @@ public @interface GeneratorParameter {
 
     String description() default "";
 
-    Class<?> InClass();
-
-    String convertMethod() default "";
+    String setValueMethod();
 
 }

@@ -1,4 +1,4 @@
-package com.rufus.bumblebee.generators;
+package com.rufus.bumblebee.generators.dto;
 
 import java.util.Map;
 

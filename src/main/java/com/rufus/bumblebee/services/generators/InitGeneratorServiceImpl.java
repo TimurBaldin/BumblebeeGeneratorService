@@ -2,14 +2,14 @@ package com.rufus.bumblebee.services.generators;
 
 import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
 import com.rufus.bumblebee.generators.DataGenerator;
-import com.rufus.bumblebee.generators.GeneratorInformation;
+import com.rufus.bumblebee.generators.factories.DataGeneratorFactory;
+import com.rufus.bumblebee.generators.dto.GeneratorInformation;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 import com.rufus.bumblebee.generators.annotation.InformationAnnotationHandler;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.interfaces.DataGenerationService;
-import com.rufus.bumblebee.services.interfaces.GeneratorParametersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -30,17 +30,17 @@ public class InitGeneratorServiceImpl extends BaseInitGeneratorService<Generator
 
     private final ContainerRepository containerRepository;
     private final DataGenerationService dataGenerationService;
-    private final GeneratorParametersService generatorParametersService;
+    private final DataGeneratorFactory generatorFactory;
 
     public InitGeneratorServiceImpl(ContainerRepository containerRepository,
                                     DataGenerationService dataGenerationService,
-                                    GeneratorParametersService generatorParametersService,
+                                    DataGeneratorFactory generatorFactory,
                                     ApplicationContext context,
                                     InformationAnnotationHandler<Map<GeneratorDescription, List<GeneratorParameter>>> handler) {
         super(context, handler);
         this.containerRepository = containerRepository;
         this.dataGenerationService = dataGenerationService;
-        this.generatorParametersService = generatorParametersService;
+        this.generatorFactory = generatorFactory;
     }
 
     @Override
@@ -56,8 +56,7 @@ public class InitGeneratorServiceImpl extends BaseInitGeneratorService<Generator
         for (GeneratorInformation information : request.getGeneratorInfo()) {
             try {
                 DataGenerator generator = (DataGenerator) getGeneratorByName(information.getGeneratorName());
-                generatorParametersService.setParameters(getFields(generator.getClass()), information.getValues(), generator);
-                generators.add(generator);
+                generators.add(generatorFactory.createGenerator(information.getValues(), generator));
             } catch (Exception exception) {
                 container.setStatus(GENERATION_ERROR);
                 log.error("Error in the process of generating generators", exception);
@@ -68,7 +67,7 @@ public class InitGeneratorServiceImpl extends BaseInitGeneratorService<Generator
         container.setStatus(PREPARATION_FOR_GENERATION);
         dataGenerationService.generateTestData(generators, containerRepository.save(container));
 
-        return new HashMap<String, String>() {{
+        return new HashMap<>() {{
             put(KEY_CONTAINER_NAME, container.getName());
             put(KEY_UID, container.getCuid().toString());
             put(KEY_STATUS, container.getStatus().name());

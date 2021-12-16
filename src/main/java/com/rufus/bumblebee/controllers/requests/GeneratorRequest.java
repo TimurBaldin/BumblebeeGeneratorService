@@ -1,6 +1,6 @@
 package com.rufus.bumblebee.controllers.requests;
 
-import com.rufus.bumblebee.generators.GeneratorInformation;
+import com.rufus.bumblebee.generators.dto.GeneratorInformation;
 
 import java.util.List;
 

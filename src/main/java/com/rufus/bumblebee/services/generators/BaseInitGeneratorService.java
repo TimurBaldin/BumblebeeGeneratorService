@@ -1,7 +1,7 @@
 package com.rufus.bumblebee.services.generators;
 
 import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
-import com.rufus.bumblebee.generators.GeneratorInformation;
+import com.rufus.bumblebee.generators.dto.GeneratorInformation;
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 import com.rufus.bumblebee.generators.annotation.InformationAnnotationHandler;
@@ -28,12 +28,12 @@ public abstract class BaseInitGeneratorService<R> implements InitGeneratorServic
 
     protected List<Field> getFields(Class generatorClass) {
         List<Field> fields = new ArrayList<>();
-        for (Field f : generatorClass.getFields()) {
-            addFieldToList(f, fields);
+        for (Field field : generatorClass.getFields()) {
+            addFieldToList(field, fields);
         }
 
-        for (Field f : generatorClass.getDeclaredFields()) {
-            addFieldToList(f, fields);
+        for (Field field : generatorClass.getDeclaredFields()) {
+            addFieldToList(field, fields);
         }
         return fields;
     }

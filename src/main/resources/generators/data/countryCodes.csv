@@ -1,0 +1,204 @@
+Countries,Code ISO,country code,number_length
+Russia,RU,7,11
+Ukraine,UA,380,12
+Kazakhstan,KZ,77,11
+Lithuania,LT,370,11
+Belarus,BY,375,12
+USA,US,1,11
+Abkhazia,AB,7940,11
+Australia,AU,61,11
+Austria,AT,43,12
+Azerbaijan,AZ,994,12
+Albania,AL,355,12
+Algeria,DZ,213,12
+Angola,AO,244,12
+Andorra,AD,376,9
+Antigua And Barbuda,AG,1268,11
+Argentina,AR,54,13
+Armenia,AM,374,11
+Aruba,AW,297,10
+Afghanistan,AF,93,11
+Bahamas,BS,1242,11
+Bangladesh,BD,880,13
+Barbados,BB,1246,11
+Bahrain,BH,973,11
+Belize,BZ,501,10
+Belgium,BE,32,11
+Benin,BJ,229,11
+Cote D'Ivoire,CI,225,11
+Bermuda,BM,1441,11
+Bulgaria,BG,359,12
+Bolivia,BO,591,11
+Bosnia And Herzegovina,BA,387,11
+Botswana,BW,267,11
+Brazil,BR,55,12
+British Virgin Islands,VG,1284,11
+Brunei Darussalam,BN,673,10
+Burkina Faso,BF,226,11
+Burundi,BI,257,11
+Bhutan,BT,975,11
+Vanuatu,VU,678,10
+United Kingdom,UK,44,12
+Hungary,HU,36,11
+Venezuela,VE,58,12
+Timor-Leste,TL,670,11
+Vietnam,VN,84,11
+Gabon,GA,241,11
+Haiti,HT,509,11
+Gambia,GM,220,10
+Ghana,GH,233,12
+Guadeloupe,GP,590,12
+Guatemala,GT,502,11
+Guinea,GN,224,11
+Guinea-Bissau,GW,245,10
+Germany,DE,49,12
+Gibraltar,GI,350,11
+Hong Kong,HK,852,11
+Honduras,HN,504,11
+Grenada,GD,1473,11
+Greenland,GL,299,9
+Greece,GR,30,12
+Georgia,GE,995,12
+Guam,GU,671,11
+Denmark,DK,45,10
+Dominica,DM,1767,11
+Dominican Republic,DO,1809,11
+Egypt,EG,20,12
+Zambia,ZM,260,12
+Zimbabwe,ZW,263,12
+Israel,IL,972,12
+India,IN,91,12
+Indonesia,ID,62,11
+Jordan,JO,962,12
+Iraq,IQ,964,13
+Iran,IR,98,12
+Ireland,IE,353,12
+Iceland,IS,354,10
+Spain,ES,34,11
+Italy,IT,39,12
+Yemen,YE,967,12
+Cayman Islands,KY,1345,11
+Cambodia,KH,855,11
+Cameroon,CM,237,11
+Canada,CA,1,11
+Cape Verde,CV,238,10
+Qatar,QA,974,11
+Kenya,KE,254,12
+Cyprus,CY,357,11
+China,CN,86,13
+Colombia,CO,57,12
+Comoros,KM,269,10
+Congo,CG,242,12
+Congo [DRC],CD,242,12
+KOSOVO,RK,3478,0
+Costa Rica,CR,506,11
+Cuba,CU,53,10
+Kyrgyzstan,KG,996,12
+Kuwait,KW,965,11
+Curacao,AN,599,11
+Latvia,LV,371,11
+Lesotho,LS,266,11
+Liberia,LR,231,10
+Lebanon,LB,961,11
+Libya,LY,21,12
+Liechtenstein,LI,423,12
+Luxembourg,LU,352,12
+Mauritius,MU,230,10
+Mauritania,MR,222,11
+Madagascar,MG,261,12
+Macao,MO,853,11
+Macedonia,MK,389,11
+Malawi,MW,265,12
+Malaysia,MY,60,11
+Mali,ML,223,11
+Maldives,MV,960,10
+Malta,MT,356,11
+Morocco,MA,212,12
+Martinique,MQ,596,12
+Mexico,MX,52,13
+Mozambique,MZ,258,12
+Moldova,MD,373,11
+Monaco,MC,377,12
+Mongolia,MN,976,11
+Montenegro,ME,381,11
+Namibia,NA,264,12
+Nauru,NR,674,10
+Nepal,NP,977,13
+Niger,NE,227,11
+Nigeria,NG,234,13
+Netherlands,NL,31,11
+Nicaragua,NI,505,11
+New Zealand,NZ,64,11
+New Caledonia,NC,687,9
+Norway,NO,47,10
+Cook Islands,CK,682,8
+United Arab Emirates,AE,971,12
+Oman,OM,968,11
+Pakistan,PK,92,12
+Palestinian Territories,PS,970,12
+Panama,PA,507,11
+Papua New Guinea,PG,675,10
+Paraguay,PY,595,12
+Peru,PE,51,11
+Poland,PL,48,11
+Portugal,PT,351,12
+Puerto Rico,PR,1787,11
+Reunion,RE,262,12
+Rwanda,RW,250,12
+Romania,RO,40,11
+Samoa,AS,685,9
+San Marino,SM,378,11
+Saint Lucia,LC,1758,11
+Saudi Arabia,SA,966,12
+North Korea,KP,82,13
+Northern Mariana Islands,MP,670,11
+Seychelles,SC,248,10
+Senegal,SN,221,12
+Saint Vincent And The Grenadines,VC,1784,11
+Saint Kitts And Nevis,KN,1869,11
+Serbia,CS,381,11
+Singapore,SG,65,10
+Syrian Arab Republic,SY,963,12
+Slovakia,SK,421,12
+Slovenia,SI,386,11
+Solomon Islands,SB,677,10
+Sudan,SD,249,12
+Suriname,SR,597,10
+Sierra Leone,SL,232,11
+Tajikistan,TJ,992,12
+Thailand,TH,66,11
+Taiwan,TW,886,12
+Tanzania,TZ,255,12
+Togo,TG,228,11
+Tonga,TO,676,10
+Trinidad And Tobago,TT,1868,11
+Tunisia,TN,216,11
+Turkmenistan,TM,993,11
+Turkey,TR,90,12
+Uganda,UG,256,12
+Uzbekistan,UZ,998,12
+Uruguay,UY,598,11
+Faroe Islands,FO,298,9
+Fiji,FJ,679,10
+Philippines,PH,63,12
+Finland,FI,358,12
+France,FR,33,11
+French Guiana,GF,594,12
+French Polynesia,PF,689,9
+Croatia,HR,385,11
+Central African Republic,CF,236,11
+Chad,TD,235,11
+Czech Republic,CZ,420,12
+Chile,CL,56,11
+Switzerland,CH,41,11
+Sweden,SE,46,11
+Sri Lanka,LK,94,11
+Ecuador,EC,593,12
+Equatorial Guinea,GQ,240,12
+El Salvador,SV,503,11
+Estonia,EE,372,11
+Ethiopia,ET,251,12
+South Africa,ZA,27,11
+South Korea,KR,82,12
+Jamaica,JM,1876,11
+Japan,JP,81,12
