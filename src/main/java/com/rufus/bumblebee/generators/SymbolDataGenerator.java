@@ -2,6 +2,7 @@ package com.rufus.bumblebee.generators;
 
 import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
 import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
+import com.rufus.bumblebee.generators.utils.ConvertorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,46 +21,47 @@ public class SymbolDataGenerator implements DataGenerator {
     @GeneratorParameter(
             name = "len",
             description = "The length of the text value, applied if isCascade = false",
-            InClass = Integer.class)
-    private Integer len;
+            setValueMethod = "setLen"
+    )
+    private int len;
 
     @GeneratorParameter(
             name = "count",
             description = "Number of text values in the list",
-            InClass = Integer.class)
-    private Integer count;
+            setValueMethod = "setCount")
+    private int count;
 
     @GeneratorParameter(
             name = "mode",
             description = "Maybe value STRING or NUMBER",
-            InClass = String.class)
-    private String mode;
+            setValueMethod = "setDataMode")
+    private DataMode dataMode;
 
     @GeneratorParameter(
             name = "isNull",
             description = "The presence of a NULL value",
-            InClass = Boolean.class)
-    private Boolean isNull;
+            setValueMethod = "setIsNull")
+    private boolean isNull;
 
     @GeneratorParameter(
             name = "isCascade",
             description = "Cascading increment of values in a text expression",
-            InClass = Boolean.class)
-    private Boolean isCascade;
+            setValueMethod = "setIsCascade")
+    private boolean isCascade;
 
-    private final int MIN_ID_STRING = 1;
-    private final int MAX_ID_STRING = 192;
-    private final int MIN_ID_NUMERIC = 48;
-    private final int MAX_ID_NUMERIC = 58;
+    private static final int MIN_ID_STRING = 1;
+    private static final int MAX_ID_STRING = 192;
+    private static final int MIN_ID_NUMERIC = 48;
+    private static final int MAX_ID_NUMERIC = 58;
 
     @Override
-    public List<String> build() {
+    public List<String> getTestData() {
         List<String> values = new ArrayList<>(count + 1);
-        if (DataMode.valueOf(mode).equals(STRING)) {
+        if (dataMode.equals(STRING)) {
             generateData(MIN_ID_STRING, MAX_ID_STRING, values);
         }
 
-        if (DataMode.valueOf(mode).equals(NUMBER)) {
+        if (dataMode.equals(NUMBER)) {
             generateData(MIN_ID_NUMERIC, MAX_ID_NUMERIC, values);
         }
         return values;
@@ -96,38 +98,30 @@ public class SymbolDataGenerator implements DataGenerator {
     enum DataMode {
         STRING("STRING"),
         NUMBER("NUMBER");
-        String key;
+        final String key;
 
         DataMode(String key) {
             this.key = key;
         }
     }
 
-    public void setLen(Integer len) {
-        this.len = len;
+    public void setLen(String len) {
+        this.len = ConvertorUtils.convertStringToInt(len);
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setCount(String count) {
+        this.count = ConvertorUtils.convertStringToInt(count);
     }
 
-    public void setMode(String mode) {
-        this.mode = mode;
+    public void setDataMode(String dataMode) {
+        this.dataMode = DataMode.valueOf(dataMode.toUpperCase());
     }
 
-    public void setNull(Boolean aNull) {
-        isNull = aNull;
+    public void setNull(String isNull) {
+        this.isNull = ConvertorUtils.convertStringToBoolean(isNull);
     }
 
-    public void setCascade(Boolean cascade) {
-        isCascade = cascade;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public Integer getLen() {
-        return len;
+    public void setCascade(String cascade) {
+        isCascade = ConvertorUtils.convertStringToBoolean(cascade);
     }
 }
