@@ -16,7 +16,10 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.2'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.8.2'
+    testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.8.2'
+
     implementation group: 'org.testcontainers', name: 'postgresql', version: '1.16.0'
     implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.2.16.Final'
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
@@ -36,7 +39,6 @@ dependencies {
     implementation 'org.springframework.data:spring-data-jpa'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
-
 }
 
 

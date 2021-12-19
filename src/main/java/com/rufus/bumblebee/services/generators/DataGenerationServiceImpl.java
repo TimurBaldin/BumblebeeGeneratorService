@@ -59,7 +59,7 @@ public class DataGenerationServiceImpl implements DataGenerationService {
     private List<TestDataDto> mapToDto(List<DataGenerator> generators) {
         List<TestDataDto> dto = new ArrayList<>(generators.size());
         generators.forEach(
-                g -> dto.add(new TestDataDto(g.getGeneratorName(), g.build()))
+                g -> dto.add(new TestDataDto(g.getGeneratorName(), g.getTestData()))
         );
         return dto;
     }
