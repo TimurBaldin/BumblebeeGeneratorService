@@ -1,8 +1,7 @@
 package com.rufus.bumblebee.services.dto;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
-import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
-import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
+import com.rufus.bumblebee.generators.dto.parameters.GeneratorDescription;
 
 import java.util.List;
 
@@ -12,12 +11,12 @@ import java.util.List;
 public class GeneratorDto {
 
     /**
-     * Имя генератора {@link GeneratorDescription#generatorName}
+     * Имя генератора {@link GeneratorDescription#getName()}
      */
     private final String generatorName;
 
     /**
-     * Описание генератора {@link GeneratorDescription#description}
+     * Описание генератора {@link GeneratorDescription#getDescription()}
      */
     private final String generatorDescription;
 

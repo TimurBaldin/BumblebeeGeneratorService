@@ -14,7 +14,7 @@ import java.util.Map;
 @Execution(ExecutionMode.CONCURRENT)
 public class DataProviderUtilsParallelTest {
 
-    private static final Map<String, GeneratorResource> resources = new HashMap();
+    private static final Map<String, GeneratorResource> resources = new HashMap<>();
     private static final String GENERATOR_NAME_ONE = "Test1";
     private static final String GENERATOR_NAME_TWO = "Test2";
     private static final String FILE_NAME = "countryCodes.csv";

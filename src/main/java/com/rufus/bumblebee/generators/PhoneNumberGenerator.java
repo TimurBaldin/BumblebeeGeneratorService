@@ -1,23 +1,20 @@
 package com.rufus.bumblebee.generators;
 
-import com.rufus.bumblebee.generators.annotation.GeneratorDescription;
+import com.rufus.bumblebee.generators.dto.parameters.GeneratorParameters;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
-@GeneratorDescription(
-        generatorName = "PhoneNumberGenerator",
-        generatorClass = PhoneNumberGenerator.class,
-        description = "Generator create random phone numbers")
-public class PhoneNumberGenerator implements DataGenerator{
+public class PhoneNumberGenerator extends BaseGenerator{
+
 
     @Override
-    public List<String> getTestData() {
+    public List<List<String>> getTestData(List<Map<String, String>> values) {
         return null;
     }
 
     @Override
-    public String getGeneratorName() {
-        return Optional.of(this.getClass().getAnnotation(GeneratorDescription.class).generatorName()).orElse("DEFAULT");
+    public GeneratorParameters getParameters() {
+        return null;
     }
 }

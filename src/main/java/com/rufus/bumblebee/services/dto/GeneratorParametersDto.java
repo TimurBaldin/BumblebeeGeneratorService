@@ -1,7 +1,6 @@
 package com.rufus.bumblebee.services.dto;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
-import com.rufus.bumblebee.generators.annotation.GeneratorParameter;
 
 /**
  * Class Dto для параметров инициализации генератора

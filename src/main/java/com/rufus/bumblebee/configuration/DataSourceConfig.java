@@ -28,8 +28,7 @@ import java.util.Properties;
 })
 public class DataSourceConfig {
 
-    @Autowired
-    private Environment env;
+    private final Environment env;
 
     private static final String HIBERNATE_DDL_PROPERTY = "hibernate.hbm2ddl.auto";
     private static final String HIBERNATE_DIALECT_PROPERTY = "hibernate.dialect";
@@ -40,11 +39,15 @@ public class DataSourceConfig {
     private static final String HIBERNATE_STATISTICS_PROPERTY = "hibernate.generate_statistics";
     private static final String HIBERNATE_METADATA_PROPERTY = "hibernate.temp.use_jdbc_metadata_defaults";
 
+    @Autowired
+    public DataSourceConfig(Environment env) {
+        this.env = env;
+    }
+
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Autowired DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
-        em.setPackagesToScan("com.rufus.bumblebee.repository");
         em.setPersistenceUnitName("dataGenerator");
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

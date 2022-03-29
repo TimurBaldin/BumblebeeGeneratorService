@@ -1,10 +1,11 @@
 package com.rufus.bumblebee.generators.dto;
 
+import java.util.List;
 import java.util.Map;
 
 public class GeneratorInformation {
     private String generatorName;
-    private Map<String, String> values;
+    private List<Map<String, String>> values;
 
     public String getGeneratorName() {
         return generatorName;
@@ -15,11 +16,11 @@ public class GeneratorInformation {
         return this;
     }
 
-    public Map<String, String> getValues() {
+    public List<Map<String, String>> getValues() {
         return values;
     }
 
-    public void setValues(Map<String, String> values) {
+    public void setValues(List<Map<String, String>> values) {
         this.values = values;
     }
 }

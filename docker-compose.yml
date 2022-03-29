@@ -9,9 +9,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - 8080:8080
-      - 8090:8090
     networks:
       - dev
     depends_on:

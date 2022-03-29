@@ -16,6 +16,7 @@ import org.springframework.kafka.core.ProducerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static java.lang.Integer.parseInt;
 import static java.lang.Short.parseShort;
@@ -23,14 +24,18 @@ import static java.lang.Short.parseShort;
 @Configuration
 public class KafkaConfig {
 
-    @Autowired
-    private Environment env;
+    private final Environment env;
 
     private static final String KAFKA_SERVER_KEY_PROPERTY = "kafka.producer.server";
     private static final String KAFKA_TOPIC_NAME_PROPERTY = "kafka.topic.name";
     private static final String KAFKA_TOPIC_PARTITION_PROPERTY = "kafka.topic.partition";
     private static final String KAFKA_TOPIC_PARTITION_FACTORY_PROPERTY = "kafka.topic.partition-factory";
     private static final String KAFKA_TOPIC_MESSAGE_SIZE_PROPERTY = "kafka.message.max-size";
+
+    @Autowired
+    public KafkaConfig(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
@@ -46,8 +51,8 @@ public class KafkaConfig {
     public NewTopic topic() {
         NewTopic topic = new NewTopic(
                 env.getProperty(KAFKA_TOPIC_NAME_PROPERTY),
-                parseInt(env.getProperty(KAFKA_TOPIC_PARTITION_PROPERTY)),
-                parseShort(env.getProperty(KAFKA_TOPIC_PARTITION_FACTORY_PROPERTY))
+                parseInt(Objects.requireNonNull(env.getProperty(KAFKA_TOPIC_PARTITION_PROPERTY))),
+                parseShort(Objects.requireNonNull(env.getProperty(KAFKA_TOPIC_PARTITION_FACTORY_PROPERTY)))
         );
         Map<String, String> configs = new HashMap<>();
         configs.put(TopicConfig.MAX_MESSAGE_BYTES_CONFIG, env.getProperty(KAFKA_TOPIC_MESSAGE_SIZE_PROPERTY));

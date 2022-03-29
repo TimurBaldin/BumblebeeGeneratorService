@@ -39,7 +39,7 @@ public class DataGenerationServiceImpl implements DataGenerationService {
     }
 
     @Async
-    public void generateTestData(List<DataGenerator> generators, Container container){
+    public void generateTestData(List<DataGenerator> generators, Container container) {
         List<TestDataDto> dto = mapToDto(generators);
         kafkaService.sendTestData(dto, container);
 
@@ -58,8 +58,8 @@ public class DataGenerationServiceImpl implements DataGenerationService {
 
     private List<TestDataDto> mapToDto(List<DataGenerator> generators) {
         List<TestDataDto> dto = new ArrayList<>(generators.size());
-        generators.forEach(
-                g -> dto.add(new TestDataDto(g.getGeneratorName(), g.getTestData()))
+        generators.parallelStream().forEach(
+                generator -> dto.add(new TestDataDto(generator.getGeneratorName(), generator.getTestData()))
         );
         return dto;
     }
@@ -68,8 +68,8 @@ public class DataGenerationServiceImpl implements DataGenerationService {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         List<TestData> testDataList = new ArrayList<>(dtos.size());
         for (TestDataDto dto : dtos) {
-            testDataList.add(new TestData(
-                    ow.writeValueAsString(dto.getData()), containerRef, dto.getGeneratorName())
+            testDataList.add(
+                    new TestData(ow.writeValueAsString(dto.getData()), containerRef, dto.getGeneratorName())
             );
         }
         return testDataList;

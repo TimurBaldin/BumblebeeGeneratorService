@@ -16,9 +16,15 @@ public class DataProviderUtils {
     private DataProviderUtils() {
     }
 
-    public static synchronized GeneratorResource getResourceByName(String fileName, String generatorName) throws IOException {
-        if (GENERATORS_RESOURCE.containsKey(generatorName)) {
-            return GENERATORS_RESOURCE.get(generatorName);
+    public static GeneratorResource getResourceByName(String fileName, String generatorName) throws IOException {
+
+        //ReadWriteLock использовать (возможно) ?
+        //Либо ConcurrentHashMap (обеспечит операцию вернуть если равно) ?????
+        synchronized (DataProviderUtils.class) {
+
+            if (GENERATORS_RESOURCE.containsKey(generatorName)) {
+                return GENERATORS_RESOURCE.get(generatorName);
+            }
         }
 
         List<String> rawData = new ArrayList<>();
@@ -44,7 +50,10 @@ public class DataProviderUtils {
         }
 
         GeneratorResource generatorResource = new GeneratorResource(data);
-        GENERATORS_RESOURCE.put(generatorName, generatorResource);
+
+        synchronized (DataProviderUtils.class) {
+            GENERATORS_RESOURCE.put(generatorName, generatorResource);
+        }
         return generatorResource;
     }
 }
