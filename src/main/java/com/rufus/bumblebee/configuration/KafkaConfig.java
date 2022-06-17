@@ -6,6 +6,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.config.TopicConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -22,6 +23,9 @@ import static java.lang.Integer.parseInt;
 import static java.lang.Short.parseShort;
 
 @Configuration
+@ConditionalOnProperty(
+        value = "kafka.status",
+        havingValue = "on")
 public class KafkaConfig {
 
     private final Environment env;

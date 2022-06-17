@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 abstract class BaseGenerator implements DataGenerator {
 
     @Override
-    public boolean validate(List<Map<String, String>> values) throws Exception {
+    public void validate(List<Map<String, String>> values) throws Exception {
         containsRequiredFields(values);
 
         Map<String, GeneratorParameters.Field> parameters = getParameters().getFields();
@@ -41,7 +41,6 @@ abstract class BaseGenerator implements DataGenerator {
 
         }
 
-        return true;
     }
 
     private void containsRequiredFields(List<Map<String, String>> values) throws Exception {

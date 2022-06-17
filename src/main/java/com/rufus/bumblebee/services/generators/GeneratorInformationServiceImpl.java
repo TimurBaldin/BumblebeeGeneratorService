@@ -10,8 +10,6 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.rufus.bumblebee.generators.utils.GeneratorsUtils.getGeneratorParametersByClass;
-
 @Service
 public class GeneratorInformationServiceImpl implements GeneratorInformationService<List<GeneratorDto>> {
 
@@ -31,10 +29,6 @@ public class GeneratorInformationServiceImpl implements GeneratorInformationServ
 
     private List<GeneratorParametersDto> getGeneratorParametersDtoList(GeneratorDescription description) {
         List<GeneratorParametersDto> parameters = new ArrayList<>();
-        getGeneratorParametersByClass(description.getGeneratorClass())
-                .forEach(generatorParameter -> {
-                    parameters.add(new GeneratorParametersDto(generatorParameter.name(), generatorParameter.description()));
-                });
         return parameters;
     }
 }

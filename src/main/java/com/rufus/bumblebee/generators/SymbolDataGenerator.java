@@ -51,12 +51,11 @@ public class SymbolDataGenerator extends BaseGenerator {
     }
 
     @Override
-    public List<List<String>> getTestData(List<Map<String, String>> values) {
-        List<List<String>> result = new ArrayList<>(values.size());
+    public List<String> getTestData(List<Map<String, String>> values) {
+        List<String> data = new ArrayList<>(getDataSize(values));
 
         for (Map<String, String> map : values) {
             int count = convertStringToInt(map.get(COUNT_PARAMETER));
-            List<String> data = new ArrayList<>(count);
 
             int len = convertStringToInt(map.get(LEN_PARAMETER));
             SymbolDataGenerator.DataMode mode = SymbolDataGenerator.DataMode.valueOf(map.get(MODE_PARAMETER));
@@ -69,9 +68,8 @@ public class SymbolDataGenerator extends BaseGenerator {
             if (mode.equals(NUMBER)) {
                 generateData(MIN_ID_NUMERIC, MAX_ID_NUMERIC, data, count, isCascade, len);
             }
-            result.add(data);
         }
-        return result;
+        return data;
     }
 
     @Override
@@ -106,4 +104,7 @@ public class SymbolDataGenerator extends BaseGenerator {
         }
     }
 
+    private int getDataSize(List<Map<String, String>> values) {
+        return values.stream().mapToInt(map -> convertStringToInt(map.get(COUNT_PARAMETER))).sum();
+    }
 }

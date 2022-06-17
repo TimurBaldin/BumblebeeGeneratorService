@@ -1,7 +1,10 @@
 package com.rufus.bumblebee;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.Objects;
@@ -9,8 +12,8 @@ import java.util.concurrent.Executor;
 
 import static java.lang.Integer.parseInt;
 
-//@SpringBootApplication(scanBasePackages = {"com.rufus.bumblebee.*"})
-//@EnableAsync
+@SpringBootApplication(scanBasePackages = {"com.rufus.bumblebee.*"})
+@EnableAsync
 public class BumblebeeGeneratorService {
 
     private final Environment env;
@@ -25,8 +28,7 @@ public class BumblebeeGeneratorService {
     }
 
     public static void main(String[] args) {
-        //SpringApplication.run(BumblebeeGeneratorService.class, args);
-
+        SpringApplication.run(BumblebeeGeneratorService.class, args);
     }
 
     @Bean
@@ -38,7 +40,7 @@ public class BumblebeeGeneratorService {
         executor.setMaxPoolSize(
                 parseInt(Objects.requireNonNull(env.getProperty("thread-pool.max-size")))
         );
-        executor.setThreadNamePrefix("Async-");
+        executor.setThreadNamePrefix("Async- ");
         return executor;
     }
 }

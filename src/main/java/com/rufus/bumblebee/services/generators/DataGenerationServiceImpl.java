@@ -3,15 +3,15 @@ package com.rufus.bumblebee.services.generators;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.rufus.bumblebee.generators.DataGenerator;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.TestDataRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.repository.tables.TestData;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
+import com.rufus.bumblebee.services.dto.Pair;
 import com.rufus.bumblebee.services.dto.TestDataDto;
-import com.rufus.bumblebee.services.interfaces.KafkaService;
 import com.rufus.bumblebee.services.interfaces.DataGenerationService;
+import com.rufus.bumblebee.services.interfaces.KafkaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class DataGenerationServiceImpl implements DataGenerationService {
     }
 
     @Async
-    public void generateTestData(List<DataGenerator> generators, Container container) {
+    public void generateTestData(List<Pair> generators, Container container) {
         List<TestDataDto> dto = mapToDto(generators);
         kafkaService.sendTestData(dto, container);
 
@@ -55,12 +55,15 @@ public class DataGenerationServiceImpl implements DataGenerationService {
         containerUpdateStatus(ContainerStatus.GENERATION_COMPLETED, container);
     }
 
-
-    private List<TestDataDto> mapToDto(List<DataGenerator> generators) {
-        List<TestDataDto> dto = new ArrayList<>(generators.size());
-        generators.parallelStream().forEach(
-                generator -> dto.add(new TestDataDto(generator.getGeneratorName(), generator.getTestData()))
-        );
+    private List<TestDataDto> mapToDto(List<Pair> pairs) {
+        List<TestDataDto> dto = new ArrayList<>(pairs.size());
+        pairs.forEach(
+                pair -> {
+                    dto.add(
+                            new TestDataDto(pair.getDescription().getName(),
+                                    pair.getDescription().getGenerator().getTestData(pair.getValues())
+                            ));
+                });
         return dto;
     }
 

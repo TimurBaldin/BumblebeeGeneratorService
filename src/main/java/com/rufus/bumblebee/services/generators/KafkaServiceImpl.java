@@ -7,12 +7,16 @@ import com.rufus.bumblebee.services.dto.TestDataDto;
 import com.rufus.bumblebee.services.interfaces.KafkaService;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@ConditionalOnProperty(
+        value = "kafka.status",
+        havingValue = "on")
 public class KafkaServiceImpl implements KafkaService<List<TestDataDto>> {
 
     private final KafkaTemplate<String, String> template;

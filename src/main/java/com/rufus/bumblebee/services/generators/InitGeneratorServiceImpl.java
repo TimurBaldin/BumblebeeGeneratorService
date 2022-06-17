@@ -1,27 +1,27 @@
 package com.rufus.bumblebee.services.generators;
 
 import com.rufus.bumblebee.controllers.requests.GeneratorRequest;
-import com.rufus.bumblebee.generators.DataGenerator;
 import com.rufus.bumblebee.generators.dto.GeneratorInformation;
-import com.rufus.bumblebee.generators.dto.parameters.GeneratorDescription;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
+import com.rufus.bumblebee.services.dto.Pair;
 import com.rufus.bumblebee.services.interfaces.DataGenerationService;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.rufus.bumblebee.BumblebeeGeneratorService.*;
-import static com.rufus.bumblebee.generators.utils.GeneratorsUtils.getGeneratorDescriptionByName;
-import static com.rufus.bumblebee.services.dto.ContainerStatus.*;
+import static com.rufus.bumblebee.generators.utils.GeneratorsUtils.checkGeneratorParameters;
+import static com.rufus.bumblebee.generators.utils.GeneratorsUtils.getGeneratorDescription;
+import static com.rufus.bumblebee.services.dto.ContainerStatus.GENERATION_COMPLETED;
+import static com.rufus.bumblebee.services.dto.ContainerStatus.PREPARATION_FOR_GENERATION;
 
 @Service
 public class InitGeneratorServiceImpl extends BaseInitGeneratorService<GeneratorRequest> {
-
-    private static final Logger log = LoggerFactory.getLogger(InitGeneratorServiceImpl.class);
 
     private final ContainerRepository containerRepository;
     private final DataGenerationService dataGenerationService;
@@ -41,16 +41,14 @@ public class InitGeneratorServiceImpl extends BaseInitGeneratorService<Generator
             throw new Exception("Container status exception for status: " + container.getStatus());
         }
 
-        List<DataGenerator> generators = new ArrayList<>(request.getGeneratorInfo().size());
-        for (GeneratorInformation information : request.getGeneratorInfo()) {
-            try {
-                generators.add(createGenerator(information.getValues(), information.getGeneratorName()));
-            } catch (Exception exception) {
-                container.setStatus(GENERATION_ERROR);
-                log.error("Error in the process of generating generators", exception);
-                throw exception;
-            }
+        List<Pair> generators = new ArrayList<>(request.getGeneratorInfo().size());
+        for (GeneratorInformation generatorInformation : request.getGeneratorInfo()) {
+            generators.add(new Pair(
+                    getGeneratorDescription(generatorInformation.getGeneratorName()),
+                    generatorInformation.getValues()
+            ));
         }
+
         container.setStatus(PREPARATION_FOR_GENERATION);
         dataGenerationService.generateTestData(generators, containerRepository.save(container));
 
@@ -69,20 +67,12 @@ public class InitGeneratorServiceImpl extends BaseInitGeneratorService<Generator
         if (StringUtils.isEmpty(request.getCuid())) {
             throw new Exception("Parameter cuid is null or empty ");
         }
+
         for (GeneratorInformation information : request.getGeneratorInfo()) {
-            GeneratorDescription generatorDescription = getGeneratorDescription(information.getGeneratorName());
-            checkGeneratorParameters(information.getValues(), generatorDescription);
+            checkGeneratorParameters(
+                    information.getValues(),
+                    getGeneratorDescription(information.getGeneratorName())
+            );
         }
-    }
-
-    private GeneratorDescription getGeneratorDescription(String generatorName) throws Exception {
-        return Arrays.stream(GeneratorDescription.values())
-                .filter(g -> g.getName().equalsIgnoreCase(generatorName))
-                .findFirst()
-                .orElseThrow(() -> new Exception("Invalid value passed generatorName: " + generatorName));
-    }
-
-    private void checkGeneratorParameters(List<Map<String, String>> generatorParameters, GeneratorDescription generatorDescription) throws Exception {
-        generatorDescription.getGenerator().validate(generatorParameters);
     }
 }

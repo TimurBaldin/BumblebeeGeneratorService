@@ -7,9 +7,9 @@ import java.util.Map;
 
 public interface DataGenerator {
 
-    List<List<String>> getTestData(List<Map<String, String>> values);
+    List<String> getTestData(List<Map<String, String>> values);
 
-    boolean validate(List<Map<String, String>> values) throws Exception;
+    void validate(List<Map<String, String>> values) throws Exception;
 
     GeneratorParameters getParameters();
 

@@ -34,6 +34,7 @@ thread-pool:
   max-size: 20
 
 kafka:
+  status: on
   topic:
     name: reports_data
     partition: 1

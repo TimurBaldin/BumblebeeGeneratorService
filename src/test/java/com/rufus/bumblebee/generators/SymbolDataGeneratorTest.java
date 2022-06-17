@@ -16,14 +16,12 @@ public class SymbolDataGeneratorTest {
         List<Map<String, String>> parameters = getParameters("25", "25");
         SymbolDataGenerator generatorV2 = new SymbolDataGenerator();
         generatorV2.validate(parameters);
-        generatorV2.getTestData(parameters);
-        assertEquals(generatorV2.getTestData(parameters).size(), 2);
+        assertEquals(25, generatorV2.getTestData(parameters).size());
     }
 
     @Test(expected = Exception.class)
     public void testAmountValues1() throws Exception {
         List<Map<String, String>> parameters = getParameters("2500", "23");
-
         SymbolDataGenerator generator = new SymbolDataGenerator();
         generator.validate(parameters);
     }
@@ -36,14 +34,6 @@ public class SymbolDataGeneratorTest {
         map.put("mode", "STRING");
         map.put("isCascade", "true");
         values.add(map);
-
-        Map<String, String> map1 = new HashMap<>();
-        map1.put("len", len);
-        map1.put("count", count);
-        map1.put("mode", "STRING");
-        map1.put("isCascade", "true");
-        values.add(map1);
-
         return values;
     }
 
