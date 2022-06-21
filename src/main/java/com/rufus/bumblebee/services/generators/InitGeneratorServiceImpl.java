@@ -5,7 +5,7 @@ import com.rufus.bumblebee.generators.dto.GeneratorInformation;
 import com.rufus.bumblebee.repository.ContainerRepository;
 import com.rufus.bumblebee.repository.tables.Container;
 import com.rufus.bumblebee.services.dto.Pair;
-import com.rufus.bumblebee.services.interfaces.DataGenerationService;
+import com.rufus.bumblebee.services.interfaces.GeneratorProcessor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +24,12 @@ import static com.rufus.bumblebee.services.dto.ContainerStatus.PREPARATION_FOR_G
 public class InitGeneratorServiceImpl extends BaseInitGeneratorService<GeneratorRequest> {
 
     private final ContainerRepository containerRepository;
-    private final DataGenerationService dataGenerationService;
+    private final GeneratorProcessor generatorProcessor;
 
     public InitGeneratorServiceImpl(ContainerRepository containerRepository,
-                                    DataGenerationService dataGenerationService) {
+                                    GeneratorProcessor generatorProcessor) {
         this.containerRepository = containerRepository;
-        this.dataGenerationService = dataGenerationService;
+        this.generatorProcessor = generatorProcessor;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class InitGeneratorServiceImpl extends BaseInitGeneratorService<Generator
         }
 
         container.setStatus(PREPARATION_FOR_GENERATION);
-        dataGenerationService.generateTestData(generators, containerRepository.save(container));
+        generatorProcessor.generateTestData(generators, containerRepository.save(container));
 
         return new HashMap<String, String>() {{
             put(KEY_CONTAINER_NAME, container.getName());

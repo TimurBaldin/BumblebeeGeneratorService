@@ -20,8 +20,8 @@ public final class GeneratorParameters {
         }
 
         public static class Builder {
-            private String description;
-            private boolean required;
+            private final String description;
+            private final boolean required;
             private Predicate predicate;
             private String regexp;
 
@@ -61,15 +61,6 @@ public final class GeneratorParameters {
         public String getRegexp() {
             return regexp;
         }
-
-        @Override
-        public String toString() {
-            return "Field{" +
-                    "description='" + description + '\'' +
-                    ", required=" + required +
-                    ", regexp='" + regexp + '\'' +
-                    '}';
-        }
     }
 
     private final Map<String, Field> fields;
@@ -85,12 +76,5 @@ public final class GeneratorParameters {
 
     public Map<String, Field> getFields() {
         return fields;
-    }
-
-    @Override
-    public String toString() {
-        return "GeneratorParameters{" +
-                "fields=" + fields +
-                '}';
     }
 }

@@ -29,6 +29,8 @@ public class GeneratorInformationServiceImpl implements GeneratorInformationServ
 
     private List<GeneratorParametersDto> getGeneratorParametersDtoList(GeneratorDescription description) {
         List<GeneratorParametersDto> parameters = new ArrayList<>();
+        description.getGenerator().getParameters().getFields()
+                .forEach((key, value) -> parameters.add(new GeneratorParametersDto(key, value.getDescription())));
         return parameters;
     }
 }

@@ -8,6 +8,6 @@ import java.util.List;
 /**
  * Class : сервис генерации тестовых данных
  */
-public interface DataGenerationService {
+public interface GeneratorProcessor {
     void generateTestData(List<Pair> generators, Container container);
 }

@@ -10,7 +10,7 @@ import com.rufus.bumblebee.repository.tables.TestData;
 import com.rufus.bumblebee.services.dto.ContainerStatus;
 import com.rufus.bumblebee.services.dto.Pair;
 import com.rufus.bumblebee.services.dto.TestDataDto;
-import com.rufus.bumblebee.services.interfaces.DataGenerationService;
+import com.rufus.bumblebee.services.interfaces.GeneratorProcessor;
 import com.rufus.bumblebee.services.interfaces.KafkaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,20 +23,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DataGenerationServiceImpl implements DataGenerationService {
-
-    private static final Logger log = LoggerFactory.getLogger(DataGenerationServiceImpl.class);
-
-    private final TestDataRepository repository;
+public class AsyncGeneratorProcessor implements GeneratorProcessor {
+    private static final Logger log = LoggerFactory.getLogger(AsyncGeneratorProcessor.class);
+    private TestDataRepository repository;
+    private KafkaService<List<TestDataDto>> kafkaService;
     private final ContainerRepository containerRepository;
-    private final KafkaService<List<TestDataDto>> kafkaService;
 
     @Autowired
-    public DataGenerationServiceImpl(TestDataRepository repository, ContainerRepository containerRepository, KafkaService<List<TestDataDto>> kafkaService) {
-        this.repository = repository;
+    public AsyncGeneratorProcessor(ContainerRepository containerRepository) {
         this.containerRepository = containerRepository;
-        this.kafkaService = kafkaService;
     }
+
 
     @Async
     public void generateTestData(List<Pair> generators, Container container) {
@@ -60,7 +57,8 @@ public class DataGenerationServiceImpl implements DataGenerationService {
         pairs.forEach(
                 pair -> {
                     dto.add(
-                            new TestDataDto(pair.getDescription().getName(),
+                            new TestDataDto(
+                                    pair.getDescription().getName(),
                                     pair.getDescription().getGenerator().getTestData(pair.getValues())
                             ));
                 });
@@ -82,5 +80,15 @@ public class DataGenerationServiceImpl implements DataGenerationService {
         container.setStatus(status);
         container.setUpdateDate(LocalDateTime.now());
         containerRepository.save(container);
+    }
+
+    @Autowired
+    public void setRepository(TestDataRepository repository) {
+        this.repository = repository;
+    }
+
+    @Autowired
+    public void setKafkaService(KafkaService<List<TestDataDto>> kafkaService) {
+        this.kafkaService = kafkaService;
     }
 }
