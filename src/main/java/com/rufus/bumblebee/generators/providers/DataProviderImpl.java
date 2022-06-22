@@ -1,32 +1,37 @@
-package com.rufus.bumblebee.generators.utils;
+package com.rufus.bumblebee.generators.providers;
 
 import com.rufus.bumblebee.generators.dto.GeneratorResource;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.ref.ReferenceQueue;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class DataProviderUtils {
+@Component
+public class DataProviderImpl implements DataProvider<GeneratorResource> {
 
-    //GC очистит, если нужна будет память
-    private static final Map<String, GeneratorResource> GENERATORS_RESOURCE = new WeakHashMap<>();
+    //GC очистит, если нужна будет память, либо объект долго не используется
+    private static final Map<String, GeneratorResource> GENERATORS_RESOURCE = new HashMap<>();
     private static final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock(true);
+    private static final ReferenceQueue<Map<String, List<String>>> queue = new ReferenceQueue<>();
 
+    //TODO изменить
     private static final String GENERATORS_DATA_PATH = "./src/main/resources/generators/data/";
 
-    private DataProviderUtils() {
-    }
 
-    public static GeneratorResource getResourceByName(String fileName, String generatorName) throws IOException {
+    public GeneratorResource getResourceByName(String fileName) throws IOException {
+        //TODO потенциальная проблема, getResourceByName может вернуть null
+        GeneratorResource resource = GENERATORS_RESOURCE.get(fileName);
 
-        if (!GENERATORS_RESOURCE.containsKey(generatorName)) {
+        if (resource == null || resource.get() == null) {
             try {
                 readWriteLock.writeLock().lock();
-                GeneratorResource generatorResource = new GeneratorResource(prepareData(getRawData(fileName)));
-                GENERATORS_RESOURCE.put(generatorName, generatorResource);
+                GeneratorResource generatorResource = new GeneratorResource(prepareData(getRawData(fileName)), queue);
+                GENERATORS_RESOURCE.put(fileName, generatorResource);
                 return generatorResource;
 
             } finally {
@@ -35,15 +40,14 @@ public class DataProviderUtils {
         } else {
             try {
                 readWriteLock.readLock().lock();
-                return GENERATORS_RESOURCE.get(generatorName);
-
+                return GENERATORS_RESOURCE.get(fileName);
             } finally {
                 readWriteLock.readLock().unlock();
             }
         }
     }
 
-    private static Map<String, List<String>> prepareData(List<String> rawData) {
+    private Map<String, List<String>> prepareData(List<String> rawData) {
         List<String> keys = new ArrayList<>();
         Collections.addAll(keys, rawData.get(0).split(","));
 
@@ -60,7 +64,7 @@ public class DataProviderUtils {
         return data;
     }
 
-    private static List<String> getRawData(String fileName) throws IOException {
+    private List<String> getRawData(String fileName) throws IOException {
         List<String> rawData = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(Paths.get(GENERATORS_DATA_PATH + fileName).toFile()))) {
             String text;
